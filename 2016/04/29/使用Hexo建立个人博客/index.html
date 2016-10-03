@@ -1,0 +1,761 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="教程,linux,hexo," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="个人博客是程序员的名片之一,今天,我们来看怎么使用Hexo快速建立个人博客.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Hexo建立个人博客">
+<meta property="og:url" content="http://lingyv.cn/2016/04/29/使用Hexo建立个人博客/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="个人博客是程序员的名片之一,今天,我们来看怎么使用Hexo快速建立个人博客.">
+<meta property="og:image" content="http://lingyv.cn/imag/lingyv.github.png">
+<meta property="og:image" content="http://lingyv.cn/imag/github.png">
+<meta property="og:image" content="http://lingyv.cn/imag/coding.png">
+<meta property="og:image" content="http://lingyv.cn/imag/codingpages.png">
+<meta property="og:image" content="http://lingyv.cn/imag/nvm.png">
+<meta property="og:image" content="http://lingyv.cn/imag/installhexo.png">
+<meta property="og:image" content="http://lingyv.cn/imag/yumingjiexi.png">
+<meta property="og:updated_time" content="2016-09-07T05:12:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Hexo建立个人博客">
+<meta name="twitter:description" content="个人博客是程序员的名片之一,今天,我们来看怎么使用Hexo快速建立个人博客.">
+<meta name="twitter:image" content="http://lingyv.cn/imag/lingyv.github.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/04/29/使用Hexo建立个人博客/"/>
+
+  <title> 使用Hexo建立个人博客 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-code">
+          <a href="/categories/code" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />
+            
+            编程
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Hexo建立个人博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-29T22:41:02+08:00" content="2016-04-29">
+              2016-04-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/29/使用Hexo建立个人博客/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/使用Hexo建立个人博客/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>个人博客是程序员的名片之一,今天,我们来看怎么使用Hexo快速建立个人博客.<br><a id="more"></a></p>
+<h4 id="一-完工效果"><a href="#一-完工效果" class="headerlink" title="一.完工效果"></a>一.完工效果</h4><p><a href="http://www.lingyv.cn/" target="_blank" rel="external">http://www.lingyv.cn/</a> 这是本人建立好的个人网站.<br>有以下特点:</p>
+<ul>
+<li>使用个人申请的特色域名</li>
+<li>代码托管在github和coding上</li>
+</ul>
+<h4 id="二-需要使用的工具"><a href="#二-需要使用的工具" class="headerlink" title="二.需要使用的工具"></a>二.需要使用的工具</h4><ol>
+<li>Hexo (Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。) <a href="https://github.com/hexojs/hexo" target="_blank" rel="external">github链接</a> <a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="external">hexo帮助文档</a></li>
+<li>主题<a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external">icarus</a>(<a href="https://hexo.io/themes/" target="_blank" rel="external">更多主题</a>)</li>
+<li><a href="https://github.com/github" target="_blank" rel="external">github</a></li>
+<li><a href="https://coding.net/user" target="_blank" rel="external">coding</a>(国内coding访问速度更快)</li>
+</ol>
+<h4 id="三-开始"><a href="#三-开始" class="headerlink" title="三.开始"></a>三.开始</h4><h5 id="1-github-pages-coding-pages"><a href="#1-github-pages-coding-pages" class="headerlink" title="1. github pages, coding pages"></a>1. <a href="https://pages.github.com/" target="_blank" rel="external">github pages</a>, <a href="https://coding.net/help/doc/pages/index.html" target="_blank" rel="external">coding pages</a></h5><ul>
+<li><h6 id="github创建个人站点"><a href="#github创建个人站点" class="headerlink" title="github创建个人站点"></a>github创建个人站点</h6><img src="/imag/lingyv.github.png" alt="lingyv.github.png"><h6 id="设置站点主题"><a href="#设置站点主题" class="headerlink" title="设置站点主题"></a>设置站点主题</h6>进入资源-setting<br>选择主题并发布,我的已经设置过一次了.所以会跟你的有所不同<br><img src="/imag/github.png" alt="github.png"></li>
+<li><h6 id="coding-pages"><a href="#coding-pages" class="headerlink" title="coding pages"></a>coding pages</h6>coding创建项目<br><img src="/imag/coding.png" alt="coding.png"><br>设置pages<br><img src="/imag/codingpages.png" alt="codingpages.png"><h6 id="2-安装Hexo博客框架"><a href="#2-安装Hexo博客框架" class="headerlink" title="2. 安装Hexo博客框架"></a>2. 安装Hexo博客框架</h6></li>
+<li><p>安装git</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install git</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装Node.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh</div><div class="line">$ nvm install 4</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/imag/nvm.png" alt="nvminstall4.png"></p>
+<ul>
+<li>安装Hexo<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/imag/installhexo.png" alt="installhex0.png"></p>
+<ul>
+<li><p>新建blogs文件夹,克隆项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git@github.com:lingyv/lingyv.github.io.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init lingyv.github.io</div><div class="line">$ <span class="built_in">cd</span> lingyv.github.io</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>新建出的各种文件信息查看<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="external">帮助文档</a></p>
+<h6 id="4-配置Hexo"><a href="#4-配置Hexo" class="headerlink" title="4. 配置Hexo"></a>4. 配置Hexo</h6><p>查看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">配置文档</a><br>我的配置文件信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Hexo Configuration</span></div><div class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></div><div class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></div><div class="line"></div><div class="line"><span class="comment"># Site 网站</span></div><div class="line">title: 漫步太虚</div><div class="line">subtitle: lingyv</div><div class="line">description: coding</div><div class="line">author: lingyv</div><div class="line">language: zh-CN</div><div class="line">timezone: </div><div class="line"></div><div class="line">avatar: /images/touxiang.png</div><div class="line"></div><div class="line"><span class="comment"># URL 网址</span></div><div class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></div><div class="line">url: http://www.lingyv.cn</div><div class="line">root: /</div><div class="line">permalink: :year/:month/:day/:title/</div><div class="line">permalink_defaults:</div><div class="line"></div><div class="line"><span class="comment"># Directory 目录</span></div><div class="line">source_dir: <span class="built_in">source</span></div><div class="line">public_dir: public</div><div class="line">tag_dir: tags</div><div class="line">archive_dir: archives</div><div class="line">category_dir: categories</div><div class="line">code_dir: downloads/code</div><div class="line">i18n_dir: :lang</div><div class="line">skip_render:</div><div class="line"></div><div class="line"><span class="comment"># Writing 文章</span></div><div class="line">new_post_name: :title.md <span class="comment"># File name of new posts</span></div><div class="line">default_layout: post</div><div class="line">titlecase: <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></div><div class="line">external_link: <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></div><div class="line">filename_case: 0</div><div class="line">render_drafts: <span class="literal">false</span></div><div class="line">post_asset_folder: <span class="literal">false</span></div><div class="line">relative_link: <span class="literal">false</span></div><div class="line">future: <span class="literal">true</span></div><div class="line">highlight:</div><div class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></div><div class="line">  line_number: <span class="literal">true</span></div><div class="line">  auto_detect: <span class="literal">false</span></div><div class="line">  tab_replace:</div><div class="line"></div><div class="line"><span class="comment"># Category &amp; Tag 分类&amp;标签</span></div><div class="line">default_category: uncategorized</div><div class="line">category_map:</div><div class="line">tag_map:</div><div class="line"></div><div class="line"><span class="comment"># Archives</span></div><div class="line">archive: 1</div><div class="line">category: 1</div><div class="line">tag: 1</div><div class="line"></div><div class="line"><span class="comment"># Date / Time format 日期格式</span></div><div class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></div><div class="line"><span class="comment">## You can customize the date format as defined in</span></div><div class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></div><div class="line">date_format: YYYY-MM-DD</div><div class="line">time_format: HH:mm:ss</div><div class="line"></div><div class="line"><span class="comment"># Pagination 分页</span></div><div class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></div><div class="line">per_page: 10</div><div class="line">pagination_dir: page</div><div class="line"></div><div class="line"><span class="comment"># Extensions 扩展</span></div><div class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></div><div class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></div><div class="line">theme: icarus</div><div class="line"></div><div class="line"><span class="comment"># Deployment</span></div><div class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></div><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repository:</div><div class="line">    github: git@github.com:lingyv/lingyv.github.io.git</div><div class="line">    coding: git@git.coding.net:lingyv/lingyv.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<h6 id="5-配置主题"><a href="#5-配置主题" class="headerlink" title="5. 配置主题"></a>5. 配置主题</h6><p>Hexo主题很多,<a href="https://hexo.io/themes/" target="_blank" rel="external">查看主题</a></p>
+<ul>
+<li>下载icarus主题到本地<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/ppoffice/hexo-theme-icarus themes/icarus</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="https://hexo.io/zh-cn/docs/themes.html" target="_blank" rel="external">主题参考文档</a></p>
+<ul>
+<li>启用主题<br>打开 站点配置文件,找到 theme字段，并将其值更改为icarus.</li>
+<li>配置主题配置文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  首页: .</div><div class="line">  归档: archives</div><div class="line"><span class="comment">#  Categories: categories</span></div><div class="line"><span class="comment">#  标签: tagcloud</span></div><div class="line">  关于: /about</div><div class="line"><span class="comment"># Customize</span></div><div class="line">customize:</div><div class="line">    logo:</div><div class="line">        enabled: <span class="literal">true</span></div><div class="line">        width: 40</div><div class="line">        height: 40</div><div class="line">        url: images/logo.png</div><div class="line">    profile:</div><div class="line">        enabled: <span class="literal">true</span> <span class="comment"># Whether to show profile bar</span></div><div class="line">        avatar: css/images/touxiang.png</div><div class="line">        gravatar: <span class="comment"># Gravatar email address, if you enable Gravatar, your avatar config will be overriden</span></div><div class="line">        author: 凌宇</div><div class="line">        author_title: Java &amp; Python</div><div class="line">        location: Shanghai, China</div><div class="line">        follow: https://github.com/lingyv</div><div class="line">    highlight: monokai</div><div class="line">    sidebar: right <span class="comment"># sidebar position, options: left, right</span></div><div class="line">    thumbnail: <span class="literal">true</span> <span class="comment"># enable posts thumbnail, options: true, false</span></div><div class="line">    favicon: <span class="comment"># path to favicon</span></div><div class="line">    social_links:</div><div class="line">        github: https://github.com/lingyv</div><div class="line">        weibo: http://weibo.com/5051531692/profile?topnav=1&amp;wvr=6&amp;is_all=1</div><div class="line">        linkedin: http://cn.linkedin.com/<span class="keyword">in</span>/lingyv</div><div class="line"><span class="comment">#        twitter: /</span></div><div class="line"><span class="comment">#        facebook: /</span></div><div class="line"><span class="comment">#        dribbble: /</span></div><div class="line"><span class="comment">#        rss: /</span></div><div class="line"><span class="comment"># Widgets 小工具</span></div><div class="line">widgets:</div><div class="line">    - recent_posts</div><div class="line">    - category</div><div class="line">    - archive</div><div class="line">    - tag</div><div class="line">    - tagcloud</div><div class="line">    - links</div><div class="line"><span class="comment"># Search</span></div><div class="line">search:</div><div class="line">    insight: <span class="literal">true</span> <span class="comment"># you need to install `hexo-generator-json-content` before using Insight Search</span></div><div class="line">    swiftype: <span class="comment"># enter swiftype install key here</span></div><div class="line">    baidu: <span class="literal">true</span> <span class="comment"># you need to disable other search engines to use Baidu search, options: true, false</span></div><div class="line"><span class="comment"># Comment</span></div><div class="line">comment:</div><div class="line"><span class="comment">#    disqus: hexo-theme-icarus # enter disqus shortname here</span></div><div class="line">    <span class="comment">#使用多说评论</span></div><div class="line">    duoshuo: lingyv</div><div class="line"><span class="comment">#    youyan: # enter youyan uid here</span></div><div class="line"><span class="comment"># Share</span></div><div class="line">share: default <span class="comment"># options: jiathis, bdshare, addtoany, default</span></div><div class="line"><span class="comment"># Plugins</span></div><div class="line">plugins:</div><div class="line">    fancybox: <span class="literal">true</span> <span class="comment"># options: true, false</span></div><div class="line">    google_analytics: <span class="comment"># enter the tracking ID for your Google Analytics</span></div><div class="line">    google_site_verification: <span class="comment"># enter Google site verification code</span></div><div class="line">    baidu_analytics: <span class="comment"># enter Baidu Analytics hash key</span></div><div class="line"><span class="comment"># Miscellaneous</span></div><div class="line">miscellaneous:</div><div class="line">    open_graph: <span class="comment"># see http://ogp.me</span></div><div class="line">        fb_app_id:</div><div class="line">        fb_admins:</div><div class="line">        twitter_id:</div><div class="line">        google_plus:</div><div class="line">    links:</div><div class="line"><span class="comment">#        Hexo: http://hexo.io</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="6-购买域名"><a href="#6-购买域名" class="headerlink" title="6. 购买域名"></a>6. 购买域名</h5><p>去万网或相关域名购买网站,挑选一个自己喜欢的域名吧</p>
+<h5 id="7-域名解析"><a href="#7-域名解析" class="headerlink" title="7. 域名解析"></a>7. 域名解析</h5><p><img src="/imag/yumingjiexi.png" alt="yumingjiexi.png"></p>
+<h5 id="8-Hexo使用指南"><a href="#8-Hexo使用指南" class="headerlink" title="8. Hexo使用指南"></a>8. Hexo使用指南</h5><p><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="external">操作指令参考文档</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo n <span class="string">"博客"</span>== hexo new <span class="string">"博客"</span><span class="comment">#新建文章</span></div><div class="line">hexo p == hexo publish</div><div class="line">hexo g == hexo generate<span class="comment">#生成</span></div><div class="line">hexo s == hexo server <span class="comment">#启动服务预览</span></div><div class="line">hexo d == hexo deploy<span class="comment">#部署</span></div></pre></td></tr></table></figure></p>
+<h5 id="9-hexo-d以后-刷新网站就可以看到部署好的效果了"><a href="#9-hexo-d以后-刷新网站就可以看到部署好的效果了" class="headerlink" title="9. hexo d以后,刷新网站就可以看到部署好的效果了"></a>9. hexo d以后,刷新网站就可以看到部署好的效果了</h5>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag">#教程</a>
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+            <a href="/tags/hexo/" rel="tag">#hexo</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/29/浅谈Http请求与响应/" rel="next" title="Http请求与响应">
+                <i class="fa fa-chevron-left"></i> Http请求与响应
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/05/vimium/" rel="prev" title="浏览器神器--Vimium">
+                浏览器神器--Vimium <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/29/使用Hexo建立个人博客/"
+     data-title="使用Hexo建立个人博客"
+     data-content=""
+     data-url="http://lingyv.cn/2016/04/29/使用Hexo建立个人博客/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/29/使用Hexo建立个人博客/"
+           data-title="使用Hexo建立个人博客" data-url="http://lingyv.cn/2016/04/29/使用Hexo建立个人博客/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-完工效果"><span class="nav-number">1.</span> <span class="nav-text">一.完工效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-需要使用的工具"><span class="nav-number">2.</span> <span class="nav-text">二.需要使用的工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-开始"><span class="nav-number">3.</span> <span class="nav-text">三.开始</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-github-pages-coding-pages"><span class="nav-number">3.1.</span> <span class="nav-text">1. github pages, coding pages</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#github创建个人站点"><span class="nav-number">3.1.1.</span> <span class="nav-text">github创建个人站点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设置站点主题"><span class="nav-number">3.1.2.</span> <span class="nav-text">设置站点主题</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#coding-pages"><span class="nav-number">3.1.3.</span> <span class="nav-text">coding pages</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-安装Hexo博客框架"><span class="nav-number">3.1.4.</span> <span class="nav-text">2. 安装Hexo博客框架</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-配置Hexo"><span class="nav-number">3.1.5.</span> <span class="nav-text">4. 配置Hexo</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-配置主题"><span class="nav-number">3.1.6.</span> <span class="nav-text">5. 配置主题</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-购买域名"><span class="nav-number">3.2.</span> <span class="nav-text">6. 购买域名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-域名解析"><span class="nav-number">3.3.</span> <span class="nav-text">7. 域名解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-Hexo使用指南"><span class="nav-number">3.4.</span> <span class="nav-text">8. Hexo使用指南</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-hexo-d以后-刷新网站就可以看到部署好的效果了"><span class="nav-number">3.5.</span> <span class="nav-text">9. hexo d以后,刷新网站就可以看到部署好的效果了</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

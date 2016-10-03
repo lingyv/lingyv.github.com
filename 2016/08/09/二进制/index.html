@@ -1,0 +1,796 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="编程," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="二进制，顾名思义，就是逢二进一的数字系统。逢二进一，也就是说，只会出现0和1两种数字。这应该是最简单的数字系统了吧。你也许听别人提过，电脑那家伙笨的很，只知道0和1。哈哈，现在的绝大多数计算机的确是基于二进制运行的。说到这，你不是不很自豪呢？我比计算机可要知道的太多了，现在，就让我们走进2的世界吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2的世界">
+<meta property="og:url" content="http://lingyv.cn/2016/08/09/二进制/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="二进制，顾名思义，就是逢二进一的数字系统。逢二进一，也就是说，只会出现0和1两种数字。这应该是最简单的数字系统了吧。你也许听别人提过，电脑那家伙笨的很，只知道0和1。哈哈，现在的绝大多数计算机的确是基于二进制运行的。说到这，你不是不很自豪呢？我比计算机可要知道的太多了，现在，就让我们走进2的世界吧。">
+<meta property="og:updated_time" content="2016-09-10T00:59:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2的世界">
+<meta name="twitter:description" content="二进制，顾名思义，就是逢二进一的数字系统。逢二进一，也就是说，只会出现0和1两种数字。这应该是最简单的数字系统了吧。你也许听别人提过，电脑那家伙笨的很，只知道0和1。哈哈，现在的绝大多数计算机的确是基于二进制运行的。说到这，你不是不很自豪呢？我比计算机可要知道的太多了，现在，就让我们走进2的世界吧。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/08/09/二进制/"/>
+
+  <title> 2的世界 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-code">
+          <a href="/categories/code" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />
+            
+            编程
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2的世界
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-09T20:43:38+08:00" content="2016-08-09">
+              2016-08-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/09/二进制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/二进制/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>二进制，顾名思义，就是逢二进一的数字系统。逢二进一，也就是说，只会出现0和1两种数字。这应该是最简单的数字系统了吧。你也许听别人提过，电脑那家伙笨的很，只知道0和1。哈哈，现在的绝大多数计算机的确<br>是基于二进制运行的。说到这，你不是不很自豪呢？我比计算机可要知道的太多了，现在，就让我们走进2的世界吧。<br><a id="more"></a><br>《道德经》有云：道生一，一生二，二生三，三生万物。现在看来功能强大无比的计算机，竟是建立在一串串不起眼的0、1上，让人不得不相信纷繁复杂的世界背后，一定蕴藏着一条简洁到极致的真理。<br>这时候聪明的你肯定会犯嘀咕了，既然计算机只认识0和1，那负数怎么表示呢？是吧，没有“-”号，怎么表示负数呢？当然也是用0或1来表示了。<br>这里说两个新概念，比特(bit)和字节(byte)。计算机中，一位数字称为1个比特，8位数字称为1个字节。为什么要引入字节的概念呢？这是因为1个比特只能表示两种不同的事物，而1个字节有8个比特，可以表示2^8(256)种不同的事物。那为什么一个字节是8个比特而不是9个、10个呢？实际上，字节这个概念最早是IBM提出来的，而IBM使用字节的一个原因则是它们易于以BCD这种格式保存(参见《编码的奥秘》)。<br>既然采用一个字节进行运算，那我们完全可以约定，这8个比特的其中一位，用来标识正负。而其中的一种约定就是，最高位的比特用来标识正负号，0代表正数，1代表负数。<br>好了，现在能表示正负数了。既然数都可以表示了，那就该做运算了。<br>现在，我们实现一个8位加法机，实现7位的加减法。1个字节能表示的数的范围是-128~127。</p>
+<p>一. 先来做加法运算吧：</p>
+<ul>
+<li><p>一：<br>0000 0001<br>0000 0011<br>———·<br>0000 0100<br>这个很简单，一瞅就能2看出来结果是“0000 0100”。</p>
+</li>
+<li><p>二<br>0100 0000<br>0100 0000<br>———·<br>1000 0000<br>咦，不对呀。两个正数相加，结果怎么是个负数？</p>
+</li>
+<li>三<br>1010 0001<br>1100 0010<br>———·<br>0110 0011<br>这下两个负数相加，结果怎么是正数了？<br>这就是溢出的问题了。两个正数相加得到负数，称为正溢出。两个负数相加得到正数，称为负溢出。</li>
+</ul>
+<p>加法还简单，减法怎么做呢？<br>减法就是加上一个负数。前面说了，负数就是最高位为1的数。实际上，负数在计算机内部是采用2的补码形式存储的。2的补码是什么呢？它的转换步骤如下：<br>比如2的2进制是 0000 0010。现在看如何存储-2 </p>
+<ol>
+<li>逐位取反。<br>0000 0010 –&gt; 1111 1101</li>
+<li>加1<br>1111 1101<br>0000 0001<br>———·<br>1111 1110</li>
+</ol>
+<p>所以，-2在计算机中存储的是1111 1110，而不是1000 0010。<br>为什么采用2的补码呢？<br>先看我们最习惯的10进制看吧，24 - 16 = 8，这是两位数的减法，两位数中，最大的数是99，那么，用99减去被减数肯定就不需要借位了是吧，于是24 - 16  = 8 –&gt;  24+(99-16) + 1 - 100 = 8。</p>
+<ul>
+<li>接下来我们看下 4 - 2：<br>4是0000 0100，-2是1111 1110<br>0000 0100<br>1111 1110<br>———·<br>0000 0010<br>这里生了什么呢？<br>0000 0100 + (1111 1111 - 0000 0010) + 1 - 1 0000 0000。是不是跟10进制里面的一样？取反就是拿8位数里最大的那个数–&gt;1111 1111减去当前数。最后要减去1 0000 0000，因为我们只有8位，这里溢出的1就自动舍弃了。</li>
+<li>那如果是2 - 4呢？<br>2是0000 0010，-4呢？0000 0100–&gt;1111 1011–&gt;1111 1100<br>0000 0010<br>1111 1100<br>———·<br>1111 1110<br>1111 1110是多少呢？我们以前说过是-2。结果也是对的。</li>
+<li>-2-2呢？<br>1111 1110<br>1111 1110<br>———·<br>1111 1100<br>结果也是对的。都是一个道理。</li>
+</ul>
+<p>好了，现在我们有1个字节，可以表示256种不同的事物，我们可以给符号以及字母编码来表示文本，这就是ASCII码了。<br>最后，提一下16进制。为什么提16进制呢？因为2^4=16。4个比特的数字对应一个16进制的数字，一个字节就可以用两个16进制数字来表示，这样读起来比8个01数字串简单多了。下面是二进制、十进制、十六进制对照表：</p>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+<th>十六进制</th>
+<th>二进制</th>
+<th>十进制</th>
+<th>十六进制 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0000</td>
+<td>0</td>
+<td>0</td>
+<td>1000</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>1</td>
+<td>1</td>
+<td>1001</td>
+<td>9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>2</td>
+<td>2</td>
+<td>1010</td>
+<td>10</td>
+<td>A</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>3</td>
+<td>3</td>
+<td>1011</td>
+<td>11</td>
+<td>B</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>4</td>
+<td>4</td>
+<td>1100</td>
+<td>12</td>
+<td>C</td>
+</tr>
+<tr>
+<td>0101</td>
+<td>5</td>
+<td>5</td>
+<td>1101</td>
+<td>13</td>
+<td>D</td>
+</tr>
+<tr>
+<td>0110</td>
+<td>6</td>
+<td>6</td>
+<td>1110</td>
+<td>14</td>
+<td>E</td>
+</tr>
+<tr>
+<td>0111</td>
+<td>7</td>
+<td>7</td>
+<td>1111</td>
+<td>15</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程/" rel="tag">#编程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/08/采矿--编码与继电器/" rel="next" title="采矿--编码与继电器">
+                <i class="fa fa-chevron-left"></i> 采矿--编码与继电器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/09/spf13-vim/" rel="prev" title="vim懒人福音--spf13-vim">
+                vim懒人福音--spf13-vim <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/09/二进制/"
+     data-title="2的世界"
+     data-content=""
+     data-url="http://lingyv.cn/2016/08/09/二进制/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/09/二进制/"
+           data-title="2的世界" data-url="http://lingyv.cn/2016/08/09/二进制/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
