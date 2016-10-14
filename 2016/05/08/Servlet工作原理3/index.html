@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://lingyv.cn/imag/Servlet如何让工作.png">
 <meta property="og:image" content="http://lingyv.cn/imag/Request的Mapper.jpg">
 <meta property="og:image" content="http://lingyv.cn/imag/Request在容器中得路由图.jpg">
-<meta property="og:updated_time" content="2016-09-07T05:11:50.000Z">
+<meta property="og:updated_time" content="2016-10-14T12:50:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Servlet原理 三：Servlet体系结构以及工作原理">
 <meta name="twitter:description" content="注：在网上看到一篇文章–《Servlet工作原理》,整理并做了一些笔记">
@@ -198,12 +198,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-code">
-          <a href="/categories/code" rel="section">
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/dao" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
             
-            编程
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/skill" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
           </a>
         </li>
       
@@ -301,8 +311,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index">
-                    <span itemprop="name">code</span>
+                  <a href="/categories/dao/" itemprop="url" rel="index">
+                    <span itemprop="name">dao</span>
                   </a>
                 </span>
 
@@ -353,7 +363,7 @@
 <h2 id="2-Servlet-如何工作"><a href="#2-Servlet-如何工作" class="headerlink" title="2. Servlet 如何工作"></a>2. Servlet 如何工作</h2><p><img src="/imag/Servlet如何让工作.png" alt="Servlet如何让工作.png"><br>我们已经清楚了 Servlet 是如何被加载的、Servlet 是如何被初始化的，以及 Servlet 的体系结构，现在的问题就是它是如何被调用的。</p>
 <p>当用户从浏览器向服务器发起一个请求，通常会包含如下信息：<a href="http://hostname" target="_blank" rel="external">http://hostname</a>: port /contextpath/servletpath，hostname 和 port 是用来与服务器建立 TCP 连接，而后面的 URL 才是用来选择服务器中那个子容器服务用户的请求。那服务器是如何根据这个 URL 来达到正确的 Servlet 容器中的呢？</p>
 <p>Tomcat7.0 中这件事很容易解决，因为这种映射工作有专门一个类来完成的，这个就是 org.apache.tomcat.util.http.mapper，这个类保存了 Tomcat 的 Container 容器中的所有子容器的信息，当 org.apache.catalina.connector. Request 类在进入 Container 容器之前，mapper 将会根据这次请求的 hostnane 和 contextpath 将 host 和 context 容器设置到 Request 的 mappingData 属性中。所以当 Request 进入 Container 容器之前，它要访问那个子容器这时就已经确定了。<br><img src="/imag/Request的Mapper.jpg" alt="Request的Mapper.jpg"><br>可能你有疑问，mapper 中怎么会有容器的完整关系，这要回到图 2 中 19 步 MapperListener 类的初始化过程，下面是 MapperListener 的 init 方法代码 :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public void init() &#123; </div><div class="line">        findDefaultHost(); </div><div class="line">        Engine engine = (Engine) connector.getService().getContainer(); </div><div class="line">        engine.addContainerListener(this); </div><div class="line">        Container[] conHosts = engine.findChildren(); </div><div class="line">        for (Container conHost : conHosts) &#123; </div><div class="line">            Host host = (Host) conHost; </div><div class="line">            if (!LifecycleState.NEW.equals(host.getState())) &#123; </div><div class="line">                host.addLifecycleListener(this); </div><div class="line">                registerHost(host); </div><div class="line">            &#125; </div><div class="line">        &#125; </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public void init() &#123;</div><div class="line">        findDefaultHost();</div><div class="line">        Engine engine = (Engine) connector.getService().getContainer();</div><div class="line">        engine.addContainerListener(this);</div><div class="line">        Container[] conHosts = engine.findChildren();</div><div class="line">        for (Container conHost : conHosts) &#123;</div><div class="line">            Host host = (Host) conHost;</div><div class="line">            if (!LifecycleState.NEW.equals(host.getState())) &#123;</div><div class="line">                host.addLifecycleListener(this);</div><div class="line">                registerHost(host);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 <p>这段代码的作用就是将 MapperListener 类作为一个监听者加到整个 Container 容器中的每个子容器中，这样只要任何一个容器发生变化，MapperListener 都将会被通知，相应的保存容器关系的 MapperListener 的 mapper 属性也会修改。for 循环中就是将 host 及下面的子容器注册到 mapper 中。<br><img src="/imag/Request在容器中得路由图.jpg" alt="Request在容器中得路由图.jpg"><br>上图描述了一次 Request 请求是如何达到最终的 Wrapper 容器的，我们现正知道了请求是如何达到正确的 Wrapper 容器，但是请求到达最终的 Servlet 还要完成一些步骤，必须要执行 Filter 链，以及要通知你在 web.xml 中定义的 listener。</p>
 <p>接下去就要执行 Servlet 的 service 方法了，通常情况下，我们自己定义的 servlet 并不是直接去实现 javax.servlet.servlet 接口，而是去继承更简单的 HttpServlet 类或者 GenericServlet 类，我们可以有选择的覆盖相应方法去实现我们要完成的工作。</p>
 <p>Servlet 的确已经能够帮我们完成所有的工作了，但是现在的 web 应用很少有直接将交互全部页面都用 servlet 来实现，而是采用更加高效的 MVC 框架来实现。这些 MVC 框架基本的原理都是将所有的请求都映射到一个 Servlet，然后去实现 service 方法，这个方法也就是 MVC 框架的入口。</p>
@@ -501,7 +511,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
