@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Java,编程," />
 
 
 
@@ -84,25 +84,18 @@
 
 
 
-<meta name="description" content="注：在网上看到一篇文章–《Servlet工作原理》,整理并做了一些笔记">
+<meta name="description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Servlet原理 三：Servlet体系结构以及工作原理">
-<meta property="og:url" content="http://lingyv.cn/2016/05/08/Servlet工作原理3/index.html">
+<meta property="og:title" content="JVM之内存">
+<meta property="og:url" content="http://lingyv.cn/2016/10/08/Java虚拟机内存/index.html">
 <meta property="og:site_name" content="凌宇">
-<meta property="og:description" content="注：在网上看到一篇文章–《Servlet工作原理》,整理并做了一些笔记">
-<meta property="og:image" content="http://lingyv.cn/imag/Servlet体系结构.png">
-<meta property="og:image" content="http://lingyv.cn/imag/Servlet顶层类.jpg">
-<meta property="og:image" content="http://lingyv.cn/imag/ServletConfig.jpg">
-<meta property="og:image" content="http://lingyv.cn/imag/Request.jpg">
-<meta property="og:image" content="http://lingyv.cn/imag/Request和Response的转变.jpg">
-<meta property="og:image" content="http://lingyv.cn/imag/Servlet如何让工作.png">
-<meta property="og:image" content="http://lingyv.cn/imag/Request的Mapper.jpg">
-<meta property="og:image" content="http://lingyv.cn/imag/Request在容器中得路由图.jpg">
-<meta property="og:updated_time" content="2016-10-14T12:50:10.000Z">
+<meta property="og:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
+<meta property="og:image" content="http://lingyv.cn/imag/jvm数据区.png">
+<meta property="og:updated_time" content="2016-10-15T13:38:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Servlet原理 三：Servlet体系结构以及工作原理">
-<meta name="twitter:description" content="注：在网上看到一篇文章–《Servlet工作原理》,整理并做了一些笔记">
-<meta name="twitter:image" content="http://lingyv.cn/imag/Servlet体系结构.png">
+<meta name="twitter:title" content="JVM之内存">
+<meta name="twitter:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
+<meta name="twitter:image" content="http://lingyv.cn/imag/jvm数据区.png">
 
 
 
@@ -123,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://lingyv.cn/2016/05/08/Servlet工作原理3/"/>
+  <link rel="canonical" href="http://lingyv.cn/2016/10/08/Java虚拟机内存/"/>
 
-  <title> Servlet原理 三：Servlet体系结构以及工作原理 | 凌宇 </title>
+  <title> JVM之内存 | 凌宇 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -285,7 +278,7 @@
             
             
               
-                Servlet原理 三：Servlet体系结构以及工作原理
+                JVM之内存
               
             
           </h1>
@@ -297,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-08T20:02:47+08:00" content="2016-05-08">
-              2016-05-08
+            <time itemprop="dateCreated" datetime="2016-10-08T19:30:38+08:00" content="2016-10-08">
+              2016-10-08
             </time>
           </span>
 
@@ -327,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/08/Servlet工作原理3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/08/Servlet工作原理3/" itemprop="commentsCount"></span>
+                <a href="/2016/10/08/Java虚拟机内存/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/08/Java虚拟机内存/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -351,23 +344,63 @@
       
 
       
-        <p>注：在网上看到一篇文章–<a href="http://www.ibm.com/developerworks/cn/java/j-lo-servlet/" target="_blank" rel="external">《Servlet工作原理》</a>,整理并做了一些笔记<br><a id="more"></a></p>
-<h2 id="1-Servlet-体系结构"><a href="#1-Servlet-体系结构" class="headerlink" title="1. Servlet 体系结构"></a>1. Servlet 体系结构</h2><p><img src="/imag/Servlet体系结构.png" alt="Servlet体系结构.png"><br>我们知道 Java Web 应用是基于 Servlet 规范运转的，那么 Servlet 本身又是如何运转的呢？为何要设计这样的体系结构。<br><img src="/imag/Servlet顶层类.jpg" alt="Servlet顶层类.jpg"><br>从上图可以看出 Servlet 规范就是基于这几个类运转的，与 Servlet 主动关联的是三个类，分别是 ServletConfig、ServletRequest 和 ServletResponse。这三个类都是通过容器传递给 Servlet 的，其中 ServletConfig 是在 Servlet 初始化时就传给 Servlet 了，而后两个是在请求达到时调用 Servlet 时传递过来的。</p>
-<p>我们应该很清楚 ServletRequest 和 ServletResponse 在 Servlet 运行的意义，但是 ServletConfig 和 ServletContext 对 Servlet 有何价值？</p>
-<p>仔细查看 ServletConfig 接口中声明的方法就会发现，这些方法都是为了获取这个 Servlet 的一些配置属性，而这些配置属性可能会在 Servlet 运行时被用到。</p>
-<p>那么 ServletContext 又是干什么的呢？ Servlet 的运行模式是一个典型的“握手型的交互式”运行模式。所谓“握手型的交互式”就是两个模块为了交换数据通常都会准备一个交易场景，这个场景一直跟随个这个交易过程直到这个交易完成为止。这个交易场景的初始化是根据这次交易对象指定的参数来定制的，这些指定参数通常就会是一个配置类。所以对号入座，交易场景就由 ServletContext 来描述，而定制的参数集合就由 ServletConfig 来描述。而 ServletRequest 和 ServletResponse 就是要交互的具体对象了，它们通常都是作为运输工具来传递交互结果。</p>
-<p>ServletConfig 是在 Servlet init 时由容器传过来的，那么 ServletConfig 到底是个什么对象呢？<br><img src="/imag/ServletConfig.jpg" alt="ServletConfig.jpg"><br>上图可以看出 StandardWrapper 和 StandardWrapperFacade 都实现了 ServletConfig 接口，而 StandardWrapperFacade 是 StandardWrapper 门面类，所以传给 Servlet 的是 StandardWrapperFacade 对象，这个类能够保证从 StandardWrapper 中拿到 ServletConfig 所规定的数据，而又不把 ServletConfig 不关心的数据暴露给 Servlet。</p>
-<p>同样 ServletContext 也与 ServletConfig 有类似的结构，Servlet 中能拿到的 ServletContext 的实际对象也是 ApplicationContextFacade 对象。ApplicationContextFacade 同样保证 ServletContex 只能从容器中拿到它该拿的数据，它们都起到对数据的封装作用，它们使用的都是门面设计模式。</p>
-<p>通过 ServletContext 可以拿到 Context 容器中一些必要信息，比如应用的工作路径，容器支持的 Servlet 最小版本等。</p>
-<p>Servlet 中定义的两个 ServletRequest 和 ServletResponse 它们实际的对象又是什么呢？，我们在创建自己的 Servlet 类时通常使用的都是 HttpServletRequest 和 HttpServletResponse，它们继承了 ServletRequest 和 ServletResponse。为何 Context 容器传过来的 ServletRequest、ServletResponse 可以被转化为 HttpServletRequest 和 HttpServletResponse 呢？<br><img src="/imag/Request.jpg" alt="Request.jpg"><br>上图是 Tomcat 创建的 Request 和 Response 的类结构图。Tomcat 一接受到请求首先将会创建 org.apache.coyote.Request 和 org.apache.coyote.Response，这两个类是 Tomcat 内部使用的描述一次请求和相应的信息类它们是一个轻量级的类，它们作用就是在服务器接收到请求后，经过简单解析将这个请求快速的分配给后续线程去处理，所以它们的对象很小，很容易被 JVM 回收。接下去当交给一个用户线程去处理这个请求时又创建 org.apache.catalina.connector. Request 和 org.apache.catalina.connector. Response 对象。这两个对象一直穿越整个 Servlet 容器直到要传给 Servlet，传给 Servlet 的是 Request 和 Response 的门面类 RequestFacade 和 RequestFacade，这里使用门面模式与前面一样都是基于同样的目的——封装容器中的数据。一次请求对应的 Request 和 Response 的类转化如下图所示：<br><img src="/imag/Request和Response的转变.jpg" alt="Request和Response的转变.jpg"></p>
-<h2 id="2-Servlet-如何工作"><a href="#2-Servlet-如何工作" class="headerlink" title="2. Servlet 如何工作"></a>2. Servlet 如何工作</h2><p><img src="/imag/Servlet如何让工作.png" alt="Servlet如何让工作.png"><br>我们已经清楚了 Servlet 是如何被加载的、Servlet 是如何被初始化的，以及 Servlet 的体系结构，现在的问题就是它是如何被调用的。</p>
-<p>当用户从浏览器向服务器发起一个请求，通常会包含如下信息：<a href="http://hostname" target="_blank" rel="external">http://hostname</a>: port /contextpath/servletpath，hostname 和 port 是用来与服务器建立 TCP 连接，而后面的 URL 才是用来选择服务器中那个子容器服务用户的请求。那服务器是如何根据这个 URL 来达到正确的 Servlet 容器中的呢？</p>
-<p>Tomcat7.0 中这件事很容易解决，因为这种映射工作有专门一个类来完成的，这个就是 org.apache.tomcat.util.http.mapper，这个类保存了 Tomcat 的 Container 容器中的所有子容器的信息，当 org.apache.catalina.connector. Request 类在进入 Container 容器之前，mapper 将会根据这次请求的 hostnane 和 contextpath 将 host 和 context 容器设置到 Request 的 mappingData 属性中。所以当 Request 进入 Container 容器之前，它要访问那个子容器这时就已经确定了。<br><img src="/imag/Request的Mapper.jpg" alt="Request的Mapper.jpg"><br>可能你有疑问，mapper 中怎么会有容器的完整关系，这要回到图 2 中 19 步 MapperListener 类的初始化过程，下面是 MapperListener 的 init 方法代码 :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public void init() &#123;</div><div class="line">        findDefaultHost();</div><div class="line">        Engine engine = (Engine) connector.getService().getContainer();</div><div class="line">        engine.addContainerListener(this);</div><div class="line">        Container[] conHosts = engine.findChildren();</div><div class="line">        for (Container conHost : conHosts) &#123;</div><div class="line">            Host host = (Host) conHost;</div><div class="line">            if (!LifecycleState.NEW.equals(host.getState())) &#123;</div><div class="line">                host.addLifecycleListener(this);</div><div class="line">                registerHost(host);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p>这段代码的作用就是将 MapperListener 类作为一个监听者加到整个 Container 容器中的每个子容器中，这样只要任何一个容器发生变化，MapperListener 都将会被通知，相应的保存容器关系的 MapperListener 的 mapper 属性也会修改。for 循环中就是将 host 及下面的子容器注册到 mapper 中。<br><img src="/imag/Request在容器中得路由图.jpg" alt="Request在容器中得路由图.jpg"><br>上图描述了一次 Request 请求是如何达到最终的 Wrapper 容器的，我们现正知道了请求是如何达到正确的 Wrapper 容器，但是请求到达最终的 Servlet 还要完成一些步骤，必须要执行 Filter 链，以及要通知你在 web.xml 中定义的 listener。</p>
-<p>接下去就要执行 Servlet 的 service 方法了，通常情况下，我们自己定义的 servlet 并不是直接去实现 javax.servlet.servlet 接口，而是去继承更简单的 HttpServlet 类或者 GenericServlet 类，我们可以有选择的覆盖相应方法去实现我们要完成的工作。</p>
-<p>Servlet 的确已经能够帮我们完成所有的工作了，但是现在的 web 应用很少有直接将交互全部页面都用 servlet 来实现，而是采用更加高效的 MVC 框架来实现。这些 MVC 框架基本的原理都是将所有的请求都映射到一个 Servlet，然后去实现 service 方法，这个方法也就是 MVC 框架的入口。</p>
-<p>当 Servlet 从 Servlet 容器中移除时，也就表明该 Servlet 的生命周期结束了，这时 Servlet 的 destroy 方法将被调用，做一些扫尾工作。</p>
+        <p>《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。<br>Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：</p>
+<a id="more"></a>
+<p><img src="/imag/jvm数据区.png" alt="jvm.png"></p>
+<p>各内存的作用：</p>
+<ol>
+<li>程序计数器<ul>
+<li>程序计数器是一块比较小的内存，可以看作是当前线程所执行字节码的行号指示器。</li>
+<li>由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式实现，在任何一个确定的时刻，一个处理器(多核处理器是一个内核)都只会执行一条线程中的指令。所以，为了线程切换后能恢复到正确的执行位置，每个线程都需要有一个独立的程序计数器。因此，这块内存是线程私有的。</li>
+<li>如果线程正在执行的是Native方法，这个计数器的值则为空。</li>
+</ul>
+</li>
+<li>Java虚拟机栈<ul>
+<li>Java虚拟机栈是线程私有的，生命周期与线程相同。<br>虚拟机栈描述的是Java方法执行的内存模型：每个方法执行的同时都会创建一个栈帧用于存放局部变量表、操作数栈、动态链接、方法出口等信息。</li>
+<li>每个方法从调用至执行完成的过程，对应于一个栈桢在虚拟机栈中入栈到出栈的过程。</li>
+<li>其中，局部变量表存放了编译期可知的各种基本数据类型、对象引用(reference类型)和returnAddress类型(指向一条字节码指令的地址)。</li>
+<li>局部变量表所需要的内存在编译期间完成分配,在运行方法期间不改变局部变量表的大小。</li>
+</ul>
+</li>
+<li>本地方法栈<ul>
+<li>本地方法栈的作用与虚拟机栈非常相似。</li>
+<li>他们的区别是虚拟机栈为虚拟机执行Java方法(字节码)服务，本地方法栈为虚拟机所使用到的Native方法服务。</li>
+</ul>
+</li>
+<li>Java堆<ul>
+<li>Java堆是所有线程共享的一块内存区域，在虚拟机启动时创建。</li>
+<li>Java堆的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存(Java虚拟机规范:所有的对象实例以及数组都要在堆上分配)。</li>
+<li>Java堆是垃圾收集器管理的主要区域，因此也称作”GC堆”(Garbage Collected Heap)。</li>
+<li>Java堆可已处于物理上不连续的内存空间中，只有逻辑上连续即可。可通过(-Xmx和-Xms控制大小)。</li>
+</ul>
+</li>
+<li>方法区<ul>
+<li>方法区是线程共享的内存区域。<br>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。<br>虽然Java虚拟机规范把方法区描述为堆的一个逻辑部分，但他却又一个别名–Non-Heap(非堆),以和Java堆区分开。<br>运行时常量池是方法区的一部分，用于存放各种字面量和符号引用。</li>
+</ul>
+</li>
+</ol>
+<p>异常信息：</p>
+<ul>
+<li>程序计数器：此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域</li>
+<li>Java虚拟机栈：<ol>
+<li>如果线程请求的栈深度大于虚拟机所允许的深度，抛出StackOverflowError异常</li>
+<li>如果虚拟机栈扩展时无法申请到足够的内存，抛出OutOfMemoryError异常</li>
+</ol>
+</li>
+<li>本地方法栈：<ol>
+<li>如果线程请求的栈深度大于虚拟机所允许的深度，抛出StackOverflowError异常</li>
+<li>如果虚拟机栈扩展时无法申请到足够的内存，抛出OutOfMemoryError异常</li>
+</ol>
+</li>
+<li>Java堆：<ul>
+<li>如果堆中没有内存完成实例分配，并且堆也无法再扩展时，抛出OutOfMemoryError异常<ul>
+<li>出现Java堆内存溢出时，异常堆栈信息”java.lang.OutOfMemoryError”会跟着进一步提示”Java heap space”。</li>
+</ul>
+</li>
+<li>当方法区无法满足内存分配需求时，抛出OutOfMemoryError异常</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -392,6 +425,8 @@
           
             <a href="/tags/Java/" rel="tag">#Java</a>
           
+            <a href="/tags/编程/" rel="tag">#编程</a>
+          
         </div>
       
 
@@ -399,17 +434,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/08/Servlet工作原理2/" rel="next" title="Servlet原理 二：Web应用与创建Servlet实例">
-                <i class="fa fa-chevron-left"></i> Servlet原理 二：Web应用与创建Servlet实例
+              <a href="/2016/08/09/spf13-vim/" rel="next" title="vim懒人福音--spf13-vim">
+                <i class="fa fa-chevron-left"></i> vim懒人福音--spf13-vim
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/21/JDBC基础/" rel="prev" title="JDBC基础">
-                JDBC基础 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -424,10 +455,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/08/Servlet工作原理3/"
-     data-title="Servlet原理 三：Servlet体系结构以及工作原理"
+        <div class="ds-share flat" data-thread-key="2016/10/08/Java虚拟机内存/"
+     data-title="JVM之内存"
      data-content=""
-     data-url="http://lingyv.cn/2016/05/08/Servlet工作原理3/">
+     data-url="http://lingyv.cn/2016/10/08/Java虚拟机内存/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -457,8 +488,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/08/Servlet工作原理3/"
-           data-title="Servlet原理 三：Servlet体系结构以及工作原理" data-url="http://lingyv.cn/2016/05/08/Servlet工作原理3/">
+      <div class="ds-thread" data-thread-key="2016/10/08/Java虚拟机内存/"
+           data-title="JVM之内存" data-url="http://lingyv.cn/2016/10/08/Java虚拟机内存/">
       </div>
     
   </div>
@@ -578,7 +609,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Servlet-体系结构"><span class="nav-number">1.</span> <span class="nav-text">1. Servlet 体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Servlet-如何工作"><span class="nav-number">2.</span> <span class="nav-text">2. Servlet 如何工作</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
