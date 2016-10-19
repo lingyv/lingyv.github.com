@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://lingyv.cn/2016/09/01/linux安装JDK/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="linux系统安装JDK">
-<meta property="og:updated_time" content="2016-10-18T14:25:30.000Z">
+<meta property="og:updated_time" content="2016-10-19T13:24:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux安装JDK">
 <meta name="twitter:description" content="linux系统安装JDK">
@@ -343,38 +343,22 @@
 
       
         <p>linux系统安装JDK<br><a id="more"></a></p>
-<ol>
-<li><p>卸载JDK<br>先查看系统是否已安装JDK，一般情况下linux都默认使用了开源的openJDK。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure>
-<p>查找名字包含java，jdk的已安装程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep java  </div><div class="line">rpm -qa | grep jdk</div></pre></td></tr></table></figure>
-<p>单个卸载程序，使用rpm -e xxx命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -e xxx</div></pre></td></tr></table></figure>
-<p>批量卸载所有名字包含xxx的已安装程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep xxx | xargs rpm -e --nodeps</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装JDK</p>
-<ul>
-<li><p>.rpm后缀格式JDK安装包<br>安装包添加权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 755 jdk-xxx.rpm</div></pre></td></tr></table></figure>
-<p>使用rpm -ivh xxx命令安装JDK</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh jdk-xxx.rpm</div></pre></td></tr></table></figure>
-<p>安装.rpm格式后缀的JDK，会自动配置java环境变量，会在/usr/bin生成java、javac等JDK的快捷方式图标,这些图标会链接指向到/usr/java/jdkxxx中</p>
-</li>
-<li><p>.tar.gz后缀格式JDK安装包</p>
-<ol>
+<h3 id="卸载JDK"><a href="#卸载JDK" class="headerlink" title="卸载JDK"></a>卸载JDK</h3><p>  先查看系统是否已安装JDK，一般情况下linux都默认使用了开源的openJDK。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></p>
+<p>  查找名字包含java，jdk的已安装程序<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep java  </div><div class="line">rpm -qa | grep jdk</div></pre></td></tr></table></figure></p>
+<p>  单个卸载程序，使用rpm -e xxx命令<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm <span class="_">-e</span> xxx</div></pre></td></tr></table></figure></p>
+<p>  批量卸载所有名字包含xxx的已安装程序<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep xxx | xargs rpm <span class="_">-e</span> --nodeps</div></pre></td></tr></table></figure></p>
+<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><h4 id="rpm后缀格式JDK安装包"><a href="#rpm后缀格式JDK安装包" class="headerlink" title=".rpm后缀格式JDK安装包"></a>.rpm后缀格式JDK安装包</h4><p>  安装包添加权限<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 755 jdk-xxx.rpm</div></pre></td></tr></table></figure></p>
+<p>  使用rpm -ivh xxx命令安装JDK<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh jdk-xxx.rpm</div></pre></td></tr></table></figure></p>
+<p>  安装.rpm格式后缀的JDK，会自动配置java环境变量，会在/usr/bin生成java、javac等JDK的快捷方式图标,这些图标会链接指向到/usr/java/jdkxxx中</p>
+<h4 id="tar-gz后缀格式JDK安装包"><a href="#tar-gz后缀格式JDK安装包" class="headerlink" title=".tar.gz后缀格式JDK安装包"></a>.tar.gz后缀格式JDK安装包</h4><ol>
 <li><p>在/usr目录下新建java文件夹</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir /usr/java</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir /usr/java</div></pre></td></tr></table></figure>
 </li>
 <li><p>压缩包解压</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf jdk-xxx.gz</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf jdk-xxx.gz</div></pre></td></tr></table></figure>
 </li>
 <li><p>设置jdk环境变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">vi /etc/profile</div><div class="line"></div><div class="line">export JAVA_HOME=/usr/java/jdkxxx</div><div class="line">export JRE_HOME=$JAVA_HOME/jre</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin</div><div class="line">export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib</div><div class="line"></div><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">vi /etc/profile</div><div class="line"></div><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdkxxx</div><div class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin</div><div class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JAVA_HOME</span>/jre/lib</div><div class="line"></div><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -589,7 +573,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载JDK"><span class="nav-number">1.</span> <span class="nav-text">卸载JDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDK"><span class="nav-number">2.</span> <span class="nav-text">安装JDK</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm后缀格式JDK安装包"><span class="nav-number">2.1.</span> <span class="nav-text">.rpm后缀格式JDK安装包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tar-gz后缀格式JDK安装包"><span class="nav-number">2.2.</span> <span class="nav-text">.tar.gz后缀格式JDK安装包</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
