@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,编程," />
+  <meta name="keywords" content="工具," />
 
 
 
@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。HotSpot虚拟机定位对象过程。">
+<meta name="description" content="Fork自Github">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HotSpot虚拟机之定位对象">
-<meta property="og:url" content="http://lingyv.cn/2016/08/23/HotSpot虚拟机定位对象/index.html">
+<meta property="og:title" content="Markdown快速入门">
+<meta property="og:url" content="http://lingyv.cn/2016/10/10/markdown快速入门/index.html">
 <meta property="og:site_name" content="凌宇">
-<meta property="og:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。HotSpot虚拟机定位对象过程。">
-<meta property="og:image" content="http://lingyv.cn/imag/对象定位.png">
-<meta property="og:image" content="http://lingyv.cn/imag/对象定位直接.png">
-<meta property="og:updated_time" content="2016-10-16T01:10:49.000Z">
+<meta property="og:description" content="Fork自Github">
+<meta property="og:updated_time" content="2016-10-29T14:35:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HotSpot虚拟机之定位对象">
-<meta name="twitter:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。HotSpot虚拟机定位对象过程。">
-<meta name="twitter:image" content="http://lingyv.cn/imag/对象定位.png">
+<meta name="twitter:title" content="Markdown快速入门">
+<meta name="twitter:description" content="Fork自Github">
 
 
 
@@ -117,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://lingyv.cn/2016/08/23/HotSpot虚拟机定位对象/"/>
+  <link rel="canonical" href="http://lingyv.cn/2016/10/10/markdown快速入门/"/>
 
-  <title> HotSpot虚拟机之定位对象 | 凌宇 </title>
+  <title> Markdown快速入门 | 凌宇 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +276,7 @@
             
             
               
-                HotSpot虚拟机之定位对象
+                Markdown快速入门
               
             
           </h1>
@@ -291,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-23T20:04:04+08:00" content="2016-08-23">
-              2016-08-23
+            <time itemprop="dateCreated" datetime="2016-10-10T22:43:38+08:00" content="2016-10-10">
+              2016-10-10
             </time>
           </span>
 
@@ -305,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/道/" itemprop="url" rel="index">
-                    <span itemprop="name">道</span>
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
                   </a>
                 </span>
 
@@ -321,8 +318,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/23/HotSpot虚拟机定位对象/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/HotSpot虚拟机定位对象/" itemprop="commentsCount"></span>
+                <a href="/2016/10/10/markdown快速入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/markdown快速入门/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,17 +342,160 @@
       
 
       
-        <p>《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。<br>HotSpot虚拟机定位对象过程。<br><a id="more"></a><br>建立对象是为了使用对象，我们的Java程序需要通过栈上的reference数据来操作栈上的具体对象。reference类型规定了一个指向对象的引用，这个对象引用有两种实现方式–”使用句柄”和”直接指针”。</p>
-<ol>
-<li>使用句柄，Java堆中划分出一块内存来作为句柄池。reference中存储的就是对象的句柄地址，句柄中包含了对象实例数据与类型数据各自的具体地址信息。如图：<br><img src="/imag/对象定位.png" alt="对象定位"></li>
-<li>使用直接指针，那么Java堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而reference中存储的直接就是对象地址。如图：<br><img src="/imag/对象定位直接.png" alt="对象定位"></li>
-</ol>
-<p>各自优势：</p>
-<ul>
-<li>句柄访问：reference中存储的是稳定的句柄地址，在对象被移动(垃圾收集时)时只会改变句柄中的实例数据指针，而reference本身不需要修改。</li>
-<li>直接指针：速度更快，节省了一次指针定位的时间开销。</li>
-</ul>
+        <p>Fork自<a href="https://github.com/riku/Markdown-Syntax-CN" target="_blank" rel="external">Github</a><br><a id="more"></a></p>
+<h2 id="段落、标题、区块代码"><a href="#段落、标题、区块代码" class="headerlink" title="段落、标题、区块代码"></a>段落、标题、区块代码</h2><p>一个段落是由一个以上的连接的行句组成，而一个以上的空行则会划分出不同的段落（空行的定义是显示上看起来像是空行，就被视为空行，例如有一行只有空白和 tab，那该行也会被视为空行），一般的段落不需要用空白或换行缩进。</p>
+<p>Markdown 支持两种标题的语法，<a href="http://docutils.sourceforge.net/mirror/setext.html" target="_blank" rel="external">Setext</a> 和 <a href="http://www.aaronsw.com/2002/atx/" target="_blank" rel="external">atx</a> 形式。Setext 形式是用底线的形式，利用 <code>=</code> （最高阶标题）和 <code>-</code> （第二阶标题），Atx 形式在行首插入 1 到 6 个 <code>#</code> ，对应到标题 1 到 6 阶。</p>
+<p>区块引用则使用 email 形式的 ‘<code>&gt;</code>‘ 角括号。</p>
+<p>Markdown 语法:</p>
+<pre><code>A First Level Header
+====================
+A Second Level Header
+---------------------
 
+Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.
+
+The quick brown fox jumped over the lazy
+dog&apos;s back.
+### Header 3
+
+&gt; This is a blockquote.
+&gt;
+&gt; This is the second paragraph in the blockquote.
+&gt;
+&gt; ## This is an H2 in a blockquote
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;h1&gt;A First Level Header&lt;/h1&gt;
+&lt;h2&gt;A Second Level Header&lt;/h2&gt;
+&lt;p&gt;Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.&lt;/p&gt;
+&lt;p&gt;The quick brown fox jumped over the lazy
+dog&apos;s back.&lt;/p&gt;
+&lt;h3&gt;Header 3&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a blockquote.&lt;/p&gt;
+&lt;p&gt;This is the second paragraph in the blockquote.&lt;/p&gt;
+&lt;h2&gt;This is an H2 in a blockquote&lt;/h2&gt;
+&lt;/blockquote&gt;
+</code></pre><h3 id="修辞和强调"><a href="#修辞和强调" class="headerlink" title="修辞和强调"></a>修辞和强调</h3><p>Markdown 使用星号和底线来标记需要强调的区段。</p>
+<p>Markdown 语法:</p>
+<pre><code>Some of these words *are emphasized*.
+Some of these words _are emphasized also_.
+Use two asterisks for **strong emphasis**.
+Or, if you prefer, __use two underscores instead__.
+</code></pre><p>输出 HTML 为:</p>
+<pre><code>&lt;p&gt;Some of these words &lt;em&gt;are emphasized&lt;/em&gt;.
+Some of these words &lt;em&gt;are emphasized also&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Use two asterisks for &lt;strong&gt;strong emphasis&lt;/strong&gt;.
+Or, if you prefer, &lt;strong&gt;use two underscores instead&lt;/strong&gt;.&lt;/p&gt;
+</code></pre><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>无序列表使用星号、加号和减号来做为列表的项目标记，这些符号是都可以使用的，使用星号：</p>
+<pre><code>* Candy.
+* Gum.
+* Booze.
+</code></pre><p>加号：</p>
+<pre><code>+ Candy.
++ Gum.
++ Booze.
+</code></pre><p>和减号</p>
+<pre><code>- Candy.
+- Gum.
+- Booze.
+</code></pre><p>都会输出 HTML 为：</p>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;Candy.&lt;/li&gt;
+&lt;li&gt;Gum.&lt;/li&gt;
+&lt;li&gt;Booze.&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>有序的列表则是使用一般的数字接着一个英文句点作为项目标记：</p>
+<pre><code>1. Red
+2. Green
+3. Blue
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;ol&gt;
+&lt;li&gt;Red&lt;/li&gt;
+&lt;li&gt;Green&lt;/li&gt;
+&lt;li&gt;Blue&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre><p>如果你在项目之间插入空行，那项目的内容会用 <code>&lt;p&gt;</code> 包起来，你也可以在一个项目内放上多个段落，只要在它前面缩排 4 个空白或 1 个 tab 。</p>
+<pre><code>* A list item.
+With multiple paragraphs.
+
+* Another item in the list.
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A list item.&lt;/p&gt;
+&lt;p&gt;With multiple paragraphs.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another item in the list.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>Markdown 支援两种形式的链接语法： <em>行内</em> 和 <em>参考</em> 两种形式，两种都是使用角括号来把文字转成连结。</p>
+<p>行内形式是直接在后面用括号直接接上链接：</p>
+<pre><code>This is an [example link](http://example.com/).
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;p&gt;This is an &lt;a href=&quot;http://example.com/&quot;&gt;
+example link&lt;/a&gt;.&lt;/p&gt;
+</code></pre><p>你也可以选择性的加上 title 属性：</p>
+<pre><code>This is an [example link](http://example.com/ &quot;With a Title&quot;).
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;p&gt;This is an &lt;a href=&quot;http://example.com/&quot; title=&quot;With a Title&quot;&gt;
+example link&lt;/a&gt;.&lt;/p&gt;
+</code></pre><p>参考形式的链接让你可以为链接定一个名称，之后你可以在文件的其他地方定义该链接的内容：</p>
+<pre><code>I get 10 times more traffic from [Google][1] than from
+[Yahoo][2] or [MSN][3].
+
+[1]: http://google.com/ &quot;Google&quot;
+[2]: http://search.yahoo.com/ &quot;Yahoo Search&quot;
+[3]: http://search.msn.com/ &quot;MSN Search&quot;
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;p&gt;I get 10 times more traffic from &lt;a href=&quot;http://google.com/&quot;
+title=&quot;Google&quot;&gt;Google&lt;/a&gt; than from &lt;a href=&quot;http://search.yahoo.com/&quot;
+title=&quot;Yahoo Search&quot;&gt;Yahoo&lt;/a&gt; or &lt;a href=&quot;http://search.msn.com/&quot;
+title=&quot;MSN Search&quot;&gt;MSN&lt;/a&gt;.&lt;/p&gt;
+</code></pre><p>title 属性是选择性的，链接名称可以用字母、数字和空格，但是不分大小写：</p>
+<pre><code>I start my morning with a cup of coffee and
+[The New York Times][NY Times].
+
+[ny times]: http://www.nytimes.com/
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;p&gt;I start my morning with a cup of coffee and
+&lt;a href=&quot;http://www.nytimes.com/&quot;&gt;The New York Times&lt;/a&gt;.&lt;/p&gt;
+</code></pre><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图片的语法和链接很像。</p>
+<p>行内形式（title 是选择性的）：</p>
+<pre><code>![alt text](/path/to/img.jpg &quot;Title&quot;)
+</code></pre><p>参考形式：</p>
+<pre><code>![alt text][id]
+
+[id]: /path/to/img.jpg &quot;Title&quot;
+</code></pre><p>上面两种方法都会输出 HTML 为：</p>
+<pre><code>&lt;img src=&quot;/path/to/img.jpg&quot; alt=&quot;alt text&quot; title=&quot;Title&quot; /&gt;
+</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>在一般的段落文字中，你可以使用反引号 <code>` </code> 来标记代码区段，区段内的 <code>&amp;</code>、<code>&lt;</code> 和 <code>&gt;</code> 都会被自动的转换成 HTML 实体，这项特性让你可以很容易的在代码区段内插入 HTML 码：</p>
+<pre><code>I strongly recommend against using any `&lt;blink&gt;` tags.
+
+I wish SmartyPants used named entities like `&amp;mdash;`
+instead of decimal-encoded entites like `&amp;#8212;`.
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;p&gt;I strongly recommend against using any
+&lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;
+&lt;p&gt;I wish SmartyPants used named entities like
+&lt;code&gt;&amp;amp;mdash;&lt;/code&gt; instead of decimal-encoded
+entites like &lt;code&gt;&amp;amp;#8212;&lt;/code&gt;.&lt;/p&gt;
+</code></pre><p>如果要建立一个已经格式化好的代码区块，只要每行都缩进 4 个空格或是一个 tab 就可以了，而 <code>&amp;</code>、<code>&lt;</code> 和 <code>&gt;</code> 也一样会自动转成 HTML 实体。</p>
+<p>Markdown 语法:</p>
+<pre><code>If you want your page to validate under XHTML 1.0 Strict,
+you&apos;ve got to put paragraph tags in your blockquotes:
+
+&lt;blockquote&gt;
+&lt;p&gt;For example.&lt;/p&gt;
+&lt;/blockquote&gt;
+</code></pre><p>输出 HTML 为：</p>
+<pre><code>&lt;p&gt;If you want your page to validate under XHTML 1.0 Strict,
+you&apos;ve got to put paragraph tags in your blockquotes:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;For example.&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
       
     </div>
 
@@ -377,9 +517,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
-          
-            <a href="/tags/编程/" rel="tag">#编程</a>
+            <a href="/tags/工具/" rel="tag">#工具</a>
           
         </div>
       
@@ -388,16 +526,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/20/HotSpot虚拟机创建对象/" rel="next" title="HotSpot虚拟机之创建对象">
-                <i class="fa fa-chevron-left"></i> HotSpot虚拟机之创建对象
+              <a href="/2016/10/06/简明vim练级攻略/" rel="next" title="简明 Vim 练级攻略(转)">
+                <i class="fa fa-chevron-left"></i> 简明 Vim 练级攻略(转)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/27/Java知识点/" rel="prev" title="Java知识点(转)">
-                Java知识点(转) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/13/Markdown语法/" rel="prev" title="Markdown语法">
+                Markdown语法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -413,10 +551,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/23/HotSpot虚拟机定位对象/"
-     data-title="HotSpot虚拟机之定位对象"
+        <div class="ds-share flat" data-thread-key="2016/10/10/markdown快速入门/"
+     data-title="Markdown快速入门"
      data-content=""
-     data-url="http://lingyv.cn/2016/08/23/HotSpot虚拟机定位对象/">
+     data-url="http://lingyv.cn/2016/10/10/markdown快速入门/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -446,8 +584,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/23/HotSpot虚拟机定位对象/"
-           data-title="HotSpot虚拟机之定位对象" data-url="http://lingyv.cn/2016/08/23/HotSpot虚拟机定位对象/">
+      <div class="ds-thread" data-thread-key="2016/10/10/markdown快速入门/"
+           data-title="Markdown快速入门" data-url="http://lingyv.cn/2016/10/10/markdown快速入门/">
       </div>
     
   </div>
@@ -567,7 +705,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#段落、标题、区块代码"><span class="nav-number">1.</span> <span class="nav-text">段落、标题、区块代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修辞和强调"><span class="nav-number">1.1.</span> <span class="nav-text">修辞和强调</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">2.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">2.1.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片"><span class="nav-number">2.2.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
