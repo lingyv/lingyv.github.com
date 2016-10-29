@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="编程,Java," />
+  <meta name="keywords" content="工具,vim," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。HotSpot虚拟机创建对象过程。">
+<meta name="description" content="vim速查卡">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HotSpot虚拟机之创建对象">
-<meta property="og:url" content="http://lingyv.cn/2016/08/20/HotSpot虚拟机创建对象/index.html">
+<meta property="og:title" content="vim速查卡">
+<meta property="og:url" content="http://lingyv.cn/2016/10/15/vim速查卡/index.html">
 <meta property="og:site_name" content="凌宇">
-<meta property="og:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。HotSpot虚拟机创建对象过程。">
-<meta property="og:updated_time" content="2016-10-15T15:23:34.000Z">
+<meta property="og:description" content="vim速查卡">
+<meta property="og:image" content="http://lingyv.cn/imag/vim速查卡.png">
+<meta property="og:updated_time" content="2016-10-29T15:16:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HotSpot虚拟机之创建对象">
-<meta name="twitter:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。HotSpot虚拟机创建对象过程。">
+<meta name="twitter:title" content="vim速查卡">
+<meta name="twitter:description" content="vim速查卡">
+<meta name="twitter:image" content="http://lingyv.cn/imag/vim速查卡.png">
 
 
 
@@ -114,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://lingyv.cn/2016/08/20/HotSpot虚拟机创建对象/"/>
+  <link rel="canonical" href="http://lingyv.cn/2016/10/15/vim速查卡/"/>
 
-  <title> HotSpot虚拟机之创建对象 | 凌宇 </title>
+  <title> vim速查卡 | 凌宇 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +278,7 @@
             
             
               
-                HotSpot虚拟机之创建对象
+                vim速查卡
               
             
           </h1>
@@ -288,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-20T19:30:02+08:00" content="2016-08-20">
-              2016-08-20
+            <time itemprop="dateCreated" datetime="2016-10-15T18:30:38+08:00" content="2016-10-15">
+              2016-10-15
             </time>
           </span>
 
@@ -302,8 +304,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/道/" itemprop="url" rel="index">
-                    <span itemprop="name">道</span>
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
                   </a>
                 </span>
 
@@ -318,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/20/HotSpot虚拟机创建对象/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/20/HotSpot虚拟机创建对象/" itemprop="commentsCount"></span>
+                <a href="/2016/10/15/vim速查卡/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/15/vim速查卡/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,13 +344,15 @@
       
 
       
-        <p>《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。<br>HotSpot虚拟机创建对象过程。<br><a id="more"></a></p>
-<ol>
-<li>虚拟机遇到一条new指令时，首先将去检查这个指令的参数能否在常量池中定位到一个类的符号引用,并且检查这个符号引用代表的类是否已经被加载、解析和初始化过。如果没有，必须先执行相应的类的加载过程。</li>
-<li>接下来虚拟机将为新生对象分配内存，对象所需内存在类加载完成后便可完全确定，为对象分配内存空间的过程等同于把一块确定大小的内存从Java堆中划分出来。分配方式有”指针碰撞”和”空闲列表”两种。</li>
-<li>虚拟机将分配到的内存空间都初始化为零值(不包括对象头)。这一步操作保证过了对象的实例字段在Java代码中可以不赋初始值就直接使用，程序能访问到这些字段的数据类型所对应的零值。</li>
-<li>虚拟机对对象进行必要的设置，例如这个对象是哪个类的实例，如何才能找到类的元数据信息、对象的哈希码、对象的GC分代年龄等信息。这些信息存放在对象的对象头之中。</li>
-</ol>
+        <p>vim速查卡<br><a id="more"></a><br>这个速查卡来自<a href="http://michael.peopleofhonoronly.com/vim/" target="_blank" rel="external">这里</a>。其用颜色标注了级别：</p>
+<ul>
+<li>Green = 存活级</li>
+<li>Yellow = 感觉良好</li>
+<li>Orange/Blue = 高级</li>
+<li>Red = 专家级</li>
+</ul>
+<p><img src="/imag/vim速查卡.png" alt="vim速查卡"></p>
+<p>你还可以下载<a href="http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_print.pdf" target="_blank" rel="external">PDF版</a>的和<a href="http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_print.xlsx" target="_blank" rel="external">Excel版</a>的，如果你是色盲的话，还有<a href="http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_colorblind.pdf" target="_blank" rel="external">蓝色版PDF</a>的。</p>
 
       
     </div>
@@ -371,9 +375,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编程/" rel="tag">#编程</a>
+            <a href="/tags/工具/" rel="tag">#工具</a>
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/vim/" rel="tag">#vim</a>
           
         </div>
       
@@ -382,17 +386,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/15/Java虚拟机内存/" rel="next" title="JVM之内存">
-                <i class="fa fa-chevron-left"></i> JVM之内存
+              <a href="/2016/10/13/Markdown语法/" rel="next" title="Markdown语法">
+                <i class="fa fa-chevron-left"></i> Markdown语法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/23/HotSpot虚拟机定位对象/" rel="prev" title="HotSpot虚拟机之定位对象">
-                HotSpot虚拟机之定位对象 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -407,10 +407,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/20/HotSpot虚拟机创建对象/"
-     data-title="HotSpot虚拟机之创建对象"
+        <div class="ds-share flat" data-thread-key="2016/10/15/vim速查卡/"
+     data-title="vim速查卡"
      data-content=""
-     data-url="http://lingyv.cn/2016/08/20/HotSpot虚拟机创建对象/">
+     data-url="http://lingyv.cn/2016/10/15/vim速查卡/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -440,8 +440,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/20/HotSpot虚拟机创建对象/"
-           data-title="HotSpot虚拟机之创建对象" data-url="http://lingyv.cn/2016/08/20/HotSpot虚拟机创建对象/">
+      <div class="ds-thread" data-thread-key="2016/10/15/vim速查卡/"
+           data-title="vim速查卡" data-url="http://lingyv.cn/2016/10/15/vim速查卡/">
       </div>
     
   </div>
