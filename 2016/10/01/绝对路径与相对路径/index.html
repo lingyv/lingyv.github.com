@@ -84,18 +84,16 @@
 
 
 
-<meta name="description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
+<meta name="description" content="Java开发中的绝对路径与相对路径">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM之内存">
-<meta property="og:url" content="http://lingyv.cn/2016/08/15/Java虚拟机内存/index.html">
+<meta property="og:title" content="Java--相对路径">
+<meta property="og:url" content="http://lingyv.cn/2016/10/01/绝对路径与相对路径/index.html">
 <meta property="og:site_name" content="凌宇">
-<meta property="og:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
-<meta property="og:image" content="http://lingyv.cn/imag/jvm数据区.png">
-<meta property="og:updated_time" content="2016-10-15T15:05:50.000Z">
+<meta property="og:description" content="Java开发中的绝对路径与相对路径">
+<meta property="og:updated_time" content="2016-10-29T13:15:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM之内存">
-<meta name="twitter:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
-<meta name="twitter:image" content="http://lingyv.cn/imag/jvm数据区.png">
+<meta name="twitter:title" content="Java--相对路径">
+<meta name="twitter:description" content="Java开发中的绝对路径与相对路径">
 
 
 
@@ -116,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://lingyv.cn/2016/08/15/Java虚拟机内存/"/>
+  <link rel="canonical" href="http://lingyv.cn/2016/10/01/绝对路径与相对路径/"/>
 
-  <title> JVM之内存 | 凌宇 </title>
+  <title> Java--相对路径 | 凌宇 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +276,7 @@
             
             
               
-                JVM之内存
+                Java--相对路径
               
             
           </h1>
@@ -290,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-15T19:30:38+08:00" content="2016-08-15">
-              2016-08-15
+            <time itemprop="dateCreated" datetime="2016-10-01T14:35:38+08:00" content="2016-10-01">
+              2016-10-01
             </time>
           </span>
 
@@ -304,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/道/" itemprop="url" rel="index">
-                    <span itemprop="name">道</span>
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
                   </a>
                 </span>
 
@@ -320,8 +318,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/15/Java虚拟机内存/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/15/Java虚拟机内存/" itemprop="commentsCount"></span>
+                <a href="/2016/10/01/绝对路径与相对路径/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/01/绝对路径与相对路径/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -344,63 +342,13 @@
       
 
       
-        <p>《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。<br>Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：</p>
-<a id="more"></a>
-<p><img src="/imag/jvm数据区.png" alt="jvm.png"></p>
-<p>各内存的作用：</p>
-<ol>
-<li>程序计数器<ul>
-<li>程序计数器是一块比较小的内存，可以看作是当前线程所执行字节码的行号指示器。</li>
-<li>由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式实现，在任何一个确定的时刻，一个处理器(多核处理器是一个内核)都只会执行一条线程中的指令。所以，为了线程切换后能恢复到正确的执行位置，每个线程都需要有一个独立的程序计数器。因此，这块内存是线程私有的。</li>
-<li>如果线程正在执行的是Native方法，这个计数器的值则为空。</li>
-</ul>
-</li>
-<li>Java虚拟机栈<ul>
-<li>Java虚拟机栈是线程私有的，生命周期与线程相同。<br>虚拟机栈描述的是Java方法执行的内存模型：每个方法执行的同时都会创建一个栈帧用于存放局部变量表、操作数栈、动态链接、方法出口等信息。</li>
-<li>每个方法从调用至执行完成的过程，对应于一个栈桢在虚拟机栈中入栈到出栈的过程。</li>
-<li>其中，局部变量表存放了编译期可知的各种基本数据类型、对象引用(reference类型)和returnAddress类型(指向一条字节码指令的地址)。</li>
-<li>局部变量表所需要的内存在编译期间完成分配,在运行方法期间不改变局部变量表的大小。</li>
-</ul>
-</li>
-<li>本地方法栈<ul>
-<li>本地方法栈的作用与虚拟机栈非常相似。</li>
-<li>他们的区别是虚拟机栈为虚拟机执行Java方法(字节码)服务，本地方法栈为虚拟机所使用到的Native方法服务。</li>
-</ul>
-</li>
-<li>Java堆<ul>
-<li>Java堆是所有线程共享的一块内存区域，在虚拟机启动时创建。</li>
-<li>Java堆的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存(Java虚拟机规范:所有的对象实例以及数组都要在堆上分配)。</li>
-<li>Java堆是垃圾收集器管理的主要区域，因此也称作”GC堆”(Garbage Collected Heap)。</li>
-<li>Java堆可已处于物理上不连续的内存空间中，只有逻辑上连续即可。可通过(-Xmx和-Xms控制大小)。</li>
-</ul>
-</li>
-<li>方法区<ul>
-<li>方法区是线程共享的内存区域。<br>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。<br>虽然Java虚拟机规范把方法区描述为堆的一个逻辑部分，但他却又一个别名–Non-Heap(非堆),以和Java堆区分开。<br>运行时常量池是方法区的一部分，用于存放各种字面量和符号引用。</li>
-</ul>
-</li>
-</ol>
-<p>异常信息：</p>
-<ul>
-<li>程序计数器：此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域</li>
-<li>Java虚拟机栈：<ol>
-<li>如果线程请求的栈深度大于虚拟机所允许的深度，抛出StackOverflowError异常</li>
-<li>如果虚拟机栈扩展时无法申请到足够的内存，抛出OutOfMemoryError异常</li>
-</ol>
-</li>
-<li>本地方法栈：<ol>
-<li>如果线程请求的栈深度大于虚拟机所允许的深度，抛出StackOverflowError异常</li>
-<li>如果虚拟机栈扩展时无法申请到足够的内存，抛出OutOfMemoryError异常</li>
-</ol>
-</li>
-<li>Java堆：<ul>
-<li>如果堆中没有内存完成实例分配，并且堆也无法再扩展时，抛出OutOfMemoryError异常<ul>
-<li>出现Java堆内存溢出时，异常堆栈信息”java.lang.OutOfMemoryError”会跟着进一步提示”Java heap space”。</li>
-</ul>
-</li>
-<li>当方法区无法满足内存分配需求时，抛出OutOfMemoryError异常</li>
-</ul>
-</li>
-</ul>
+        <p>Java开发中的绝对路径与相对路径<br><a id="more"></a></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><p>文件或目录在硬盘上真正的路径。例如D:\abc\test.txt 代表了test.txt文件的绝对路径。<a href="http://blog.lingyv.org/index.htm也代表了一个URL绝对路径。" target="_blank" rel="external">http://blog.lingyv.org/index.htm也代表了一个URL绝对路径。</a></p>
+<h3 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h3><p>相对与某个基准文件或目录的路径。例如：”./“ 代表当前目录, “../“代表上级目录。</p>
+<h2 id="JSP-Servlet中的相对路径"><a href="#JSP-Servlet中的相对路径" class="headerlink" title="JSP/Servlet中的相对路径"></a>JSP/Servlet中的相对路径</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><p>服务器中解析相对地址是相对于web应用的地址，例如web应用为test，那么”/user/login”在浏览器中的地址就是”<a href="http://localhost:8080/test/user/login" target="_blank" rel="external">http://localhost:8080/test/user/login</a>“</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>浏览器解析html时，相对地址是相对于服务器根目录的，例如”/user/login”地址是”<a href="http://localhost:8080/user/login" target="_blank" rel="external">http://localhost:8080/user/login</a>“</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于浏览器解析html时，相对地址是相对于服务器根目录的，所以如果我们在html文件中使用相对路径(./，../)定位js，css等，当我们通过转发forward访问该文件时，js，css等静态的url就会出错，导致定位不到这些资源。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>既然我们想要自定义站点，那肯定不能把绝对路径写死，但又不能用相对路径，因为转发时又会出问题。那怎么办呢？写一个可以变化的绝对路径吧，jsp中使用${pageContext.request.contextPath}来获取站点信息，然后写到绝对路径里。</p>
 
       
     </div>
@@ -434,16 +382,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/spf13-vim/" rel="next" title="vim懒人福音--spf13-vim">
-                <i class="fa fa-chevron-left"></i> vim懒人福音--spf13-vim
+              <a href="/2016/09/20/RIME快速指南/" rel="next" title="RIME快速指南">
+                <i class="fa fa-chevron-left"></i> RIME快速指南
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/20/HotSpot虚拟机创建对象/" rel="prev" title="HotSpot虚拟机之创建对象">
-                HotSpot虚拟机之创建对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/03/安装mongoDB/" rel="prev" title="安装mongoDB">
+                安装mongoDB <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -459,10 +407,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/15/Java虚拟机内存/"
-     data-title="JVM之内存"
+        <div class="ds-share flat" data-thread-key="2016/10/01/绝对路径与相对路径/"
+     data-title="Java--相对路径"
      data-content=""
-     data-url="http://lingyv.cn/2016/08/15/Java虚拟机内存/">
+     data-url="http://lingyv.cn/2016/10/01/绝对路径与相对路径/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -492,8 +440,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/15/Java虚拟机内存/"
-           data-title="JVM之内存" data-url="http://lingyv.cn/2016/08/15/Java虚拟机内存/">
+      <div class="ds-thread" data-thread-key="2016/10/01/绝对路径与相对路径/"
+           data-title="Java--相对路径" data-url="http://lingyv.cn/2016/10/01/绝对路径与相对路径/">
       </div>
     
   </div>
@@ -613,7 +561,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绝对路径"><span class="nav-number">1.1.</span> <span class="nav-text">绝对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对路径"><span class="nav-number">1.2.</span> <span class="nav-text">相对路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-Servlet中的相对路径"><span class="nav-number">2.</span> <span class="nav-text">JSP/Servlet中的相对路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器端"><span class="nav-number">2.1.</span> <span class="nav-text">服务器端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端"><span class="nav-number">2.2.</span> <span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">4.</span> <span class="nav-text">解决</span></a></li></ol></div>
             
           </div>
         </section>

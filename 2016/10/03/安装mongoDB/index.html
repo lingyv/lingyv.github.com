@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="编程,Java," />
+  <meta name="keywords" content="工具," />
 
 
 
@@ -84,18 +84,16 @@
 
 
 
-<meta name="description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
+<meta name="description" content="安装mongoDB">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM之内存">
-<meta property="og:url" content="http://lingyv.cn/2016/08/15/Java虚拟机内存/index.html">
+<meta property="og:title" content="安装mongoDB">
+<meta property="og:url" content="http://lingyv.cn/2016/10/03/安装mongoDB/index.html">
 <meta property="og:site_name" content="凌宇">
-<meta property="og:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
-<meta property="og:image" content="http://lingyv.cn/imag/jvm数据区.png">
-<meta property="og:updated_time" content="2016-10-15T15:05:50.000Z">
+<meta property="og:description" content="安装mongoDB">
+<meta property="og:updated_time" content="2016-10-29T12:13:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM之内存">
-<meta name="twitter:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
-<meta name="twitter:image" content="http://lingyv.cn/imag/jvm数据区.png">
+<meta name="twitter:title" content="安装mongoDB">
+<meta name="twitter:description" content="安装mongoDB">
 
 
 
@@ -116,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://lingyv.cn/2016/08/15/Java虚拟机内存/"/>
+  <link rel="canonical" href="http://lingyv.cn/2016/10/03/安装mongoDB/"/>
 
-  <title> JVM之内存 | 凌宇 </title>
+  <title> 安装mongoDB | 凌宇 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +276,7 @@
             
             
               
-                JVM之内存
+                安装mongoDB
               
             
           </h1>
@@ -290,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-15T19:30:38+08:00" content="2016-08-15">
-              2016-08-15
+            <time itemprop="dateCreated" datetime="2016-10-03T14:35:38+08:00" content="2016-10-03">
+              2016-10-03
             </time>
           </span>
 
@@ -304,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/道/" itemprop="url" rel="index">
-                    <span itemprop="name">道</span>
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
                   </a>
                 </span>
 
@@ -320,8 +318,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/15/Java虚拟机内存/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/15/Java虚拟机内存/" itemprop="commentsCount"></span>
+                <a href="/2016/10/03/安装mongoDB/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/03/安装mongoDB/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -344,63 +342,28 @@
       
 
       
-        <p>《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。<br>Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：</p>
-<a id="more"></a>
-<p><img src="/imag/jvm数据区.png" alt="jvm.png"></p>
-<p>各内存的作用：</p>
+        <p>安装mongoDB<br><a id="more"></a></p>
 <ol>
-<li>程序计数器<ul>
-<li>程序计数器是一块比较小的内存，可以看作是当前线程所执行字节码的行号指示器。</li>
-<li>由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式实现，在任何一个确定的时刻，一个处理器(多核处理器是一个内核)都只会执行一条线程中的指令。所以，为了线程切换后能恢复到正确的执行位置，每个线程都需要有一个独立的程序计数器。因此，这块内存是线程私有的。</li>
-<li>如果线程正在执行的是Native方法，这个计数器的值则为空。</li>
-</ul>
+<li>下载安装包<br><a href="https://www.mongodb.com/download-center?jmp=nav" target="_blank" rel="external">下载</a></li>
+<li><p>解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf mongodb-osx-x86_64-3.2.10.tgz</div></pre></td></tr></table></figure>
 </li>
-<li>Java虚拟机栈<ul>
-<li>Java虚拟机栈是线程私有的，生命周期与线程相同。<br>虚拟机栈描述的是Java方法执行的内存模型：每个方法执行的同时都会创建一个栈帧用于存放局部变量表、操作数栈、动态链接、方法出口等信息。</li>
-<li>每个方法从调用至执行完成的过程，对应于一个栈桢在虚拟机栈中入栈到出栈的过程。</li>
-<li>其中，局部变量表存放了编译期可知的各种基本数据类型、对象引用(reference类型)和returnAddress类型(指向一条字节码指令的地址)。</li>
-<li>局部变量表所需要的内存在编译期间完成分配,在运行方法期间不改变局部变量表的大小。</li>
-</ul>
+<li><p>移动到安装位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p /usr/local/mongodb</div><div class="line">sudo mv mongodb-osx-x86_64-3.2.10/ /usr/local/mongobd</div></pre></td></tr></table></figure>
 </li>
-<li>本地方法栈<ul>
-<li>本地方法栈的作用与虚拟机栈非常相似。</li>
-<li>他们的区别是虚拟机栈为虚拟机执行Java方法(字节码)服务，本地方法栈为虚拟机所使用到的Native方法服务。</li>
-</ul>
+<li><p>添加到环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=$PATH:/usr/local/mongodb/mongodb-osx-x86_64-3.2.10/bin</div></pre></td></tr></table></figure>
 </li>
-<li>Java堆<ul>
-<li>Java堆是所有线程共享的一块内存区域，在虚拟机启动时创建。</li>
-<li>Java堆的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存(Java虚拟机规范:所有的对象实例以及数组都要在堆上分配)。</li>
-<li>Java堆是垃圾收集器管理的主要区域，因此也称作”GC堆”(Garbage Collected Heap)。</li>
-<li>Java堆可已处于物理上不连续的内存空间中，只有逻辑上连续即可。可通过(-Xmx和-Xms控制大小)。</li>
-</ul>
+<li><p>创建data文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd /</div><div class="line">mkdir -p /data/db</div><div class="line">mkdir -p /data/log</div><div class="line">sudo chown -R lingyv /data</div></pre></td></tr></table></figure>
 </li>
-<li>方法区<ul>
-<li>方法区是线程共享的内存区域。<br>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。<br>虽然Java虚拟机规范把方法区描述为堆的一个逻辑部分，但他却又一个别名–Non-Heap(非堆),以和Java堆区分开。<br>运行时常量池是方法区的一部分，用于存放各种字面量和符号引用。</li>
-</ul>
+<li><p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod</div></pre></td></tr></table></figure>
+</li>
+<li><p>进入mongoDB shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>异常信息：</p>
-<ul>
-<li>程序计数器：此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域</li>
-<li>Java虚拟机栈：<ol>
-<li>如果线程请求的栈深度大于虚拟机所允许的深度，抛出StackOverflowError异常</li>
-<li>如果虚拟机栈扩展时无法申请到足够的内存，抛出OutOfMemoryError异常</li>
-</ol>
-</li>
-<li>本地方法栈：<ol>
-<li>如果线程请求的栈深度大于虚拟机所允许的深度，抛出StackOverflowError异常</li>
-<li>如果虚拟机栈扩展时无法申请到足够的内存，抛出OutOfMemoryError异常</li>
-</ol>
-</li>
-<li>Java堆：<ul>
-<li>如果堆中没有内存完成实例分配，并且堆也无法再扩展时，抛出OutOfMemoryError异常<ul>
-<li>出现Java堆内存溢出时，异常堆栈信息”java.lang.OutOfMemoryError”会跟着进一步提示”Java heap space”。</li>
-</ul>
-</li>
-<li>当方法区无法满足内存分配需求时，抛出OutOfMemoryError异常</li>
-</ul>
-</li>
-</ul>
 
       
     </div>
@@ -423,9 +386,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编程/" rel="tag">#编程</a>
-          
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/工具/" rel="tag">#工具</a>
           
         </div>
       
@@ -434,17 +395,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/spf13-vim/" rel="next" title="vim懒人福音--spf13-vim">
-                <i class="fa fa-chevron-left"></i> vim懒人福音--spf13-vim
+              <a href="/2016/10/01/绝对路径与相对路径/" rel="next" title="Java--相对路径">
+                <i class="fa fa-chevron-left"></i> Java--相对路径
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/20/HotSpot虚拟机创建对象/" rel="prev" title="HotSpot虚拟机之创建对象">
-                HotSpot虚拟机之创建对象 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -459,10 +416,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/15/Java虚拟机内存/"
-     data-title="JVM之内存"
+        <div class="ds-share flat" data-thread-key="2016/10/03/安装mongoDB/"
+     data-title="安装mongoDB"
      data-content=""
-     data-url="http://lingyv.cn/2016/08/15/Java虚拟机内存/">
+     data-url="http://lingyv.cn/2016/10/03/安装mongoDB/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -492,8 +449,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/15/Java虚拟机内存/"
-           data-title="JVM之内存" data-url="http://lingyv.cn/2016/08/15/Java虚拟机内存/">
+      <div class="ds-thread" data-thread-key="2016/10/03/安装mongoDB/"
+           data-title="安装mongoDB" data-url="http://lingyv.cn/2016/10/03/安装mongoDB/">
       </div>
     
   </div>
