@@ -1,0 +1,816 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Spring Security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springSecurity快速指南">
+<meta property="og:url" content="http://lingyv.cn/2016/11/02/springSecurity快速指南/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="Spring Security">
+<meta property="og:updated_time" content="2016-11-03T13:30:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springSecurity快速指南">
+<meta name="twitter:description" content="Spring Security">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/11/02/springSecurity快速指南/"/>
+
+  <title> springSecurity快速指南 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                springSecurity快速指南
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T19:26:09+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/02/springSecurity快速指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/springSecurity快速指南/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Spring Security<br><a id="more"></a></p>
+<h1 id="Security是什么"><a href="#Security是什么" class="headerlink" title="Security是什么?"></a>Security是什么?</h1><h1 id="Security配置方式"><a href="#Security配置方式" class="headerlink" title="Security配置方式"></a>Security配置方式</h1><ul>
+<li>application using Java-based</li>
+<li>Spring Boot application</li>
+<li>Xml-based configuration</li>
+<li>Spring MVC application</li>
+</ul>
+<h1 id="security使用"><a href="#security使用" class="headerlink" title="security使用"></a>security使用</h1><h2 id="版本：4-1-3-RELEASE"><a href="#版本：4-1-3-RELEASE" class="headerlink" title="版本：4.1.3.RELEASE"></a>版本：4.1.3.RELEASE</h2><h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;spring-security-web&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;4.1.3.RELEASE&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;spring-security-config&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;4.1.3.RELEASE&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<h2 id="XML方式"><a href="#XML方式" class="headerlink" title="XML方式"></a>XML方式</h2><h3 id="新建配置文件security-xml"><a href="#新建配置文件security-xml" class="headerlink" title="新建配置文件security.xml"></a>新建配置文件security.xml</h3><h3 id="web-xml设置"><a href="#web-xml设置" class="headerlink" title="web.xml设置"></a>web.xml设置</h3><h4 id="引入配置文件"><a href="#引入配置文件" class="headerlink" title="引入配置文件"></a>引入配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;context-param&gt;</div><div class="line">	&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</div><div class="line">  &lt;param-value&gt;</div><div class="line">    classpath:security.xml</div><div class="line">  &lt;/param-value&gt;</div><div class="line">&lt;/context-param&gt;</div></pre></td></tr></table></figure>
+<h4 id="配置过滤器"><a href="#配置过滤器" class="headerlink" title="配置过滤器"></a>配置过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;filter&gt;</div><div class="line">	&lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;</div><div class="line">  	&lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;</div><div class="line">&lt;/filter&gt;</div><div class="line">&lt;filter-mapping&gt;</div><div class="line">  	&lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;</div><div class="line">  	&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</div><div class="line">&lt;/filter-mapping&gt;</div></pre></td></tr></table></figure>
+<h3 id="security-xml配置"><a href="#security-xml配置" class="headerlink" title="security.xml配置"></a>security.xml配置</h3><h4 id="引入name-space"><a href="#引入name-space" class="headerlink" title="引入name space"></a>引入name space</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;b:beans xmlns=&quot;http://www.springframework.org/schema/security&quot;</div><div class="line">		 xmlns:b=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">		 xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">		 xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd&quot;&gt;</div><div class="line">&lt;/b:beans&gt;</div></pre></td></tr></table></figure>
+<p>NameSpace 可划分为以下几块:</p>
+<ul>
+<li>Web/Http 安全：这是最复杂的部分。通过建立 filter 和相关的 service bean 来实现框架的认证机制。当访问受保护的 URL 时会将用户引入登录界面或者是错误提示界面。</li>
+<li>业务对象或者方法的安全：控制方法访问权限的。</li>
+<li>AuthenticationManager：处理来自于框架其他部分的认证请求。</li>
+<li>AccessDecisionManager：为 Web 或方法的安全提供访问决策。会注册一个默认的，但是我们也可以通过普通 bean 注册的方式使用自定义的 AccessDecisionManager。</li>
+<li>AuthenticationProvider：AuthenticationManager 是通过它来认证用户的。</li>
+<li>UserDetailsService：跟 AuthenticationProvider 关系密切，用来获取用户信息的。</li>
+</ul>
+<h4 id="元素"><a href="#元素" class="headerlink" title="元素"></a><http>元素</http></h4><p>http 元素用于定义 Web 相关权限控制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;http&gt;</div><div class="line">	&lt;intercept-url pattern=&quot;/**&quot; access=&quot;hasRole(&apos;USER&apos;)&quot;/&gt;</div><div class="line">&lt;/http&gt;</div></pre></td></tr></table></figure></p>
+<h5 id="intercept-url配置"><a href="#intercept-url配置" class="headerlink" title="intercept-url配置"></a>intercept-url配置</h5><h6 id="指定拦截的-url"><a href="#指定拦截的-url" class="headerlink" title="指定拦截的 url"></a>指定拦截的 url</h6><p>通过 pattern 指定当前 intercept-url 定义应当作用于哪些 url<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;intercept-url pattern=&quot;/**&quot; access=&quot;hasRole(&apos;USER&apos;)&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<h6 id="指定访问权限"><a href="#指定访问权限" class="headerlink" title="指定访问权限"></a>指定访问权限</h6><p>通过 access 属性来指定 intercept-url 对应 URL 访问所应当具有的权限。access 的值是一个字符串，其可以直接是一个权限的定义，也可以是一个表达式。例如:</p>
+<ul>
+<li>hasRole(‘ROLE_USER’) or hasRole(‘ROLE_ADMIN’)</li>
+<li>hasAnyRole(‘ROLE_USER’,’ROLE_ADMIN’)<h6 id="指定访问协议"><a href="#指定访问协议" class="headerlink" title="指定访问协议"></a>指定访问协议</h6>指定 intercept-url 的 requires-channel 属性来指定访问协议。requires-channel 支持三个值：http、https 和 any。any 表示 http 和 https 都可以访问。例如:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;intercept-url pattern=&quot;/**&quot; access=&quot;ROLE_USER&quot; requires-channel=&quot;http&quot;/&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意:当试图使用 http 请求那些限制了只能通过 https 访问的资源时会自动跳转到对应的 https 通道重新请求。如果所使用的 http 或者 https 协议不是监听在标准的端口上（http 默认是 80，https 默认是 443），则需要我们通过 port-mapping 元素定义好它们的对应关系。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;intercept-url pattern=&quot;/**&quot; access=&quot;ROLE_USER&quot; requires-channel=&quot;http&quot;/&gt;</div><div class="line">&lt;port-mappings&gt;</div><div class="line">	&lt;port-mapping http=&quot;8888&quot; https=&quot;9999&quot;/&gt;</div><div class="line">&lt;/port-mappings&gt;</div></pre></td></tr></table></figure></p>
+<h6 id="指定请求方法"><a href="#指定请求方法" class="headerlink" title="指定请求方法"></a>指定请求方法</h6><p>如果我们要求某些 URL 只能通过 POST 请求，某些 URL 只能通过 GET 请求，可以通过指定 intercept-url 的 method 属性限制当前 intercept-url 适用的请求方式，默认为所有的方式都可以。method 的可选值有 GET、POST、DELETE、PUT、HEAD、OPTIONS 和 TRACE。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;intercept-url pattern=&quot;/**&quot; access=&quot;ROLE_USER&quot; method=&quot;GET&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="元素-1"><a href="#元素-1" class="headerlink" title="元素"></a><authentication-manager>元素</authentication-manager></h4><p>认证是由 AuthenticationManager 来管理的，但是真正进行认证的是 AuthenticationManager 中定义的 AuthenticationProvider。AuthenticationManager 中可以定义有多个 AuthenticationProvider。当我们使用 authentication-provider 元素来定义一个 AuthenticationProvider 时，如果没有指定对应关联的 AuthenticationProvider 对象，Spring Security 默认会使用 DaoAuthenticationProvider。DaoAuthenticationProvider 在进行认证的时候需要一个 UserDetailsService 来获取用户的信息 UserDetails，其中包括用户名、密码和所拥有的权限等。所以如果我们需要改变认证的方式，我们可以实现自己的 AuthenticationProvider；如果需要改变认证的用户信息来源，我们可以实现 UserDetailsService。</p>
+<p>实现了自己的 AuthenticationProvider 之后，我们可以在配置文件中这样配置来使用我们自己的 AuthenticationProvider。其中 myAuthenticationProvider 就是我们自己的 AuthenticationProvider 实现类对应的 bean。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager&gt;</div><div class="line">	&lt;authentication-provider ref=&quot;myAuthenticationProvider&quot;/&gt;</div><div class="line">&lt;/authentication-manager&gt;</div></pre></td></tr></table></figure></p>
+<p>实现了自己的 UserDetailsService 之后，我们可以在配置文件中这样配置来使用我们自己的 UserDetailsService。其中的 myUserDetailsService 就是我们自己的 UserDetailsService 实现类对应的 bean。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager&gt;</div><div class="line">	&lt;authentication-provider user-service-ref=&quot;myUserDetailsService&quot;/&gt;</div><div class="line">&lt;/authentication-manager&gt;</div></pre></td></tr></table></figure></p>
+<h5 id="用户信息从数据库获取"><a href="#用户信息从数据库获取" class="headerlink" title="用户信息从数据库获取"></a>用户信息从数据库获取</h5><p>通常我们的用户信息都不会向第一节示例中那样简单的写在配置文件中，而是从其它存储位置获取，比如数据库。根据之前的介绍我们知道用户信息是通过 UserDetailsService 获取的，要从数据库获取用户信息，我们就需要实现自己的 UserDetailsService。幸运的是像这种常用的方式 Spring Security 已经为我们做了实现了。</p>
+<h6 id="使用-jdbc-user-service-获取"><a href="#使用-jdbc-user-service-获取" class="headerlink" title="使用 jdbc-user-service 获取"></a>使用 jdbc-user-service 获取</h6><p>在 Spring Security 的命名空间中在 authentication-provider 下定义了一个 jdbc-user-service 元素，通过该元素我们可以定义一个从数据库获取 UserDetails 的 UserDetailsService。jdbc-user-service 需要接收一个数据源的引用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager&gt;</div><div class="line">      &lt;authentication-provider&gt;</div><div class="line">         &lt;jdbc-user-service data-source-ref=&quot;dataSource&quot;/&gt;      </div><div class="line">      &lt;/authentication-provider&gt;</div><div class="line">   &lt;/authentication-manager&gt;</div></pre></td></tr></table></figure></p>
+<p>上述配置中 dataSource 是对应数据源配置的 bean 引用。</p>
+<p>因为默认情况下 jdbc-user-service 将使用 SQL 语句 “select username, password, enabled from users where username = ?” 来获取用户信息；使用 SQL 语句 “select username, authority from authorities where username = ?” 来获取用户对应的权限；使用 SQL 语句 “select g.id, g.group_name, ga.authority from groups g, group_members gm, group_authorities ga where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id” 来获取用户所属组的权限。需要注意的是 jdbc-user-service 定义是不支持用户组权限的，所以使用 jdbc-user-service 时用户组相关表也是可以不定义的。如果需要使用用户组权限请使用 JdbcDaoImpl。</p>
+<p>当然这只是默认配置及默认的表结构。如果我们的表名或者表结构跟 Spring Security 默认的不一样，我们可以通过以下几个属性来定义我们自己查询用户信息、用户权限和用户组权限的 SQL:</p>
+<ul>
+<li>users-by-username-query  指定查询用户信息的 SQL</li>
+<li>authorities-by-username-query    指定查询用户权限的 SQL</li>
+<li>group-authorities-by-username-query  指定查询用户组权限的 SQL<br>例如:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager&gt;</div><div class="line">	 &lt;authentication-provider&gt;</div><div class="line">		&lt;jdbc-user-service</div><div class="line">		   data-source-ref=&quot;dataSource&quot;</div><div class="line">		   users-by-username-query=&quot;select username, password, enabled from account where username = ?&quot; /&gt;</div><div class="line">	 &lt;/authentication-provider&gt;</div><div class="line">  &lt;/authentication-manager&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>role-prefix 属性:jdbc-user-service 还有一个属性 role-prefix 可以用来指定角色的前缀。这是什么意思呢？这表示我们从库里面查询出来的权限需要加上什么样的前缀。举个例子，假设我们库里面存放的权限都是 “USER”，而我们指定了某个 URL 的访问权限 access=”ROLEUSER”，显然这是不匹配的，Spring Security 不会给我们放行，通过指定 jdbc-user-service 的 role-prefix=”ROLE\” 之后就会满足了。当 role-prefix 的值为 “none” 时表示没有前缀，当然默认也是没有的。</p>
+<h6 id="直接使用-JdbcDaoImpl"><a href="#直接使用-JdbcDaoImpl" class="headerlink" title="直接使用 JdbcDaoImpl"></a>直接使用 JdbcDaoImpl</h6><p>JdbcDaoImpl 是 UserDetailsService 的一个实现。其用法和 jdbc-user-service 类似，只是我们需要把它定义为一个 bean，然后通过 authentication-provider 的 user-service-ref 进行引用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager&gt;</div><div class="line">	&lt;authentication-provider user-service-ref=&quot;userDetailsService&quot;/&gt;</div><div class="line">&lt;/authentication-manager&gt;</div><div class="line"></div><div class="line">&lt;bean id=&quot;userDetailsService&quot; class=&quot;org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl&quot;&gt;</div><div class="line">	&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p>JdbcDaoImpl 同样需要一个 dataSource 的引用。如果就是上面这样配置的话我们数据库表结构也需要是标准的表结构。当然，如果我们的表结构和标准的不一样，可以通过 usersByUsernameQuery、authoritiesByUsernameQuery 和 groupAuthoritiesByUsernameQuery 属性来指定对应的查询 SQL。</p>
+<p>JdbcDaoImpl 使用 enableAuthorities 和 enableGroups 两个属性来控制权限的启用。默认启用的是 enableAuthorities，即用户权限，而 enableGroups 默认是不启用的。如果需要启用用户组权限，需要指定 enableGroups 属性值为 true。当然这两种权限是可以同时启用的。需要注意的是使用 jdbc-user-service 定义的 UserDetailsService 是不支持用户组权限的，如果需要支持用户组权限的话需要我们使用 JdbcDaoImpl。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager&gt;</div><div class="line">	&lt;authentication-provider user-service-ref=&quot;userDetailsService&quot;/&gt;</div><div class="line">&lt;/authentication-manager&gt;</div><div class="line"></div><div class="line">&lt;bean id=&quot;userDetailsService&quot; class=&quot;org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl&quot;&gt;</div><div class="line">	&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</div><div class="line">	&lt;property name=&quot;enableGroups&quot; value=&quot;true&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<h5 id="PasswordEncoder"><a href="#PasswordEncoder" class="headerlink" title="PasswordEncoder"></a>PasswordEncoder</h5><p>通常我们保存的密码都不会像之前介绍的那样，保存的明文，而是加密之后的结果。为此，我们的 AuthenticationProvider 在做认证时也需要将传递的明文密码使用对应的算法加密后再与保存好的密码做比较。Spring Security 对这方面也有支持。通过在 authentication-provider 下定义一个 password-encoder 我们可以定义当前 AuthenticationProvider 需要在进行认证时需要使用的 password-encoder。password-encoder 是一个 PasswordEncoder 的实例，我们可以直接使用它，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager&gt;</div><div class="line">	&lt;authentication-provider user-service-ref=&quot;userDetailsService&quot;&gt;</div><div class="line">    	&lt;password-encoder hash=&quot;md5&quot;/&gt;</div><div class="line">  	&lt;/authentication-provider&gt;</div><div class="line">&lt;/authentication-manager&gt;</div></pre></td></tr></table></figure></p>
+<p>其属性hash表示我们将用来进行加密的哈希算法，系统已经为我们实现的有plaintext、sha、sha-256、md4、md5、{sha}和{ssha}。</p>
+<h1 id="认证简介"><a href="#认证简介" class="headerlink" title="认证简介"></a>认证简介</h1><h2 id="认证过程"><a href="#认证过程" class="headerlink" title="认证过程"></a>认证过程</h2><ol>
+<li>用户使用用户名和密码进行登录。</li>
+<li>Spring Security 将获取到的用户名和密码封装成一个实现了 Authentication 接口的 UsernamePasswordAuthenticationToken。</li>
+<li>将上述产生的 token 对象传递给 AuthenticationManager 进行登录认证。</li>
+<li>AuthenticationManager 认证成功后将会返回一个封装了用户权限等信息的 Authentication 对象。</li>
+<li>通过调用 SecurityContextHolder.getContext().setAuthentication(…) 将 AuthenticationManager 返回的 Authentication 对象赋予给当前的 SecurityContext。</li>
+</ol>
+<p>在认证成功后，用户就可以继续操作去访问其它受保护的资源了，但是在访问的时候将会使用保存在 SecurityContext 中的 Authentication 对象进行相关的权限鉴定。</p>
+<h2 id="Web-应用的认证过程"><a href="#Web-应用的认证过程" class="headerlink" title="Web 应用的认证过程"></a>Web 应用的认证过程</h2><p>如果用户直接访问登录页面，那么认证过程跟上节描述的基本一致，只是在认证完成后将跳转到指定的成功页面，默认是应用的根路径。如果用户直接访问一个受保护的资源，那么认证过程将如下：</p>
+<ol>
+<li>引导用户进行登录，通常是重定向到一个基于 form 表单进行登录的页面，具体视配置而定。</li>
+<li>用户输入用户名和密码后请求认证，后台还是会像上节描述的那样获取用户名和密码封装成一个 UsernamePasswordAuthenticationToken 对象，然后把它传递给 AuthenticationManager 进行认证。</li>
+<li>如果认证失败将继续执行步骤 1，如果认证成功则会保存返回的 Authentication 到 SecurityContext，然后默认会将用户重定向到之前访问的页面。</li>
+<li>用户登录认证成功后再次访问之前受保护的资源时就会对用户进行权限鉴定，如不存在对应的访问权限，则会返回 403 错误码。<br>在上述步骤中将有很多不同的类参与，但其中主要的参与者是 ExceptionTranslationFilter。<h2 id="ExceptionTranslationFilter"><a href="#ExceptionTranslationFilter" class="headerlink" title="ExceptionTranslationFilter"></a>ExceptionTranslationFilter</h2>ExceptionTranslationFilter 是用来处理来自 AbstractSecurityInterceptor 抛出的 AuthenticationException 和 AccessDeniedException 的。AbstractSecurityInterceptor 是 Spring Security 用于拦截请求进行权限鉴定的，其拥有两个具体的子类，拦截方法调用的 MethodSecurityInterceptor 和拦截 URL 请求的 FilterSecurityInterceptor。当 ExceptionTranslationFilter 捕获到的是 AuthenticationException 时将调用 AuthenticationEntryPoint 引导用户进行登录；如果捕获的是 AccessDeniedException，但是用户还没有通过认证，则调用 AuthenticationEntryPoint 引导用户进行登录认证，否则将返回一个表示不存在对应权限的 403 错误码。<h2 id="在-request-之间共享-SecurityContext"><a href="#在-request-之间共享-SecurityContext" class="headerlink" title="在 request 之间共享 SecurityContext"></a>在 request 之间共享 SecurityContext</h2>既然 SecurityContext 是存放在 ThreadLocal 中的，而且在每次权限鉴定的时候都是从 ThreadLocal 中获取 SecurityContext 中对应的 Authentication 所拥有的权限，并且不同的 request 是不同的线程，为什么每次都可以从 ThreadLocal 中获取到当前用户对应的 SecurityContext 呢？在 Web 应用中这是通过 SecurityContextPersistentFilter 实现的，默认情况下其会在每次请求开始的时候从 session 中获取 SecurityContext，然后把它设置给 SecurityContextHolder，在请求结束后又会将 SecurityContextHolder 所持有的 SecurityContext 保存在 session 中，并且清除 SecurityContextHolder 所持有的 SecurityContext。这样当我们第一次访问系统的时候，SecurityContextHolder 所持有的 SecurityContext 肯定是空的，待我们登录成功后，SecurityContextHolder 所持有的 SecurityContext 就不是空的了，且包含有认证成功的 Authentication 对象，待请求结束后我们就会将 SecurityContext 存在 session 中，等到下次请求的时候就可以从 session 中获取到该 SecurityContext 并把它赋予给 SecurityContextHolder 了，由于 SecurityContextHolder 已经持有认证过的 Authentication 对象了，所以下次访问的时候也就不再需要进行登录认证了。</li>
+</ol>
+<h1 id="核心类简介"><a href="#核心类简介" class="headerlink" title="核心类简介"></a>核心类简介</h1><ul>
+<li>Authentication<br>  Authentication 是一个接口，用来表示用户认证信息的，在用户登录认证之前相关信息会封装为一个 Authentication 具体实现类的对象，在登录认证成功之后又会生成一个信息更全面，包含用户权限等信息的 Authentication 对象，然后把它保存在 SecurityContextHolder 所持有的 SecurityContext 中，供后续的程序进行调用，如访问权限的鉴定等。</li>
+<li><p>SecurityContextHolder<br>  SecurityContextHolder 是用来保存 SecurityContext 的。SecurityContext 中含有当前正在访问系统的用户的详细信息。默认情况下，SecurityContextHolder 将使用 ThreadLocal 来保存 SecurityContext，这也就意味着在处于同一线程中的方法中我们可以从 ThreadLocal 中获取到当前的 SecurityContext。因为线程池的原因，如果我们每次在请求完成后都将 ThreadLocal 进行清除的话，那么我们把 SecurityContext 存放在 ThreadLocal 中还是比较安全的。这些工作 Spring Security 已经自动为我们做了，即在每一次 request 结束后都将清除当前线程的 ThreadLocal。</p>
+<p>  SecurityContextHolder 中定义了一系列的静态方法，而这些静态方法内部逻辑基本上都是通过 SecurityContextHolder 持有的 SecurityContextHolderStrategy 来实现的，如 getContext()、setContext()、clearContext()等。而默认使用的 strategy 就是基于 ThreadLocal 的 ThreadLocalSecurityContextHolderStrategy。另外，Spring Security 还提供了两种类型的 strategy 实现，GlobalSecurityContextHolderStrategy 和 InheritableThreadLocalSecurityContextHolderStrategy，前者表示全局使用同一个 SecurityContext，如 C/S 结构的客户端；后者使用 InheritableThreadLocal 来存放 SecurityContext，即子线程可以使用父线程中存放的变量。</p>
+<p>  一般而言，我们使用默认的 strategy 就可以了，但是如果要改变默认的 strategy，Spring Security 为我们提供了两种方法，这两种方式都是通过改变 strategyName 来实现的。SecurityContextHolder 中为三种不同类型的 strategy 分别命名为 MODE_THREADLOCAL、MODE_INHERITABLETHREADLOCAL 和 MODE_GLOBAL。第一种方式是通过 SecurityContextHolder 的静态方法 setStrategyName() 来指定需要使用的 strategy；第二种方式是通过系统属性进行指定，其中属性名默认为 “spring.security.strategy”，属性值为对应 strategy 的名称。</p>
+<p>  Spring Security 使用一个 Authentication 对象来描述当前用户的相关信息。SecurityContextHolder 中持有的是当前用户的 SecurityContext，而 SecurityContext 持有的是代表当前用户相关信息的 Authentication 的引用。这个 Authentication 对象不需要我们自己去创建，在与系统交互的过程中，Spring Security 会自动为我们创建相应的 Authentication 对象，然后赋值给当前的 SecurityContext。但是往往我们需要在程序中获取当前用户的相关信息，比如最常见的是获取当前登录用户的用户名。在程序的任何地方，通过如下方式我们可以获取到当前用户的用户名。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public String getCurrentUsername() &#123;</div><div class="line">  Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();</div><div class="line">  if (principal instanceof UserDetails) &#123;</div><div class="line">	 return ((UserDetails) principal).getUsername();</div><div class="line">  &#125;</div><div class="line">  if (principal instanceof Principal) &#123;</div><div class="line">	 return ((Principal) principal).getName();</div><div class="line">  &#125;</div><div class="line">  return String.valueOf(principal);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  通过 Authentication.getPrincipal() 可以获取到代表当前用户的信息，这个对象通常是 UserDetails 的实例。获取当前用户的用户名是一种比较常见的需求，关于上述代码其实 Spring Security 在 Authentication 中的实现类中已经为我们做了相关实现，所以获取当前用户的用户名最简单的方式应当如下。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public String getCurrentUsername() &#123;</div><div class="line">  return SecurityContextHolder.getContext().getAuthentication().getName();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  此外，调用 SecurityContextHolder.getContext() 获取 SecurityContext 时，如果对应的 SecurityContext 不存在，则 Spring Security 将为我们建立一个空的 SecurityContext 并进行返回。</p>
+</li>
+<li><p>AuthenticationManager 和 AuthenticationProvider<br>  AuthenticationManager 是一个用来处理认证（Authentication）请求的接口。在其中只定义了一个方法 authenticate()，该方法只接收一个代表认证请求的 Authentication 对象作为参数，如果认证成功，则会返回一个封装了当前用户权限等信息的 Authentication 对象进行返回。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Authentication authenticate(Authentication authentication) throws AuthenticationException;</div></pre></td></tr></table></figure>
+<p>  在 Spring Security 中，AuthenticationManager 的默认实现是 ProviderManager，而且它不直接自己处理认证请求，而是委托给其所配置的 AuthenticationProvider 列表，然后会依次使用每一个 AuthenticationProvider 进行认证，如果有一个 AuthenticationProvider 认证后的结果不为 null，则表示该 AuthenticationProvider 已经认证成功，之后的 AuthenticationProvider 将不再继续认证。然后直接以该 AuthenticationProvider 的认证结果作为 ProviderManager 的认证结果。如果所有的 AuthenticationProvider 的认证结果都为 null，则表示认证失败，将抛出一个 ProviderNotFoundException。校验认证请求最常用的方法是根据请求的用户名加载对应的 UserDetails，然后比对 UserDetails 的密码与认证请求的密码是否一致，一致则表示认证通过。Spring Security 内部的 DaoAuthenticationProvider 就是使用的这种方式。其内部使用 UserDetailsService 来负责加载 UserDetails，UserDetailsService 将在下节讲解。在认证成功以后会使用加载的 UserDetails 来封装要返回的 Authentication 对象，加载的 UserDetails 对象是包含用户权限等信息的。认证成功返回的 Authentication 对象将会保存在当前的 SecurityContext 中。</p>
+<p>  当我们在使用 NameSpace 时， authentication-manager 元素的使用会使 Spring Security 在内部创建一个 ProviderManager，然后可以通过 authentication-provider 元素往其中添加 AuthenticationProvider。当定义 authentication-provider 元素时，如果没有通过 ref 属性指定关联哪个 AuthenticationProvider，Spring Security 默认就会使用 DaoAuthenticationProvider。使用了 NameSpace 后我们就不要再声明 ProviderManager 了。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager alias=&quot;authenticationManager&quot;&gt;</div><div class="line">  &lt;authentication-provider</div><div class="line">	 user-service-ref=&quot;userDetailsService&quot;/&gt;</div><div class="line">&lt;/authentication-manager&gt;</div></pre></td></tr></table></figure>
+<p>  如果我们没有使用 NameSpace，那么我们就应该在 ApplicationContext 中声明一个 ProviderManager。</p>
+</li>
+<li>认证成功后清除凭证<br>  默认情况下，在认证成功后 ProviderManager 将清除返回的 Authentication 中的凭证信息，如密码。所以如果你在无状态的应用中将返回的 Authentication 信息缓存起来了，那么以后你再利用缓存的信息去认证将会失败，因为它已经不存在密码这样的凭证信息了。所以在使用缓存的时候你应该考虑到这个问题。一种解决办法是设置 ProviderManager 的 eraseCredentialsAfterAuthentication 属性为 false，或者想办法在缓存时将凭证信息一起缓存。</li>
+<li><p>UserDetailsService<br>  通过 Authentication.getPrincipal() 的返回类型是 Object，但很多情况下其返回的其实是一个 UserDetails 的实例。UserDetails 是 Spring Security 中一个核心的接口。其中定义了一些可以获取用户名、密码、权限等与认证相关的信息的方法。Spring Security 内部使用的 UserDetails 实现类大都是内置的 User 类，我们如果要使用 UserDetails 时也可以直接使用该类。在 Spring Security 内部很多地方需要使用用户信息的时候基本上都是使用的 UserDetails，比如在登录认证的时候。登录认证的时候 Spring Security 会通过 UserDetailsService 的 loadUserByUsername() 方法获取对应的 UserDetails 进行认证，认证通过后会将该 UserDetails 赋给认证通过的 Authentication 的 principal，然后再把该 Authentication 存入到 SecurityContext 中。之后如果需要使用用户信息的时候就是通过 SecurityContextHolder 获取存放在 SecurityContext 中的 Authentication 的 principal。</p>
+<p>  通常我们需要在应用中获取当前用户的其它信息，如 Email、电话等。这时存放在 Authentication 的 principal 中只包含有认证相关信息的 UserDetails 对象可能就不能满足我们的要求了。这时我们可以实现自己的 UserDetails，在该实现类中我们可以定义一些获取用户其它信息的方法，这样将来我们就可以直接从当前 SecurityContext 的 Authentication 的 principal 中获取这些信息了。上文已经提到了 UserDetails 是通过 UserDetailsService 的 loadUserByUsername() 方法进行加载的。UserDetailsService 也是一个接口，我们也需要实现自己的 UserDetailsService 来加载我们自定义的 UserDetails 信息。然后把它指定给 AuthenticationProvider 即可。如下是一个配置 UserDetailsService 的示例。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 用于认证的 AuthenticationManager --&gt;</div><div class="line">&lt;authentication-manager alias=&quot;authenticationManager&quot;&gt;</div><div class="line">  &lt;authentication-provider</div><div class="line">	 user-service-ref=&quot;userDetailsService&quot; /&gt;</div><div class="line">&lt;/authentication-manager&gt;</div><div class="line"></div><div class="line">&lt;bean id=&quot;userDetailsService&quot;</div><div class="line">  class=&quot;org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl&quot;&gt;</div><div class="line">  &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>  上述代码中我们使用的 JdbcDaoImpl 是 Spring Security 为我们提供的 UserDetailsService 的实现，另外 Spring Security 还为我们提供了 UserDetailsService 另外一个实现，InMemoryDaoImpl。</p>
+<p>  其作用是从数据库中加载 UserDetails 信息。其中已经定义好了加载相关信息的默认脚本，这些脚本也可以通过 JdbcDaoImpl 的相关属性进行指定。</p>
+</li>
+<li><p>JdbcDaoImpl<br>  JdbcDaoImpl 允许我们从数据库来加载 UserDetails，其底层使用的是 Spring 的 JdbcTemplate 进行操作，所以我们需要给其指定一个数据源。此外，我们需要通过 usersByUsernameQuery 属性指定通过 username 查询用户信息的 SQL 语句；通过 authoritiesByUsernameQuery 属性指定通过 username 查询用户所拥有的权限的 SQL 语句；如果我们通过设置 JdbcDaoImpl 的 enableGroups 为 true 启用了用户组权限的支持，则我们还需要通过 groupAuthoritiesByUsernameQuery 属性指定根据 username 查询用户组权限的 SQL 语句。当这些信息都没有指定时，将使用默认的 SQL 语句，默认的 SQL 语句如下所示。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">select username, password, enabled from users where username=? -- 根据 username 查询用户信息</div><div class="line">select username, authority from authorities where username=? -- 根据 username 查询用户权限信息</div><div class="line">select g.id, g.group_name, ga.authority from groups g, groups_members gm, groups_authorities ga where gm.username=? and g.id=ga.group_id and g.id=gm.group_id -- 根据 username 查询用户组权限</div></pre></td></tr></table></figure>
+<p>  使用默认的 SQL 语句进行查询时意味着我们对应的数据库中应该有对应的表和表结构，Spring Security 为我们提供的默认表的创建脚本如下。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">create table users(</div><div class="line">  username varchar_ignorecase(50) not null primary key,</div><div class="line">  password varchar_ignorecase(50) not null,</div><div class="line">  enabled boolean not null);</div><div class="line"></div><div class="line">create table authorities (</div><div class="line">  username varchar_ignorecase(50) not null,</div><div class="line">  authority varchar_ignorecase(50) not null,</div><div class="line">  constraint fk_authorities_users foreign key(username) references users(username));</div><div class="line">  create unique index ix_auth_username on authorities (username,authority);</div><div class="line"></div><div class="line">create table groups (</div><div class="line">id bigint generated by default as identity(start with 0) primary key,</div><div class="line">group_name varchar_ignorecase(50) notnull);</div><div class="line"></div><div class="line">create table group_authorities (</div><div class="line">group_id bigint notnull,</div><div class="line">authority varchar(50) notnull,</div><div class="line">constraint fk_group_authorities_group foreign key(group_id) references groups(id));</div><div class="line"></div><div class="line">create table group_members (</div><div class="line">id bigint generated by default as identity(start with 0) primary key,</div><div class="line">username varchar(50) notnull,</div><div class="line">group_id bigint notnull,</div><div class="line">constraint fk_group_members_group foreign key(group_id) references groups(id));</div></pre></td></tr></table></figure>
+<p>  此外，使用 jdbc-user-service 元素时在底层 Spring Security 默认使用的就是 JdbcDaoImpl。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;authentication-manager alias=&quot;authenticationManager&quot;&gt;</div><div class="line">  &lt;authentication-provider&gt;</div><div class="line">	 &lt;!-- 基于 Jdbc 的 UserDetailsService 实现，JdbcDaoImpl --&gt;</div><div class="line">	 &lt;jdbc-user-service data-source-ref=&quot;dataSource&quot;/&gt;</div><div class="line">  &lt;/authentication-provider&gt;</div><div class="line">&lt;/authentication-manager&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>InMemoryDaoImpl<br>  InMemoryDaoImpl 主要是测试用的，其只是简单的将用户信息保存在内存中。使用 NameSpace 时，使用 user-service 元素 Spring Security 底层使用的 UserDetailsService 就是 InMemoryDaoImpl。此时，我们可以简单的使用 user 元素来定义一个 UserDetails。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;user-service&gt;</div><div class="line">  &lt;user name=&quot;user&quot; password=&quot;user&quot; authorities=&quot;ROLE_USER&quot;/&gt;</div><div class="line">&lt;/user-service&gt;</div></pre></td></tr></table></figure>
+<p>  如上配置表示我们定义了一个用户 user，其对应的密码为 user，拥有 ROLE_USER 的权限。此外，user-service 还支持通过 properties 文件来指定用户信息，如：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;user-service properties=&quot;/WEB-INF/config/users.properties&quot;/&gt;</div></pre></td></tr></table></figure>
+<p>  其中属性文件应遵循如下格式：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">username=password,grantedAuthority[,grantedAuthority][,enabled|disabled]</div></pre></td></tr></table></figure>
+<p>  所以，对应上面的配置文件，我们的 users.properties 文件的内容应该如下所示：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#username=password,grantedAuthority[,grantedAuthority][,enabled|disabled]</div><div class="line">user=user,ROLE_USER</div></pre></td></tr></table></figure>
+</li>
+<li><p>GrantedAuthority<br>  Authentication 的 getAuthorities() 可以返回当前 Authentication 对象拥有的权限，即当前用户拥有的权限。其返回值是一个 GrantedAuthority 类型的数组，每一个 GrantedAuthority 对象代表赋予给当前用户的一种权限。GrantedAuthority 是一个接口，其通常是通过 UserDetailsService 进行加载，然后赋予给 UserDetails 的。</p>
+<p>  GrantedAuthority 中只定义了一个 getAuthority() 方法，该方法返回一个字符串，表示对应权限的字符串表示，如果对应权限不能用字符串表示，则应当返回 null。</p>
+<p>  Spring Security 针对 GrantedAuthority 有一个简单实现 SimpleGrantedAuthority。该类只是简单的接收一个表示权限的字符串。Spring Security 内部的所有 AuthenticationProvider 都是使用 SimpleGrantedAuthority 来封装 Authentication 对象。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/Spring/" rel="tag">#Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/15/vim速查卡/" rel="next" title="vim速查卡">
+                <i class="fa fa-chevron-left"></i> vim速查卡
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/02/springSecurity快速指南/"
+     data-title="springSecurity快速指南"
+     data-content=""
+     data-url="http://lingyv.cn/2016/11/02/springSecurity快速指南/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/02/springSecurity快速指南/"
+           data-title="springSecurity快速指南" data-url="http://lingyv.cn/2016/11/02/springSecurity快速指南/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Security是什么"><span class="nav-number">1.</span> <span class="nav-text">Security是什么?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Security配置方式"><span class="nav-number">2.</span> <span class="nav-text">Security配置方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#security使用"><span class="nav-number">3.</span> <span class="nav-text">security使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本：4-1-3-RELEASE"><span class="nav-number">3.1.</span> <span class="nav-text">版本：4.1.3.RELEASE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入依赖"><span class="nav-number">3.2.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML方式"><span class="nav-number">3.3.</span> <span class="nav-text">XML方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建配置文件security-xml"><span class="nav-number">3.3.1.</span> <span class="nav-text">新建配置文件security.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-xml设置"><span class="nav-number">3.3.2.</span> <span class="nav-text">web.xml设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引入配置文件"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">引入配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置过滤器"><span class="nav-number">3.3.2.2.</span> <span class="nav-text">配置过滤器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#security-xml配置"><span class="nav-number">3.3.3.</span> <span class="nav-text">security.xml配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引入name-space"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">引入name space</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元素"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#intercept-url配置"><span class="nav-number">3.3.3.2.1.</span> <span class="nav-text">intercept-url配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#指定拦截的-url"><span class="nav-number">3.3.3.2.1.1.</span> <span class="nav-text">指定拦截的 url</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#指定访问权限"><span class="nav-number">3.3.3.2.1.2.</span> <span class="nav-text">指定访问权限</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#指定访问协议"><span class="nav-number">3.3.3.2.1.3.</span> <span class="nav-text">指定访问协议</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#指定请求方法"><span class="nav-number">3.3.3.2.1.4.</span> <span class="nav-text">指定请求方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元素-1"><span class="nav-number">3.3.3.3.</span> <span class="nav-text">元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用户信息从数据库获取"><span class="nav-number">3.3.3.3.1.</span> <span class="nav-text">用户信息从数据库获取</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#使用-jdbc-user-service-获取"><span class="nav-number">3.3.3.3.1.1.</span> <span class="nav-text">使用 jdbc-user-service 获取</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#直接使用-JdbcDaoImpl"><span class="nav-number">3.3.3.3.1.2.</span> <span class="nav-text">直接使用 JdbcDaoImpl</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PasswordEncoder"><span class="nav-number">3.3.3.3.2.</span> <span class="nav-text">PasswordEncoder</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#认证简介"><span class="nav-number">4.</span> <span class="nav-text">认证简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#认证过程"><span class="nav-number">4.1.</span> <span class="nav-text">认证过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-应用的认证过程"><span class="nav-number">4.2.</span> <span class="nav-text">Web 应用的认证过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ExceptionTranslationFilter"><span class="nav-number">4.3.</span> <span class="nav-text">ExceptionTranslationFilter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-request-之间共享-SecurityContext"><span class="nav-number">4.4.</span> <span class="nav-text">在 request 之间共享 SecurityContext</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心类简介"><span class="nav-number">5.</span> <span class="nav-text">核心类简介</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
