@@ -1,0 +1,1122 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Velocity,翻译,官方文档," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Velocity用户手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Velocity用户手册">
+<meta property="og:url" content="http://lingyv.cn/2016/11/06/Velocity用户手册/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="Velocity用户手册">
+<meta property="og:updated_time" content="2016-11-07T14:41:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Velocity用户手册">
+<meta name="twitter:description" content="Velocity用户手册">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/11/06/Velocity用户手册/"/>
+
+  <title> Velocity用户手册 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Velocity用户手册
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-06T20:04:04+08:00" content="2016-11-06">
+              2016-11-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/道/" itemprop="url" rel="index">
+                    <span itemprop="name">道</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/06/Velocity用户手册/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/06/Velocity用户手册/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Velocity用户手册<br><a id="more"></a></p>
+<h2 id="What-is-Velocity-什么是Velocity"><a href="#What-is-Velocity-什么是Velocity" class="headerlink" title="What is Velocity? 什么是Velocity?"></a>What is Velocity? 什么是Velocity?</h2><p>Velocity is a Java-based template engine. It permits web page designers to reference methods defined in Java code. Web designers can work in parallel with Java programmers to develop web sites according to the Model-View-Controller (MVC) model, meaning that web page designers can focus solely on creating a well-designed site, and programmers can focus solely on writing top-notch code. Velocity separates Java code from the web pages, making the web site more maintainable over the long run and providing a viable alternative to Java Server Pages (JSPs) or PHP.</p>
+<p>Velocity是一个基于Java的模板引擎。 它允许网页设计者引用在Java代码中定义的方法。 网页设计师可以与Java程序员根据MVC模型同时开发网站，这意味着网页设计者可以专注于精心设计网站，程序员可以专注于写top-notch代码。 Velocity将Java代码与网页分离，使网站更易于维护，并为Java Server Pages（JSP）或PHP提供了替代方案。</p>
+<p>Velocity can be used to generate web pages, SQL, PostScript and other output from templates. It can be used either as a standalone utility for generating source code and reports, or as an integrated component of other systems. When complete, Velocity will provide template services for the Turbine web application framework. Velocity+Turbine will provide a template service that will allow web applications to be developed according to a true MVC model.</p>
+<p>Velocity可以使用模板生成网页，SQL，PostScript等。 它可以用作生成源代码和报告的独立实用程序，也可以用作其他系统的集成组件。 完成后，Velocity将为Turbine Web应用程序框架提供模板服务。 Velocity + Turbine将提供一个模板服务，允许根据MVC模型开发Web应用程序。</p>
+<h2 id="What-can-Velocity-do-for-me-Velocity能做什么"><a href="#What-can-Velocity-do-for-me-Velocity能做什么" class="headerlink" title="What can Velocity do for me?  Velocity能做什么"></a>What can Velocity do for me?  Velocity能做什么</h2><h3 id="The-Mud-Store-Example-Mud-商店实例"><a href="#The-Mud-Store-Example-Mud-商店实例" class="headerlink" title="The Mud Store Example  Mud 商店实例"></a>The Mud Store Example  Mud 商店实例</h3><h2 id="Velocity-Template-Language-VTL-An-Introduction-Velocity模板语言-VTL-简介"><a href="#Velocity-Template-Language-VTL-An-Introduction-Velocity模板语言-VTL-简介" class="headerlink" title="Velocity Template Language (VTL): An Introduction  Velocity模板语言 (VTL): 简介"></a>Velocity Template Language (VTL): An Introduction  Velocity模板语言 (VTL): 简介</h2><p>VTL uses references to embed dynamic content in a web site, and a variable is one type of reference. Variables are one type of reference that can refer to something defined in the Java code, or it can get its value from a VTL statement in the web page itself. Here is an example of a VTL statement that could be embedded in an HTML document:</p>
+<p>VTL使用引用动态将内容嵌入到网站中，变量也是一种类型的引用，它可以引用在Java代码中定义的东西，也可以从网页本身的VTL语句获得值。 下面是可以嵌入到HTML文档中的VTL语句的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#set( $a = &quot;Velocity&quot; )</div></pre></td></tr></table></figure></p>
+<p>This VTL statement, like all VTL statements, begins with the # character and contains a directive: set. When an online visitor requests your web page, the Velocity Templating Engine will search through your web page to find all # characters, then determine which mark the beginning of VTL statements, and which of the # characters that have nothing to do with VTL.</p>
+<p>这个VTL语句和所有VTL语句一样，以＃字符开头，并包含一条指令：set。 当在线访问者请求您的网页时，Velocity模板引擎将搜索您的网页查找所有＃个字符，然后确定哪个标记是VTL语句的开头，哪个是与VTL无关的＃个字符。</p>
+<p>The # character is followed by a directive, set. The set directive uses an expression (enclosed in brackets) – an equation that assigns a value to a variable. The variable is listed on the left hand side and its value on the right hand side; the two are separated by an = character.</p>
+<p>＃字符后面是一个指令，set。 set指令使用一个表达式（括在括号中） – 一个变量的赋值语句。 变量在左侧列出，其值在右侧; 两个用=字符分隔。</p>
+<p>The following rule of thumb may be useful to better understand how Velocity works: References begin with $ and are used to get something. Directives begin with # and are used to do something.</p>
+<p>下面的规则可能有助于更好地理解Velocity的工作：引用以$开头，用于获取值。 指令以＃开头，用于设置值。</p>
+<p>In the example above, #set is used to assign a value to a variable. The variable, $a, can then be used in the template to output “Velocity”.</p>
+<p>在上面的示例中，#set用于为变量赋值。 然后可以在模板中使用$a输出“Velocity”。</p>
+<h2 id="Hello-Velocity-World-Velocity简单实例-Hello-Velocity-World"><a href="#Hello-Velocity-World-Velocity简单实例-Hello-Velocity-World" class="headerlink" title="Hello Velocity World! Velocity简单实例:Hello Velocity World"></a>Hello Velocity World! Velocity简单实例:Hello Velocity World</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">  #set( $foo = &quot;Velocity&quot; )</div><div class="line">  Hello $foo World!</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>The result is a web page that prints “Hello Velocity World!”.</p>
+<p>网页将会输出”Hello Velocity World!”</p>
+<p>To make statements containing VTL directives more readable, we encourage you to start each VTL statement on a new line, although you are not required to do so. The set directive will be revisited in greater detail later on.</p>
+<p>为了使包含VTL指令的语句更具可读性，建议在新行上写每个VTL语句。 稍后将更详细地重新讨论set指令。</p>
+<h2 id="Comments-注释"><a href="#Comments-注释" class="headerlink" title="Comments 注释"></a>Comments 注释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">## This is a single line comment.</div></pre></td></tr></table></figure>
+<p>A single line comment begins with ## and finishes at the end of the line. If you’re going to write a few lines of commentary, there’s no need to have numerous single line comments. Multi-line comments, which begin with # and end with #, are available to handle this scenario.</p>
+<p>单行注释以##开头，并在行末尾结束。 如果你要写几行评论，没有必要写大量的单行注释。 多行注释以＃开始，以＃结束。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">This is text that is outside the multi-line comment.</div><div class="line">Online visitors can see it.</div><div class="line"></div><div class="line">#*</div><div class="line">  Thus begins a multi-line comment. Online visitors won&apos;t</div><div class="line">  see this text because the Velocity Templating Engine will</div><div class="line">  ignore it.</div><div class="line">*#</div><div class="line"></div><div class="line">Here is text outside the multi-line comment; it is visible.</div></pre></td></tr></table></figure></p>
+<p>Here are a few examples to clarify how single line and multi-line comments work:</p>
+<p>可以用下面几个例子来说明单行和多行注释的工作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">This text is visible. ## This text is not.</div><div class="line">This text is visible.</div><div class="line">This text is visible. #* This text, as part of a multi-line</div><div class="line">comment, is not visible. This text is not visible; it is also</div><div class="line">part of the multi-line comment. This text still not</div><div class="line">visible. *# This text is outside the comment, so it is visible.</div><div class="line">## This text is not visible.</div></pre></td></tr></table></figure></p>
+<p>There is a third type of comment, the VTL comment block, which may be used to store any sort of extra information you want to track in the template (e.g. javadoc-style author and versioning information):</p>
+<p>还有第三种注释类型，VTL注释块，用于存储您要在模板中跟踪的任何类型的额外信息（例如javadoc样式的作者和版本控制信息）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#**</div><div class="line">  This is a VTL comment block and</div><div class="line">  may be used to store such information</div><div class="line">  as the document author and versioning</div><div class="line">  information:</div><div class="line">    @author John Doe</div><div class="line">    @version 5</div><div class="line">*#</div></pre></td></tr></table></figure></p>
+<h2 id="References-引用"><a href="#References-引用" class="headerlink" title="References 引用"></a>References 引用</h2><p>There are three types of references in the VTL: variables, properties and methods. As a designer using the VTL, you and your engineers must come to an agreement on the specific names of references so you can use them correctly in your templates.</p>
+<p>在VTL中有三种类型的引用：变量，属性和方法。 作为使用VTL的设计人员，您和您的工程师必须就引用的名称达成一致，以便您可以在模板中正确使用它们。</p>
+<h3 id="Variables-变量"><a href="#Variables-变量" class="headerlink" title="Variables 变量"></a>Variables 变量</h3><p>The shorthand notation of a variable consists of a leading “$” character followed by a VTL Identifier. A VTL Identifier must start with an alphabetic character (a .. z or A .. Z). The rest of the characters are limited to the following types of characters:</p>
+<p>变量由一个前导的“$”字符和一个VTL标识符组成。 VTL标识符必须以字母字符（a .. z或A .. Z）开头。 其余字符限于以下类型的字符：</p>
+<ul>
+<li>字母 (a .. z, A .. Z)</li>
+<li>数字 (0 .. 9)</li>
+<li>下划线<h3 id="Properties-属性"><a href="#Properties-属性" class="headerlink" title="Properties 属性"></a>Properties 属性</h3>The second flavor of VTL references are properties, and properties have a distinctive format. The shorthand notation consists of a leading $ character followed a VTL Identifier, followed by a dot character (“.”) and another VTL Identifier. These are examples of valid property references in the VTL:</li>
+</ul>
+<p>VTL引用的第二种类型是属性,并且属性具有不同的格式。 由$字符后的VTL标识符,后跟一个点字符(“.”)和另一个VTL标识符。 例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$customer.Address</div><div class="line">$purchase.Total</div></pre></td></tr></table></figure>
+<p>Take the first example, $customer.Address. It can have two meanings. It can mean, Look in the hashtable identified as customer and return the value associated with the key Address. But $customer.Address can also be referring to a method (references that refer to methods will be discussed in the next section); $customer.Address could be an abbreviated way of writing $customer.getAddress(). When your page is requested, Velocity will determine which of these two possibilities makes sense, and then return the appropriate value.</p>
+<p>第一个例子,$customer.Address,可以有两种含义：</p>
+<ul>
+<li>查找标识为customer的散列表,并返回与key ‘Address’相关联的值。</li>
+<li>也可以是引用一个方法, $customer.Address可以是$customer.getAddress()的缩写。</li>
+</ul>
+<p>当请求您的页面时,Velocity将确定这两种可能性中的哪一种是有意义的,然后返回适当的值。</p>
+<h3 id="Methods-方法"><a href="#Methods-方法" class="headerlink" title="Methods 方法"></a>Methods 方法</h3><p>A method is defined in the Java code and is capable of doing something useful, like running a calculation or arriving at a decision. Methods are references that consist of a leading “$” character followed a VTL Identifier, followed by a VTL Method Body. A VTL Method Body consists of a VTL Identifier followed by an left parenthesis character (“(“), followed by an optional parameter list, followed by right parenthesis character (“)”). These are examples of valid method references in the VTL:</p>
+<p>在Java中,定义一个方法,它能够做一些有用的事情,比如运行计算或者做出决定。VTL中,方法由“$”字符加VTL标识符,后跟VTL方法体组成。 VTL方法体包括一个VTL标识符,后跟一对括号”()”,括号中是可选参数列表。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$customer.getAddress()</div><div class="line">$purchase.getTotal()</div><div class="line">$page.setTitle( &quot;My Home Page&quot; )</div><div class="line">$person.setAttributes( [&quot;Strange&quot;, &quot;Weird&quot;, &quot;Excited&quot;] )</div></pre></td></tr></table></figure></p>
+<p>The first two examples – $customer.getAddress() and $purchase.getTotal() – may look similar to those used in the Properties section above, $customer.Address and $purchase.Total. If you guessed that these examples must be related some in some fashion, you are correct!</p>
+<p>前两个示例–$customer.getAddress()和$purchase.getTotal(),可能类似于上面的Properties(属性)部分中使用的$customer.Address和$ purchase.Total。</p>
+<p>VTL Properties can be used as a shorthand notation for VTL Methods. The Property $customer.Address has the exact same effect as using the Method $customer.getAddress(). It is generally preferable to use a Property when available. The main difference between Properties and Methods is that you can specify a parameter list to a Method.</p>
+<p>VTL属性可以用作VTL方法的缩写。 属性$customer.Address与使用方法$customer.getAddress()有完全相同的效果。一般情况下,属性可用时建议使用属性。 属性和方法之间的主要区别是您可以为方法指定参数列表。</p>
+<p>We might expect these methods to return the names of planets belonging to the sun, feed our earthworm, or get a photograph from an album. Only the long notation works for the following Methods.</p>
+<p>如果我们期望一些方法返回属于太阳系的行星的名称,喂我们的蚯蚓,或者从相册中获取照片。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$sun.getPlanet( [&quot;Earth&quot;, &quot;Mars&quot;, &quot;Neptune&quot;] )</div><div class="line">## Can&apos;t pass a parameter list with $sun.Planets</div><div class="line"></div><div class="line">$sisyphus.pushRock()</div><div class="line">## Velocity assumes I mean $sisyphus.getRock()</div><div class="line"></div><div class="line">$book.setTitle( &quot;Homage to Catalonia&quot; )</div><div class="line">## Can&apos;t pass a parameter</div></pre></td></tr></table></figure></p>
+<p>All array references are treated as if they are fixed-length lists. This means that you can call java.util.List methods and properties on array references. So, if you have a reference to an array (let’s say this one is a String[] with three values), you can do:</p>
+<p>所有数组引用都被看作固定长度的列表。这意味着你可以在数组引用中调用java.util.List的方法和属性。 所以,如果你有一个数组的引用myarray(我们约定这是个有三个值String[]),你可以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$myarray.isEmpty() or $myarray.empty</div><div class="line"></div><div class="line">$myarray.size()</div><div class="line"></div><div class="line">$myarray.get(2)</div><div class="line"></div><div class="line">$myarray.set(1, &apos;test&apos;)</div></pre></td></tr></table></figure></p>
+<p>Velocity also supports vararg methods. A method like <code>azpublic void setPlanets(String... planets)</code> or even just <code>public void setPlanets(String[] planets)</code> can now accept any number of arguments when called in a template.</p>
+<p>Velocity还支持可变参数的方法。例如<code>azpublic void setPlanets(String... planets)</code>或者<code>public void setPlanets(String[] planets)</code>方法可以在调用时接受任意数量的参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$sun.setPlanets(&apos;Earth&apos;, &apos;Mars&apos;, &apos;Neptune&apos;)</div><div class="line"></div><div class="line">$sun.setPlanets(&apos;Mercury&apos;)</div><div class="line"></div><div class="line">$sun.setPlanets()</div><div class="line">## Will just pass in an empty, zero-length array</div><div class="line">## 仅传入一个空的,零长度的数组</div></pre></td></tr></table></figure></p>
+<p>As of Velocity 2.0, method calls now provides implicit conversions between all Java basic builtin types: numbers, booleans and strings.</p>
+<p>从Velocity 2.0开始,方法调用提供所有Java基本内置类型之间的隐式转换：数字,布尔值和字符串。</p>
+<h3 id="Property-Lookup-Rules-属性查找规则"><a href="#Property-Lookup-Rules-属性查找规则" class="headerlink" title="Property Lookup Rules 属性查找规则"></a>Property Lookup Rules 属性查找规则</h3><p>As was mentioned earlier, properties often refer to methods of the parent object. Velocity is quite clever when figuring out which method corresponds to a requested property. It tries out different alternatives based on several established naming conventions. The exact lookup sequence depends on whether or not the property name starts with an upper-case letter. For lower-case names, such as $customer.address, the sequence is</p>
+<p>前面说过,属性通常引用父对象的方法。当找出哪个方法对应请求的属性时,Velocity是相当聪明的。它基于几种命名约定尝试不同的替代方案。确切的查找顺序取决于属性名称是否以大写字母开头。 对于小写的名称,例如$customer.address,顺序是</p>
+<ol>
+<li>getaddress()</li>
+<li>getAddress()</li>
+<li>get(“address”)</li>
+<li>isAddress()</li>
+</ol>
+<p>For upper-case property names like $customer.Address, it is slightly different:</p>
+<p>对于大写的属性名称,如$customer.Address,它稍有不同：</p>
+<ol>
+<li>getAddress()</li>
+<li>getaddress()</li>
+<li>get(“Address”)</li>
+<li>isAddress()<h3 id="Rendering-展示"><a href="#Rendering-展示" class="headerlink" title="Rendering 展示"></a>Rendering 展示</h3>The final value resulting from each and every reference (whether variable, property, or method) is converted to a String object when it is rendered into the final output. If there is an object that represents $foo (such as an Integer object), then Velocity will call its .toString() method to resolve the object into a String.</li>
+</ol>
+<p>每个引用(无论是变量,属性或方法),它们的值在最终输出展示时都将转换为String对象。 如果有一个$foo的对象(如Integer对象),Velocity将调用它的.toString()方法来将对象解析成一个String。</p>
+<h3 id="Index-Notation-索引符号"><a href="#Index-Notation-索引符号" class="headerlink" title="Index Notation 索引符号"></a>Index Notation 索引符号</h3><p>Using the notation of the form <code>$foo[0]</code> can be used to access a given index of an object. This form is synonymous with calling the get(Object) method on a given object i.e, <code>$foo.get(0)</code>, and provides essentially a syntactic shorthand for such operations. Since this simply calls the get method all of the following are valid uses:</p>
+<p>使用<code>$foo[0]</code>形式的符号可以用来访问对象给定的索引。这种形式与在给定对象(即$foo.get(0))上调用get(Object)方法同义,且为这样的操作提供了基本的句法简写。由于这只是调用get方法,所以下面的都是有效的用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$foo[0]       ## $foo takes in an Integer look up</div><div class="line">$foo[$i]      ## Using another reference as the index   </div><div class="line">$foo[&quot;bar&quot;]   ## Passing a string where $foo may be a Map</div></pre></td></tr></table></figure></p>
+<p>The bracketed syntax also works with Java arrays since Velocity wraps arrays in an access object that provides a <code>get(Integer)</code> method which returns the specified element.</p>
+<p>括号式语法也适用于Java数组,因为Velocity在访问提供了get(Integer)方法来返回指定元素的对象时会包装数组。</p>
+<p>The bracketed syntax is valid anywhere .get is valid, for example:</p>
+<p>括号式语法在任何<code>.get</code>有效的地方都是有效的,例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$foo.bar[1].junk</div><div class="line">$foo.callMethod()[1]</div><div class="line">$foo[&quot;apple&quot;][4]</div></pre></td></tr></table></figure></p>
+<p>A reference can also be set using index notation, for example:</p>
+<p>引用赋值也可以使用索引符号,例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#set($foo[0] = 1)</div><div class="line">#set($foo.bar[1] = 3)</div><div class="line">#set($map[&quot;apple&quot;] = &quot;orange&quot;)</div></pre></td></tr></table></figure></p>
+<p>The specified element is set with the given value. Velocity tries first the ‘set’ method on the element, then ‘put’ to make the assignment.</p>
+<p>使用给定的值对指定的元素赋值。Velocity首先尝试元素上的“set”方法,然后“put”进行赋值。</p>
+<h2 id="Formal-Reference-Notation-正式引用标识符"><a href="#Formal-Reference-Notation-正式引用标识符" class="headerlink" title="Formal Reference Notation 正式引用标识符"></a>Formal Reference Notation 正式引用标识符</h2><p>Shorthand notation for references was used for the examples listed above, but there is also a formal notation for references, which is demonstrated below:</p>
+<p>上面列出的示例使用了简写符号,但是还存在正式符号,如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&#123;mudSlinger&#125;</div><div class="line">$&#123;customer.Address&#125;</div><div class="line">$&#123;purchase.getTotal()&#125;</div></pre></td></tr></table></figure></p>
+<p>In almost all cases you will use the shorthand notation for references, but in some cases the formal notation is required for correct processing.</p>
+<p>几乎在所有情况下,您都可以使用简写符号的引用,但在某些情况下,需要正式符号才能进行正确处理。</p>
+<p>Suppose you were constructing a sentence on the fly where $vice was to be used as the base word in the noun of a sentence. The goal is to allow someone to choose the base word and produce one of the two following results: “Jack is a pyromaniac.” or “Jack is a kleptomaniac.”. Using the shorthand notation would be inadequate for this task. Consider the following example:</p>
+<p>假设你使用$vice作为句子名词中的基本单词来动态的构造一个句子。目标是允许选择基本词,并产生以下两个结果之一：“杰克是一个pyromaniac,或“杰克是kleptomaniac”。使用简写符号将不足以完成这项任务。考虑下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Jack is a $vicemaniac.</div></pre></td></tr></table></figure></p>
+<p>There is ambiguity here, and Velocity assumes that $vicemaniac, not $vice, is the Identifier that you mean to use. Finding no value for $vicemaniac, it will return $vicemaniac. Using formal notation can resolve this problem.</p>
+<p>这里有歧义,Velocity假定您要使用的标识符是$vicemaniac,而不是$vice。发现没有为$vicemaniac找到值,它将返回$vicemaniac。使用正式符号可以解决这个问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Jack is a $&#123;vice&#125;maniac.</div></pre></td></tr></table></figure></p>
+<p>Now Velocity knows that $vice, not $vicemaniac, is the reference. Formal notation is often useful when references are directly adjacent to text in a template.</p>
+<p>现在Velocity知道引用$vice,不是$vicemaniac。 当引用与模板中的文本直接相邻时,正式符号通常很有用。</p>
+<h2 id="Quiet-Reference-Notation-静态引用标识符"><a href="#Quiet-Reference-Notation-静态引用标识符" class="headerlink" title="Quiet Reference Notation 静态引用标识符"></a>Quiet Reference Notation 静态引用标识符</h2><p>When Velocity encounters an undefined reference, its normal behavior is to output the image of the reference. For example, suppose the following reference appears as part of a VTL template.</p>
+<p>当Velocity遇到没有定义的引用时,它通常会输出引用的镜像。例如,假设以下引用显示是VTL模板的一部分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; name=&quot;email&quot; value=&quot;$email&quot;/&gt;</div></pre></td></tr></table></figure>
+<p>When the form initially loads, the variable reference $email has no value, but you prefer a blank text field to one with a value of “$email”. Using the quiet reference notation circumvents Velocity’s normal behavior; instead of using $email in the VTL you would use $!email. So the above example would look like the following:</p>
+<p>当表单初始加载时,变量引用$email没有值,如果你更喜欢使用空值作为“$email”的值,那么可以使用静态引用符来规避Velocity的正常行为;在VTL中使用$!email替代$email。所以上面的例子看起来像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; name=&quot;email&quot; value=&quot;$!email&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<p>Now when the form is initially loaded and $email still has no value, an empty string will be output instead of “$email”.</p>
+<p>现在,当表单初始加载并且$email仍然没有值时,将输出一个空字符串,而不是“$email”。</p>
+<p>Formal and quiet reference notation can be used together, as demonstrated below.</p>
+<p>正式和静态的引用符可以一起使用,如下所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; name=&quot;email&quot; value=&quot;$!&#123;email&#125;&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="Strict-Reference-Mode-严格引用模式"><a href="#Strict-Reference-Mode-严格引用模式" class="headerlink" title="Strict Reference Mode 严格引用模式"></a>Strict Reference Mode 严格引用模式</h2><p>Velocity 1.6 introduces the concept of strict reference mode which is activated by setting the velocity configuration property ‘runtime.references.strict’ to true. The general intent of this setting is to make Velocity behave more strictly in cases that are undefined or ambiguous, similar to a programming language, which may be more appropriate for some uses of Velocity. In such undefined or ambiguous cases Velocity will throw an exception. The following discussion outlines the cases in which strict behavior is different from traditional behavior.</p>
+<p>Velocity 1.6引入了严格引用模式的概念,可以通过将velocity配置属性“runtime.references.strict”设置为true来激活它。 这个设置一般是使Velocity在未定义或不明确的情况下类似于编程语言一样严格地运行,这可能使Velocity在一些用途下更适合。在未定义或不明确的情况下,Velocity将抛出异常。以下讨论概述了严格行为不同于传统行为的情况。</p>
+<p>With this setting references are required to be either placed explicitly into the context or defined with a #set directive or Velocity will throw an exception. References that are in the context with a value of null will not produce an exception. Additionally, if an attempt is made to call a method or a property on an object within a reference that does not define the specified method or property then Velocity will throw an exception. This is also true if there is an attempt to call a method or property on a null value.</p>
+<p>使用此设置,引用需要显式地放置到上下文中或使用#set指令定义,否则Velocity将抛出异常。在上下文中值为null的引用不会产生异常。此外,如果试图调用未定义指定方法或属性的对象引用上的方法或属性,那么Velocity将抛出异常。如果试图在空值上调用方法或属性,这也是正确的。</p>
+<p>In the following examples $bar is defined but $foo is not, and all these statements will throw an exception:</p>
+<p>在下面的例子中,定义了$bar,但$foo未定义,所以下面这些语句都会抛出异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$foo                         ## Exception</div><div class="line">#set($bar = $foo)            ## Exception</div><div class="line">#if($foo == $bar)#end        ## Exception</div><div class="line">#foreach($item in $foo)#end  ## Exception</div></pre></td></tr></table></figure>
+<p>Also, The following statements show examples in which Velocity will throw an exception when attempting to call methods or properties that do not exist. In these examples $bar contains an object that defines a property ‘foo’ which returns a string, and ‘retnull’ which returns null.</p>
+<p>另外,以下语句是Velocity在尝试调用不存在的方法或属性时抛出异常的示例。在这些示例中,$bar包含一个对象,该对象定义了返回字符串的属性“foo”和返回null的“retnull”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$bar.bogus          ## $bar does not provide property bogus, Exception</div><div class="line">$bar.foo.bogus      ## $bar.foo does not provide property bogus, Exception</div><div class="line">$bar.retnull.bogus  ## cannot call a property on null, Exception&lt;/pre&gt;</div></pre></td></tr></table></figure></p>
+<p>In general strict reference behavior is true for all situations in which references are used except for a special case within the #if directive. If a reference is used within a #if or #elseif directive without any methods or properties, and if it is not being compared to another value, then undefined references are allowed. This behavior provides an easy way to test if a reference is defined before using it in a template. In the following example where $foo is not defined the statements will not throw an exception.</p>
+<p>一般来说,严格引用模式对使用引用的所有情况都是正确的,除了#if指令中的特殊情况。如果在#if或#elseif指令中使用没有任何方法或属性的引用,并且没有与另一个值进行比较,则允许使用未定义的引用。这种行为提供了一种简单的方法来测试在模板中使用引用之前是否定义了引用。在下面的例子中,$foo未定义,但语句不会抛出异常。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#if ($foo)#end                  ## False</div><div class="line">#if ( ! $foo)#end               ## True</div><div class="line">#if ($foo &amp;&amp; $foo.bar)#end      ## False and $foo.bar will not be evaluated</div><div class="line">#if ($foo &amp;&amp; $foo == &quot;bar&quot;)#end ## False and $foo == &quot;bar&quot; wil not be evaluated</div><div class="line">#if ($foo1 || $foo2)#end        ## False $foo1 and $foo2 are not defined</div></pre></td></tr></table></figure></p>
+<p>Strict mode requires that comparisons of &gt;, &lt;, &gt;= or &lt;= within an #if directive makes sense. Also, the argument to #foreach must be iterable (this behavior can be modified with the property directive.foreach.skip.invalid). Finally, undefined macro references will also throw an exception in strict mode.</p>
+<p>严格模式要求在#if指令内比较&gt;,&lt;,&gt; =或&lt;=是有意义的。 另外,#foreach的参数必须是可迭代的(这个行为可以用属性directive.foreach.skip.invalid修改)。最后,未定义的micro引用也将在严格模式中抛出异常。</p>
+<p>References that Velocity attempts to render but evaluate to null will cause an Exception. To simply render nothing in this case the reference can be preceded by ‘$!’ instead of ‘$’, similar to non strict mode. Keep in mind this is different from the reference not existing in the context which will always throw an exception when attempting to render it in strict mode. For example, below $foo has a value of null in the context</p>
+<p>当Velocity尝试呈现求值为null的引用时将导致异常。为了在这种情况下简单地不呈现,引用可以类似于非严格模式在“$!”之前,而不是’$’。请记住,这不同于上下文中不存在的引用,当尝试以严格模式呈现它时,它将总是引发异常。 例如,下面的$foo在上下文中的值为null<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this is $foo    ## throws an exception because $foo is null</div><div class="line">this is $!foo   ## renders to &quot;this is &quot; without an exception</div><div class="line">this is $!bogus ## bogus is not in the context so throws an exception</div></pre></td></tr></table></figure></p>
+<h2 id="Quiet-Reference-Notation-可替换情况"><a href="#Quiet-Reference-Notation-可替换情况" class="headerlink" title="Quiet Reference Notation 可替换情况"></a>Quiet Reference Notation 可替换情况</h2><p>Now that you are familiar with references, you can begin to apply them effectively in your templates. Velocity references take advantage of some Java principles that template designers will find easy to use. For example:</p>
+<p>现在您已经熟悉了引用,可以开始在模板中有效地应用它们了。 Velocity引用利用了一些Java的原则,模板设计者会发现它们易于使用。 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$foo</div><div class="line"></div><div class="line">$foo.getBar()</div><div class="line">## is the same as</div><div class="line">$foo.Bar</div><div class="line"></div><div class="line">$data.setUser(&quot;jon&quot;)</div><div class="line">## is the same as</div><div class="line">#set( $data.User = &quot;jon&quot; )</div><div class="line"></div><div class="line">$data.getRequest().getServerName()</div><div class="line">## is the same as</div><div class="line">$data.Request.ServerName</div><div class="line">## is the same as</div><div class="line">$&#123;data.Request.ServerName&#125;</div></pre></td></tr></table></figure></p>
+<p>These examples illustrate alternative uses for the same references. Velocity takes advantage of Java’s introspection and bean features to resolve the reference names to both objects in the Context as well as the objects methods. It is possible to embed and evaluate references almost anywhere in your template.</p>
+<p>这些示例说明了相同引用可以互相替代的使用方式。Velocity利用Java的introspection和bean特性来解析上下文中的两个对象的引用名称以及对象方法。 可以在模板的任何位置嵌入和评估引用。</p>
+<p>Velocity, which is modelled on the Bean specifications defined by Sun Microsystems, is case sensitive; however, its developers have strove to catch and correct user errors wherever possible. When the method getFoo() is referred to in a template by $bar.foo, Velocity will first try $getfoo. If this fails, it will then try $getFoo. Similarly, when a template refers to $bar.Foo, Velocity will try $getFoo() first and then try getfoo().</p>
+<p>Velocity,是由Sun Microsystems定义的Bean规范建模的,区分大小写; 然而,它的开发人员尽力捕获并纠正用户错误。 当方法getFoo()在模板中由$ bar.foo引用时,Velocity将首先尝试$getfoo。如果失败,它将尝试$getFoo。 同样,当模板引用$bar.Foo时,Velocity首先尝试$getFoo(),然后尝试getfoo()。</p>
+<p>Note: References to instance variables in a template are not resolved. Only references to the attribute equivalents of JavaBean getter/setter methods are resolved (i.e. $foo.Name does resolve to the class Foo’s getName() instance method, but not to a public Name instance variable of Foo).</p>
+<p>注意：不会解析模板中对实例变量的引用。 只有与JavaBean getter/setter方法等价属性的引用被解析(即$foo.Name解析为Foo的getName()实例方法,而不是Foo的public Name实例变量)。</p>
+<h2 id="Directives-指令"><a href="#Directives-指令" class="headerlink" title="Directives 指令"></a>Directives 指令</h2><p>References allow template designers to generate dynamic content for web sites, while directives – easy to use script elements that can be used to creatively manipulate the output of Java code – permit web designers to truly take charge of the appearance and content of the web site.</p>
+<p>引用允许模板设计者为网站生成动态内容,而指令 – 易于使用的脚本元素,可用于创造性地操纵Java代码的输出 – 允许网页设计师真正的掌控网站的外观和内容。</p>
+<p>Directives always begin with a #. Like references, the name of the directive may be bracketed by a { and a } symbol. This is useful with directives that are immediately followed by text. For example the following produces an error:</p>
+<p>指令始终以＃开头。像引用一样,指令的名称可以用{和}符号括起来。这对于紧接着紧跟文本的指令很有用。例如,以下产生错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#if($a==1)true enough#elseno way!#end</div></pre></td></tr></table></figure></p>
+<p>In such a case, use the brackets to separate #else from the rest of the line.</p>
+<p>在这种情况下,使用括号将#else与行的其余部分分开。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#if($a==1)true enough#&#123;else&#125;no way!#end</div></pre></td></tr></table></figure></p>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>The #set directive is used for setting the value of a reference. A value can be assigned to either a variable reference or a property reference, and this occurs in brackets, as demonstrated:</p>
+<p>#set指令用于设置引用的值。在括号中出现的值可以分配给变量引用或属性引用,如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#set( $primate = &quot;monkey&quot; )</div><div class="line">#set( $customer.Behavior = $primate )</div></pre></td></tr></table></figure></p>
+<p>The left hand side (LHS) of the assignment must be a variable reference or a property reference. The right hand side (RHS) can be one of the following types:</p>
+<p>赋值的左侧(LHS)必须是变量引用或属性引用。 右侧(RHS)可以是以下类型之一：</p>
+<ul>
+<li>Variable reference</li>
+<li>String literal</li>
+<li>Property reference</li>
+<li>Method reference</li>
+<li>Number literal</li>
+<li>ArrayList</li>
+<li>Map</li>
+</ul>
+<p>These examples demonstrate each of the aforementioned types:</p>
+<p>这些示例说明了上述每种类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#set( $monkey = $bill ) ## variable reference</div><div class="line">#set( $monkey.Friend = &quot;monica&quot; ) ## string literal</div><div class="line">#set( $monkey.Blame = $whitehouse.Leak ) ## property reference</div><div class="line">#set( $monkey.Plan = $spindoctor.weave($web) ) ## method reference</div><div class="line">#set( $monkey.Number = 123 ) ##number literal</div><div class="line">#set( $monkey.Say = [&quot;Not&quot;, $my, &quot;fault&quot;] ) ## ArrayList</div><div class="line">#set( $monkey.Map = &#123;&quot;banana&quot; : &quot;good&quot;, &quot;roast beef&quot; : &quot;bad&quot;&#125;) ## Map</div></pre></td></tr></table></figure></p>
+<p>NOTE: For the ArrayList example the elements defined with the [..] operator are accessible using the methods defined in the ArrayList class. So, for example, you could access the first element above using $monkey.Say.get(0).</p>
+<p>注意：对于ArrayList示例,使用[..]运算符定义的元素可以使用ArrayList类中定义的方法访问。 因此,例如,您可以访问上面的第一个元素使用$ monkey.Say.get(0)。</p>
+<p>Similarly, for the Map example, the elements defined within the { } operator are accessible using the methods defined in the Map class. So, for example, you could access the first element above using $monkey.Map.get(“banana”) to return a String ‘good’, or even $monkey.Map.banana to return the same value.</p>
+<p>类似地,对于Map示例,在{}运算符中定义的元素可以使用Map类中定义的方法访问。例如,您可以使用$monkey.Map.get(“banana”)访问上面的第一个元素,返回一个String’good’,或者使用$monkey.Map.banana返回相同的值。</p>
+<p>The RHS can also be a simple arithmetic expression:</p>
+<p>RHS也可以是一个简单的算术表达式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#set( $value = $foo + 1 )</div><div class="line">#set( $value = $bar - 1 )</div><div class="line">#set( $value = $foo * $bar )</div><div class="line">#set( $value = $foo / $bar )</div></pre></td></tr></table></figure></p>
+<p>If the RHS is a property or method reference that evaluates to null, it will not be assigned to the LHS. Depending on how Velocity is configured, it is usually not possible to remove an existing reference from the context via this mechanism. (Note that this can be permitted by changing one of the Velocity configuration properties). This can be confusing for newcomers to Velocity. For example:</p>
+<p>如果RHS是一个计算为null的属性或方法引用,则不会将其分配给LHS。根据Velocity的配置方式,通常不可能通过此机制从上下文中删除现有的引用。 (注意,这可以通过更改Velocity配置属性之一来允许)。 这对于Velocity的新人来说可能很困惑。 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#set( $result = $query.criteria(&quot;name&quot;) )</div><div class="line">The result of the first query is $result</div><div class="line"></div><div class="line">#set( $result = $query.criteria(&quot;address&quot;) )</div><div class="line">The result of the second query is $result</div></pre></td></tr></table></figure></p>
+<p>If $query.criteria(“name”) returns the string “bill”, and $query.criteria(“address”) returns null, the above VTL will render as the following:</p>
+<p>如果$query.criteria(“name”)返回字符串“bill”,并且$query.criteria(“address”)返回null,上述VTL将呈现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">The result of the first query is bill</div><div class="line"></div><div class="line">The result of the second query is bill</div></pre></td></tr></table></figure></p>
+<p>This tends to confuse newcomers who construct #foreach loops that attempt to #set a reference via a property or method reference, then immediately test that reference with an #if directive. For example:</p>
+<p>这往往会混淆新手构造#foreach循环时,尝试通过#set设置属性或方法引用后,立即使用#if指令测试这个引用。 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#set( $criteria = [&quot;name&quot;, &quot;address&quot;] )</div><div class="line"></div><div class="line">#foreach( $criterion in $criteria )</div><div class="line"></div><div class="line">    #set( $result = $query.criteria($criterion) )</div><div class="line"></div><div class="line">    #if( $result )</div><div class="line">        Query was successful</div><div class="line">    #end</div><div class="line"></div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>In the above example, it would not be wise to rely on the evaluation of $result to determine if a query was successful. After $result has been #set (added to the context), it cannot be set back to null (removed from the context). The details of the #if and #foreach directives are covered later in this document.</p>
+<p>在上面的例子中,使用$result的求值来确定查询是否成功是不明智的。 $result已经#set(添加到上下文)后,它不能设置为null(从上下文中删除)。 #if和#foreach指令的详细信息将在本文档的后面部分介绍。</p>
+<p>One solution to this would be to pre-set $result to false. Then if the $query.criteria() call fails, you can check.</p>
+<p>一个解决方案是将$result设置为false。 然后如果$query.criteria()调用失败,你可以检查。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#set( $criteria = [&quot;name&quot;, &quot;address&quot;] )</div><div class="line"></div><div class="line">#foreach( $criterion in $criteria )</div><div class="line"></div><div class="line">    #set( $result = false )</div><div class="line">    #set( $result = $query.criteria($criterion) )</div><div class="line"></div><div class="line">    #if( $result )</div><div class="line">       Query was successful</div><div class="line">    #end</div><div class="line"></div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>Unlike some of the other Velocity directives, the #set directive does not have an #end statement.</p>
+<p>与其他一些Velocity指令不同,#set指令没有#end语句。</p>
+<h4 id="Literals-字面量"><a href="#Literals-字面量" class="headerlink" title="Literals 字面量"></a>Literals 字面量</h4><p>When using the #set directive, string literals that are enclosed in double quote characters will be parsed and rendered, as shown:</p>
+<p>当使用#set指令时,括在双引号中的字符串将被解析和呈现,如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#set( $directoryRoot = &quot;www&quot; )</div><div class="line">#set( $templateName = &quot;index.vm&quot; )</div><div class="line">#set( $template = &quot;$directoryRoot/$templateName&quot; )</div><div class="line">$template</div></pre></td></tr></table></figure></p>
+<p>The output will be<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">www/index.vm</div></pre></td></tr></table></figure></p>
+<p>However, when the string literal is enclosed in single quote characters, it will not be parsed:</p>
+<p>但是,当字符串文字在单引号中时,不会被解析：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#set( $foo = &quot;bar&quot; )</div><div class="line">$foo</div><div class="line">#set( $blargh = &apos;$foo&apos; )</div><div class="line">$blargh</div></pre></td></tr></table></figure></p>
+<p>This renders as:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bar</div><div class="line">$foo</div></pre></td></tr></table></figure></p>
+<p>By default, this feature of using single quotes to render unparsed text is available in Velocity. This default can be changed by editing velocity.properties such that stringliterals.interpolate=false.</p>
+<p>默认情况下,使用单引号来呈现解析的文本的功能在Velocity中是可用的。 可以通过编辑velocity.properties使stringliterals.interpolate = false来更改此默认值。</p>
+<p>Alternately, the #[[don’t parse me!]]# syntax allows the template designer to easily use large chunks of uninterpreted and unparsed content in VTL code. This can be especially useful in place of escaping multiple directives or escaping sections which have content that would otherwise be invalid (and thus unparseable) VTL.</p>
+<p>或者,模板设计者可以在VTL代码中通过＃[[不解析我！]]语法轻松地使用大块未解释和未解析的内容。 这在代替转义多个指令或转义部分具有无效(不可解析)的VTL内容时特别有用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#[[</div><div class="line">#foreach ($woogie in $boogie)</div><div class="line">  nothing will happen to $woogie</div><div class="line">#end</div><div class="line">]]#</div></pre></td></tr></table></figure></p>
+<p>Renders as:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#foreach ($woogie in $boogie)</div><div class="line">  nothing will happen to $woogie</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<h3 id="Conditionals-条件语句"><a href="#Conditionals-条件语句" class="headerlink" title="Conditionals 条件语句"></a>Conditionals 条件语句</h3><h4 id="If-ElseIf-Else"><a href="#If-ElseIf-Else" class="headerlink" title="If / ElseIf / Else"></a>If / ElseIf / Else</h4><p>The #if directive in Velocity allows for text to be included when the web page is generated, on the conditional that the if statement is true. For example:</p>
+<p>Velocity中的#if指令允许在生成网页时,在if语句为真的条件下包含文本。 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#if( $foo )</div><div class="line">  &lt;strong&gt;Velocity!&lt;/strong&gt;</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>The variable $foo is evaluated to determine whether it is true, which will happen under one of three circumstances:</p>
+<p>在以下三种情况之一下发生时将评估变量$foo以确定其是否为真：</p>
+<ul>
+<li>$foo is a boolean (true/false) which has a true value $foo是值为true的布尔值</li>
+<li>$foo is a string or a collection which is not null and not empty $foo是是一个非null字符串或者非空集合</li>
+<li>$foo is an object (other than a string or a collection) which is not null $foo是一个非null对象</li>
+</ul>
+<p>Remember that the Velocity context only contains Objects, so when we say ‘boolean’, it will be represented as a Boolean (the class). This is true even for methods that return boolean - the introspection infrastructure will return a Boolean of the same logical value.</p>
+<p>记住,Velocity上下文只包含对象,所以当我们说’boolean’时,它将被表示为一个Boolean(类),即使返回boolean的方法 - introspection基础设施也将返回相同的逻辑值的Boolean。</p>
+<p>The content between the #if and the #end statements become the output if the evaluation is true. In this case, if $foo is true, the output will be: “Velocity!”. Conversely, if $foo has a null value, or if it is a boolean false, the statement evaluates as false, and there is no output.</p>
+<p>如果值为true,#if和#end语句之间的内容将会输出。在这种情况下,如果$foo为true,输出将是：“Velocity！”。相反,如果$foo有一个null,或者如果它是一个布尔值false,语句计算结果为false,没有输出。</p>
+<p>An #elseif or #else element can be used with an #if element. Note that the Velocity Templating Engine will stop at the first expression that is found to be true. In the following example, suppose that $foo has a value of 15 and $bar has a value of 6.</p>
+<p> #elseif或#else元素可以与#if元素一起使用。 注意,Velocity模板引擎将停在第一个为真的表达式那里。 在以下示例中,假设$foo的值为15,$bar的值为6。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#if( $foo &lt; 10 )</div><div class="line">    **Go North**</div><div class="line">#elseif( $foo == 10 )</div><div class="line">    **Go East**</div><div class="line">#elseif( $bar == 6 )</div><div class="line">    **Go South**</div><div class="line">#else</div><div class="line">    **Go West**</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>In this example, $foo is greater than 10, so the first two comparisons fail. Next $bar is compared to 6, which is true, so the output is Go South.</p>
+<p>在此示例中,$foo大于10,因此前两个比较失败。 下一个$bar比较为6,这是真的,所以输出是Go South。</p>
+<h4 id="Relational-and-Logical-Operators-关系和逻辑运算符"><a href="#Relational-and-Logical-Operators-关系和逻辑运算符" class="headerlink" title="Relational and Logical Operators 关系和逻辑运算符"></a>Relational and Logical Operators 关系和逻辑运算符</h4><p>Velocity uses the equivalent operator to determine the relationships between variables. Here is a simple example to illustrate how the equivalent operator is used.</p>
+<p>Velocity使用等效运算符来确定变量之间的关系。 这里是一个简单的例子来说明如何使用等效运算符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#set ($foo = &quot;deoxyribonucleic acid&quot;)</div><div class="line">#set ($bar = &quot;ribonucleic acid&quot;)</div><div class="line"></div><div class="line">#if ($foo == $bar)</div><div class="line">  In this case it&apos;s clear they aren&apos;t equivalent. So...</div><div class="line">#else</div><div class="line">  They are not equivalent and this will be the output.</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>Note that the semantics of == are slightly different than Java where == can only be used to test object equality. In Velocity the equivalent operator can be used to directly compare numbers, strings, or objects. When the objects are of different classes, the string representations are obtained by calling toString() for each object and then compared.</p>
+<p>注意==的语义与Java略有不同,Java中==只能用于测试对象的相等性。 而在Velocity中,等效运算符可以用于直接比较数字,字符串或对象。 当对象是不同的类时,通过调用每个对象的toString()然后比较获得的字符串。</p>
+<p>Velocity has logical AND, OR and NOT operators as well. Below are examples demonstrating the use of the logical AND, OR and NOT operators.</p>
+<p>Velocity具有逻辑AND,OR和NOT运算符。 下面是演示使用逻辑AND,OR和NOT运算符的示例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">## logical AND</div><div class="line"></div><div class="line">#if( $foo &amp;&amp; $bar )</div><div class="line">  ** This AND that**</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>The #if() directive will only evaluate to true if both $foo and $bar are true. If $foo is false, the expression will evaluate to false; $bar will not be evaluated. If $foo is true, the Velocity Templating Engine will then check the value of $bar; if $bar is true, then the entire expression is true and This AND that becomes the output. If $bar is false, then there will be no output as the entire expression is false.</p>
+<p>如果$foo和$bar都为true,#if()指令计算为true。 如果$foo为false,表达式将计算为false,不会评估$bar。如果$foo为true,Velocity模板引擎将检查$bar的值; 如果$bar为true,则整个表达式为true,这个AND将成为输出。如果$bar是false,那么将没有输出,因为整个表达式是false。</p>
+<p>Logical OR operators work the same way, except only one of the references need evaluate to true in order for the entire expression to be considered true. Consider the following example.</p>
+<p>逻辑OR运算符的工作方式相同,但只要有一个引用值为true,表达式的值就是true。 请考虑以下示例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">## logical OR</div><div class="line"></div><div class="line">#if( $foo || $bar )</div><div class="line">    **This OR That**</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>If $foo is true, the Velocity Templating Engine has no need to look at $bar; whether $bar is true or false, the expression will be true, and This OR That will be output. If $foo is false, however, $bar must be checked. In this case, if $bar is also false, the expression evaluates to false and there is no output. On the other hand, if $bar is true, then the entire expression is true, and the output is This OR That</p>
+<p>如果$foo为true,Velocity模板引擎不需要查看$bar; 无论$bar是true还是false,表达式都将为true,并且将输出此OR。如果$foo为false,则必须检查$bar。在这种情况下,如果$bar也为false,那么表达式将计算为false,并且没有输出。 另一方面,如果$bar为true,则整个表达式为true,输出为This OR That</p>
+<p>With logical NOT operators, there is only one argument :</p>
+<p>使用逻辑NOT运算符,只有一个参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">##logical NOT</div><div class="line"></div><div class="line">#if( !$foo )</div><div class="line">  **NOT that**</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>Here, the if $foo is true, then !$foo evaluates to false, and there is no output. If $foo is false, then !$foo evaluates to true and NOT that will be output. Be careful not to confuse this with the quiet reference $!foo which is something altogether different.</p>
+<p>这里,如果$foo为true,那么!$foo计算结果为false,没有输出。 如果$foo为false,那么！$ foo计算结果为true,否则输出NOT。 小心不要混淆它与静态引用$!foo,它们是完全不同的东西。</p>
+<p>There are text versions of all logical operators, including eq, ne, and, or, not, gt, ge, lt, and le.</p>
+<p>有所有逻辑运算符的文本版本,包括eq,ne,and,or,not,gt,ge,lt和le。</p>
+<p>One more useful note. When you wish to include text immediately following a #else directive you will need to use curly brackets immediately surrounding the directive to differentiate it from the following text. (Any directive can be delimited by curly brackets, although this is most useful for #else).</p>
+<p>一个更有用的注释,当你希望包含紧跟在#else指令之后的文本时,你需要使用直接围绕指令的大括号来区分它和下面的文本。 (任何指令可以用大括号分隔,虽然这对#else最有用)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#if( $foo == $bar)it&apos;s true!#&#123;else&#125;it&apos;s not!#end</div></pre></td></tr></table></figure></p>
+<h3 id="Loops-循环"><a href="#Loops-循环" class="headerlink" title="Loops 循环"></a>Loops 循环</h3><h4 id="Foreach-Loop"><a href="#Foreach-Loop" class="headerlink" title="Foreach Loop"></a>Foreach Loop</h4><p>The #foreach element allows for looping. For example:</p>
+<p> #foreach元素允许循环。 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">#foreach( $product in $allProducts )</div><div class="line">    &lt;li&gt;$product&lt;/li&gt;</div><div class="line">#end</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<p>This #foreach loop causes the $allProducts list (the object) to be looped over for all of the products (targets) in the list. Each time through the loop, the value from $allProducts is placed into the $product variable.</p>
+<p>这个#foreach循环遍历$allProducts列表(对象)中的所有产品(目标)。每次循环,将$allProducts的值将放入$product变量中。</p>
+<p>The contents of the $allProducts variable is a Vector, a Hashtable or an Array. The value assigned to the $product variable is a Java Object and can be referenced from a variable as such. For example, if $product was really a Product class in Java, its name could be retrieved by referencing the $product.Name method (ie: $Product.getName()).</p>
+<p>$allProducts变量的内容是Vector,Hashtable或Array。 分配给$product变量的值是一个Java对象,可以从变量中引用。例如,如果$product实际上是Java中的Product类,则可以通过引用$product.Name方法(即：$Product.getName())来检索其名称。</p>
+<p>Lets say that $allProducts is a Hashtable. If you wanted to retrieve the key values for the Hashtable as well as the objects within the Hashtable, you can use code like this:</p>
+<p>$allProducts是一个Hashtable。如果要检索Hashtable的键值以及Hashtable中的对象,可以使用如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">#foreach( $key in $allProducts.keySet() )</div><div class="line">    &lt;li&gt;Key: $key -&gt; Value: $allProducts.get($key)&lt;/li&gt;</div><div class="line">#end</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<p>Velocity provides an easy way to get the loop counter so that you can do something like the following:</p>
+<p>Velocity提供了一种简单的方法来获取循环计数器,以便您可以执行以下操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;table&gt;</div><div class="line">#foreach( $customer in $customerList )</div><div class="line">    &lt;tr&gt;&lt;td&gt;$foreach.count&lt;/td&gt;&lt;td&gt;$customer.Name&lt;/td&gt;&lt;/tr&gt;</div><div class="line">#end</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure></p>
+<p>Velocity also now provides an easy way to tell if you are on the last iteration of a loop:</p>
+<p>Velocity现在还提供了一种简单的方法来判断你是否在循环的最后一次迭代：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#foreach( $customer in $customerList )</div><div class="line">    $customer.Name#if( $foreach.hasNext ),#end</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>If you want a zero-based index of the #foreach loop, you can just use $foreach.index instead of $foreach.count. Likewise, $foreach.first and $foreach.last are provided to compliment $foreach.hasNext. If you want to access these properties for an outer #foreach loop, you can reference them directly through the $foreach.parent or $foreach.topmost properties (e.g. $foreach.parent.index or $foreach.topmost.hasNext).</p>
+<p>如果你想要一个从零开始的#foreach循环的索引,你可以使用$foreach.index而不是$foreach.count。同样,提供$foreach.first和$foreach.last来补充$foreach.hasNext。如果要访问外部#foreach循环的这些属性,可以通过$foreach.parent或$foreach.topmost属性(例如$foreach.parent.index或$foreach.topmost.hasNext)直接引用它们。</p>
+<p>It’s possible to set a maximum allowed number of times that a loop may be executed. By default there is no max (indicated by a value of 0 or less), but this can be set to an arbitrary number in the velocity.properties file. This is useful as a fail-safe.</p>
+<p>可以设置循环可执行的最大允许次数。默认情况下没有max(由0或更小的值指示),但是可以将其设置为velocity.properties文件中的任意数字。这可用作故障安全。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># The maximum allowed number of loops.</div><div class="line">directive.foreach.maxloops = -1</div></pre></td></tr></table></figure></p>
+<p>If you want to stop looping in a foreach from within your template, you can now use the #break directive to stop looping at any time:</p>
+<p>如果想要在模板中停止循环,可以随时使用#break指令停止循环：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">## list first 5 customers only</div><div class="line">#foreach( $customer in $customerList )</div><div class="line">    #if( $foreach.count &gt; 5 )</div><div class="line">        #break</div><div class="line">    #end</div><div class="line">    $customer.Name</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<h3 id="Include-包含"><a href="#Include-包含" class="headerlink" title="Include 包含"></a>Include 包含</h3><p>The #include script element allows the template designer to import a local file, which is then inserted into the location where the #include directive is defined. The contents of the file are not rendered through the template engine. For security reasons, the file to be included may only be under TEMPLATE_ROOT.</p>
+<p> #include脚本元素允许模板设计器导入本地文件,然后将其插入到定义#include指令的位置。文件的内容不通过模板引擎呈现。出于安全考虑,要包含的文件只能处于TEMPLATE_ROOT下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#include( &quot;one.txt&quot; )</div></pre></td></tr></table></figure></p>
+<p>The file to which the #include directive refers is enclosed in quotes. If more than one file will be included, they should be separated by commas.</p>
+<p> #include指令引用的文件用引号括起来。 如果包含多个文件,它们应该用逗号分隔。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#include( &quot;one.gif&quot;,&quot;two.txt&quot;,&quot;three.htm&quot; )</div></pre></td></tr></table></figure></p>
+<p>The file being included need not be referenced by name; in fact, it is often preferable to use a variable instead of a filename. This could be useful for targeting output according to criteria determined when the page request is submitted. Here is an example showing both a filename and a variable.</p>
+<p>所包含的文件不需要通过名称引用; 实际上,通常优先使用变量而不是文件名。 这可能有助于根据在提交页面请求时确定的标准定位输出。 这里是一个显示文件名和变量的例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#include( &quot;greetings.txt&quot;, $seasonalstock )</div></pre></td></tr></table></figure></p>
+<h3 id="Parse-解析"><a href="#Parse-解析" class="headerlink" title="Parse 解析"></a>Parse 解析</h3><p>The #parse script element allows the template designer to import a local file that contains VTL. Velocity will parse the VTL and render the template specified.</p>
+<p> #parse脚本元素允许模板设计器导入包含VTL的本地文件。 Velocity将解析VTL并渲染指定的模板。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#parse( &quot;me.vm&quot; )</div></pre></td></tr></table></figure></p>
+<p>Like the #include directive, #parse can take a variable rather than a template. Any templates to which #parse refers must be included under TEMPLATE_ROOT. Unlike the #include directive, #parse will only take a single argument.</p>
+<p>像#include指令一样,#parse可以接受一个变量而不是一个模板。 #parse引用的任何模板必须包含在TEMPLATE_ROOT下。 与#include指令不同,#parse只接受一个参数。</p>
+<p>VTL templates can have #parse statements referring to templates that in turn have #parse statements. By default set to 10, the <code>directive.parse.max.depth</code> line of the <code>velocity.properties</code> allows users to customize maximum number of #parse referrals that can occur from a single template. (Note: If the directive.parse.max.depth property is absent from the velocity.properties file, Velocity will set this default to 10.) Recursion is permitted, for example, if the template dofoo.vm contains the following lines:</p>
+<p>VTL模板使用#parse语句引用的模板中可以有#parse语句。 默认设置为10,<code>velocity.properties</code>文件中的<code>directive.parse.max.depth</code>允许用户自定义可从单个模板发生的#parse引用的最大数量。 (注意：如果velocity.properties文件中缺少directive.parse.max.depth属性,则Velocity会将此默认值设置为10.)允许递归,例如,如果模板dofoo.vm包含以下行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Count down.</div><div class="line">#set( $count = 8 )</div><div class="line">#parse( &quot;parsefoo.vm&quot; )</div><div class="line">All done with dofoo.vm!</div></pre></td></tr></table></figure></p>
+<p>It would reference the template parsefoo.vm, which might contain the following VTL:</p>
+<p>它将引用模板parsefoo.vm,它可能包含以下VTL：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$count</div><div class="line">#set( $count = $count - 1 )</div><div class="line">#if( $count &gt; 0 )</div><div class="line">    #parse( &quot;parsefoo.vm&quot; )</div><div class="line">#else</div><div class="line">    All done with parsefoo.vm!</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>After “Count down.” is displayed, Velocity passes through parsefoo.vm, counting down from 8. When the count reaches 0, it will display the “All done with parsefoo.vm!” message. At this point, Velocity will return to dofoo.vm and output the “All done with dofoo.vm!” message.</p>
+<p>“Count down.”之后,Velocity从8开始计数，通过parsefoo.vm显示。当计数达到0时,它将显示“All done with parsefoo.vm！”信息，此时,Velocity将返回dofoo.vm并输出“All done with dofoo.vm！”信息。</p>
+<h3 id="Break-中止"><a href="#Break-中止" class="headerlink" title="Break 中止"></a>Break 中止</h3><p>The #break directive stops any further rendering of the current execution scope. An “execution scope” is essentially any directive with content (i.e. #foreach, #parse, #evaluate, #define, #macro, or #@somebodymacro) or any “root” scope (i.e. template.merge(…), Velocity.evaluate(…) or velocityEngine.evaluate(…)). Unlike #stop, #break will only stop the innermost, immediate scope, not all of them.</p>
+<p> #break指令停止对当前执行范围的任何进一步呈现。“执行范围”基本上是任何带有内容的指令(即#foreach,#parse,#evaluate,#define,#macro或＃@somebodymacro)或任何“根”范围(即template.merge Velocity.evaluate(…)或velocityEngine.evaluate(…))。与#stop不同,#break只会停止最里面的,立即的范围,而不是所有的。</p>
+<p>If you wish to break out of a specific execution scope that is not necessarily the most immediate one, then you can pass the scope control reference (i.e. $foreach, $template, $evaluate, $define, $macro, or $somebodymacro) as an argument to #break. (e.g. #break($macro)). This will stop rendering of all scopes up to the specified one. When within nested scopes of the same type, remember that you can always access the parent(s) via $.parent or $.topmost and pass those to #break instead (e.g. #break($foreach.parent) or #break($macro.topmost)).</p>
+<p>如果你希望跳出一个不一定是最直接的特定执行范围,那么你可以通过范围控制引用(即$foreach,$template,$evaluate,$define,$macro或$somebodymacro)#break的参数。(例如#break($macro))。这将停止渲染所有范围直到指定的范围。当在同一类型的嵌套作用域内时,记住你可以随时通过$.parent或$.topmost访问父类,并将它们传递给#break(例如#break($foreach.parent)或#break($macro.topmost)))。</p>
+<h3 id="Stop-停止"><a href="#Stop-停止" class="headerlink" title="Stop 停止"></a>Stop 停止</h3><p>he #stop directive stops any further rendering and execution of the template. This is true even when the directive is nested within another template accessed through #parse or located in a velocity macro. The resulting merged output will contain all the content up to the point the #stop directive was encountered. This is handy as an early exit from a template. For debugging purposes, you may provide a message argument (e.g. #stop(‘$foo was not in context’) ) that will be written to the logs (DEBUG level, of course) upon completion of the stop command.</p>
+<p> #stop指令停止任何进一步的模板渲染和执行。即使当指令嵌套在通过#parse访问或位于velocity macro中的另一个模板中时,也是如此。生成的合并输出将包含遇到#stop指令之前的所有内容。这是方便的作为早期退出模板。为了调试,可以在完成停止命令后提供一个消息参数(例如#stop(‘$foo不在上下文中’))将被写入日志(当然是DEBUG级别)。</p>
+<h3 id="Evaluate-计算"><a href="#Evaluate-计算" class="headerlink" title="Evaluate 计算"></a>Evaluate 计算</h3><p>The #evaluate directive can be used to dynamically evaluate VTL. This allows the template to evaluate a string that is created at render time. Such a string might be used to internationalize the template or to include parts of a template from a database.</p>
+<p> #evaluate指令可用于动态评估VTL。这允许模板评估在渲染时创建的字符串。这样的字符串可以用于国际化模板或包括来自数据库的模板的部分。</p>
+<p>The example below will display abc.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#set($source1 = &quot;abc&quot;)</div><div class="line">#set($select = &quot;1&quot;)</div><div class="line">#set($dynamicsource = &quot;$source$select&quot;)</div><div class="line">## $dynamicsource is now the string &apos;$source1&apos;</div><div class="line">#evaluate($dynamicsource)</div></pre></td></tr></table></figure></p>
+<h3 id="Define-定义"><a href="#Define-定义" class="headerlink" title="Define 定义"></a>Define 定义</h3><p>The #define directive lets one assign a block of VTL to a reference.</p>
+<p> #define指令允许将一个VTL块分配给一个引用。</p>
+<p>The example below will display Hello World!.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#define( $block )Hello $who#end</div><div class="line">#set( $who = &apos;World!&apos; )</div><div class="line">$block</div></pre></td></tr></table></figure></p>
+<h3 id="Velocimacros-宏"><a href="#Velocimacros-宏" class="headerlink" title="Velocimacros 宏"></a>Velocimacros 宏</h3><p>The #macro script element allows template designers to define a repeated segment of a VTL template. Velocimacros are very useful in a wide range of scenarios both simple and complex. This Velocimacro, created for the sole purpose of saving keystrokes and minimizing typographic errors, provides an introduction to the concept of Velocimacros.</p>
+<p> #macro脚本元素允许模板设计者定义VTL模板的重复段。 Velocimacros在广泛的简单和复杂场景是非常有用的。 创造Velocimacro的唯一目的是保存按键和最小化印刷错误,提供Velocimacros的概念介绍。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#macro( d )</div><div class="line">&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>The Velocimacro being defined in this example is d, and it can be called in a manner analogous to any other VTL directive:</p>
+<p>在本例中定义的Velocimacro是d,它可以以类似于任何其他VTL指令的方式调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#d()</div></pre></td></tr></table></figure></p>
+<p>When this template is called, Velocity would replace #d() with a row containing a single, empty data cell. If we want to put something in that cell, we can alter the macro to allow for a body:</p>
+<p>当调用此模板时,Velocity将用包含单个空数据单元的行替换#d()。 如果我们想在该单元格中放置某些东西,我们可以改变该macro以允许一个body：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#macro( d )</div><div class="line">&lt;tr&gt;&lt;td&gt;$!bodyContent&lt;/td&gt;&lt;/tr&gt;</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>Now, if we call the macro just a bit differently, using #@ before the name and providing a body and #end to the call, then Velocity will render the body when it gets to the $!bodyContent:</p>
+<p>现在,如果我们调用macro有点不同,名称之前使用＃@,并在调用里提供一个body和#end,然后当Velocity得到$!bodyContent将渲染body：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#@d()Hello!#end</div></pre></td></tr></table></figure></p>
+<p>You can still call the macro as you did before, and since we used the silent reference notation for the body reference ($!bodyContent instead of $bodyContent), it will still render a row with a single, empty data cell.</p>
+<p>你仍然可以像以前一样调用macro,因为我们使用静态引用符号为body引用($!bodyContent而不是$bodyContent),它仍然将渲染一个具有单个空数据单元格的行。</p>
+<p>A Velocimacro can also take any number of arguments – even zero arguments, as demonstrated in the first example, is an option – but when the Velocimacro is invoked, it must be called with the same number of arguments with which it was defined. Many Velocimacros are more involved than the one defined above. Here is a Velocimacro that takes two arguments, a color and an array.</p>
+<p>Velocimacro也可以采用任意数量的参数 - 即使是零参数,如第一个示例中所示,是一个选项 - 但是当Velocimacro被调用时,必须使用与它定义的参数相同的参数来调用它。 许多Velocimacros比上面定义的更多参与。 这里是一个Velocimacro,它接受两个参数,一个颜色和一个数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#macro( tablerows $color $somelist )</div><div class="line">#foreach( $something in $somelist )</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=$color&gt;$something&lt;/td&gt;&lt;/tr&gt;</div><div class="line">#end</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>The Velocimacro being defined in this example, tablerows, takes two arguments. The first argument takes the place of $color, and the second argument takes the place of $somelist.</p>
+<p>在本例中定义的Velocimacro tablerows,有两个参数。第一个参数代替$color,第二个参数代替$somelist。</p>
+<p>Anything that can be put into a VTL template can go into the body of a Velocimacro. The tablerows Velocimacro is a foreach statement. There are two #end statements in the definition of the #tablerows Velocimacro; the first belongs to the #foreach, the second ends the Velocimacro definition.</p>
+<p>任何可以放入VTL模板的东西都可以进入Velocimacro的body。 Tablocows Velocimacro是一个foreach语句。 #tablerows Velocimacro的定义中有两个#end语句：第一个属于#foreach,第二个结束Velocimacro定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#set( $greatlakes = [&quot;Superior&quot;,&quot;Michigan&quot;,&quot;Huron&quot;,&quot;Erie&quot;,&quot;Ontario&quot;] )</div><div class="line">#set( $color = &quot;blue&quot; )</div><div class="line">&lt;table&gt;</div><div class="line">    #tablerows( $color $greatlakes )</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure></p>
+<p>Notice that $greatlakes takes the place of $somelist. When the #tablerows Velocimacro is called in this situation, the following output is generated:</p>
+<p>注意$greatlakes代替$somelist。 当在这种情况下调用#tablerows Velocimacro时,会生成以下输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;table&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;blue&quot;&gt;Superior&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;blue&quot;&gt;Michigan&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;blue&quot;&gt;Huron&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;blue&quot;&gt;Erie&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;blue&quot;&gt;Ontario&lt;/td&gt;&lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure></p>
+<p>Velocimacros can be defined inline in a Velocity template, meaning that it is unavailable to other Velocity templates on the same web site. Defining a Velocimacro such that it can be shared by all templates has obvious advantages: it reduces the need to redefine the Velocimacro on numerous templates, saving work and reducing the chance of error, and ensures that a single change to a macro available to more than one template.</p>
+<p>Velocimacros可以在Velocity模板中内联定义,这意味着它在同一网站上的其他Velocity模板不可用。 定义一个Velocimacro,以便它可以被所有模板共享有明显的优势：它减少了需要重新定义Velocimacro在许多模板,节省工作和减少错误的机会,并确保对单个更改可用的大于 一个模板。</p>
+<p>Were the #tablerows($color $list) Velocimacro defined in a Velocimacros template library, this macro could be used on any of the regular templates. It could be used many times and for many different purposes. In the template mushroom.vm devoted to all things fungi, the #tablerows Velocimacro could be invoked to list the parts of a typical mushroom:</p>
+<p>在Velocimacros模板库中定义的#tablerows($color $list)Velocimacro,这个macro可以用于任何常规模板。它可以为许多不同的目的被使用许多次。在模板mushroom.vm致力于所有的真菌,#tablerows Velocimacro可以调用列出典型的蘑菇的部分：…<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#set( $parts = [&quot;volva&quot;,&quot;stipe&quot;,&quot;annulus&quot;,&quot;gills&quot;,&quot;pileus&quot;] )</div><div class="line">#set( $cellbgcol = &quot;#CC00FF&quot; )</div><div class="line">&lt;table&gt;</div><div class="line">#tablerows( $cellbgcol $parts )</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure></p>
+<p>When fulfilling a request for mushroom.vm, Velocity would find the #tablerows Velocimacro in the template library (defined in the <code>velocity.properties</code> file) and generate the following output:</p>
+<p>当满足对mushroom.vm的请求时,Velocity将在模板库(在<code>velocity.properties</code>文件中定义)中找到#tablerows Velocimacro并生成以下输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;table&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;#CC00FF&quot;&gt;volva&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;#CC00FF&quot;&gt;stipe&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;#CC00FF&quot;&gt;annulus&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;#CC00FF&quot;&gt;gills&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td bgcolor=&quot;#CC00FF&quot;&gt;pileus&lt;/td&gt;&lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="Velocimacro-Arguments"><a href="#Velocimacro-Arguments" class="headerlink" title="Velocimacro Arguments"></a>Velocimacro Arguments</h4><p>Velocimacros can take as arguments any of the following VTL elements :</p>
+<p>Velocimacro可以接受任何以下VTL元素作为参数：</p>
+<ul>
+<li>Reference : anything that starts with ‘$’</li>
+<li>String literal : something like “$foo” or ‘hello’</li>
+<li>Number literal : 1, 2 etc</li>
+<li>IntegerRange : [ 1..2] or [$foo .. $bar]</li>
+<li>ObjectArray : [ “a”, “b”, “c”]</li>
+<li>boolean value true</li>
+<li>boolean value false</li>
+</ul>
+<p>When passing references as arguments to Velocimacros, please note that references are passed ‘by name’. This means that their value is ‘generated’ at each use inside the Velocimacro. This feature allows you to pass references with method calls and have the method called at each use. For example, when calling the following Velocimacro as shown</p>
+<p>当引用作为参数传递到Velocimacros时,请注意引用是通过名称传递的。 这意味着它们的值是在Velocimacro内部每次使用时产生的。 此功能允许您使用方法调用传递引用,并在每次使用时调用该方法。 例如,当调用以下Velocimacro时,所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#macro( callme $a )</div><div class="line">    $a $a $a</div><div class="line">#end</div><div class="line"></div><div class="line">#callme( $foo.bar() )</div></pre></td></tr></table></figure></p>
+<p>results in the method bar() of the reference $foo being called 3 times.</p>
+<p>导致$foo引用的bar()方法被调用3次。</p>
+<p>At first glance, this feature appears surprising, but when you take into consideration the original motivation behind Velocimacros – to eliminate cut’n’paste duplication of commonly used VTL – it makes sense. It allows you to do things like pass stateful objects, such as an object that generates colors in a repeating sequence for coloring table rows, into the Velocimacro.</p>
+<p>乍一看,这个功能看起来令人惊讶,但是当你考虑到Velocimacros的原始动机 – 以消除常用的VTL的cut’n’paste重复 – 这是有道理的。 它允许你做一些事情,比如传递一个在重复的序列中生成着色表行颜色的有状态的对象,进入Velocimacro。</p>
+<p>If you need to circumvent this feature, you can always just get the value from the method as a new reference and pass that :</p>
+<p>如果你需要规避这个功能,你可以通过把该方法的值作为一个新的引用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#set( $myval = $foo.bar() )</div><div class="line">#callme( $myval )</div></pre></td></tr></table></figure></p>
+<h4 id="Velocimacro-Properties"><a href="#Velocimacro-Properties" class="headerlink" title="Velocimacro Properties"></a>Velocimacro Properties</h4><p>Several lines in the <code>velocity.properties</code> file allow for flexible implementation of Velocimacros. Note that these are also documented in the Developer Guide.</p>
+<p><code>velocity.properties</code>文件中的几行允许灵活实现Velocimacros。 请注意,这些内容也记录在“开发人员指南”中。</p>
+<p><code>velocimacro.library</code> - A comma-separated list of all Velocimacro template libraries. By default, Velocity looks for a single library: VM_global_library.vm. The configured template path is used to find the Velocimacro libraries.</p>
+<p><code>velocimacro.library</code> - 所有Velocimacro模板库的逗号分隔列表。 默认情况下,Velocity查找单个库：VM_global_library.vm。 配置的模板路径用于查找Velocimacro库。</p>
+<p><code>velocimacro.permissions.allow.inline</code> - This property, which has possible values of true or false, determines whether Velocimacros can be defined in regular templates. The default, true, allows template designers to define Velocimacros in the templates themselves.</p>
+<p><code>velocimacro.permissions.allow.inline</code> - 此属性的可能值为true或false,用于确定Velocimacros是否可在常规模板中定义。 默认值为true,允许模板设计者在模板自身中定义Velocimacros。</p>
+<p><code>velocimacro.permissions.allow.inline.to.replace.global</code> - With possible values of true or false, this property allows the user to specify if a Velocimacro defined inline in a template can replace a globally defined template, one that was loaded on startup via the velocimacro.library property. The default, false, prevents Velocimacros defined inline in a template from replacing those defined in the template libraries loaded at startup.</p>
+<p><code>velocimacro.permissions.allow.inline.to.replace.global</code> - 使用可能的值true或false,此属性允许用户指定是否在模板中定义的Velocimacro可以替换全局定义的模板,启动时通过velocimacro.library属性加载模板。 默认值为false,可防止模板中定义的Velocimacros替换在启动时加载的模板库中定义的那些。</p>
+<p><code>velocimacro.permissions.allow.inline.local.scope</code> - This property, with possible values of true or false, defaulting to false, controls if Velocimacros defined inline are ‘visible’ only to the defining template. In other words, with this property set to true, a template can define inline VMs that are usable only by the defining template. You can use this for fancy VM tricks - if a global VM calls another global VM, with inline scope, a template can define a private implementation of the second VM that will be called by the first VM when invoked by that template. All other templates are unaffected.</p>
+<p><code>velocimacro.permissions.allow.inline.local.scope</code> - 此属性的可能值为true或false，默认为false，控制Velocimacros定义内联是否仅对定义模板可见。 换句话说，将此属性设置为true时，模板可以定义只能由定义模板使用的内联VM。 您可以使用这个虚拟的技巧 - 如果一个全局虚拟机调用另一个全局虚拟机，使用内联作用域，一个模板可以定义第二个虚拟机的私有实现，当被该模板调用时，第一个虚拟机将调用它。 所有其他模板不受影响。</p>
+<p><code>velocimacro.library.autoreload</code> - This property controls Velocimacro library autoloading. The default value is false. When set to true the source Velocimacro library for an invoked Velocimacro will be checked for changes, and reloaded if necessary. This allows you to change and test Velocimacro libraries without having to restart your application or servlet container, just like you can with regular templates. This mode only works when caching is off in the resource loaders (e.g. file.resource.loader.cache = false ). This feature is intended for development, not for production.</p>
+<p><code>velocimacro.library.autoreload</code> - 此属性控制Velocimacro库自动加载。 默认值为false。 设置为true时,将调用Velocimacro的源Velocimacro库检查更改,如有必要,将重新加载。 这允许您更改和测试Velocimacro库,而不必重新启动应用程序或servlet容器,就像使用常规模板一样。 此模式仅在资源加载程序中的缓存关闭时有效(例如file.resource.loader.cache = false)。 此功能用于开发,而不是用于生产。</p>
+<p>Please note than when two templates each define a macro with the same name, you either need <code>velocimacro.permissions.allow.inline.local.scope</code> or <code>velocimacro.permissions.allow.inline.to.replace.global</code> to be set to true for each template to use its own macro version.</p>
+<p>请注意,当两个模板各自定义一个具有相同名称的micro时,您需要<code>velocimacro.permissions.allow.inline.local.scope</code>或<code>velocimacro.permissions.allow.inline.to.replace.global</code>为每个micro设置为true,使模板使用自己的micro版本。</p>
+<h2 id="Getting-Literal-获取字面量"><a href="#Getting-Literal-获取字面量" class="headerlink" title="Getting Literal 获取字面量"></a>Getting Literal 获取字面量</h2><p>VTL uses special characters, such as $ and #, to do its work, so some added care should be taken where using these characters in your templates. This section deals with escaping these characters.</p>
+<p>VTL使用特殊字符(例如$和＃)来完成其工作,因此在模板中使用这些字符时应该格外小心。 本节介绍转义这些字符。</p>
+<h2 id="Currency-并发"><a href="#Currency-并发" class="headerlink" title="Currency 并发"></a>Currency 并发</h2><p>There is no problem writing “I bought a 4 lb. sack of potatoes at the farmer’s market for only $2.50!” As mentioned, a VTL identifier always begins with an upper- or lowercase letter, so $2.50 would not be mistaken for a reference.</p>
+<p>写”我在农民的市场上买了一块4磅的土豆,只需$2.50!”没有问题,如上所述,VTL标识符总是以大写或小写字母开头,因此$2.50不会被误认为是引用。</p>
+<h2 id="Escaping-Valid-VTL-References-转义VTL引用"><a href="#Escaping-Valid-VTL-References-转义VTL引用" class="headerlink" title="Escaping Valid VTL References 转义VTL引用"></a>Escaping Valid VTL References 转义VTL引用</h2><p>Cases may arise where you do not want to have a reference rendered by Velocity. Escaping special characters is the best way to output VTL’s special characters in these situations, and this can be done using the backslash ( ** ) character when those special characters are part of a valid VTL reference.</p>
+<p>当你不想有由Velocity提供的引用时,可能会出现一些情况。在这些情况下,转义特殊字符是输出VTL的特殊字符的最佳方法,当这些特殊字符是有效VTL引用的一部分时,可以使用反斜杠( ** )字符来完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#set( $email = &quot;foo&quot; )</div><div class="line">$email</div></pre></td></tr></table></figure></p>
+<p>If Velocity encounters a reference in your VTL template to $email, it will search the Context for a corresponding value. Here the output will be foo, because $email is defined. If $email is not defined, the output will be $email.</p>
+<p>如果Velocity遇到VTL模板中的引用到<code>$email</code>,它将搜索Context以获取相应的值。因为<code>$email</code>是定义的,这里的输出将是foo。如果没有定义<code>$email</code>,输出将是<code>$email</code>。</p>
+<p>Suppose that $email is defined (for example, if it has the value foo), and that you want to output $email. There are a few ways of doing this, but the simplest is to use the escape character. Here is a demonstration:</p>
+<p>假设定义了<code>$email</code>(例如,如果它具有值foo),并且您想输出<code>$email</code>。有几种方法可以做到这一点,但最简单的是使用转义字符。这里是一个示范：</p>
+<p>Suppose that $email is defined (for example, if it has the value foo), and that you want to output $email. There are a few ways of doing this, but the simplest is to use the escape character. Here is a demonstration:</p>
+<p>假设定义了$email(例如,如果它具有值foo),并且您想输出$email。有几种方法可以做到这一点,但最简单的是使用转义字符。这里是一个示范：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## The following line defines $email in this template:</div><div class="line">#set( $email = &quot;foo&quot; )</div><div class="line">$email</div><div class="line">\$email</div></pre></td></tr></table></figure></p>
+<p>renders as<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">foo</div><div class="line">$email</div></pre></td></tr></table></figure></p>
+<p>If, for some reason, you need a backslash before either line above, you can do the following:</p>
+<p>如果因为某些原因,在上面的任一行之前需要反斜杠,您可以执行以下操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## The following line defines $email in this template:</div><div class="line">#set( $email = &quot;foo&quot; )</div><div class="line">\\$email</div><div class="line">\\\$email</div></pre></td></tr></table></figure></p>
+<p>which renders as<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\foo</div><div class="line">\$email</div></pre></td></tr></table></figure></p>
+<p>Note that the <em> character bind to the $ from the left. The bind-from-left rule causes <code>\\$email</code> to render as <code>\$email</code>. Compare these examples to those in which `$email</em>` is not defined.</p>
+<p>注意,<em> 字符绑定到左边的$。 左侧带从规则导致<code>\\$email</code>呈现为<code>\$email</code>。 将这些示例与未定义$email</em> 的示例进行比较。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$email</div><div class="line">\$email</div><div class="line">\\$email</div><div class="line">\\\$email</div></pre></td></tr></table></figure></p>
+<p>renders as<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$email</div><div class="line">\$email</div><div class="line">\\$email</div><div class="line">\\\$email</div></pre></td></tr></table></figure></p>
+<p>Notice Velocity handles references that are defined differently from those that have not been defined. Here is a set directive that gives $foo the value gibbous.</p>
+<p>注意Velocity处理的引用定义与未定义的引用的定义不同。 这里是一个set指令,给出$foo的值gibbous。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#set( $foo = &quot;gibbous&quot; )</div><div class="line">$moon = $foo</div></pre></td></tr></table></figure></p>
+<p>The output will be: $moon = gibbous – where $moon is output as a literal because it is undefined and gibbous is output in place of $foo.</p>
+<p>输出将是：$moon = gibbous – 其中$moon输出为文字,因为它是未定义的,并且输出gibbous代替$foo。</p>
+<h2 id="Escaping-Invalid-VTL-References-转义不可用VTL引用"><a href="#Escaping-Invalid-VTL-References-转义不可用VTL引用" class="headerlink" title="Escaping Invalid VTL References 转义不可用VTL引用"></a>Escaping Invalid VTL References 转义不可用VTL引用</h2><p>Sometimes Velocity has trouble parsing your template when it encounters an “invalid reference” that you never intended to be a reference at all. Escaping special characters is, again, the best way to handle these situations, but in these situations, the backslash will likely fail you. Instead of simply trying to escape the problematic $ or #, you should probably just replace this:</p>
+<p>有时Velocity遇到解析你的模板时遇到一个“无效的引用”,你从来没有打算作为一个引用。转义特殊字符同样是处理这些情况的最佳方式,但在这些情况下,反斜杠可能会失败。不能简单地试图逃避有问题的$或＃,你应该替换为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&#123;my:invalid:non:reference&#125;</div></pre></td></tr></table></figure></p>
+<p>with something like this<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#set( $D = &apos;$&apos; )</div><div class="line">$&#123;D&#125;&#123;my:invalid:non:reference&#125;</div></pre></td></tr></table></figure></p>
+<p>You can, of course, put your $ or # string directly into the context from your java code (e.g. context.put(“D”,”$”);) to avoid the extra #set() directive in your template(s). Or, if you are using VelocityTools, you can just use the EscapeTool like this:</p>
+<p>当然，你可以把你的$或＃字符串直接从你的java代码放入上下文(例如context.put(“D”,“$”);),以避免额外的#set()指令在你的模板。或者,如果你使用VelocityTools,你可以使用EscapeTool像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&#123;esc.d&#125;&#123;my:invalid:non:reference&#125;</div></pre></td></tr></table></figure></p>
+<p>Escaping of both valid and invalid VTL directives is handled in much the same manner; this is described in more detail in the Directives section.</p>
+<p>有效和无效的VTL指令的转义以同样的方式处理; 这在“指令”部分中有更详细的描述。</p>
+<h2 id="Escaping-VTL-Directives-转义VTL指令"><a href="#Escaping-VTL-Directives-转义VTL指令" class="headerlink" title="Escaping VTL Directives 转义VTL指令"></a>Escaping VTL Directives 转义VTL指令</h2><p>VTL directives can be escaped with the backslash character (“\”) in a manner similar to valid VTL references.</p>
+<p>VTL指令可以使用反斜杠字符(“\”)以类似于有效VTL引用的方式转义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">## #include( &quot;a.txt&quot; ) renders as &lt;contents of a.txt&gt;</div><div class="line">#include( &quot;a.txt&quot; )</div><div class="line"></div><div class="line">## \#include( &quot;a.txt&quot; ) renders as #include( &quot;a.txt&quot; )</div><div class="line">\#include( &quot;a.txt&quot; )</div><div class="line"></div><div class="line">## \\#include ( &quot;a.txt&quot; ) renders as \&lt;contents of a.txt&gt;</div><div class="line">\\#include ( &quot;a.txt&quot; )</div></pre></td></tr></table></figure></p>
+<p>Extra care should be taken when escaping VTL directives that contain multiple script elements in a single directive (such as in an if-else-end statements). Here is a typical VTL if-statement:</p>
+<p>当转义单个指令中包含多个脚本元素的VTL指令时(如if-else-end语句中),应格外小心。 这里是一个典型的VTL if语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#if( $jazz )</div><div class="line">    Vyacheslav Ganelin</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>If $jazz is true, the output is<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vyacheslav Ganelin</div></pre></td></tr></table></figure></p>
+<p>If $jazz is false, there is no output. Escaping script elements alters the output. Consider the following case:</p>
+<p>如果$ jazz为false,则没有输出。 转义脚本元素会更改输出。 考虑以下情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">\#if( $jazz )</div><div class="line">    Vyacheslav Ganelin</div><div class="line">\#end</div></pre></td></tr></table></figure></p>
+<p>This causes the directives to be escaped, but the rendering of $jazz proceeds as normal. So, if $jazz is true, the output is</p>
+<p>这将导致指令被转义,但$jazz的正常显示。 所以,如果$jazz为true,输出为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#if( true )</div><div class="line">     Vyacheslav Ganelin</div><div class="line"> #end</div></pre></td></tr></table></figure></p>
+<p>Suppose backslashes precede script elements that are legitimately escaped:</p>
+<p>假设在合法转义的脚本元素前面有反斜杠：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">v\\#if( $jazz )</div><div class="line">   Vyacheslav Ganelin</div><div class="line">\\#end</div></pre></td></tr></table></figure></p>
+<p>In this case, if $jazz is true, the output is</p>
+<p>在这种情况下,$jazz是true,输出为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\ Vyacheslav Ganelin</div><div class="line">\</div></pre></td></tr></table></figure></p>
+<p>To understand this, note that the #if( arg ) when ended by a newline (return) will omit the newline from the output. Therefore, the body of the #if() block follows the first ‘\’, rendered from the ‘\’ preceding the #if(). The last \ is on a different line than the text because there is a newline after ‘Ganelin’, so the final \, preceding the #end is part of the body of the block.</p>
+<p>要理解这一点,请注意如果#if(arg)在新的一行结束时,输出时将省略这一行。 因此,#if()的语句块跟在第一个’\’之后,从#if()之前的’\’开始。 最后一个\在与文本不同的行上,因为在’Ganelin’之后有一个换行符,因此#end之前的最后一个\是块的主体的一部分。</p>
+<p>If $jazz is false, the output is<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\</div></pre></td></tr></table></figure></p>
+<p>Note that things start to break if script elements are not properly escaped.</p>
+<p>请注意,如果脚本元素未正确转义,事情就会开始中断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">\\\#if( $jazz )</div><div class="line">    Vyacheslave Ganelin</div><div class="line">\\#end</div></pre></td></tr></table></figure></p>
+<p>Here the #if is escaped, but there is an #end remaining; having too many endings will cause a parsing error.</p>
+<p>这里#if被转义,但是还有一个#end标签; 多余的标签将导致解析错误.</p>
+<h2 id="VTL-Formatting-Issues-格式化问题"><a href="#VTL-Formatting-Issues-格式化问题" class="headerlink" title="VTL: Formatting Issues 格式化问题"></a>VTL: Formatting Issues 格式化问题</h2><p>Although VTL in this user guide is often displayed with newlines and whitespaces, the VTL shown below</p>
+<p>虽然本用户指南中的VTL经常显示换行符和空格,但它们的VTL如下所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#set( $imperial = [&quot;Munetaka&quot;,&quot;Koreyasu&quot;,&quot;Hisakira&quot;,&quot;Morikune&quot;] )</div><div class="line">#foreach( $shogun in $imperial )</div><div class="line">    $shogun</div><div class="line">#end</div></pre></td></tr></table></figure></p>
+<p>is equally valid as the following snippet that Geir Magnusson Jr. posted to the Velocity user mailing list to illustrate a completely unrelated point:</p>
+<p>同样有效,如下面的代码片段Geir Magnusson Jr.发布到Velocity用户邮件列表来说明一个完全不相关的点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Send me #set($foo=[&quot;$10 and &quot;,&quot;a pie&quot;])#foreach($a in $foo)$a#end please.</div></pre></td></tr></table></figure></p>
+<p>Velocity’s default behaviour is to gobble up excess whitespace. The preceding directive can be written as:</p>
+<p>Velocity的默认行为是吞噬多余的空格。 前面的指令可以写成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Send me</div><div class="line">#set( $foo = [&quot;$10 and &quot;,&quot;a pie&quot;] )</div><div class="line">#foreach( $a in $foo )</div><div class="line">$a</div><div class="line">#end</div><div class="line">please.</div></pre></td></tr></table></figure></p>
+<p>or as<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Send me</div><div class="line">#set($foo       = [&quot;$10 and &quot;,&quot;a pie&quot;])</div><div class="line">                 #foreach           ($a in $foo )$a</div><div class="line">         #end please.</div><div class="line">         In each case the output will be the same. Please note that it&apos;s possible to configure Velocity with other space gobbling behaviors.</div></pre></td></tr></table></figure></p>
+<p>In each case the output will be the same. Please note that it’s possible to configure Velocity with other space gobbling behaviors.</p>
+<p>在每种情况下,输出将是相同的。 请注意,可以配置Velocity与其他空间gobbling行为。</p>
+<h2 id="Other-Features-and-Miscellany-其它特征和功能"><a href="#Other-Features-and-Miscellany-其它特征和功能" class="headerlink" title="Other Features and Miscellany 其它特征和功能"></a>Other Features and Miscellany 其它特征和功能</h2><h3 id="Math-算术"><a href="#Math-算术" class="headerlink" title="Math 算术"></a>Math 算术</h3><p>Velocity has a handful of built-in mathematical functions that can be used in templates with the set directive. The following equations are examples of addition, subtraction, multiplication and division, respectively:</p>
+<p>Velocity有一些内置的数学函数,可以在模板中使用set指令。 以下等式分别是加法,减法,乘法和除法的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#set( $foo = $bar + 3 )</div><div class="line">#set( $foo = $bar - 4 )</div><div class="line">#set( $foo = $bar * 6 )</div><div class="line">#set( $foo = $bar / 2 )</div></pre></td></tr></table></figure></p>
+<p>When a division operation is performed between two integers, the result will be an integer, as the fractional portion is discarded. Any remainder can be obtained by using the modulus (%) operator.</p>
+<p>当在两个整数之间执行除法运算时,结果将是一个整数,因为会舍去小数部分。 任何余数可以通过使用模量(％)运算符获得。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#set( $foo = $bar % 5 )</div></pre></td></tr></table></figure></p>
+<h3 id="Range-Operator-范围操作符"><a href="#Range-Operator-范围操作符" class="headerlink" title="Range Operator 范围操作符"></a>Range Operator 范围操作符</h3><p>The range operator can be used in conjunction with #set and #foreach statements. Useful for its ability to produce an object array containing integers, the range operator has the following construction:</p>
+<p>范围运算符可以与#set和#foreach语句结合使用。 对于生成包含整数的对象数组时非常有用,范围运算符具有以下结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[n..m]</div></pre></td></tr></table></figure></p>
+<p>Both n and m must either be or produce integers. Whether m is greater than or less than n will not matter; in this case the range will simply count down. Examples showing the use of the range operator as provided below:</p>
+<p>n和m必须是或者产生整数。 m大于或小于n无关紧要; 在这种情况下,范围将只是倒置的。 下面提供了示范使用范围运算符的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">First example:</div><div class="line">#foreach( $foo in [1..5] )</div><div class="line">$foo</div><div class="line">#end</div><div class="line"></div><div class="line">Second example:</div><div class="line">#foreach( $bar in [2..-2] )</div><div class="line">$bar</div><div class="line">#end</div><div class="line"></div><div class="line">Third example:</div><div class="line">#set( $arr = [0..1] )</div><div class="line">#foreach( $i in $arr )</div><div class="line">$i</div><div class="line">#end</div><div class="line"></div><div class="line">Fourth example:</div><div class="line">[1..3]</div></pre></td></tr></table></figure></p>
+<p>Produces the following output:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">First example:</div><div class="line">1 2 3 4 5</div><div class="line"></div><div class="line">Second example:</div><div class="line">2 1 0 -1 -2</div><div class="line"></div><div class="line">Third example:</div><div class="line">0 1</div><div class="line"></div><div class="line">Fourth example:</div><div class="line">[1..3]</div></pre></td></tr></table></figure></p>
+<p>Note that the range operator only produces the array when used in conjunction with #set and #foreach directives, as demonstrated in the fourth example.</p>
+<p>请注意,范围运算符仅在与#set和#foreach指令结合使用时才会生成数组,如第四个示例中所示。</p>
+<p>Web page designers concerned with making tables a standard size, but where some will not have enough data to fill the table, will find the range operator particularly useful.</p>
+<p>网页设计师希望表格成为标准尺寸,但是有些人没有足够的数据填充表格,这时会发现范围操作符特别有用。</p>
+<h3 id="Advanced-Issues-Escaping-and-高级问题-转义和"><a href="#Advanced-Issues-Escaping-and-高级问题-转义和" class="headerlink" title="Advanced Issues: Escaping and !  高级问题:转义和!"></a>Advanced Issues: Escaping and !  高级问题:转义和!</h3><p>When a reference is silenced with the ! character and the ! character preceded by an <em> escape character, the reference is handled in a special way. Note the differences between regular escaping, and the special case where </em> precedes ! follows it:</p>
+<p>当一个引用前面加上！ 字符和！ 字符前面带有<em>转义字符,则引用以特殊方式处理。 注意常规转义和特殊情况之间的区别,其中</em>先于！ 遵循：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#set( $foo = &quot;bar&quot; )</div><div class="line">$\!foo</div><div class="line">$\!&#123;foo&#125;</div><div class="line">$\\!foo</div><div class="line">$\\\!foo</div></pre></td></tr></table></figure></p>
+<p>This renders as:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$!foo</div><div class="line">$!&#123;foo&#125;</div><div class="line">$\!foo</div><div class="line">$\\!foo</div></pre></td></tr></table></figure></p>
+<p>Contrast this with regular escaping, where <em> precedes $</em> :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\$foo</div><div class="line">\$!foo</div><div class="line">\$!&#123;foo&#125;</div><div class="line">\\$!&#123;foo&#125;</div></pre></td></tr></table></figure></p>
+<p>This renders as:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$foo</div><div class="line">$!foo</div><div class="line">$!&#123;foo&#125;</div><div class="line">\bar</div></pre></td></tr></table></figure></p>
+<h3 id="Velocimacro-Miscellany-Velocimacro杂谈"><a href="#Velocimacro-Miscellany-Velocimacro杂谈" class="headerlink" title="Velocimacro Miscellany Velocimacro杂谈"></a>Velocimacro Miscellany Velocimacro杂谈</h3><h4 id="Can-I-use-a-directive-or-another-VM-as-an-argument-to-a-VM"><a href="#Can-I-use-a-directive-or-another-VM-as-an-argument-to-a-VM" class="headerlink" title="Can I use a directive or another VM as an argument to a VM?"></a>Can I use a directive or another VM as an argument to a VM?</h4><h4 id="Can-I-register-Velocimacros-via-parse"><a href="#Can-I-register-Velocimacros-via-parse" class="headerlink" title="Can I register Velocimacros via #parse() ?"></a>Can I register Velocimacros via #parse() ?</h4><h4 id="What-is-Velocimacro-Autoreloading"><a href="#What-is-Velocimacro-Autoreloading" class="headerlink" title="What is Velocimacro Autoreloading?"></a>What is Velocimacro Autoreloading?</h4><p>There is a property, meant to be used in development, not production :</p>
+<p>有一个属性,意味着用于开发,而不是生产：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`velocimacro.library.autoreload`</div></pre></td></tr></table></figure></p>
+<p>which defaults to false. When set to true along with<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`&lt;type&gt;.resource.loader.cache = false`</div></pre></td></tr></table></figure></p>
+<p>(where is the name of the resource loader that you are using, such as ‘file’) then the Velocity engine will automatically reload changes to your Velocimacro library files when you make them, so you do not have to dump the servlet engine (or application) or do other tricks to have your Velocimacros reloaded.</p>
+<p>(其中是您正在使用的资源加载程序的名称,例如’file’),则Velocity引擎将自动重新加载更改Velocimacro库文件,当你使它们,所以你不必转储servlet引擎(或 应用程序)或做其他的技巧,让你的Velocimacros重新加载。</p>
+<p>Here is what a simple set of configuration properties would look like.</p>
+<p>这里是一个简单的配置属性的集合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">file.resource.loader.path = templates</div><div class="line">file.resource.loader.cache = false</div><div class="line">velocimacro.library.autoreload = true</div></pre></td></tr></table></figure></p>
+<p>Don’t keep this on in production.</p>
+<p>不要把它保留在生产中。</p>
+<h3 id="String-Concatenation-字符串拼接"><a href="#String-Concatenation-字符串拼接" class="headerlink" title="String Concatenation 字符串拼接"></a>String Concatenation 字符串拼接</h3><p>A common question that developers ask is How do I do String concatenation? Is there any analogue to the ‘+’ operator in Java?.</p>
+<p>开发人员问的一个常见问题是如何做字符串连接？ 在Java中是否有’+’运算符的模拟？</p>
+<p>To do concatenation of references in VTL, you just have to ‘put them together’. The context of where you want to put them together does matter, so we will illustrate with some examples.</p>
+<p>In the regular ‘schmoo’ of a template (when you are mixing it in with regular content) :</p>
+<p>在模板的常规“shmoo”中(当您将其与常规内容混合时)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#set( $size = &quot;Big&quot; )</div><div class="line">#set( $name = &quot;Ben&quot; )</div><div class="line"></div><div class="line">The clock is $size$name.</div></pre></td></tr></table></figure></p>
+<p>and the output will render as ‘The clock is BigBen’. For more interesting cases, such as when you want to concatenate strings to pass to a method, or to set a new reference, just do</p>
+<p>并且输出将呈现为“时钟是大本钟”。 对于更有趣的情况,例如当你想要连接字符串传递给一个方法,或者设置一个新的引用,只是做<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#set( $size = &quot;Big&quot; )</div><div class="line">#set( $name = &quot;Ben&quot; )</div><div class="line"></div><div class="line">#set($clock = &quot;$size$name&quot; )</div><div class="line"></div><div class="line">The clock is $clock.</div></pre></td></tr></table></figure></p>
+<p>Which will result in the same output. As a final example, when you want to mix in ‘static’ strings with your references, you may need to use ‘formal references’ :</p>
+<p>这将导致相同的输出。 作为最后一个例子,当你想混合静态字符串和你的引用,你可能需要使用’正式引用’：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#set( $size = &quot;Big&quot; )</div><div class="line">#set( $name = &quot;Ben&quot; )</div><div class="line"></div><div class="line">#set($clock = &quot;$&#123;size&#125;Tall$name&quot; )</div><div class="line"></div><div class="line">The clock is $clock.</div></pre></td></tr></table></figure></p>
+<p>Now the output is ‘The clock is BigTallBen’. The formal notation is needed so the parser knows you mean to use the reference ‘$size’ versus ‘$sizeTall’ which it would if the ‘{}’ weren’t there.</p>
+<p>现在的输出是’The clock is BigTallBen’。 正式符号是需要的,所以解析器知道你的意思是使用引用’$ size’对’$sizeTall’,如果’{}“不在那里。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Velocity/" rel="tag">#Velocity</a>
+          
+            <a href="/tags/翻译/" rel="tag">#翻译</a>
+          
+            <a href="/tags/官方文档/" rel="tag">#官方文档</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/02/springSecurity快速指南/" rel="next" title="springSecurity快速指南">
+                <i class="fa fa-chevron-left"></i> springSecurity快速指南
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/06/Velocity用户手册/"
+     data-title="Velocity用户手册"
+     data-content=""
+     data-url="http://lingyv.cn/2016/11/06/Velocity用户手册/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/06/Velocity用户手册/"
+           data-title="Velocity用户手册" data-url="http://lingyv.cn/2016/11/06/Velocity用户手册/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Velocity-什么是Velocity"><span class="nav-number">1.</span> <span class="nav-text">What is Velocity? 什么是Velocity?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-can-Velocity-do-for-me-Velocity能做什么"><span class="nav-number">2.</span> <span class="nav-text">What can Velocity do for me?  Velocity能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Mud-Store-Example-Mud-商店实例"><span class="nav-number">2.1.</span> <span class="nav-text">The Mud Store Example  Mud 商店实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Velocity-Template-Language-VTL-An-Introduction-Velocity模板语言-VTL-简介"><span class="nav-number">3.</span> <span class="nav-text">Velocity Template Language (VTL): An Introduction  Velocity模板语言 (VTL): 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Velocity-World-Velocity简单实例-Hello-Velocity-World"><span class="nav-number">4.</span> <span class="nav-text">Hello Velocity World! Velocity简单实例:Hello Velocity World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comments-注释"><span class="nav-number">5.</span> <span class="nav-text">Comments 注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-引用"><span class="nav-number">6.</span> <span class="nav-text">References 引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Variables-变量"><span class="nav-number">6.1.</span> <span class="nav-text">Variables 变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties-属性"><span class="nav-number">6.2.</span> <span class="nav-text">Properties 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods-方法"><span class="nav-number">6.3.</span> <span class="nav-text">Methods 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Property-Lookup-Rules-属性查找规则"><span class="nav-number">6.4.</span> <span class="nav-text">Property Lookup Rules 属性查找规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rendering-展示"><span class="nav-number">6.5.</span> <span class="nav-text">Rendering 展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Index-Notation-索引符号"><span class="nav-number">6.6.</span> <span class="nav-text">Index Notation 索引符号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Formal-Reference-Notation-正式引用标识符"><span class="nav-number">7.</span> <span class="nav-text">Formal Reference Notation 正式引用标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quiet-Reference-Notation-静态引用标识符"><span class="nav-number">8.</span> <span class="nav-text">Quiet Reference Notation 静态引用标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strict-Reference-Mode-严格引用模式"><span class="nav-number">9.</span> <span class="nav-text">Strict Reference Mode 严格引用模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quiet-Reference-Notation-可替换情况"><span class="nav-number">10.</span> <span class="nav-text">Quiet Reference Notation 可替换情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directives-指令"><span class="nav-number">11.</span> <span class="nav-text">Directives 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">11.1.</span> <span class="nav-text">Set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Literals-字面量"><span class="nav-number">11.1.1.</span> <span class="nav-text">Literals 字面量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditionals-条件语句"><span class="nav-number">11.2.</span> <span class="nav-text">Conditionals 条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#If-ElseIf-Else"><span class="nav-number">11.2.1.</span> <span class="nav-text">If / ElseIf / Else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Relational-and-Logical-Operators-关系和逻辑运算符"><span class="nav-number">11.2.2.</span> <span class="nav-text">Relational and Logical Operators 关系和逻辑运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loops-循环"><span class="nav-number">11.3.</span> <span class="nav-text">Loops 循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Foreach-Loop"><span class="nav-number">11.3.1.</span> <span class="nav-text">Foreach Loop</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Include-包含"><span class="nav-number">11.4.</span> <span class="nav-text">Include 包含</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parse-解析"><span class="nav-number">11.5.</span> <span class="nav-text">Parse 解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Break-中止"><span class="nav-number">11.6.</span> <span class="nav-text">Break 中止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stop-停止"><span class="nav-number">11.7.</span> <span class="nav-text">Stop 停止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluate-计算"><span class="nav-number">11.8.</span> <span class="nav-text">Evaluate 计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-定义"><span class="nav-number">11.9.</span> <span class="nav-text">Define 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Velocimacros-宏"><span class="nav-number">11.10.</span> <span class="nav-text">Velocimacros 宏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Velocimacro-Arguments"><span class="nav-number">11.10.1.</span> <span class="nav-text">Velocimacro Arguments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Velocimacro-Properties"><span class="nav-number">11.10.2.</span> <span class="nav-text">Velocimacro Properties</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Literal-获取字面量"><span class="nav-number">12.</span> <span class="nav-text">Getting Literal 获取字面量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Currency-并发"><span class="nav-number">13.</span> <span class="nav-text">Currency 并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Escaping-Valid-VTL-References-转义VTL引用"><span class="nav-number">14.</span> <span class="nav-text">Escaping Valid VTL References 转义VTL引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Escaping-Invalid-VTL-References-转义不可用VTL引用"><span class="nav-number">15.</span> <span class="nav-text">Escaping Invalid VTL References 转义不可用VTL引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Escaping-VTL-Directives-转义VTL指令"><span class="nav-number">16.</span> <span class="nav-text">Escaping VTL Directives 转义VTL指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VTL-Formatting-Issues-格式化问题"><span class="nav-number">17.</span> <span class="nav-text">VTL: Formatting Issues 格式化问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other-Features-and-Miscellany-其它特征和功能"><span class="nav-number">18.</span> <span class="nav-text">Other Features and Miscellany 其它特征和功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Math-算术"><span class="nav-number">18.1.</span> <span class="nav-text">Math 算术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Range-Operator-范围操作符"><span class="nav-number">18.2.</span> <span class="nav-text">Range Operator 范围操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-Issues-Escaping-and-高级问题-转义和"><span class="nav-number">18.3.</span> <span class="nav-text">Advanced Issues: Escaping and !  高级问题:转义和!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Velocimacro-Miscellany-Velocimacro杂谈"><span class="nav-number">18.4.</span> <span class="nav-text">Velocimacro Miscellany Velocimacro杂谈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Can-I-use-a-directive-or-another-VM-as-an-argument-to-a-VM"><span class="nav-number">18.4.1.</span> <span class="nav-text">Can I use a directive or another VM as an argument to a VM?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Can-I-register-Velocimacros-via-parse"><span class="nav-number">18.4.2.</span> <span class="nav-text">Can I register Velocimacros via #parse() ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-Velocimacro-Autoreloading"><span class="nav-number">18.4.3.</span> <span class="nav-text">What is Velocimacro Autoreloading?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Concatenation-字符串拼接"><span class="nav-number">18.5.</span> <span class="nav-text">String Concatenation 字符串拼接</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
