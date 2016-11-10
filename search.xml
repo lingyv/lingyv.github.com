@@ -110,7 +110,7 @@
     <entry>
       <title><![CDATA[vim懒人福音--spf13-vim]]></title>
       <url>%2F2016%2F08%2F12%2Fspf13-vim%2F</url>
-      <content type="text"><![CDATA[是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了spf-13，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做： 首先，确认Git 1.7+ 和 Vim 7.3+Linux, *nix, Mac OSX系统,执行以下命令安装spf13-vim： 1curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh 安装好就可以使用了。不过，一般我们需要做一些个性化的定制。 更换主题：新建一个~/.vimrc.local文件。 123colorscheme ir_black#把ir_black换成你想要换的主题#例如ir_black、molokai、peaksea 选择加载的插件：新建~/.vimrc.before.local文件： 1let g:spf13_bundle_groups=[&apos;general&apos;,&apos;writing&apos;,&apos;programming&apos;,&apos;youcompleteme&apos;,&apos;go&apos;,&apos;javascript&apos;,&apos;html&apos;] 其中“[]”里面的可以去~/.vimrc.bundles文件里面Bundles一栏去找你需要加载的组： 添加自己的组件：新建文件~/.vimrc.bundles.local，新增你需要增加的组件：1Bundle \&apos;spf13/vim-colors\&apos;]]></content>
+      <content type="text"><![CDATA[是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了spf-13，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做： 首先，确认Git 1.7+ 和 Vim 7.3+Linux, * nix, Mac OSX系统,执行以下命令安装spf13-vim： 1curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh 安装好就可以使用了。不过，一般我们需要做一些个性化的定制。 更换主题：新建一个~/.vimrc.local文件。 123colorscheme ir_black#把ir_black换成你想要换的主题#例如ir_black、molokai、peaksea 选择加载的插件：新建~/.vimrc.before.local文件： 1let g:spf13_bundle_groups=[&apos;general&apos;,&apos;writing&apos;,&apos;programming&apos;,&apos;youcompleteme&apos;,&apos;go&apos;,&apos;javascript&apos;,&apos;html&apos;] 其中“[]”里面的可以去~/.vimrc.bundles文件里面Bundles一栏去找你需要加载的组： 添加自己的组件：新建文件~/.vimrc.bundles.local，新增你需要增加的组件：1Bundle \&apos;spf13/vim-colors\&apos;]]></content>
     </entry>
 
     
