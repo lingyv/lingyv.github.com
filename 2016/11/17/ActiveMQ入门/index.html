@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="lingyv" />
+
+
+
+<meta name="description" content="ActiveMQ官方文档 – 入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ActiveMQ官方文档 -- 入门">
+<meta property="og:url" content="http://lingyv.cn/2016/11/17/ActiveMQ入门/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="ActiveMQ官方文档 – 入门">
+<meta property="og:updated_time" content="2016-11-17T08:51:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ActiveMQ官方文档 -- 入门">
+<meta name="twitter:description" content="ActiveMQ官方文档 – 入门">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="凌宇" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/images/zhandian.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>ActiveMQ官方文档 -- 入门 | 凌宇</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/images/touxiang.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">lingyv</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">lingyv</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/lingyv@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/5051531692/profile?topnav=1&wvr=6&is_all=1" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/lingyv" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/lingyv" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/999835d02088/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Validator/">Validator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Velocity/">Velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Java &amp; Python</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">lingyv</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/images/touxiang.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">lingyv</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">lingyv</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/lingyv@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/5051531692/profile?topnav=1&wvr=6&is_all=1" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/lingyv" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/lingyv" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/999835d02088/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-ActiveMQ入门" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/17/ActiveMQ入门/" class="article-date">
+      <time datetime="2016-11-17T12:12:29.000Z" itemprop="datePublished">2016-11-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ActiveMQ官方文档 -- 入门
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/术/">术</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式/">分布式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/官方文档/">官方文档</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>ActiveMQ官方文档 – 入门<br><a id="more"></a></p>
+<h1 id="Introduction-介绍"><a href="#Introduction-介绍" class="headerlink" title="Introduction 介绍"></a>Introduction 介绍</h1><p>This document describes how to install and configure ActiveMQ 4.x/5.x for both Unix and Windows’ platforms.</p>
+<p>本文档介绍如何在Unix和Windows平台上安装和配置ActiveMQ 4.x / 5.x。</p>
+<h1 id="Pre-Installation-Requirements-安装要求"><a href="#Pre-Installation-Requirements-安装要求" class="headerlink" title="Pre-Installation Requirements 安装要求"></a>Pre-Installation Requirements 安装要求</h1><p>Hardware:</p>
+<ul>
+<li>60 MB of free disk space for the ActiveMQ 5.x binary distribution.(you need additional disk space for storing persistent messages to disk)</li>
+<li>300 MB of free disk space for the ActiveMQ 5.x source or developer’s distributions.<br>Operating Systems:</li>
+<li>Windows: Windows XP SP2, Windows 2000, Windows Vista, Windows 7.</li>
+<li>Unix: Ubuntu Linux, Powerdog Linux, MacOS, AIX, HP-UX, Solaris, or any Unix platform that supports Java.<br>Environment:</li>
+<li>Java Runtime Environment (JRE)  JRE 1.7 (1.6 for version &lt;=5.10.0)(a JDK is required if you plan to recompile source code)</li>
+<li>The JAVA_HOME environment variable must be set to the directory where the JRE is installed(Unix: the binary “java” has to be resolvable by the PATH variable; execute “which java” to verify)</li>
+<li>Maven 3.0.0 build system(only if you plan to recompile source code)</li>
+<li>JARs that will be used must be added to the classpath.(only if you plan to recompile source code)</li>
+</ul>
+<h1 id="Installation-Procedure-for-Windows-Windows的安装过程"><a href="#Installation-Procedure-for-Windows-Windows的安装过程" class="headerlink" title="Installation Procedure for Windows Windows的安装过程"></a>Installation Procedure for Windows Windows的安装过程</h1><p>This section of the Getting Started Guide explains how to install binary and source distributions of ActiveMQ on a Windows system.</p>
+<p>“入门指南”的本部分介绍如何在Windows系统上安装ActiveMQ的二进制和源代码分发。</p>
+<h2 id="Windows-Binary-Installation-Windows二进制安装"><a href="#Windows-Binary-Installation-Windows二进制安装" class="headerlink" title="Windows Binary Installation Windows二进制安装"></a>Windows Binary Installation Windows二进制安装</h2><p>This procedure explains how to download and install the binary distribution on a Windows system.</p>
+<p>此过程说明如何在Windows系统上下载和安装二进制发行版。</p>
+<ol>
+<li>Download the latest release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="external">Download</a> -&gt; “The latest stable release” -&gt; “apache-activemq-x.x.x-bin.zip”)</li>
+<li>Extract the files from the ZIP file into a directory of your choice.</li>
+<li>Proceed to the #Starting ActiveMQ section of this document.</li>
+<li><p>Following start-up, go to the #Testing the Installation section of this document.</p>
+</li>
+<li><p>下载最新版本<br>（请参阅<a href="http://activemq.apache.org/download.html" target="_blank" rel="external">下载</a> - &gt;“最新稳定版本” - &gt;“apache-activemq-x.x.x-bin.zip”）</p>
+</li>
+<li>将ZIP文件中的文件解压缩到您选择的目录中。</li>
+<li>继续本文档的#Starting ActiveMQ部分。</li>
+<li>启动后，请转到本文档的#Testing the Installation部分。</li>
+</ol>
+<h2 id="Windows-Source-Installation-Windows源码安装"><a href="#Windows-Source-Installation-Windows源码安装" class="headerlink" title="Windows Source Installation Windows源码安装"></a>Windows Source Installation Windows源码安装</h2><p>This procedure explains how to download and install the source distribution on a Windows system.</p>
+<ol>
+<li>Download the latest release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="external">Download</a> -&gt; “The latest stable release” -&gt; “apache-activemq-x.x.x-source-release.zip”)</li>
+<li>Extract ActiveMQ from the ZIP file into a directory of your choice.</li>
+<li>The recommended method of building ActiveMQ is the following:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">REM add &quot;-Dmaven.test.skip=true&quot; if tests are failing on your system (should not happen)</div><div class="line">mvn clean install</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>where [activemq_install_dir] is the directory in which ActiveMQ was installed.</p>
+<ol>
+<li>If you prefer to use an IDE, then you can auto-generate the IDE’s project file using maven plugins:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn eclipse:eclipse</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn idea:idea</div></pre></td></tr></table></figure></p>
+<p>Feel free to use any other applicable IDE. Please refer to the <a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="external">plugin reference</a> for more details.</p>
+<p>此过程说明如何在Windows系统上下载和安装源码发行版。</p>
+<ol>
+<li>下载最新版本<br>（请参阅<a href="http://activemq.apache.org/download.html" target="_blank" rel="external">下载</a> - &gt;“最新稳定版本” - &gt;“apache-activemq-x.x.x-source-release.zip”）</li>
+<li>将ActiveMQ从ZIP文件解压缩到您选择的目录中。</li>
+<li>建议使用ActiveMQ的推荐方法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果测试在您的系统上失败（不应该发生）,REM添加“-Dmaven.test.skip = true”</div><div class="line">mvn clean install</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中[activemq_install_dir]是安装ActiveMQ的目录。</p>
+<ol>
+<li>如果你喜欢使用IDE，那么你可以使用maven插件自动生成IDE的项目文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn eclipse:eclipse</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn idea:idea</div></pre></td></tr></table></figure></p>
+<p>可随意使用其他任何适用的IDE。 有关更多详细信息，请<a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="external">参阅插件参考</a>。</p>
+<ol>
+<li>Start ActiveMQ from the target directory, for example:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]\assembly\target</div><div class="line">unzip activemq-x.x-SNAPSHOT.zip</div><div class="line">cd activemq-x.x-SNAPSHOT</div><div class="line">bin\activemq</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>NOTE:</code> Working directories get created relative to the current directory. To create the working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
+<ol>
+<li><p>Proceed to the #Testing the Installation section.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Warning:</div><div class="line">If you are building ActiveMQ 4.x under Windows using Cygwin there is a path name length limitation. If the path name length is exceeded, you may see build errors. To correct this, move the ActiveMQ source directory higher in the file system tree, e.g., /cygdrive/c/d/sm.</div></pre></td></tr></table></figure>
+</li>
+<li><p>从目标目录启动ActiveMQ，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]\assembly\target</div><div class="line">unzip activemq-x.x-SNAPSHOT.zip</div><div class="line">cd activemq-x.x-SNAPSHOT</div><div class="line">bin\activemq</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>注意：</code>相对于当前目录创建工作目录。 要在正确的位置创建工作目录，ActiveMQ必须从其home/安装目录启动。</p>
+<ol>
+<li>转到#Testing安装部分。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">警告</div><div class="line">如果您在Windows下使用Cygwin构建ActiveMQ 4.x，则存在路径名称长度限制。 如果超过路径名称长度，您可能会看到构建错误。 要纠正这一点，请将ActiveMQ源目录在文件系统树中更高的位置，例如/ cygdrive / c / d / sm。</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Windows-Developer’s-Release-Windows开发人员版本"><a href="#Windows-Developer’s-Release-Windows开发人员版本" class="headerlink" title="Windows Developer’s Release Windows开发人员版本"></a>Windows Developer’s Release Windows开发人员版本</h2><p>This procedure explains how to download and install the latest developer’s snapshot.</p>
+<ol>
+<li>Open the release archive: <a href="https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/" target="_blank" rel="external">https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/</a><br>(open one of the SNAPSHOT directories)</li>
+<li>Select the version of ActiveMQ to download (if necessary, scroll down to see the ActiveMQ snapshots).</li>
+<li>Extract the files from the ZIP file into a directory of your choice.</li>
+<li>If a binary snapshot was downloaded, proceed to the #Starting ActiveMQ section of this document.<br>If a source snapshot was downloaded, perform step 6 and step 7 of the #Windows Source Installation procedure.</li>
+<li>Following start-up, proceed to the #Testing the Installation section.</li>
+</ol>
+<h1 id="Installation-Procedure-for-Unix-Unix的安装过程"><a href="#Installation-Procedure-for-Unix-Unix的安装过程" class="headerlink" title="Installation Procedure for Unix Unix的安装过程"></a>Installation Procedure for Unix Unix的安装过程</h1><h2 id="Unix-Binary-Installation-Unix二进制安装"><a href="#Unix-Binary-Installation-Unix二进制安装" class="headerlink" title="Unix Binary Installation Unix二进制安装"></a>Unix Binary Installation Unix二进制安装</h2><p>This procedure explains how to download and install the binary distribution on a Unix system.</p>
+<p><code>NOTE:</code> There are several alternative ways to perform this type of installation.</p>
+<p>此过程说明如何在Unix系统上下载和安装二进制发行版。</p>
+<p><code>注意：</code>有几种可选的方法来执行此类型的安装。</p>
+<ol>
+<li><p>Download the activemq zipped tarball file to the Unix machine, using either a browser or a tool, i.e., wget, scp, ftp, etc. for example:<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="external">Download</a> -&gt; “The latest stable release”)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://activemq.apache.org/path/tofile/apache-activemq-x.x.x-bin.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>Extract the files from the zipped tarball into a directory of your choice. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]</div><div class="line">tar zxvf activemq-x.x.x-bin.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>Proceed to the #Starting ActiveMQ section of this document.</p>
+</li>
+<li>Following start-up, go to the #Testing the Installation section.</li>
+</ol>
+<h2 id="Using-Homebrew-installer-on-OSX"><a href="#Using-Homebrew-installer-on-OSX" class="headerlink" title="Using Homebrew installer on OSX"></a>Using Homebrew installer on OSX</h2><p>If you use OSX as your platform, you can use Homebrew package manager to easily install Apache ActiveMQ.</p>
+<ol>
+<li>After installing Homebrew package manager successfully, just run<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install apache-activemq</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>You can expect the following output:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">==&gt; Downloading http://www.gossipcheck.com/mirrors/apache/activemq/apache-activemq/x.x.x/apache-activemq-x.x.x-bin.tar.gz</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Caveats</div><div class="line">Software was installed to:</div><div class="line">  /usr/local/Cellar/apache-activemq/x.x.x/libexec</div><div class="line">==&gt; Summary</div><div class="line">/usr/local/Cellar/apache-activemq/x.x.x: 406 files, 35M, built in 2 seconds</div></pre></td></tr></table></figure></p>
+<p>ActiveMQ will be installed in /usr/local/Cellar/apache-activemq/x.x.x/ directory (where x.x.x denotes the actual version being installed).</p>
+<p>Now you can proceed to #Starting ActiveMQ and #Testing the Installation sections.</p>
+<h2 id="Unix-Source-Installation"><a href="#Unix-Source-Installation" class="headerlink" title="Unix Source Installation"></a>Unix Source Installation</h2><p>This procedure explains how to download and install the source distribution on a Unix system. This procedure assumes the Unix machine has a browser. Please see the previous #Unix Binary Installation section for details on how to install ActiveMQ without a browser.</p>
+<ol>
+<li>Download the latest source release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="external">Download</a> -&gt; “The latest stable release” -&gt; “activemq-parent-x.x.x-source-release.zip”)</li>
+<li><p>Extract the files from the ZIP file into a directory of your choice. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf activemq.x.x-src.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>Build ActiveMQ using Maven:<br>The preferred method of building ActiveMQ is the following:cd [activemq_install_dir]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn clean install # add &quot;-Dmaven.test.skip=true&quot; if tests are failing on your system (should not happen)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>If Maven crashes with a java.lang.OutOfMemoryError, you you need to do this first (assuming a Bourne-like shell):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export MAVEN_OPTS=&quot;-Xmx512M&quot;</div></pre></td></tr></table></figure></p>
+<p>If you prefer to use an IDE then you can auto-generate the IDE’s project file using maven plugins:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn eclipse:eclipse</div></pre></td></tr></table></figure></p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn idea:idea</div></pre></td></tr></table></figure></p>
+<p>Feel free to use any other applicable IDE. Please refer to the <a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="external">plugin reference</a> for more details.<br><code>NOTE:</code> Working directories get created relative to the current directory. To create working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
+<ol>
+<li>Proceed to the #Starting ActiveMQ section of this document.</li>
+<li>Proceed to #Testing the Installation section.</li>
+</ol>
+<p>##　Unix Developer’s Release<br>This procedure explains how to download and install the latest developer’s snapshot.</p>
+<ol>
+<li>Open the release archive: <a href="https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/" target="_blank" rel="external">https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/</a><br>(open one of the SNAPSHOT directories)</li>
+<li>Select the version of ActiveMQ to download (you may have to scroll down to see the ActiveMQ snapshots).<br>The filename will be similar to: <code>activemq-x.x.x-tar.gz</code>.</li>
+<li>Extract the files from the gzip file into a directory of your choice. For example:<br>For a binary developer’s snapshot:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf activemq-x.x.x.tar.gz</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>For a source developer’s snapshot:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf activemq-x.x.x-src.tar.gz</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>If a binary snapshot was downloaded, to make it executable, the ActiveMQ script may need its permissions changed:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]/bin</div><div class="line">chmod 755 activemq</div></pre></td></tr></table></figure>
+</li>
+<li><p>For a binary snapshot, proceed to the #Starting ActiveMQ section of this document.</p>
+</li>
+<li>If a source snapshot was downloaded perform steps 6 - 8 of the #Unix Source Installation procedure.</li>
+<li>Proceed to the #Testing the Installation section.</li>
+</ol>
+<h1 id="Starting-ActiveMQ-运行ActiveMQ"><a href="#Starting-ActiveMQ-运行ActiveMQ" class="headerlink" title="Starting ActiveMQ 运行ActiveMQ"></a>Starting ActiveMQ 运行ActiveMQ</h1><p>There now follows instructions on how to run the ActiveMQ Message Broker.<br>现在有关于如何运行ActiveMQ消息代理的说明。</p>
+<h2 id="On-Windows"><a href="#On-Windows" class="headerlink" title="On Windows:"></a>On Windows:</h2><p>From a console window, change to the installation directory and run ActiveMQ:</p>
+<p>在控制台窗口中，切换到安装目录并运行ActiveMQ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]</div></pre></td></tr></table></figure></p>
+<p>where activemq_install_dir is the directory in which ActiveMQ was installed, e.g., c:\Program Files\ActiveMQ-5.x.<br>Then type:</p>
+<p>其中<code>activemq_install_dir</code>是安装ActiveMQ的目录，例如<code>c:\Program Files\ActiveMQ-5.x</code>。<br>然后键入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin\activemq start</div></pre></td></tr></table></figure></p>
+<p><code>NOTE:</code> Working directories get created relative to the current directory. To create working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
+<p><code>注意：</code>相对于当前目录创建工作目录。 要在正确的位置创建工作目录，ActiveMQ必须从其home/installation目录启动。</p>
+<h2 id="On-Unix"><a href="#On-Unix" class="headerlink" title="On Unix:"></a>On Unix:</h2><p>From a command shell, change to the installation directory and run ActiveMQ as a foregroud process:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]/bin</div><div class="line">./activemq console</div></pre></td></tr></table></figure></p>
+<p>From a command shell, change to the installation directory and run ActiveMQ as a daemon process:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]/bin</div><div class="line">./activemq start</div></pre></td></tr></table></figure></p>
+<p>##　More help<br>For other ways of running the broker see <a href="http://activemq.apache.org/run-broker.html" target="_blank" rel="external">Here</a>. For example you can run an embedded broker inside your JMS Connection to avoid starting a separate process.</p>
+<p>有关运行代理的其他方法，请参阅<a href="http://activemq.apache.org/run-broker.html" target="_blank" rel="external">这里</a>。 例如，您可以在JMS连接中运行嵌入式代理，以避免启动单独的进程。</p>
+<h1 id="Testing-the-Installation-测试安装是否成功"><a href="#Testing-the-Installation-测试安装是否成功" class="headerlink" title="Testing the Installation 测试安装是否成功"></a>Testing the Installation 测试安装是否成功</h1><h2 id="Using-the-administrative-interface-使用管理接口"><a href="#Using-the-administrative-interface-使用管理接口" class="headerlink" title="Using the administrative interface 使用管理接口"></a>Using the administrative interface 使用管理接口</h2><ul>
+<li>Open the administrative interface</li>
+<li>URL: <a href="http://127.0.0.1:8161/admin/" target="_blank" rel="external">http://127.0.0.1:8161/admin/</a><ul>
+<li>Login: admin</li>
+<li>Passwort: admin</li>
+</ul>
+</li>
+<li>Navigate to “Queues”</li>
+<li>Add a queue name and click <code>create</code></li>
+<li><p>Send test message by klicking on <code>Send to</code></p>
+</li>
+<li><p>打开管理界面</p>
+</li>
+<li>网址：<a href="http://127.0.0.1:8161/admin/" target="_blank" rel="external">http://127.0.0.1:8161/admin/</a><ul>
+<li>登录：admin</li>
+<li>密码：admin</li>
+</ul>
+</li>
+<li>导航到“Queues”</li>
+<li>添加队列名称，然后单击<code>create</code></li>
+<li>通过点击<code>Send to</code>发送测试消息</li>
+</ul>
+<h2 id="Logfile-and-console-output-日志文件和控制台输出"><a href="#Logfile-and-console-output-日志文件和控制台输出" class="headerlink" title="Logfile and console output 日志文件和控制台输出"></a>Logfile and console output 日志文件和控制台输出</h2><p>If ActiveMQ is up and running without problems, the Window’s console window or the Unix command shell will display information similar to the following log line:</p>
+<p>(see stdout output or “[activemq_install_dir]/data/activemq.log”)</p>
+<p>如果ActiveMQ启动并运行没有问题，窗口的控制台窗口或Unix命令shell将显示类似以下日志行的信息：</p>
+<p>（请参见stdout输出或“[activemq_install_dir] /data/activemq.log”）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Apache ActiveMQ 5.11.1 (localhost, ID:ntbk11111-50816-1428933306116-0:1) started | org.apache.activemq.broker.BrokerService | main</div></pre></td></tr></table></figure></p>
+<h2 id="Listen-port-监听端口"><a href="#Listen-port-监听端口" class="headerlink" title="Listen port 监听端口"></a>Listen port 监听端口</h2><p>ActiveMQ’s default port is <code>61616</code>. From another window run netstat and search for port 61616.</p>
+<p>ActiveMQ的默认端口是<code>61616</code>.从另一个窗口运行netstat并搜索端口61616。</p>
+<p>From a Windows console, type:</p>
+<p>在Windows控制台中，键入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -an|find &quot;61616&quot;</div></pre></td></tr></table></figure></p>
+<p>OR<br>From a Unix command shell, type:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -nl|grep 61616</div></pre></td></tr></table></figure></p>
+<h1 id="Monitoring-ActiveMQ-监视ActiveMQ"><a href="#Monitoring-ActiveMQ-监视ActiveMQ" class="headerlink" title="Monitoring ActiveMQ 监视ActiveMQ"></a>Monitoring ActiveMQ 监视ActiveMQ</h1><p>You can monitor ActiveMQ using the Web Console by pointing your browser at<br><a href="http://localhost:8161/admin" target="_blank" rel="external">http://localhost:8161/admin</a></p>
+<p>您可以通过指向浏览器使用Web控制台监视ActiveMQ<br><a href="http://localhost:8161/admin" target="_blank" rel="external">http://localhost:8161/admin</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">From ActiveMQ 5.8 onwards the web apps is secured out of the box.</div><div class="line">The default username and password is admin/admin. You can configure this in the conf/jetty-real.properties file.</div><div class="line"></div><div class="line">从ActiveMQ 5.8起，网络应用程序是开箱即用的。</div><div class="line">默认用户名和密码为admin/admin。 您可以在conf/jetty-real.properties文件中进行配置。</div></pre></td></tr></table></figure></p>
+<p>Or you can use the JMX support to view the running state of ActiveMQ.</p>
+<p>或者可以使用JMX支持来查看ActiveMQ的运行状态。</p>
+<p>For more information see the file docs/WebConsole-README.txt in the distribution.</p>
+<p>有关详细信息，请参阅分发中的文件docs / WebConsole-README.txt。</p>
+<h1 id="Stopping-ActiveMQ-停止ActiveMQ"><a href="#Stopping-ActiveMQ-停止ActiveMQ" class="headerlink" title="Stopping ActiveMQ 停止ActiveMQ"></a>Stopping ActiveMQ 停止ActiveMQ</h1><p>For both Windows and Unix installations, terminate ActiveMQ by typing “CTRL-C” in the console or command shell in which it is running.</p>
+<p>对于Windows和Unix安装，通过在其运行的控制台或命令shell中键入“CTRL-C”来终止ActiveMQ。</p>
+<p>If ActiveMQ was started in the background on Unix, the process can be killed, with the following:</p>
+<p>如果ActiveMQ是在后台在Unix上启动的，进程可以被以下命令杀死：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]/bin</div><div class="line">./activemq stop</div></pre></td></tr></table></figure></p>
+<h1 id="Configuring-ActiveMQ"><a href="#Configuring-ActiveMQ" class="headerlink" title="Configuring ActiveMQ"></a>Configuring ActiveMQ</h1><p>The ActiveMQ broker should now run. You can configure the broker by specifying an Xml Configuration file as a parameter to the activemq command. An alternative is to use the Broker Configuration URI to configure things on the command line in a concise format (though the configuration options are not as extensive as if you use Java or XML code).</p>
+<p>ActiveMQ代理现在应该运行。 您可以通过将Xml配置文件指定为activemq命令的参数来配置代理。 另一种方法是使用Broker配置URI以简洁的格式配置命令行中的内容（虽然配置选项不像使用Java或XML代码那样广泛）。</p>
+<p>You can also see <a href="http://activemq.apache.org/configuring-transports.html" target="_blank" rel="external">Configuring Transports</a> to see how you can configure the various connection, transport and broker options using the connection URL in the <code>ActiveMQConnectionFactory</code>.</p>
+<p>您还可以查看<a href="http://activemq.apache.org/configuring-transports.html" target="_blank" rel="external">配置传输</a>，了解如何使用<code>ActiveMQConnectionFactory</code>中的连接URL配置各种连接，传输和代理选项。</p>
+<p>See the <a href="http://activemq.apache.org/initial-configuration.html" target="_blank" rel="external">Initial Configuration</a> for details of which jars you need to add to your classpath to start using ActiveMQ in your Java code</p>
+<p>有关哪些jar需要添加到类路径以开始在Java代码中使用ActiveMQ的详细信息，请<a href="http://activemq.apache.org/initial-configuration.html" target="_blank" rel="external">参阅初始配置</a></p>
+<p>If you want to use JNDI to connect to your JMS provider then please view the <a href="http://activemq.apache.org/jndi-support.html" target="_blank" rel="external">JNDI Support</a>. If you are a Spring user you should read about Spring Support</p>
+<p>如果要使用<code>JNDI</code>连接到JMS提供程序，请查看<a href="http://activemq.apache.org/jndi-support.html" target="_blank" rel="external">JNDI支持</a>。 如果你是一个<code>Spring</code>用户，你应该阅读关于<a href="http://activemq.apache.org/spring-support.html" target="_blank" rel="external">Spring支持</a></p>
+<p>After the installation, ActiveMQ is running with a basic configuration. For details on configuring options, please see refer to the <a href="http://activemq.apache.org/configuration.html" target="_blank" rel="external">Configuration section</a>.</p>
+<p>安装后，ActiveMQ正在使用基本配置运行。 有关配置选项的详细信息，请参阅<a href="http://activemq.apache.org/configuration.html" target="_blank" rel="external">配置部分</a>。</p>
+<h1 id="Additional-Resources-其他资源"><a href="#Additional-Resources-其他资源" class="headerlink" title="Additional Resources  其他资源"></a>Additional Resources  其他资源</h1><p>If you are new to using ActiveMQ, running the <a href="http://activemq.apache.org/web-samples.html" target="_blank" rel="external">Web Samples</a> or the <a href="http://activemq.apache.org/examples.html" target="_blank" rel="external">Examples</a> is a good next step to learn more about ActiveMQ.</p>
+<p>如果您刚刚使用ActiveMQ，运行<a href="http://activemq.apache.org/web-samples.html" target="_blank" rel="external">Web示例</a>或<a href="http://activemq.apache.org/examples.html" target="_blank" rel="external">示例</a>可以了解ActiveMQ的更多信息。</p>
+<p>The Commercial Providers listed on the <a href="http://activemq.apache.org/support.html" target="_blank" rel="external">Support</a> page may also have additional documentation, examples, tutorials, etc… that can help you get started.</p>
+<p><a href="http://activemq.apache.org/support.html" target="_blank" rel="external">支持页面</a>上列出的商业提供商可能还有其他文档，示例，教程等，可以帮助您开始。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/11/17/ActiveMQ入门/">ActiveMQ官方文档 -- 入门</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">lingyv</a></p>
+        <p><span>发布时间:</span>2016-11-17, 20:12:29</p>
+        <p><span>最后更新:</span>2016-11-17, 16:51:20</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/11/17/ActiveMQ入门/" title="ActiveMQ官方文档 -- 入门">http://lingyv.cn/2016/11/17/ActiveMQ入门/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://lingyv.cn/2016/11/17/ActiveMQ入门/　　作者: lingyv" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/11/18/使用Spring和ActiveMQ实现高效轻量的JMS/">
+                    使用Spring和ActiveMQ实现高效轻量的JMS
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/11/11/Hibernate Validator官方文档--第2章/">
+                    Hibernate Validator官方文档 -- 第2章
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction-介绍"><span class="toc-number">1.</span> <span class="toc-text">Introduction 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pre-Installation-Requirements-安装要求"><span class="toc-number">2.</span> <span class="toc-text">Pre-Installation Requirements 安装要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Installation-Procedure-for-Windows-Windows的安装过程"><span class="toc-number">3.</span> <span class="toc-text">Installation Procedure for Windows Windows的安装过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Binary-Installation-Windows二进制安装"><span class="toc-number">3.1.</span> <span class="toc-text">Windows Binary Installation Windows二进制安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Source-Installation-Windows源码安装"><span class="toc-number">3.2.</span> <span class="toc-text">Windows Source Installation Windows源码安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Developer’s-Release-Windows开发人员版本"><span class="toc-number">3.3.</span> <span class="toc-text">Windows Developer’s Release Windows开发人员版本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Installation-Procedure-for-Unix-Unix的安装过程"><span class="toc-number">4.</span> <span class="toc-text">Installation Procedure for Unix Unix的安装过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Unix-Binary-Installation-Unix二进制安装"><span class="toc-number">4.1.</span> <span class="toc-text">Unix Binary Installation Unix二进制安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-Homebrew-installer-on-OSX"><span class="toc-number">4.2.</span> <span class="toc-text">Using Homebrew installer on OSX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unix-Source-Installation"><span class="toc-number">4.3.</span> <span class="toc-text">Unix Source Installation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Starting-ActiveMQ-运行ActiveMQ"><span class="toc-number">5.</span> <span class="toc-text">Starting ActiveMQ 运行ActiveMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#On-Windows"><span class="toc-number">5.1.</span> <span class="toc-text">On Windows:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#On-Unix"><span class="toc-number">5.2.</span> <span class="toc-text">On Unix:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Testing-the-Installation-测试安装是否成功"><span class="toc-number">6.</span> <span class="toc-text">Testing the Installation 测试安装是否成功</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-the-administrative-interface-使用管理接口"><span class="toc-number">6.1.</span> <span class="toc-text">Using the administrative interface 使用管理接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logfile-and-console-output-日志文件和控制台输出"><span class="toc-number">6.2.</span> <span class="toc-text">Logfile and console output 日志文件和控制台输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Listen-port-监听端口"><span class="toc-number">6.3.</span> <span class="toc-text">Listen port 监听端口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Monitoring-ActiveMQ-监视ActiveMQ"><span class="toc-number">7.</span> <span class="toc-text">Monitoring ActiveMQ 监视ActiveMQ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Stopping-ActiveMQ-停止ActiveMQ"><span class="toc-number">8.</span> <span class="toc-text">Stopping ActiveMQ 停止ActiveMQ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Configuring-ActiveMQ"><span class="toc-number">9.</span> <span class="toc-text">Configuring ActiveMQ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Additional-Resources-其他资源"><span class="toc-number">10.</span> <span class="toc-text">Additional Resources  其他资源</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"ActiveMQ官方文档 -- 入门　| 凌宇　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" data-thread-key="2016/11/17/ActiveMQ入门/" data-title="ActiveMQ官方文档 -- 入门" data-url="http://lingyv.cn/2016/11/17/ActiveMQ入门/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"lingyv"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/11/18/使用Spring和ActiveMQ实现高效轻量的JMS/" title="上一篇: 使用Spring和ActiveMQ实现高效轻量的JMS">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/11/11/Hibernate Validator官方文档--第2章/" title="下一篇: Hibernate Validator官方文档 -- 第2章">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/18/ActiveMQ官方文档--Spring支持/">ActiveMQ官方文档 -- Spring支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/18/使用Spring和ActiveMQ实现高效轻量的JMS/">使用Spring和ActiveMQ实现高效轻量的JMS</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/17/ActiveMQ入门/">ActiveMQ官方文档 -- 入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/11/Hibernate Validator官方文档--第2章/">Hibernate Validator官方文档 -- 第2章</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/10/Hibernate Validator官方文档--第1章/">Hibernate Validator官方文档 -- 第1章</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/06/Velocity用户手册/">Velocity用户手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/02/springSecurity快速指南/">springSecurity快速指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/17/MyBatis官方文档--入门/">MyBatis官方文档 -- 入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/15/vim速查卡/">vim速查卡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/Markdown语法/">Markdown语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/10/markdown快速入门/">Markdown快速入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/06/简明vim练级攻略/">简明 Vim 练级攻略(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/安装mongoDB/">安装mongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/01/绝对路径与相对路径/">Java--相对路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/20/RIME快速指南/">RIME快速指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/10/git快速指南/">Git快速指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/linux安装JDK/">linux安装JDK</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/Java知识点/">Java知识点(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/23/HotSpot虚拟机定位对象/">HotSpot虚拟机之定位对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HotSpot虚拟机创建对象/">HotSpot虚拟机之创建对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/15/Java虚拟机内存/">JVM之内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/spf13-vim/">vim懒人福音--spf13-vim</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/二进制/">2的世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/08/采矿--编码与继电器/">采矿--编码与继电器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/07/新入坑的程序猿们，一起去屠龙吧/">新入坑的程序猿们，一起去屠龙吧！</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/maven项目缓慢/">Maven项目创建缓慢解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/21/JDBC基础/">JDBC基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/Servlet工作原理3/">Servlet原理 三：Servlet体系结构以及工作原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/Servlet工作原理2/">Servlet原理 二：Web应用与创建Servlet实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/07/Servlet工作原理1/">Servlet原理 一：Servlet容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/zshshell/">Shell的唯一选择--zsh</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Ubuntu15.4安装mac主题/">Ubuntu15.4安装mac主题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/vimium/">浏览器神器--Vimium</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/使用Hexo建立个人博客/">使用Hexo建立个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/浅谈Http请求与响应/">Http请求与响应</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 lingyv
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
