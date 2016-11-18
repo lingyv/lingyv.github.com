@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://lingyv.cn/2016/11/11/Hibernate Validator官方文档--第2章/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="Hibernate Validator官方文档–第2章 声明和验证bean约束">
-<meta property="og:updated_time" content="2016-11-17T07:37:39.000Z">
+<meta property="og:updated_time" content="2016-11-18T12:20:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate Validator官方文档 -- 第2章">
 <meta name="twitter:description" content="Hibernate Validator官方文档–第2章 声明和验证bean约束">
@@ -216,6 +216,16 @@
               <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
             
             术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-me">
+          <a href="/categories/我" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            我
           </a>
         </li>
       
@@ -484,10 +494,10 @@
 <p>This bootstraps a validator in the default configuration. Refer to Chapter 8, Bootstrapping to learn more about the different bootstrapping methods and how to obtain a specifically configured Validator instance.</p>
 <p>这将在默认配置中引导验证程序。 有关详细信息，请参阅第8章“引导”，了解不同的引导方法以及如何获取特殊配置的Validator实例。</p>
 <h3 id="2-2-2-Validator-methods"><a href="#2-2-2-Validator-methods" class="headerlink" title="2.2.2. Validator methods"></a>2.2.2. Validator methods</h3><p>The Validator interface contains three methods that can be used to either validate entire entities or just single properties of the entity.</p>
-<p>All three methods return a Set<constraintviolation>. The set is empty, if the validation succeeds. Otherwise a ConstraintViolation instance is added for each violated constraint.</constraintviolation></p>
+<p>All three methods return a Set&lt;ConstraintViolation&gt;. The set is empty, if the validation succeeds. Otherwise a ConstraintViolation instance is added for each violated constraint.</p>
 <p>All the validation methods have a var-args parameter which can be used to specify, which validation groups shall be considered when performing the validation. If the parameter is not specified the default validation group (javax.validation.groups.Default) is used. The topic of validation groups is discussed in detail in Chapter 5, Grouping constraints.</p>
 <p>Validator接口包含三个方法，可用于验证整个实体或仅验证实体的单个属性。</p>
-<p>所有三个方法都返回一个Set <constraintviolation>。 如果验证成功，则该集合为空。 否则，为每个违反的约束添加一个约束违例实例。</constraintviolation></p>
+<p>所有三个方法都返回一个Set&lt;ConstraintViolation&gt;。 如果验证成功，则该集合为空。 否则，为每个违反的约束添加一个约束违例实例。</p>
 <p>所有验证方法都有一个var-args参数，可用于指定在执行验证时应考虑哪些验证组。 如果未指定参数，则使用缺省验证组(javax.validation.groups.Default)。 第5章“分组约束”中详细讨论了验证组的主题。</p>
 <h4 id="2-2-2-1-Validator-validate"><a href="#2-2-2-1-Validator-validate" class="headerlink" title="2.2.2.1. Validator#validate()"></a>2.2.2.1. Validator#validate()</h4><p>Use the validate() method to perform validation of all constraints of a given bean. Example 2.12, “Using Validator#validate()” shows the validation of an instance of the Car class from Example 2.2, “Property-level constraints” which fails to satisfy the @NotNull constraint on the manufacturer property. The validation call therefore returns one ConstraintViolation object.</p>
 <p>使用validate()方法来执行给定bean的所有约束的验证。 例2.12，“使用Validator＃validate()”显示来自例2.2“属性级别约束”的Car类的实例的验证，它不能满足制造商属性的@NotNull约束。 验证调用因此返回一个ConstraintViolation对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Example 2.12. Using Validator#validate()</div><div class="line"></div><div class="line">Car car = new Car( null, true );</div><div class="line"></div><div class="line">Set&lt;ConstraintViolation&lt;Car&gt;&gt; constraintViolations = validator.validate( car );</div><div class="line"></div><div class="line">assertEquals( 1, constraintViolations.size() );</div><div class="line">assertEquals( &quot;may not be null&quot;, constraintViolations.iterator().next().getMessage() );</div></pre></td></tr></table></figure></p>
@@ -500,7 +510,7 @@
 <p>注意：@Valid不受validateProperty()或validateValue()支持。</p>
 <p>Validator#validateProperty() is for example used in the integration of Bean Validation into JSF 2 (see Section 10.2, “JSF &amp; Seam”) to perform a validation of the values entered into a form before they are propagated to the model.</p>
 <p>Validator＃validateProperty()例如用于将Bean验证集成到JSF 2(参见第10.2节“JSF和Seam”)中，以便在将输入到表单中的值传播到模型之前对其进行验证。</p>
-<p>###　2.2.3. ConstraintViolation methods<br>Now it is time to have a closer look at what a ConstraintViolation is. Using the different methods of ConstraintViolation a lot of useful information about the cause of the validation failure can be determined. Table 2.1, “The various ConstraintViolation methods” gives an overview of these methods. The values in the “Example” column refer to Example 2.12, “Using Validator#validate()”.</p>
+<h3 id="2-2-3-ConstraintViolation-methods"><a href="#2-2-3-ConstraintViolation-methods" class="headerlink" title="2.2.3. ConstraintViolation methods"></a>2.2.3. ConstraintViolation methods</h3><p>Now it is time to have a closer look at what a ConstraintViolation is. Using the different methods of ConstraintViolation a lot of useful information about the cause of the validation failure can be determined. Table 2.1, “The various ConstraintViolation methods” gives an overview of these methods. The values in the “Example” column refer to Example 2.12, “Using Validator#validate()”.</p>
 <p>现在是时候仔细观察一下ConstraintViolation是什么。 使用ConstraintViolation的不同方法，可以确定关于验证失败的原因的许多有用信息。 表2.1，“各种约束违背方法”给出了这些方法的概述。 “示例”列中的值引用示例2.12，“Using Validator＃validate()”。<br>Table 2.1. The various ConstraintViolation methods</p>
 <table>
 <thead>
@@ -553,7 +563,7 @@
 </tr>
 </tbody>
 </table>
-<p>##　2.3. Built-in constraints<br>Hibernate Validator comprises a basic set of commonly used constraints. These are foremost the constraints defined by the Bean Validation specification (see Table 2.2, “Bean Validation constraints”). Additionally, Hibernate Validator provides useful custom constraints (see Table 2.3, “Custom constraints” and Table 2.4, “Custom country specific constraints”).</p>
+<h2 id="2-3-Built-in-constraints"><a href="#2-3-Built-in-constraints" class="headerlink" title="2.3. Built-in constraints"></a>2.3. Built-in constraints</h2><p>Hibernate Validator comprises a basic set of commonly used constraints. These are foremost the constraints defined by the Bean Validation specification (see Table 2.2, “Bean Validation constraints”). Additionally, Hibernate Validator provides useful custom constraints (see Table 2.3, “Custom constraints” and Table 2.4, “Custom country specific constraints”).</p>
 <p>Hibernate Validator包含一组基本的常用约束。 这些首先是Bean验证规范定义的约束(见表2.2“Bean验证约束”)。 此外，Hibernate Validator提供了有用的自定义约束(见表2.3“自定义约束”和表2.4“自定义国家特定约束”)。</p>
 <h3 id="2-3-1-Bean-Validation-constraints"><a href="#2-3-1-Bean-Validation-constraints" class="headerlink" title="2.3.1. Bean Validation constraints"></a>2.3.1. Bean Validation constraints</h3><p>Table 2.2, “Bean Validation constraints” shows purpose and supported data types of all constraints specified in the Bean Validation API. All these constraints apply to the field/property level, there are no class-level constraints defined in the Bean Validation specification. If you are using the Hibernate object-relational mapper, some of the constraints are taken into account when creating the DDL for your model (see column “Hibernate metadata impact”).</p>
 <p>表2.2“Bean验证约束”显示了Bean验证API中指定的所有约束的目的和受支持的数据类型。 所有这些约束适用于字段/属性级别，没有在Bean验证规范中定义的类级别约束。 如果使用Hibernate对象关系映射器，在为模型创建DDL时会考虑一些约束(请参阅“Hibernate元数据影响”一栏)。</p>
@@ -658,7 +668,97 @@
 <p>注意：除了表2.2“Bean验证约束”中指示的参数之外，每个约束都有参数message，groups和payload。 这是Bean验证规范的要求。</p>
 <h3 id="2-3-2-Additional-constraints"><a href="#2-3-2-Additional-constraints" class="headerlink" title="2.3.2. Additional constraints"></a>2.3.2. Additional constraints</h3><p>In addition to the constraints defined by the Bean Validation API Hibernate Validator provides several useful custom constraints which are listed in Table 2.3, “Custom constraints”. With one exception also these constraints apply to the field/property level, only @ScriptAssert is a class- level constraint.</p>
 <p>除了Bean Validation API定义的约束外，Hibernate Validator还提供了几个有用的自定义约束，如表2.3“自定义约束”中所列。 有一个例外，这些约束适用于字段/属性级别，只有@ScriptAssert是类级别约束。</p>
-<p>Table 2.3. Custom constraints<br>| Annotation | Supported data types | Use | Hibernate metadata impact |<br>|————|:——————–:|:—:|————————–:|<br>| @CreditCardNumber(ignoreNonDigitCharacters=) | CharSequence | Checks that the annotated character sequence passes the Luhn checksum test. Note, this validation aims to check for user mistakes, not credit card validity! See also Anatomy of Credit Card Numbers. ignoreNonDigitCharacters allows to ignore non digit characters. The default is false. | None |<br>| @EAN    | CharSequence    | Checks that the annotated character sequence is a valid EAN barcode. type determines the type of barcode. The default is EAN-13.    | None |<br>| @Email | CharSequence    | Checks whether the specified character sequence is a valid email address. The optional parameters regexp and flags allow to specify an additional regular expression (including regular expression flags) which the email must match.    | None |<br>| @Length(min=,max=) | CharSequence    | Validates that the annotated character sequence is between min and max included | Column length will be set to max |<br>| @LuhnCheck(startIndex= ,endIndex=,checkDigitIndex=,ignoreNonDigitCharacters=)    | CharSequence    | Checks that the digits within the annotated character sequence pass the Luhn checksum algorithm (see also Luhn algorithm). startIndex and endIndex allow to only run the algorithm on the specified sub-string. checkDigitIndex allows to use an arbitrary digit within the character sequence as the check digit. If not specified it is assumed that the check digit is part of the specified range. Last but not least, ignoreNonDigitCharacters allows to ignore non digit characters.    | None |<br>| @Mod10Check(multiplier=,weight=,startIndex=,endIndex=,checkDigitIndex=,ignoreNonDigitCharacters=) |     CharSequence | Checks that the digits within the annotated character sequence pass the generic mod 10 checksum algorithm. multiplier determines the multiplier for odd numbers (defaults to 3), weight the weight for even numbers (defaults to 1). startIndex and endIndex allow to only run the algorithm on the specified sub-string. checkDigitIndex allows to use an arbitrary digit within the character sequence as the check digit. If not specified it is assumed that the check digit is part of the specified range. Last but not least, ignoreNonDigitCharacters allows to ignore non digit characters.    | None |<br>| @Mod11Check(threshold=,startIndex=,endIndex=,checkDigitIndex=,ignoreNonDigitCharacters=,treatCheck10As=,treatCheck11As=)    | CharSequence    | Checks that the digits within the annotated character sequence pass the mod 11 checksum algorithm. threshold specifies the threshold for the mod11 multiplier growth; if no value is specified the multiplier will grow indefinitely. treatCheck10As and treatCheck11As specify the check digits to be used when the mod 11 checksum equals 10 or 11, respectively. Default to X and 0, respectively. startIndex, endIndex checkDigitIndex and ignoreNonDigitCharacters carry the same semantics as in @Mod10Check. | None |<br>| @NotBlank    | CharSequence    | Checks that the annotated character sequence is not null and the trimmed length is greater than 0. The difference to @NotEmpty is that this constraint can only be applied on strings and that trailing white-spaces are ignored.    | None |<br>| @NotEmpty    | CharSequence, Collection, Map and arrays    | Checks whether the annotated element is not null nor empty    | None |<br>| @Range(min=,max=)    | BigDecimal, BigInteger, CharSequence, byte, short, int, long and the respective wrappers of the primitive types    | Checks whether the annotated value lies between (inclusive) the specified minimum and maximum    | None |<br>| @SafeHtml(whitelistType= ,additionalTags=,additionalTagsWithAttributes=)    | CharSequence    | Checks whether the annotated value contains potentially malicious fragments such as <script>. In order to use this constraint, the jsoup library must be part of the class path. With the whitelistType attribute a predefined whitelist type can be chosen which can be refined via additionalTags or additionalTagsWithAttributes. The former allows to add tags without any attributes, whereas the latter allows to specify tags and optionally allowed attributes using the annotation @SafeHtml.Tag.    | None |<br>| @ScriptAssert(lang=,script=,alias=) | Any type | Checks whether the given script can successfully be evaluated against the annotated element. In order to use this constraint, an implementation of the Java Scripting API as defined by JSR 223 (“Scripting for the JavaTM Platform”) must part of the class path. The expressions to be evaluated can be written in any scripting or expression language, for which a JSR 223 compatible engine can be found in the class path. | None |<br>| @URL(protocol=,host=,port=,regexp=,flags=) | CharSequence    | Checks if the annotated character sequence is a valid URL according to RFC2396. If any of the optional parameters protocol, host or port are specified, the corresponding URL fragments must match the specified values. The optional parameters regexp and flags allow to specify an additional regular expression (including regular expression flags) which the URL must match. Per default this constraint used the java.net.URL constructor to verify whether a given string represents a valid URL. A regular expression based version is also available - RegexpURLValidator - which can be configured via XML (see Section 7.2, “Mapping constraints via constraint-mappings”) or the programmatic API (see Section 11.14.2, “Adding constraint definitions programmatically”).    | None |</p>
+<p>Table 2.3. Custom constraints</p>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th style="text-align:center">Supported data types</th>
+<th style="text-align:center">Use</th>
+<th style="text-align:right">Hibernate metadata impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@CreditCardNumber(ignoreNonDigitCharacters=)</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks that the annotated character sequence passes the Luhn checksum test. Note, this validation aims to check for user mistakes, not credit card validity! See also Anatomy of Credit Card Numbers. ignoreNonDigitCharacters allows to ignore non digit characters. The default is false.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@EAN</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks that the annotated character sequence is a valid EAN barcode. type determines the type of barcode. The default is EAN-13.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@Email</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks whether the specified character sequence is a valid email address. The optional parameters regexp and flags allow to specify an additional regular expression (including regular expression flags) which the email must match.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@Length(min=,max=)</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Validates that the annotated character sequence is between min and max included</td>
+<td style="text-align:right">Column length will be set to max</td>
+</tr>
+<tr>
+<td>@LuhnCheck(startIndex= ,endIndex=,checkDigitIndex=,ignoreNonDigitCharacters=)</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks that the digits within the annotated character sequence pass the Luhn checksum algorithm (see also Luhn algorithm). startIndex and endIndex allow to only run the algorithm on the specified sub-string. checkDigitIndex allows to use an arbitrary digit within the character sequence as the check digit. If not specified it is assumed that the check digit is part of the specified range. Last but not least, ignoreNonDigitCharacters allows to ignore non digit characters.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@Mod10Check(multiplier=,weight=,startIndex=,endIndex=,checkDigitIndex=,ignoreNonDigitCharacters=)</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks that the digits within the annotated character sequence pass the generic mod 10 checksum algorithm. multiplier determines the multiplier for odd numbers (defaults to 3), weight the weight for even numbers (defaults to 1). startIndex and endIndex allow to only run the algorithm on the specified sub-string. checkDigitIndex allows to use an arbitrary digit within the character sequence as the check digit. If not specified it is assumed that the check digit is part of the specified range. Last but not least, ignoreNonDigitCharacters allows to ignore non digit characters.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@Mod11Check(threshold=,startIndex=,endIndex=,checkDigitIndex=,ignoreNonDigitCharacters=,treatCheck10As=,treatCheck11As=)</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks that the digits within the annotated character sequence pass the mod 11 checksum algorithm. threshold specifies the threshold for the mod11 multiplier growth; if no value is specified the multiplier will grow indefinitely. treatCheck10As and treatCheck11As specify the check digits to be used when the mod 11 checksum equals 10 or 11, respectively. Default to X and 0, respectively. startIndex, endIndex checkDigitIndex and ignoreNonDigitCharacters carry the same semantics as in @Mod10Check.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@NotBlank</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks that the annotated character sequence is not null and the trimmed length is greater than 0. The difference to @NotEmpty is that this constraint can only be applied on strings and that trailing white-spaces are ignored.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td style="text-align:center">CharSequence, Collection, Map and arrays</td>
+<td style="text-align:center">Checks whether the annotated element is not null nor empty</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@Range(min=,max=)</td>
+<td style="text-align:center">BigDecimal, BigInteger, CharSequence, byte, short, int, long and the respective wrappers of the primitive types</td>
+<td style="text-align:center">Checks whether the annotated value lies between (inclusive) the specified minimum and maximum</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@SafeHtml(whitelistType= ,additionalTags=,additionalTagsWithAttributes=)</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks whether the annotated value contains potentially malicious fragments such as &lt;script/&gt;. In order to use this constraint, the jsoup library must be part of the class path. With the whitelistType attribute a predefined whitelist type can be chosen which can be refined via additionalTags or additionalTagsWithAttributes. The former allows to add tags without any attributes, whereas the latter allows to specify tags and optionally allowed attributes using the annotation @SafeHtml.Tag.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@ScriptAssert(lang=,script=,alias=)</td>
+<td style="text-align:center">Any type</td>
+<td style="text-align:center">Checks whether the given script can successfully be evaluated against the annotated element. In order to use this constraint, an implementation of the Java Scripting API as defined by JSR 223 (“Scripting for the JavaTM Platform”) must part of the class path. The expressions to be evaluated can be written in any scripting or expression language, for which a JSR 223 compatible engine can be found in the class path.</td>
+<td style="text-align:right">None</td>
+</tr>
+<tr>
+<td>@URL(protocol=,host=,port=,regexp=,flags=)</td>
+<td style="text-align:center">CharSequence</td>
+<td style="text-align:center">Checks if the annotated character sequence is a valid URL according to RFC2396. If any of the optional parameters protocol, host or port are specified, the corresponding URL fragments must match the specified values. The optional parameters regexp and flags allow to specify an additional regular expression (including regular expression flags) which the URL must match. Per default this constraint used the java.net.URL constructor to verify whether a given string represents a valid URL. A regular expression based version is also available - RegexpURLValidator - which can be configured via XML (see Section 7.2, “Mapping constraints via constraint-mappings”) or the programmatic API (see Section 11.14.2, “Adding constraint definitions programmatically”).</td>
+<td style="text-align:right">None</td>
+</tr>
+</tbody>
+</table>
 <h4 id="2-3-2-1-Country-specific-constraints"><a href="#2-3-2-1-Country-specific-constraints" class="headerlink" title="2.3.2.1. Country specific constraints"></a>2.3.2.1. Country specific constraints</h4><p>Hibernate Validator offers also some country specific constraints, e.g. for the validation of social security numbers.</p>
 <p>Hibernate验证器还提供一些国家特定的约束，例如。 用于验证社会保障号码。</p>
 <p>Note:If you have to implement a country specific constraint, consider making it a contribution to Hibernate Validator!</p>
@@ -692,14 +792,15 @@
 <tr>
 <td>@TituloEleitoral</td>
 <td style="text-align:center">CharSequence</td>
-<td style="text-align:center">Checks that the annotated character sequence represents a Brazilian voter ID card number (Título Eleitoral)    Brazil</td>
-<td style="text-align:center">None</td>
+<td style="text-align:center">Checks that the annotated character sequence represents a Brazilian voter ID card number (Título Eleitoral)</td>
+<td style="text-align:center">Brazil</td>
+<td style="text-align:right">None</td>
 </tr>
 </tbody>
 </table>
-<p>Tip<br>In some cases neither the Bean Validation constraints nor the custom constraints provided by Hibernate Validator will fulfill your requirements. In this case you can easily write your own constraint. You can find more information in Chapter 6, Creating custom constraints.</p>
+<p>Tip:In some cases neither the Bean Validation constraints nor the custom constraints provided by Hibernate Validator will fulfill your requirements. In this case you can easily write your own constraint. You can find more information in Chapter 6, Creating custom constraints.</p>
 <p>提示：在某些情况下，Bean验证约束和Hibernate Validator提供的自定义约束都不能满足您的要求。 在这种情况下，您可以轻松地编写自己的约束。 您可以在第6章“创建自定义约束”中找到更多信息。</p>
-</script></p>
+
       
     </div>
 
@@ -922,7 +1023,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Declaring-and-validating-bean-constraints"><span class="nav-number">1.</span> <span class="nav-text">2. Declaring and validating bean constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Declaring-bean-constraints"><span class="nav-number">1.1.</span> <span class="nav-text">2.1. Declaring bean constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-Field-level-constraints"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.1.1. Field-level constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-Property-level-constraints"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.1.2. Property-level constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-Type-argument-constraints"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.1.3. Type argument constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-1-With-Iterable"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">2.1.3.1. With Iterable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-2-With-Map"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">2.1.3.2. With Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-3-With-java-util-Optional"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">2.1.3.3. With java.util.Optional</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-4-With-custom-parameterized-types"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">2.1.3.4. With custom parameterized types</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-Class-level-constraints"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.1.4. Class-level constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-Constraint-inheritance"><span class="nav-number">1.1.5.</span> <span class="nav-text">2.1.5. Constraint inheritance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-6-Object-graphs"><span class="nav-number">1.1.6.</span> <span class="nav-text">2.1.6. Object graphs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Validating-bean-constraints"><span class="nav-number">1.2.</span> <span class="nav-text">2.2. Validating bean constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-Obtaining-a-Validator-instance"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.2.1. Obtaining a Validator instance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-Validator-methods"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.2. Validator methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-1-Validator-validate"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.2.2.1. Validator#validate()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-2-Validator-validateProperty"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2.2.2. Validator#validateProperty()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-3-Validator-validateValue"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.2.2.3. Validator#validateValue()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-Bean-Validation-constraints"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3.1. Bean Validation constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-Additional-constraints"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.3.2. Additional constraints</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Declaring-and-validating-bean-constraints"><span class="nav-number">1.</span> <span class="nav-text">2. Declaring and validating bean constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Declaring-bean-constraints"><span class="nav-number">1.1.</span> <span class="nav-text">2.1. Declaring bean constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-Field-level-constraints"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.1.1. Field-level constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-Property-level-constraints"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.1.2. Property-level constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-Type-argument-constraints"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.1.3. Type argument constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-1-With-Iterable"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">2.1.3.1. With Iterable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-2-With-Map"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">2.1.3.2. With Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-3-With-java-util-Optional"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">2.1.3.3. With java.util.Optional</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-4-With-custom-parameterized-types"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">2.1.3.4. With custom parameterized types</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-Class-level-constraints"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.1.4. Class-level constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-Constraint-inheritance"><span class="nav-number">1.1.5.</span> <span class="nav-text">2.1.5. Constraint inheritance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-6-Object-graphs"><span class="nav-number">1.1.6.</span> <span class="nav-text">2.1.6. Object graphs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Validating-bean-constraints"><span class="nav-number">1.2.</span> <span class="nav-text">2.2. Validating bean constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-Obtaining-a-Validator-instance"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.2.1. Obtaining a Validator instance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-Validator-methods"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.2. Validator methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-1-Validator-validate"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.2.2.1. Validator#validate()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-2-Validator-validateProperty"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2.2.2. Validator#validateProperty()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-3-Validator-validateValue"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.2.2.3. Validator#validateValue()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-ConstraintViolation-methods"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.2.3. ConstraintViolation methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Built-in-constraints"><span class="nav-number">1.3.</span> <span class="nav-text">2.3. Built-in constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-Bean-Validation-constraints"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.3.1. Bean Validation constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-Additional-constraints"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.3.2. Additional constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-1-Country-specific-constraints"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">2.3.2.1. Country specific constraints</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
