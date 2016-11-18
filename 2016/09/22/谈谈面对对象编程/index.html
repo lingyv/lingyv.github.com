@@ -1,0 +1,934 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="编程,思想,转载," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="转自:程序人生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈面对对象编程">
+<meta property="og:url" content="http://lingyv.cn/2016/09/22/谈谈面对对象编程/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="转自:程序人生">
+<meta property="og:image" content="http://lingyv.cn/imag/640.png">
+<meta property="og:image" content="http://lingyv.cn/imag/640-2.png">
+<meta property="og:image" content="http://lingyv.cn/imag/640-3.png">
+<meta property="og:updated_time" content="2016-11-18T15:03:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谈谈面对对象编程">
+<meta name="twitter:description" content="转自:程序人生">
+<meta name="twitter:image" content="http://lingyv.cn/imag/640.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/09/22/谈谈面对对象编程/"/>
+
+
+
+
+
+  <title> 谈谈面对对象编程 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-me">
+          <a href="/categories/我" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/09/22/谈谈面对对象编程/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lingyv">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/touxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="凌宇">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="凌宇" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                谈谈面对对象编程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-22T19:30:38+08:00">
+                2016-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/道/" itemprop="url" rel="index">
+                    <span itemprop="name">道</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/09/22/谈谈面对对象编程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/谈谈面对对象编程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转自:<a href="http://mp.weixin.qq.com/s?__biz=MzA3NDM0ODQwMw==&amp;mid=402191772&amp;idx=1&amp;sn=19e48d56a6fcd0616e3dc597cd52808f&amp;mpshare=1&amp;scene=1&amp;srcid=1025muJPjChI0CzU2rVng5v2#rd" target="_blank" rel="external">程序人生</a><br><a id="more"></a><br>最近写了些和函数式编程的文章，有读者和我讨论函数式编程和面向对象编程的优劣。二者都是很好的编程思想，都在着力解决代码重用的问题，也彼此吸收对方的优点，所以大可不必去分个高下。然而，我面试过许多号称精通面向对象编程（比如：Python / Ruby / C++）的工程师，随便问几个问题，就可以看出这个人对面向对象的理解：</p>
+<ul>
+<li>你觉得在面向对象编程中，最重要的思想是什么？</li>
+<li>如果有人提及「继承」，我会让她写个她在工作中使用继承的例子。</li>
+<li>如果有人提及「多态」，我会让她解释一下多态，并让她写个她在工作中使用多态的例子。</li>
+<li>如果有人提及「代码重用」，我会让她谈谈她对代码重用的理解，并附上一个工作中重用的例子。</li>
+</ul>
+<p>对第一个问题，很多人回答继承，有些人会添上接口，多态等概念，很少人会提及代码重用。</p>
+<p>对第二个问题，几乎 80% 的人都会写出对象继承的代码，而这里面有一大半的人写出的「工作中」使用继承的例子竟然是某著名垃圾书中的经典误人子弟的例子：Duck 继承于 Bird，Bird 继承于 Animal。</p>
+<p>对第三个问题，几乎所有人都是写出对象继承中的多态，然后一般的人给出的还是那本著名垃圾书里的著名例子：鸟能飞，也会叫，鸭子呱呱呱但不会飞。你可以把鸭子对象赋给鸟，让它发出呱呱呱的叫声。</p>
+<p>对于第四个问题，嗯，如果有人回答到第四个问题，并能信手拈来 Iterable，Comparable，这个人如果没看『程序人生』的文章（嘿嘿），那就是基础知识和编程思想已经八九不离十，可以聊对象以外的东西了。</p>
+<p>面向对象编程和函数式编程中最基本，也是最重要的要素是 代码重用，或者更严格地说 代码被重用。这里为什么要严格区分代码重用和代码被重用呢？代码重用根本不是个事儿，除非使用汇编语言，否则你写十行代码，九行都是在重用别人的代码 —— 连往 console 输出这样的简单语句，你是不是都用了语言本身的库函数？就算语言将其归入核心语法，这个语言的实现也必定在底层调用了 libC 的某个函数，来获取操作系统对此的支持。所以说，干编程这一行，重用别人的代码，我们最在行不过；而让自己的代码被别人重用，我们往往底气不足。</p>
+<p>写过半年以上 Python 的，应该都知道所谓的 magic function，如果你的类定义实现了某个 magic function，那么类就会拥有一些神奇的能力，比如：</p>
+<p><img src="/imag/640.png" alt="640"></p>
+<p>上述的类并没有继承任何已知的类（隐式继承 object 不算），然而它可以很容易被别的代码用一种公共的方式调用：</p>
+<p><img src="/imag/640-2.png" alt="640"></p>
+<p>这便是代码的被重用的能力。这种编程的方式，与其说是面向对象编程，不如说是面向接口编程。对象在这里只是一个幌子，其存在的意义更多地是满足某种接口。在面向接口编程中，接口继承要远重要于类继承。</p>
+<p>为什么面向接口编程如此重要？因为它是一种控制反转 —— 通过抽象出一系列接口，并在这些接口上进行操作，使得控制逻辑不依赖于具体的实现；同时，具体的实现可以并不关心控制逻辑如何使用自己，它们会在需要的时候被调用。由此，使用对象的逻辑和对象本身充分解耦，由接口这座桥梁将二者联系起来。这样，代码得到了最大程度的被重用。</p>
+<p>谈到接口继承，不得不提 Liskov substitution principle（里氏变换原则），wikipedia 这样介绍它：</p>
+<blockquote>
+<p>It states that, in a computer program, if S is a subtype of T, then objects of type T may be replaced with objects of type S.</p>
+</blockquote>
+<p>这也是面向对象编程中常说的 Substitutability（可替换性）。这段话翻译过来说就是，在类型系统中，如果类型 S 是类型 T 的子类型，那么类型 T 的任意对象可以被类型 S 的对象替换，且不影响程序的正确性。里氏变换是面向对象编程（其实适用于任何编程思想）非常重要的一个原则，也是程序得以多态的基石。如果我们做一个系统，要注意尽一切可能满足这一原则。</p>
+<p>什么是多态？wikipedia 是这么解释：</p>
+<blockquote>
+<p>polymorphism (from Greek πολύς, polys, “many, much” and μορφή, morphē, “form, shape”) is the provision of a single interface to entities of different types. A polymorphic type is one whose operations can also be applied to values of some other type, or types.</p>
+</blockquote>
+<p>由此可见，多态指的是我们可以对一个操作（接口）使用多种数据类型。多态并不单单是是面向对象编程的一个概念，函数式编程里面，多态也到处可见。我们知道在 Python 里，一个数据结构可以被 map 的前提是其实现了 <strong>iter</strong>，而在 clojure 里，同样的，一个数据类型实现了 ISeq，它就可以使用 map，而在 elixir 里，Enum.map 需要实现 Enumerable protocol。可见，多态并非是面向对象的专利。</p>
+<p>上文中我们调侃的那个「鸟能飞，也会叫，鸭子呱呱呱但不会飞」的所谓面向对象的例子实质上破坏了里氏变换原则。它让你的代码无法享受多态的好处。比如说，你围绕着「鸟」这一基类打造了一个系统，系统的后期开发者用「鸭子」继承了「鸟」，当你的代码执行「飞」这一操作时，由于鸭子不会飞，系统有可能会崩溃（或者抛出异常）。这时你不得不回过头来修改围绕基类打造的系统：当「飞」这个操作运行时，处理一切异常（有时这并不可行）。这就违反了 Open close principle，你为了上层的一个蹩脚的实现，而不得不去修改底层的代码。系统中类似的情况越多，系统的 BUG 就越多。</p>
+<p>为了符合里氏变换，我们需要子类严格继承和实现父类的接口，这就带来了一个问题：「类」这个概念在实际使用中，往往被当成一种分类法（taxonomy），也就是 is-a。is-a 是面向对象里面的一个坑，因为我们在判断一个东西是否是 is-a 时，常常使用我们生活中的逻辑概念去判断，这是非常不可靠的，会出现很多蹩脚设计 —— 比如作为父类型的「鸟」会飞，而子类型的「鸭子」不会飞这样不符合里氏变换但符合生活逻辑的设计。使用「鸟」和「鸭子」来讲述面向对象的继承关系，虽然很直观，很形象，却让初学者陷入一个泥潭而不能自拔。</p>
+<p>Scott Wlaschin 在他那著名的 Funtional programming patterns 中提到，types are not classes。把「类」（class）等同于「类型」（type）也是初学者常常碰上的坑。在函数式编程里面，类型实际上是一种接口，它是数据和数据可以产生的行为间的一座桥梁：</p>
+<p><img src="/imag/640-3.png" alt="640"></p>
+<p>而「类」是「类型」的一种实现方式。从这个意义上讲，「会飞」（flyable） 是一个类型，「鸟」实现了 flyable，而「鸭子」无法实现 flyable，所以「鸭子」并不是「鸟」的子类型。弄明白了这一点，我们就不会傻乎乎地去根据生活经验，把「鸭子」继承在「鸟」的名下。</p>
+<p>而弄明白了这一点，我们也就可以参悟出 java 的设计者为何煞费苦心地为 class 的类继承使用 extends，而接口继承使用 implements，同时如若 override 方法，返回类型必须是 covarient 了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/思想/" rel="tag"># 思想</a>
+          
+            <a href="/tags/转载/" rel="tag"># 转载</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/20/git快速指南-分支/" rel="next" title="Git快速指南--分支">
+                <i class="fa fa-chevron-left"></i> Git快速指南--分支
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/25/RIME快速指南/" rel="prev" title="RIME快速指南">
+                RIME快速指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/22/谈谈面对对象编程/"
+     data-title="谈谈面对对象编程"
+     data-content=""
+     data-url="http://lingyv.cn/2016/09/22/谈谈面对对象编程/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/22/谈谈面对对象编程/"
+           data-title="谈谈面对对象编程" data-url="http://lingyv.cn/2016/09/22/谈谈面对对象编程/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
