@@ -1,0 +1,933 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ActiveMQ,分布式,Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="ActiveMQ官方推荐博客:Synchronous Request Response with ActiveMQ and Spring 原文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Synchronous Request Response with ActiveMQ and Spring">
+<meta property="og:url" content="http://lingyv.cn/2016/11/20/Synchronous Request Response with ActiveMQ and Spring/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="ActiveMQ官方推荐博客:Synchronous Request Response with ActiveMQ and Spring 原文">
+<meta property="og:updated_time" content="2016-11-18T08:17:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Synchronous Request Response with ActiveMQ and Spring">
+<meta name="twitter:description" content="ActiveMQ官方推荐博客:Synchronous Request Response with ActiveMQ and Spring 原文">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/11/20/Synchronous Request Response with ActiveMQ and Spring/"/>
+
+
+
+
+
+  <title> Synchronous Request Response with ActiveMQ and Spring | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/11/20/Synchronous Request Response with ActiveMQ and Spring/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lingyv">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/touxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="凌宇">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="凌宇" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Synchronous Request Response with ActiveMQ and Spring
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T21:12:29+08:00">
+                2016-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/20/Synchronous Request Response with ActiveMQ and Spring/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/Synchronous Request Response with ActiveMQ and Spring/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ActiveMQ官方推荐博客:<a href="https://codedependents.com/2010/03/04/synchronous-request-response-with-activemq-and-spring/" target="_blank" rel="external">Synchronous Request Response with ActiveMQ and Spring 原文</a><br><a id="more"></a><br>A few months ago I did a deep dive into <a href="https://codedependents.com/2009/10/16/efficient-lightweight-jms-with-spring-and-activemq/" target="_blank" rel="external">Efficient Lightweight JMS with Spring and ActiveMQ</a> where I focused on the details for asynchronous sending and receiving of messages. In an ideal world all messaging would be asynchronous. If you need a response then you should set up an asynchronous listener and either have enough state stored in the service or in the message that you can continue processing once the response has been received. However, when ideals lead to complexity, we have to make the decision of how much complexity can we tolerate for the performance we need. Sometimes it just makes more sense to use a synchronous request/response.</p>
+<p>几个月前，我对<a href="https://blog.lingyv.org/2016/11/18/%E4%BD%BF%E7%94%A8Spring%E5%92%8CActiveMQ%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E8%BD%BB%E9%87%8F%E7%9A%84JMS/" target="_blank" rel="external">使用Spring和ActiveMQ实现高效轻量的JMS</a>进行了深入的研究，其中我专注于异步发送和接收消息的细节。 在理想的世界里，所有的消息都是异步的。 如果您需要响应，那么您应该设置一个异步侦听器，并且有足够的状态存储在服务或消息中，您可以在收到响应后继续处理。 然而，当理想导致复杂性时，我们必须做出决定，为了需要的性能我们可以容忍多少复杂性。 有时，使用同步请求/响应更有意义。</p>
+<h1 id="Request-Response-with-JMS"><a href="#Request-Response-with-JMS" class="headerlink" title="Request Response with JMS"></a>Request Response with JMS</h1><p>ActiveMQ documentation actually has a pretty good overview of <a href="http://activemq.apache.org/how-should-i-implement-request-response-with-jms.html" target="_blank" rel="external">how request-response semantics work in JMS</a>.</p>
+<p>ActiveMQ文档实际上对<a href="http://activemq.apache.org/how-should-i-implement-request-response-with-jms.html" target="_blank" rel="external">如何在JMS中请求响应</a>有一个很好的概述。</p>
+<blockquote>
+<p>You might think at first that to implement request-response type operations in JMS that you should create a new consumer with a selector per request; or maybe create a new temporary queue per request.</p>
+<p>您可能首先想到在JMS中实现请求 - 响应类型操作，您应该为每个请求创建一个带有选择器的新使用者(consumer); 或者可以为每个请求创建一个新的临时队列。</p>
+<p>Creating temporary destinations, consumers, producers and connections are all synchronous request-response operations with the broker and so should be avoided for processing each request as it results in lots of chat with the JMS broker.</p>
+<p>创建临时目标，使用者，生产者和连接都是与代理的同步请求 - 响应操作，因此应避免处理每个请求，因为它导致与JMS代理的大量聊天。</p>
+<p>The best way to implement request-response over JMS is to create a temporary queue and consumer per client on startup, set JMSReplyTo property on each message to the temporary queue and then use a correlationID on each message to correlate request messages to response messages. This avoids the overhead of creating and closing a consumer for each request (which is expensive). It also means you can share the same producer &amp; consumer across many threads if you want (or pool them maybe).</p>
+<p>通过JMS实现请求 - 响应的最佳方式是在启动时创建临时队列和每个客户端的消费者，将每个消息的JMSReplyTo属性设置为临时队列，然后对每个消息使用correlationID将请求消息与响应消息相关联。 这避免了为每个请求创建和关闭消费者(这是昂贵的)的开销。 这也意味着你可以共享相同的生产者和消费者跨多个线程，如果你想(或可能池)。</p>
+</blockquote>
+<p>This is a pretty good start but it requires some tweaking to work best in Spring. It also should be noted that <a href="http://lingo.codehaus.org/home" target="_blank" rel="external">Lingo</a> and <a href="http://camel.apache.org/" target="_blank" rel="external">Camel</a> are also suggested as options when using ActiveMQ. In my <a href="http://activemq.apache.org/how-should-i-implement-request-response-with-jms.html" target="_blank" rel="external">previous post</a> I addressed why I don’t use either of these options. In short Camel is more power than is needed for basic messaging and Lingo is built on <a href="http://jencks.codehaus.org/Home" target="_blank" rel="external">Jencks</a>, neither of which have been updated in years.</p>
+<p>这是一个很好的开始，但它需要在Spring中做一些调整以最好的工作。 还应当注意，当使用ActiveMQ时，Lingo和Camel也被建议为选项。 在我的上一篇文章中，我解决了为什么我不使用这些选项。 简而言之，Camel是比基本消息所需要的更多的能量，而Lingo是建立在Jencks上的，这两者都不是多年来更新的。</p>
+<h1 id="Request-Response-in-Spring"><a href="#Request-Response-in-Spring" class="headerlink" title="Request Response in Spring"></a>Request Response in Spring</h1><p>The first thing to notice is that its infeasible to create a consumer and temporary queue per client in Spring since pooling resources is required overcome the <a href="http://activemq.apache.org/jmstemplate-gotchas.html" target="_blank" rel="external">JmsTemplate gotchas</a>. To get around this, I suggest using predefined request and response queues, removing the overhead of creating a temporary queue for each request/response. To allow for multiple consumers and producers on the same queue the JMSCorrelationId is used to correlated the request with its response message.</p>
+<p>首先要注意的是，在Spring中为每个客户端创建一个消费者(consumer)和临时队列是不可行的，因为需要池资源来克服JmsTemplate陷阱。 为了解决这个问题，我建议使用预定义的请求和响应队列，消除为每个请求/响应创建临时队列的开销。 为了允许同一队列上的多个消费者(consumers)和生产者(producers)，JMSCorrelationId用于将请求与其响应消息相关联。</p>
+<p>At this point I implemented the following naive solution:</p>
+<p>在这一点上，我实现了以下天真的解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class Requestor &#123;</div><div class="line"></div><div class="line">    private static final class CorrelationIdPostProcessor implements MessagePostProcessor &#123;</div><div class="line"></div><div class="line">        private final String correlationId;</div><div class="line"></div><div class="line">        public CorrelationIdPostProcessor( final String correlationId ) &#123;</div><div class="line">            this.correlationId = correlationId;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public Message postProcessMessage( final Message msg ) throws JMSException &#123;</div><div class="line">            msg.setJMSCorrelationID( correlationId );</div><div class="line">            return msg;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private final JmsTemplate jmsTemplate;</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    public RequestGateway( JmsTemplate jmsTemplate ) &#123;</div><div class="line">        this.jmsTemplate = jmsTemplate;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String request( final String request, String queue ) throws IOException &#123;</div><div class="line">        final String correlationId = UUID.randomUUID().toString();</div><div class="line">        jmsTemplate.convertAndSend( queue+&quot;.request&quot;, request, new CorrelationIdPostProcessor( correlationId ) );</div><div class="line">        return (String) jmsTemplate.receiveSelectedAndConvert( queue+&quot;.response&quot;, &quot;JMSCorrelationID=&apos;&quot; + correlationId + &quot;&apos;&quot; );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>This worked for a while until the system started occasionally timing out when making a request against a particularly fast responding service. After some debugging it became apparent that the service was responding so quickly that the receive() call was not fully initialized, causing it to miss the message. Once it finished initializing, it would wait until the timeout and fail. Unfortunately, there is very little in the way of documentation for this and the <a href="http://forum.springsource.org/showpost.php?p=141588&amp;postcount=7" target="_blank" rel="external">best suggestion</a> I could find still seemed to leave open the possibility for the race condition by creating the consumer after sending the message. Luckily, according to the <a href="http://technology-related.com/j2ee/1.4/docs/tutorial/doc/JMS4.html#wp79145" target="_blank" rel="external">JMS spec</a>, a consumer becomes active as soon as it is created and, assuming the connection has been started, it will start consuming messages. This allows for the reordering of the method calls leading to the slightly more verbose but also more correct solution. (NOTE: Thanks to Aaron Korver for pointing out that ProducerConsumer needs to implement SessionCallback and that true needs to be passed to the JmsTemplate.execute() for the connection to be started.)</p>
+<p>这工作了一段时间，直到系统在针对特别快速响应的服务发出请求时偶尔超时。在一些调试之后，很明显，服务响应如此之快，以至于receive()调用没有完全初始化，导致它错过了消息。一旦它完成初始化，它将等待，直到超时和失败。不幸的是，在这方面的文档的很少，我可以发现最好的建议通过在发送消息后创建消费者似乎仍然留下了开放的竞争条件的可能性。幸运的是，根据JMS规范，消费者在它被创建时就变成活动的，并假设连接已经开始，它将开始消费消息。这允许方法调用重新排序，虽然导致略微冗长，但也是更正确的解决方案。 (注意：感谢Aaron Korver指出ProducerConsumer需要实现SessionCallback，并且true需要传递到JmsTemplate.execute()，以便连接被启动。)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class Requestor &#123;</div><div class="line"></div><div class="line">    private static final class ProducerConsumer implements SessionCallback&lt;Message&gt; &#123;</div><div class="line"></div><div class="line">        private static final int TIMEOUT = 5000;</div><div class="line"></div><div class="line">        private final String msg;</div><div class="line"></div><div class="line">        private final DestinationResolver destinationResolver;</div><div class="line"></div><div class="line">        private final String queue;</div><div class="line"></div><div class="line">        public ProducerConsumer( final String msg, String queue, final DestinationResolver destinationResolver ) &#123;</div><div class="line">            this.msg = msg;</div><div class="line">            this.queue = queue;</div><div class="line">            this.destinationResolver = destinationResolver;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public Message doInJms( final Session session ) throws JMSException &#123;</div><div class="line">            MessageConsumer consumer = null;</div><div class="line">            MessageProducer producer = null;</div><div class="line">            try &#123;</div><div class="line">                final String correlationId = UUID.randomUUID().toString();</div><div class="line">                final Destination requestQueue =</div><div class="line">                        destinationResolver.resolveDestinationName( session, queue+&quot;.request&quot;, false );</div><div class="line">                final Destination replyQueue =</div><div class="line">                        destinationResolver.resolveDestinationName( session, queue+&quot;.response&quot;, false );</div><div class="line">                // Create the consumer first!</div><div class="line">                consumer = session.createConsumer( replyQueue, &quot;JMSCorrelationID = &apos;&quot; + correlationId + &quot;&apos;&quot; );</div><div class="line">                final TextMessage textMessage = session.createTextMessage( msg );</div><div class="line">                textMessage.setJMSCorrelationID( correlationId );</div><div class="line">                textMessage.setJMSReplyTo( replyQueue );</div><div class="line">                // Send the request second!</div><div class="line">                producer = session.createProducer( requestQueue );</div><div class="line">                producer.send( requestQueue, textMessage );</div><div class="line">                // Block on receiving the response with a timeout</div><div class="line">                return consumer.receive( TIMEOUT );</div><div class="line">            &#125;</div><div class="line">            finally &#123;</div><div class="line">                // Don&apos;t forget to close your resources</div><div class="line">                JmsUtils.closeMessageConsumer( consumer );</div><div class="line">                JmsUtils.closeMessageProducer( producer );</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private final JmsTemplate jmsTemplate;</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    public Requestor( final JmsTemplate jmsTemplate ) &#123;</div><div class="line">        this.jmsTemplate = jmsTemplate;</div><div class="line">     &#125;</div><div class="line"></div><div class="line">    public String request( final String request, String queue ) &#123;</div><div class="line">        // Must pass true as the second param to start the connection</div><div class="line">        return (String) jmsTemplate.execute( new ProducerConsumer( msg, queue, jmsTemplate.getDestinationResolver() ), true );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="About-Pooling"><a href="#About-Pooling" class="headerlink" title="About Pooling"></a>About Pooling</h1><p>Once the request/response logic was correct it was time to load test. Almost instantly, memory usage exploded and the garbage collector started thrashing. Inspecting ActiveMQ with the <a href="http://activemq.apache.org/web-console.html" target="_blank" rel="external">Web Console</a> showed that <code>MessageConsumers</code> were hanging around even though they were being explicitly closed using <code>Spring’s</code> own <code>JmsUtils</code>. Turns out, the <a href="http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/jms/connection/CachingConnectionFactory.html" target="_blank" rel="external">CachingConnectionFactory</a>‘s JavaDoc held the key to what was going on: “Note also that <code>MessageConsumers</code> obtained from a cached <code>Session</code> won’t get closed until the <code>Session</code> will eventually be removed from the pool.” However, if the <code>MessageConsumers</code> could be reused this wouldn’t be an issue. Unfortunately, <code>CachingConnectionFactory</code> caches <code>MessageConsumers</code> based on a hash key which contains the <code>selector</code> among other values. Obviously each request/response call, with its necessarily unique <code>selector</code>, was creating a new consumer that could never be reused. Luckily ActiveMQ provides a <a href="http://activemq.apache.org/maven/activemq-core/apidocs/org/apache/activemq/pool/PooledConnectionFactory.html" target="_blank" rel="external">PooledConnectionFactory</a> which does not cache <code>MessageConsumers</code> and switching to it fixed the problem instantly. However, this means that each request/response requires a new <code>MessageConsumer</code> to be created. This is adds overhead but its the price that must be payed to do synchronous request/response.</p>
+<p>一旦请求/响应逻辑正确，它就加载测试。几乎立即，内存使用爆炸，垃圾收集器开始抖动。使用Web控制台检查ActiveMQ显示<code>MessageConsumers</code>挂起，即使他们正在使用<code>Spring</code>的<code>JmsUtils</code>也被显式关闭。事实证明，<code>CachingConnectionFactory</code>的<code>JavaDoc</code>保存了所发生的事：“还要注意，从<code>缓存的会话(Session)</code>中获得的<code>MessageConsum</code>不会关闭，直到<code>会话(Session)</code>最终从池中删除”。然而，如果<code>MessageConsumers</code>可以被重用,这就不是一个问题。不幸的是，<code>CachingConnectionFactory</code>根据含有其他值中的<code>选择器(selector)</code>的<code>哈希键</code>来缓存<code>MessageConsumers</code>。显然，每个请求/响应调用，必然有唯一的<code>选择器(selector)</code>，正在创建一个新的<code>消费者consumer</code>，永远不能重复使用。幸运的是ActiveMQ提供了一个<code>PooledConnectionFactory</code>，它不缓存<code>MessageConsumers</code>,切换到它可立即解决问题。但是，这意味着每个请求/响应都需要创建一个新的<code>MessageConsumer</code>,这增加了开销，但为了同步请求/响应必须付出这个代价。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/19/ActiveMQ官方文档--Spring支持/" rel="next" title="ActiveMQ官方文档 -- Spring支持">
+                <i class="fa fa-chevron-left"></i> ActiveMQ官方文档 -- Spring支持
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/21/使用Spring发送JMS消息/" rel="prev" title="使用Spring发送JMS消息">
+                使用Spring发送JMS消息 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/20/Synchronous Request Response with ActiveMQ and Spring/"
+     data-title="Synchronous Request Response with ActiveMQ and Spring"
+     data-content=""
+     data-url="http://lingyv.cn/2016/11/20/Synchronous Request Response with ActiveMQ and Spring/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/20/Synchronous Request Response with ActiveMQ and Spring/"
+           data-title="Synchronous Request Response with ActiveMQ and Spring" data-url="http://lingyv.cn/2016/11/20/Synchronous Request Response with ActiveMQ and Spring/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Request-Response-with-JMS"><span class="nav-number">1.</span> <span class="nav-text">Request Response with JMS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Request-Response-in-Spring"><span class="nav-number">2.</span> <span class="nav-text">Request Response in Spring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#About-Pooling"><span class="nav-number">3.</span> <span class="nav-text">About Pooling</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

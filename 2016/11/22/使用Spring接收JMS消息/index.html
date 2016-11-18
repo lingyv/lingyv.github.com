@@ -1,0 +1,952 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ActiveMQ,分布式,Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="ActiveMQ官方推荐博客:原文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Spring接收JMS消息">
+<meta property="og:url" content="http://lingyv.cn/2016/11/22/使用Spring接收JMS消息/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="ActiveMQ官方推荐博客:原文">
+<meta property="og:updated_time" content="2016-11-18T11:29:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Spring接收JMS消息">
+<meta name="twitter:description" content="ActiveMQ官方推荐博客:原文">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/11/22/使用Spring接收JMS消息/"/>
+
+
+
+
+
+  <title> 使用Spring接收JMS消息 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/11/22/使用Spring接收JMS消息/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lingyv">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/touxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="凌宇">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="凌宇" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Spring接收JMS消息
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-22T19:20:29+08:00">
+                2016-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/22/使用Spring接收JMS消息/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/22/使用Spring接收JMS消息/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ActiveMQ官方推荐博客:<a href="https://bsnyderblog.blogspot.jp/2010/02/using-spring-to-receive-jms-messages.html" target="_blank" rel="external">原文</a><br><a id="more"></a><br>Have you ever had a need to create your own JMS consumer? Or will you have this need in the future? If you answered yes to either one of these questions, this post will simplify your life.</p>
+<p>你有没有需要创建自己的JMS消费者(consumer)？ 或者你将来会有这种需要吗？ 如果你对这些问题中的任何一个回答“是”，这篇文章将简化你的生活。</p>
+<p>In the previous post, I discussed <a href="http://bsnyderblog.blogspot.com/2010/02/using-spring-jmstemplate-to-send-jms.html" target="_blank" rel="external">Using the Spring JmsTemplate to Send JMS Messages</a>. As a follow-on, in this post I will demonstrate how to receive messages using Spring JMS. Although the previously mentioned JmsTemplate can receive messages synchronously, here I will focus on asynchronous message reception using the Spring message listener container architecture, specifically the DefaultMessageListenerContainer.</p>
+<p>在上一篇文章中，我讨论了使用Spring <code>JmsTemplate</code>发送JMS消息。 作为后续，在这篇文章中，我将演示如何使用Spring JMS接收消息。 尽管前面提到的<code>JmsTemplate</code>可以同步接收消息，这里我将重点介绍使用Spring消息侦听器容器体系结构的异步消息接收，特别是<code>DefaultMessageListenerContainer</code>。</p>
+<p>The <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html" target="_blank" rel="external">DefaultMessageListenerContainer</a> (DMLC) is another wonderful convenience class that is part of the Spring Framework’s JMS package. As you can see in the Javadoc, the DMLC is not a single class, but a well-abstracted hierarchy for the purpose of receiving messages. The reason for this is that the DMLC takes its inspiration from <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/EJBConcepts5.html" target="_blank" rel="external">Message Driven Beans</a> (MDB).</p>
+<p><a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html" target="_blank" rel="external">DefaultMessageListenerContainer</a>（DMLC）是另一个非常方便的类，它是Spring Framework的JMS包的一部分。 正如您在Javadoc中可以看到的，DMLC不是一个类，而是一个抽象层次结构，用于接收消息。 其原因是DMLC从<a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/EJBConcepts5.html" target="_blank" rel="external">Message Driven Beans</a>（MDB）中获得灵感。</p>
+<p>MDBs were originally defined in the EJB 2.0 spec as a stateless, transaction aware message listener that use JMS resources provided by the Java EE container. MDBs can also be pooled by the Java EE container in order to scale up. In short, MDBs were designed for asynchronous message reception in a way that the Java EE container could manage them. Although the intention was good, unfortunately the disadvantages of MDBs are numerous including:</p>
+<ul>
+<li>MDBs are static in their configuration and creation (they cannot be created dynamically)</li>
+<li>MDBs can only listen to a single destination</li>
+<li>MDBs can only send messages after first receiving a message</li>
+<li>MDBs require an EJB container (and therefore the Java EE container)</li>
+</ul>
+<p>MDB最初在EJB 2.0规范中定义为使用由Java EE容器提供JMS资源的无状态事务感知消息侦听器。 MDB也可以由Java EE容器进行合并，以便向上扩展。 简而言之，MDB是为Java EE容器可以管理异步消息接收而设计的。 虽然目的是好的，但不幸的是，MDB的缺点很多，包括:</p>
+<ul>
+<li>MDB在其配置和创建中是静态的（不能动态创建）</li>
+<li>MDB只能侦听单个目标</li>
+<li>MDB只能在首次接收消息后发送消息</li>
+<li>MDB需要一个EJB容器（因此也就是Java EE容器）</li>
+</ul>
+<p>Although the Spring DMLC took its inspiration from MDBs, it did not replicate these disadvantages; quite the opposite, in fact. The Spring DMLC is commonly used to create what have become known as Message-Driven POJOs (MDP). MDPs offer all of the same functionality as MDBs but without the disadvantages listed above. The Spring DMLC provides many features including:</p>
+<ul>
+<li>Various levels of caching of the JMS resources (connections and sessions) and JMS consumers for increased performance</li>
+<li>The ability to dynamically grow and shrink the number of consumers to concurrently process messages based on load (see <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html#setConcurrentConsumers(int" target="_blank" rel="external">setConcurrentConsumers</a>) and <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html#setMaxConcurrentConsumers(int" target="_blank" rel="external">setMaxConcurrentConsumers</a>)) for additional performance</li>
+<li>Automatically re-establishes connections if the message broker becomes unavailable</li>
+<li>Asynchronous execution of a message listener using the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/core/task/TaskExecutor.html" target="_blank" rel="external">Spring TaskExecutor</a></li>
+<li>Support for local JMS transactions as well as an external transaction manager around message reception and listener execution</li>
+<li>Support for various message acknowledgement modes, each providing different semantics</li>
+</ul>
+<p>虽然Spring的DMLC从MDBs的灵感，它没有复制这些缺点; 恰恰相反，事实上, Spring DMLC通常用于创建Message-Driven POJO（MDP）。 MDP提供与MDB相同的功能，但没有上面列出的缺点。 Spring DMLC提供了许多功能，包括:</p>
+<ul>
+<li>JMS资源（连接和会话）和JMS消费者的各种级别的缓存，以提高性能</li>
+<li>能够动态增长和减少消费者数量，以便根据负载实时处理消息（请参阅<a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html#setConcurrentConsumers(int" target="_blank" rel="external">setConcurrentConsumers</a>)和<a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html#setMaxConcurrentConsumers(int" target="_blank" rel="external">setMaxConcurrentConsumers</a>)）以获得更多性能</li>
+<li>如果消息代理不可用，则自动重新建立连接</li>
+<li>使用<a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/core/task/TaskExecutor.html" target="_blank" rel="external">Spring任务执行器</a>异步执行消息监听器</li>
+<li>支持本地JMS事务以及围绕消息接收和侦听器执行的外部事务管理器</li>
+<li>支持各种消息确认模式，每种模式提供不同的语义</li>
+</ul>
+<p>For some situations, it is important to understand the additional error handling and the redelivery semantics that are provided by the DMLC. For more information, see the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/AbstractMessageListenerContainer.html" target="_blank" rel="external">AbstractMessageListenerContainer JavaDoc</a>.</p>
+<p>对于某些情况，了解DMLC提供的附加错误处理和重新传递语义很重要。 有关更多信息，请参阅<a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/AbstractMessageListenerContainer.html" target="_blank" rel="external">AbstractMessageListenerContainer JavaDoc</a>。</p>
+<p>The reason I recommend the DMLC (or even the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/SimpleMessageListenerContainer.html" target="_blank" rel="external">SimpleMessageListenerContainer</a>) is because writing JMS consumers can be a lot of work. In doing so, you must manually handle and mange the JMS resources and the JMS consumers, any concurrency that is necessary and any use of transactions. If you’ve ever done such work you know how arduous and error prone it can be. Certainly MDBs provide some of these features but with all their disadvantages. By creating MDPs using the Spring DMLC, I have seen users save a tremendous amount of time and increase their productivity significantly. This is because the DMLC offers much flexibility, robustness, a high amount of configurability and it has widespread deployment in businesses all over the world (so it has been widely tested).</p>
+<p>我推荐DMLC（或者甚至<a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/SimpleMessageListenerContainer.html" target="_blank" rel="external">SimpleMessageListenerContainer</a>）的原因是因为编写JMS消费者是很大的工作量。 这样做，任何必要的并发和使用任何事务，您都必须手动处理和管理JMS资源和JMS使用者。 如果你做过这样的工作，你肯定知道它是多么艰巨和容易出错。 当然，MDB提供了一些这些功能，但是具有所有的缺点。 通过使用Spring DMLC创建MDP，我看到用户节省了大量的时间，并显着提高了他们的工作效率。 这是因为DMLC提供了很大的灵活性，鲁棒性，大量的可配置性，并且它在全世界的商业中广泛部署（因此它已经被广泛测试）。</p>
+<p>Compared to MDBs, use of the Spring DMLC is actually surprisingly simple. The easiest way to get started is to using an XML configuration as the Spring DMLC provides <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/jms.html#jms-namespace" target="_blank" rel="external">JMS namespace support</a>. Below is a Spring application context that demonstrates the configuration to use the Spring DMLC with Apache ActiveMQ:</p>
+<p>与MDB相比，使用Spring DMLC实际上非常简单。 最简单的开始方法是使用XML配置，因为Spring DMLC提供了<a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/jms.html#jms-namespace" target="_blank" rel="external">JMS命名空间支持</a>。 下面是一个Spring应用程序上下文，演示了将Spring DMLC与Apache ActiveMQ结合使用的配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">       xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot;</div><div class="line">       xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</div><div class="line">       xsi:schemaLocation=&quot;</div><div class="line">http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</div><div class="line">http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd&quot;&gt;</div><div class="line"></div><div class="line">  &lt;!-- A JMS connection factory for ActiveMQ --&gt;</div><div class="line">  &lt;bean id=&quot;connectionFactory&quot; class=&quot;org.apache.activemq.ActiveMQConnectionFactory&quot;</div><div class="line">  p:brokerURL=&quot;tcp://foo.example.com:61616&quot; /&gt;</div><div class="line"></div><div class="line">  &lt;!-- A POJO that implements the JMS message listener --&gt;</div><div class="line">  &lt;bean id=&quot;simpleMessageListener&quot; class=&quot;com.mycompany.SimpleMessageListener&quot;&gt;</div><div class="line"></div><div class="line">  &lt;!-- The Spring message listener container configuration --&gt;</div><div class="line">  &lt;jms:listener-container</div><div class="line">      container-type=&quot;default&quot;</div><div class="line">      connection-factory=&quot;connectionFactory&quot;</div><div class="line">      acknowledge=&quot;auto&quot;&gt;</div><div class="line">    &lt;jms:listener destination=&quot;TEST.FOO&quot; ref=&quot;simpleMessageListener&quot; method=&quot;onMessage&quot; /&gt;</div><div class="line">  &lt;/jms:listener-container&gt;</div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure></p>
+<p>For folks who are already familiar with the Spring Framework, the XML above is quite straightforward. It defines a connection factory bean for ActiveMQ, a message listener bean and the Spring listener-container. Notice that the jms:listener contains the destination name and not the listener-container. This level of separation is important because it means that the listener-container is not tied to any destination, only the jms:listener is. You can define as many jms:listener elements as is necessary for your application and the container will handle them all.</p>
+<p>对于已经熟悉Spring框架的人来说，上面的XML非常简单。 它定义了ActiveMQ的连接工厂bean，一个消息监听器bean和Spring监听器容器。 请注意，<code>jms:listener</code>包含目标名称，而不是侦听器容器。 这种分离级别很重要，因为它意味着侦听器容器不绑定到任何目标，只有<code>jms:listener</code>。 如果你需要，可以定义尽可能多的<code>jms:listener</code>元素，容器会恰当的处理它们。</p>
+<p>Below is the message listener implementation:</p>
+<p>下面是消息侦听器实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">import javax.jms.JMSException;</div><div class="line">import javax.jms.Message;</div><div class="line">import javax.jms.MessageListener;</div><div class="line">import javax.jms.TextMessage;</div><div class="line"></div><div class="line">import org.apache.log4j.Logger;</div><div class="line"></div><div class="line">public class SimpleMessageListener implements MessageListener &#123;</div><div class="line"></div><div class="line">  private static final Logger LOG = Logger.getLogger(SimpleMessageListener.class);</div><div class="line"></div><div class="line">  public void onMessage(Message message) &#123;</div><div class="line">      try &#123;</div><div class="line">       TextMessage msg = (TextMessage) message;</div><div class="line">       LOG.info(&quot;Consumed message: &quot; + msg.getText());</div><div class="line">      &#125; catch (JMSException e) &#123;</div><div class="line">          // TODO Auto-generated catch block</div><div class="line">          e.printStackTrace();</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>The message listener implementation is deliberately simple as its only purpose is to demonstrate receiving the message and logging the payload of the message. Although this listener implements the javax.jms.MessageListener interface, there are a total of three options available for implementing a message listener to be used with the Spring DMLC:</p>
+<ul>
+<li><a href="http://java.sun.com/j2ee/sdk_1.3/techdocs/api/javax/jms/MessageListener.html" target="_blank" rel="external">The javax.jms.MessageListener</a> - This is what was used in the example above. It is a standardized interface from the JMS spec but handling threading is up to you.</li>
+<li>The Spring <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/SessionAwareMessageListener.html" target="_blank" rel="external">SessionAwareMessageListener</a> - This is a Spring-specific interface the provides access to the JMS session object. This is very useful for request-response messaging. Just be aware that you must do your own exception handling (i.e., override the <a href="http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/jms/listener/adapter/MessageListenerAdapter.html#handleListenerException(java.lang.Throwable" target="_blank" rel="external">handleListenerException</a>) method so exceptions are not lost).</li>
+<li>The Spring <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/adapter/MessageListenerAdapter.html" target="_blank" rel="external">MessageListenerAdapter</a> - This is a Spring-specific interface that allows for type-specific message handling. Use of this interface avoids any JMS-specific dependencies in your code.</li>
+</ul>
+<p>简单的实现消息侦听器是故意的，因为它的唯一目的是示范接收消息和记录消息的有效载荷。 虽然此侦听器实现了javax.jms.MessageListener接口，但是总共有三个选项可用于实现要与Spring DMLC一起使用的消息侦听器:</p>
+<ul>
+<li><a href="http://java.sun.com/j2ee/sdk_1.3/techdocs/api/javax/jms/MessageListener.html" target="_blank" rel="external">javax.jms.MessageListener</a> - 这是上面的例子中使用的。 它是一个来自JMS规范的标准化接口，但是你要处理线程。</li>
+<li>Spring <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/SessionAwareMessageListener.html" target="_blank" rel="external">SessionAwareMessageListener</a> - 这是一个Spring特定的接口，提供对JMS会话对象的访问。 这对于请求 - 响应消息传递非常有用。 只需要注意，你必须做自己的异常处理（即，重写<a href="http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/jms/listener/adapter/MessageListenerAdapter.html#handleListenerException(java.lang.Throwable" target="_blank" rel="external">handleListenerException</a>方法，这样异常不会丢失）。</li>
+<li>Spring <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/adapter/MessageListenerAdapter.html" target="_blank" rel="external">MessageListenerAdapter</a> - 这是一个Spring特定的接口，允许特定类型的消息处理。 使用此接口可避免代码中任何特定于JMS的依赖关系。</li>
+</ul>
+<p>So not only is the Spring message listener container easy to use, it is also full of options to adapt to many environments. And I’ve only focused on the DefaultMessageListenerContainer here, I have not talked about the SimpleMessageListenerContainer (SMLC) beyond a simple mention. At a high level the difference is that the SMLC is static and provides no support for transactions.</p>
+<p>所以Spring消息监听器容器不仅易于使用，也充满了许多适应环境的选项。 这里我只专注于DefaultMessageListenerContainer，没有详细谈到SimpleMessageListenerContainer（SMLC）。 在高级别上，区别在于SMLC是静态的，并且不提供对事务的支持。</p>
+<p>One very big advantage of the Spring message listener container is that this type of XML config can be used in a Java EE container, in a servlet container or stand alone. This same Spring application context will run in Weblogic, JBoss, Tomcat or in a stand alone Spring container. Furthermore, the Spring DMLC also works with just about any JMS compliant messaging middleware available. Just define a bean for the JMS connection factory for your MOM and possibly tweak a few properties on the listener-container and you can begin consuming messages from different MOMs.</p>
+<p>Spring消息监听器容器一个非常大的优点是，这种类型的XML配置可以在Java EE容器中，在servlet容器中使用，或者独立使用。 同样的Spring应用程序上下文将在Weblogic，JBoss，Tomcat或独立的Spring容器中运行。 此外，Spring DMLC还可以与任何JMS兼容的消息中间件可用。 只需为您的MOM的JMS连接工厂定义一个bean，并可能在侦听器容器上调整几个属性，并且您可以开始从不同的MOM消费消息。</p>
+<p>I should also note that the XML configuration is certainly not a requirement either. You can go straight for the underlying Java classes in your own code if you wish. I’ve used each style in various situations, but to begin using the Spring DMLC in the shortest amount of time, I find the Spring XML application context the fastest.</p>
+<p>还应该注意，XML配置不是唯一的方法。 如果你愿意，你可以直接在你代码底层的Java类中陪住。 我在各种情况下使用了各种方式，但我发现Spring XML应用程序上下文是在最快、最短的时间内开始使用Spring DMLC的方式。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/21/使用Spring发送JMS消息/" rel="next" title="使用Spring发送JMS消息">
+                <i class="fa fa-chevron-left"></i> 使用Spring发送JMS消息
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/23/调整Spring中的JMS消息消费/" rel="prev" title="调整Spring中的JMS消息消费">
+                调整Spring中的JMS消息消费 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/22/使用Spring接收JMS消息/"
+     data-title="使用Spring接收JMS消息"
+     data-content=""
+     data-url="http://lingyv.cn/2016/11/22/使用Spring接收JMS消息/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/22/使用Spring接收JMS消息/"
+           data-title="使用Spring接收JMS消息" data-url="http://lingyv.cn/2016/11/22/使用Spring接收JMS消息/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

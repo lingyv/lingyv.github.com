@@ -1,0 +1,956 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ActiveMQ,分布式,Java,官方文档," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="ActiveMQ官方文档 – Spring支持">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ActiveMQ官方文档 -- Spring支持">
+<meta property="og:url" content="http://lingyv.cn/2016/11/19/ActiveMQ官方文档--Spring支持/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="ActiveMQ官方文档 – Spring支持">
+<meta property="og:updated_time" content="2016-11-18T02:47:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ActiveMQ官方文档 -- Spring支持">
+<meta name="twitter:description" content="ActiveMQ官方文档 – Spring支持">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/11/19/ActiveMQ官方文档--Spring支持/"/>
+
+
+
+
+
+  <title> ActiveMQ官方文档 -- Spring支持 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/11/19/ActiveMQ官方文档--Spring支持/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lingyv">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/touxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="凌宇">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="凌宇" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ActiveMQ官方文档 -- Spring支持
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-19T19:49:29+08:00">
+                2016-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/19/ActiveMQ官方文档--Spring支持/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/19/ActiveMQ官方文档--Spring支持/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ActiveMQ官方文档 – Spring支持<br><a id="more"></a><br>We fully support Spring for configuration of the JMS client side as well as for configuring the JMS Message Broker.<br>There is a great <a href="http://codedependents.com/2009/10/16/efficient-lightweight-jms-with-spring-and-activemq/" target="_blank" rel="external">article</a> on using Spring with ActiveMQ - I’d recommend reading it first.</p>
+<p>我们完全支持Spring配置JMS客户端以及配置JMS Message Broker。<br>这是一个关于<a href="http://codedependents.com/2009/10/16/efficient-lightweight-jms-with-spring-and-activemq/" target="_blank" rel="external">使用Spring与ActiveMQ非常棒的文章</a> – 我建议首先阅读它。</p>
+<h1 id="Configuring-the-JMS-client-配置JMS客户端"><a href="#Configuring-the-JMS-client-配置JMS客户端" class="headerlink" title="Configuring the JMS client 配置JMS客户端"></a>Configuring the JMS client 配置JMS客户端</h1><p>To configure an ActiveMQ JMS client in Spring it is just a simple matter of configuring an instance of ActiveMQConnectionFactory within a standard Spring XML configuration file like any other bean. There are several examples and test cases available and this one shows how to construct an ActiveMQConnectionFactory in Spring which is then passed into a Spring JmsTemplate for use by some POJOs.</p>
+<p>要在Spring中配置ActiveMQ JMS客户端，只需在标准Spring XML配置文件（像配置其他bean一样）中配置ActiveMQConnectionFactory的实例即可。 有几个可用的例子和测试用例，这一个展示了如何在Spring中构造一个ActiveMQConnectionFactory，然后将其传递到一个Spring JmsTemplate，供一些POJO使用。</p>
+<p>e.g. the following fragment of XML shows us creating a JMS connection factory for ActiveMQ connecting to a remote broker on a specific host name and port.</p>
+<p>例如: 以下XML片段显示了我们为ActiveMQ创建一个JMS连接工厂，连接到特定主机名和端口上的远程代理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;jmsFactory&quot; class=&quot;org.apache.activemq.ActiveMQConnectionFactory&quot;&gt;</div><div class="line">    &lt;property name=&quot;brokerURL&quot;&gt;</div><div class="line">        &lt;value&gt;tcp://localhost:61616&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p>The following shows how to use Zeroconf to discover the available brokers to connect to.</p>
+<p>下面显示如何使用Zeroconf来发现可用的代理连接。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;jmsFactory&quot; class=&quot;org.apache.activemq.ActiveMQConnectionFactory&quot;&gt;</div><div class="line">    &lt;property name=&quot;brokerURL&quot;&gt;</div><div class="line">        &lt;value&gt;zeroconf://_activemq.broker.development.&lt;/value&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p>From 1.1 of ActiveMQ onwards you can also use JNDI to configure ActiveMQ within Spring. This example shows how to configure Spring using ActiveMQ’s JNDI Support.</p>
+<p>从1.1的ActiveMQ开始，你也可以使用JNDI在Spring中配置ActiveMQ。 此示例显示如何使用ActiveMQ的JNDI支持配置Spring。</p>
+<h1 id="Using-Spring-使用Spring"><a href="#Using-Spring-使用Spring" class="headerlink" title="Using Spring 使用Spring"></a>Using Spring 使用Spring</h1><p>If you are using the new XML Schema-based configuration of Spring 2.0 you can embed the ActiveMQ broker XML inside any regular Spring.xml file without requiring the above factory bean. e.g. here is an example of a regular Spring XML file in Spring 2.0 which also configures a broker.</p>
+<p>如果您使用Spring 2.0基于XML Schema的新配置，您可以在任何常规Spring.xml文件中嵌入ActiveMQ代理XML，而不需要上述工厂bean。 例如:这里是Spring 2.0中常规Spring XML文件的一个例子，它也配置了一个代理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;beans</div><div class="line">  xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">  xmlns:amq=&quot;http://activemq.apache.org/schema/core&quot;</div><div class="line">  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">  xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd</div><div class="line">  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd&quot;&gt;</div><div class="line"></div><div class="line">  &lt;amq:broker useJmx=&quot;false&quot; persistent=&quot;false&quot;&gt;</div><div class="line">    &lt;amq:transportConnectors&gt;</div><div class="line">      &lt;amq:transportConnector uri=&quot;tcp://localhost:0&quot; /&gt;</div><div class="line">    &lt;/amq:transportConnectors&gt;</div><div class="line">  &lt;/amq:broker&gt;</div><div class="line"></div><div class="line">  &lt;amq:connectionFactory id=&quot;jmsFactory&quot; brokerURL=&quot;vm://localhost&quot;/&gt;</div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure></p>
+<p>This allows you to configure JMS artifacts like destinations and connection factories together with the entire broker.</p>
+<p>这允许您将JMS工件（如目标和连接工厂）与整个代理一起配置。</p>
+<h1 id="Working-with-Spring’s-JmsTemplate-使用Spring的JmsTemplate"><a href="#Working-with-Spring’s-JmsTemplate-使用Spring的JmsTemplate" class="headerlink" title="Working with Spring’s JmsTemplate 使用Spring的JmsTemplate"></a>Working with Spring’s JmsTemplate 使用Spring的JmsTemplate</h1><p>Spring supports a handy abstraction, JmsTemplate, which allows you to hide some of the lower level JMS details when sending messages etc.</p>
+<p>Spring支持一个简便的抽象，JmsTemplate，它允许你在发送消息时隐藏一些低级的JMS细节。</p>
+<p>Please be aware that there are a number of <a href="http://activemq.apache.org/jmstemplate-gotchas.html" target="_blank" rel="external">JmsTemplate Gotchas</a> to be careful of.</p>
+<p>请注意，对很多JmsTemplate Gotchas要小心。</p>
+<p>One thing to bear in mind with JmsTemplate is that by default it will create a new connection, session, producer for each message sent - then close them all down again. This is very inefficient! It is done like this to work in EJB containers which tend to use a special ConnectionFactory which does pooling.</p>
+<p>JmsTemplate要记住的一件事是，默认情况下，它将为每个发送的消息创建一个新的连接(connection)，会话(session)，生产者(producer)，然后再次关闭它们。 这是非常低效！ 它在EJB容器倾向于使用一个特殊的ConnectionFactory池工作。</p>
+<p>If you are not using a JCA container to manage your JMS connections, we recommend you use our pooling JMS connection provider, (org.apache.activemq.pool.PooledConnectionFactory) from the activemq-pool library, which will pool the JMS resources to work efficiently with Spring’s JmsTemplate or with EJBs.</p>
+<p>如果不使用JCA容器来管理JMS连接，我们建议您从activemq-pool库中使用我们的池JMS连接提供程序（org.apache.activemq.pool.PooledConnectionFactory），这将JMS资源池有效地使用Spring的JmsTemplate或EJB工作。</p>
+<p>e.g.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;!-- a pooling based JMS provider --&gt;</div><div class="line">  &lt;bean id=&quot;jmsFactory&quot; class=&quot;org.apache.activemq.pool.PooledConnectionFactory&quot; destroy-method=&quot;stop&quot;&gt;</div><div class="line">    &lt;property name=&quot;connectionFactory&quot;&gt;</div><div class="line">      &lt;bean class=&quot;org.apache.activemq.ActiveMQConnectionFactory&quot;&gt;</div><div class="line">        &lt;property name=&quot;brokerURL&quot;&gt;</div><div class="line">          &lt;value&gt;tcp://localhost:61616&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">      &lt;/bean&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">  &lt;/bean&gt;</div><div class="line"></div><div class="line">  &lt;!-- Spring JMS Template --&gt;</div><div class="line">  &lt;bean id=&quot;myJmsTemplate&quot; class=&quot;org.springframework.jms.core.JmsTemplate&quot;&gt;</div><div class="line">    &lt;property name=&quot;connectionFactory&quot;&gt;</div><div class="line">      &lt;ref local=&quot;jmsFactory&quot;/&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">  &lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p> The PooledConnectionFactory supports the pooling of Connection, Session and MessageProducer instances so it can be used with tools like Camel and Spring’s JmsTemplate and MessagListenerContainer . Connections, sessions and producers are returned to a pool after use so that they can be reused later without having to undergo the cost of creating them again.</p>
+<p>PooledConnectionFactory支持Connection，Session和MessageProducer实例的池，所以它可以与诸如Camel和Spring的JmsTemplate和MessagListenerContainer之类的工具一起使用。 Connections，sessions和producers在使用后返回到池，以便以后可以重用它们，而不必再承担创建它们的成本。</p>
+<p>Note: while the PooledConnectionFactory does allow the creation of a collection of active consumers, it does not ‘pool’ consumers. Pooling makes sense for connections, sessions and producers, which can be seldom-used resources, are expensive to create and can remain idle a minimal cost. Consumers, on the other hand, are usually just created at startup and left going, handling incoming messages as they come. When a consumer is complete, it’s preferred to shut down it down rather than leave it idle and return it to a pool for later reuse: this is because, even if the consumer is idle, ActiveMQ will keep delivering messages to the consumer’s prefetch buffer, where they’ll get held up until the consumer is active again.</p>
+<p>注意：虽然PooledConnectionFactory允许创建活动消费者(consumers)的集合，但它不创建消费者(consumers)’池’。 池是有意义的连接(connections)，会话(sessions)和生产者(producers)，这是很少使用的资源，创建昂贵，可以以最低成本保持空闲。 另一方面，消费者(Consumers)通常只是在启动时创建，并且随时随地处理传入的消息。 当消费者完成时，最好关闭它，而不是保持空闲状态，并将其返回到池以供稍后重用：这是因为即使消费者空闲，ActiveMQ将继续向消费者的预取缓冲区传递消息， 而在那里他们会被阻止，直到消费者再次活跃。</p>
+<p>If you are creating a collection of consumers (for example, for multi-threaded message consumption), you should consider keeping a low prefetch value (e.g. 10 or 20), to ensure that all messages don’t end up going to just one of the consumers.</p>
+<p>如果您正在创建一个消费者(consumers)集合（例如，对于多线程消息消费），则应考虑保持低预取值（例如10或20），以确保所有消息不会最终只到达一个消费者。</p>
+<p>We do also have a pooling JMS ConnectionFactory for use inside a JCA / MDB container (org.apache.activemq.ra.InboundConnectionProxyFactory), when using our JCA Resource Adapter which will reuse the same JMS connection/session which is being used for inbound messages.</p>
+<p>当使用我们的JCA资源适配器时，我们也有一个JMS ConnectionFactory池用于JCA / MDB容器（org.apache.activemq.ra.InboundConnectionProxyFactory），它将重用与入站消息相同的JMS连接(connection)/会话(session) 。</p>
+<h1 id="Consuming-JMS-from-inside-Spring-从Spring内部使用JMS"><a href="#Consuming-JMS-from-inside-Spring-从Spring内部使用JMS" class="headerlink" title="Consuming JMS from inside Spring  从Spring内部使用JMS"></a>Consuming JMS from inside Spring  从Spring内部使用JMS</h1><p>Spring’s <a href="http://static.springsource.org/spring/docs/2.5.x/reference/jms.html#jms-mdp" target="_blank" rel="external">MessagListenerContainer</a> should be used for message consumption. This provides all the power of MDBs - efficient JMS consumption and pooling of the message listeners - but without requiring a full EJB container.</p>
+<p>Spring的<a href="http://static.springsource.org/spring/docs/2.5.x/reference/jms.html#jms-mdp" target="_blank" rel="external">MessagListenerContainer</a>应该用于消息消费(message consumption)。 它提供了MDB的所有功能 - 高效的JMS消耗和消息侦听器池 - 但不需要完整的EJB容器。</p>
+<p>You can use the activemq-pool <code>org.apache.activemq.pool.PooledConnectionFactory</code> for efficient pooling of the connections and sessions for your collection of consumers, or you can use the Spring JMS <code>org.springframework.jms.connection.CachingConnectionFactory</code> to achieve the same effect.</p>
+<p>您可以使用activemq-pool <code>org.apache.activemq.pool.PooledConnectionFactory</code>来有效地池化消费者集合的连接和会话，也可以使用Spring JMS <code>org.springframework.jms.connection.CachingConnectionFactory</code>实现相同的效果。</p>
+<h1 id="More-Information-更多信息"><a href="#More-Information-更多信息" class="headerlink" title="More Information 更多信息"></a>More Information 更多信息</h1><p>Also check out the following blogs for information about using Spring JMS with ActiveMQ:</p>
+<p>另请参阅以下博客，了解有关使用ActiveMQ使用Spring JMS的信息：</p>
+<ul>
+<li><a href="http://codedependents.com/2010/03/04/synchronous-request-response-with-activemq-and-spring/" target="_blank" rel="external">Synchronous Request Response with ActiveMQ and Spring</a></li>
+<li><a href="http://bsnyderblog.blogspot.com/2010/02/using-spring-jmstemplate-to-send-jms.html" target="_blank" rel="external">Using Spring to Send JMS Messages</a></li>
+<li><a href="http://bsnyderblog.blogspot.com/2010/02/using-spring-to-receive-jms-messages.html" target="_blank" rel="external">Using Spring to Receive JMS Messages</a></li>
+<li><a href="http://bsnyderblog.blogspot.com/2010/05/tuning-jms-message-consumption-in.html" target="_blank" rel="external">Tuning JMS Message Consumption In Spring</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/官方文档/" rel="tag"># 官方文档</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/18/使用Spring和ActiveMQ实现高效轻量的JMS/" rel="next" title="使用Spring和ActiveMQ实现高效轻量的JMS">
+                <i class="fa fa-chevron-left"></i> 使用Spring和ActiveMQ实现高效轻量的JMS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/20/Synchronous Request Response with ActiveMQ and Spring/" rel="prev" title="Synchronous Request Response with ActiveMQ and Spring">
+                Synchronous Request Response with ActiveMQ and Spring <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/19/ActiveMQ官方文档--Spring支持/"
+     data-title="ActiveMQ官方文档 -- Spring支持"
+     data-content=""
+     data-url="http://lingyv.cn/2016/11/19/ActiveMQ官方文档--Spring支持/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/19/ActiveMQ官方文档--Spring支持/"
+           data-title="ActiveMQ官方文档 -- Spring支持" data-url="http://lingyv.cn/2016/11/19/ActiveMQ官方文档--Spring支持/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Configuring-the-JMS-client-配置JMS客户端"><span class="nav-number">1.</span> <span class="nav-text">Configuring the JMS client 配置JMS客户端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-Spring-使用Spring"><span class="nav-number">2.</span> <span class="nav-text">Using Spring 使用Spring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Working-with-Spring’s-JmsTemplate-使用Spring的JmsTemplate"><span class="nav-number">3.</span> <span class="nav-text">Working with Spring’s JmsTemplate 使用Spring的JmsTemplate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Consuming-JMS-from-inside-Spring-从Spring内部使用JMS"><span class="nav-number">4.</span> <span class="nav-text">Consuming JMS from inside Spring  从Spring内部使用JMS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#More-Information-更多信息"><span class="nav-number">5.</span> <span class="nav-text">More Information 更多信息</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
