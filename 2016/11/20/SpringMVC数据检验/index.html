@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://lingyv.cn/2016/11/20/SpringMVC数据检验/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="SpringMVC中使用Hibernate Validator检验数据">
-<meta property="og:updated_time" content="2016-11-20T05:17:26.000Z">
+<meta property="og:updated_time" content="2016-11-20T10:58:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC中使用Hibernate Validator检验数据">
 <meta name="twitter:description" content="SpringMVC中使用Hibernate Validator检验数据">
@@ -403,28 +403,97 @@
 <h1 id="JSR-303"><a href="#JSR-303" class="headerlink" title="JSR 303"></a>JSR 303</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
 <li>JSR 303 用于对Java Bean中的字段的值进行验证,使得验证逻辑从业务代码中脱离出来</li>
 <li>是一个运行时的数据验证框架，在验证之后验证的错误信息会被马上返回</li>
-<li>一般用于表单提交页面(如用户名必填、只能由数字字母组成等等)<h2 id="注解类"><a href="#注解类" class="headerlink" title="注解类"></a>注解类</h2></li>
-<li>@NotNull            注解元素必须是非空</li>
-<li>@Null                注解元素必须是空</li>
-<li>@Digits            验证数字构成是否合法</li>
-<li>@Future            验证是否在当前系统时间之后</li>
-<li>@Past                验证是否在当前系统时间之前</li>
-<li>@Max                验证值是否小于等于最大指定整数值</li>
-<li>@Min                验证值是否大于等于最小指定整数值</li>
-<li>@Pattern            验证字符串是否匹配指定的正则表达式</li>
-<li>@Size                验证元素大小是否在指定范围内</li>
-<li>@DecimalMax    验证值是否小于等于最大指定小数值</li>
-<li>@DecimalMin    验证值是否大于等于最小指定小数值</li>
-<li>@AssertTrue        被注释的元素必须为true</li>
-<li>@AssertFalse    被注释的元素必须为false</li>
+<li>一般用于表单提交页面(如用户名必填、只能由数字字母组成等等)</li>
 </ul>
+<h2 id="注解类"><a href="#注解类" class="headerlink" title="注解类"></a>注解类</h2><table>
+<thead>
+<tr>
+<th>注解</th>
+<th style="text-align:right">意思</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@NotNull</td>
+<td style="text-align:right">注解元素必须是非空</td>
+</tr>
+<tr>
+<td>@Null</td>
+<td style="text-align:right">注解元素必须是空</td>
+</tr>
+<tr>
+<td>@Digits</td>
+<td style="text-align:right">验证数字构成是否合法</td>
+</tr>
+<tr>
+<td>@Future</td>
+<td style="text-align:right">验证是否在当前系统时间之后</td>
+</tr>
+<tr>
+<td>@Past</td>
+<td style="text-align:right">验证是否在当前系统时间之前</td>
+</tr>
+<tr>
+<td>@Max</td>
+<td style="text-align:right">验证值是否小于等于最大指定整数值</td>
+</tr>
+<tr>
+<td>@Min</td>
+<td style="text-align:right">验证值是否大于等于最小指定整数值</td>
+</tr>
+<tr>
+<td>@Pattern</td>
+<td style="text-align:right">验证字符串是否匹配指定的正则表达式</td>
+</tr>
+<tr>
+<td>@Size</td>
+<td style="text-align:right">验证元素大小是否在指定范围内</td>
+</tr>
+<tr>
+<td>@DecimalMax</td>
+<td style="text-align:right">验证值是否小于等于最大指定小数值</td>
+</tr>
+<tr>
+<td>@DecimalMin</td>
+<td style="text-align:right">验证值是否大于等于最小指定小数值</td>
+</tr>
+<tr>
+<td>@AssertTrue</td>
+<td style="text-align:right">被注释的元素必须为true</td>
+</tr>
+<tr>
+<td>@AssertFalse</td>
+<td style="text-align:right">被注释的元素必须为false</td>
+</tr>
+</tbody>
+</table>
 <h1 id="Hibernate-Validator"><a href="#Hibernate-Validator" class="headerlink" title="Hibernate Validator"></a>Hibernate Validator</h1><p>Hibernate Validator 是 Bean Validation 的参考实现 . Hibernate Validator 提供了 JSR 303 规范中所有内置 constraint 的实现，除此之外还有一些附加的 constraint。</p>
-<h2 id="扩展注解"><a href="#扩展注解" class="headerlink" title="扩展注解"></a>扩展注解</h2><ul>
-<li>@Email            被注释的元素必须是电子邮箱地址</li>
-<li>@Length            被注释的字符串的大小必须在指定的范围内</li>
-<li>@NotEmpty        被注释的字符串的必须非空</li>
-<li>@Range            被注释的元素必须在合适的范围内</li>
-</ul>
+<h2 id="扩展注解"><a href="#扩展注解" class="headerlink" title="扩展注解"></a>扩展注解</h2><table>
+<thead>
+<tr>
+<th>注解</th>
+<th style="text-align:right">意思</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Email</td>
+<td style="text-align:right">被注释的元素必须是电子邮箱地址</td>
+</tr>
+<tr>
+<td>@Length</td>
+<td style="text-align:right">被注释的字符串的大小必须在指定的范围内</td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td style="text-align:right">被注释的字符串的必须非空</td>
+</tr>
+<tr>
+<td>@Range</td>
+<td style="text-align:right">被注释的元素必须在合适的范围内</td>
+</tr>
+</tbody>
+</table>
 <h1 id="配置SpringMVC"><a href="#配置SpringMVC" class="headerlink" title="配置SpringMVC"></a>配置SpringMVC</h1><h2 id="配置-SpringMVC-校验框架"><a href="#配置-SpringMVC-校验框架" class="headerlink" title="配置 SpringMVC 校验框架"></a>配置 SpringMVC 校验框架</h2><h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">     &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</div><div class="line">     &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;</div><div class="line">     &lt;version&gt;5.1.3.Final&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
 <h3 id="在SpringMVC配置文件中配置"><a href="#在SpringMVC配置文件中配置" class="headerlink" title="在SpringMVC配置文件中配置"></a>在SpringMVC配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;mvc:annotation-driven validator=&quot;validator&quot; /&gt;</div><div class="line"></div><div class="line">&lt;bean id=&quot;validator&quot;</div><div class="line">	class=&quot;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&quot;&gt;</div><div class="line">	&lt;property name=&quot;providerClass&quot; value=&quot;org.hibernate.validator.HibernateValidator&quot; /&gt;</div><div class="line">	&lt;!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties --&gt;</div><div class="line">	&lt;property name=&quot;validationMessageSource&quot; ref=&quot;messageSource&quot; /&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
 <h3 id="在JavaBean中进行配置"><a href="#在JavaBean中进行配置" class="headerlink" title="在JavaBean中进行配置"></a>在JavaBean中进行配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class User implements Serializable &#123;</div><div class="line"></div><div class="line">	@NotEmpty(message=&quot;&#123;NotEmpty.user.userName&#125;&quot;)</div><div class="line">	private String userName ;</div><div class="line"></div><div class="line">	@Pattern(regexp=&quot;[0-9a-zA-Z]&#123;6,30&#125;&quot;, message=&quot;&#123;Pattern.user.password&#125;&quot;)</div><div class="line">	private String password ;</div><div class="line"></div><div class="line">	@Length(min=2, max=100, message=&quot;&#123;Length.user.realName&#125;&quot;)</div><div class="line">	private String realName ;</div><div class="line"></div><div class="line">	@Email(message=&quot;&#123;Email.user.email&#125;&quot;)</div><div class="line">	private String email ;</div><div class="line"></div><div class="line">	@NotNull(message = &quot;&#123;NotNull.user.age&#125;&quot;)</div><div class="line">	@Between(min = 18, max = 45)</div><div class="line">	private Integer age ;</div><div class="line"></div><div class="line">  ...getter and setter...</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -597,7 +666,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
