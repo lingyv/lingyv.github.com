@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,编程," />
+  <meta name="keywords" content="Java,基础," />
 
 
 
@@ -84,18 +84,16 @@
 
 
 
-<meta name="description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
+<meta name="description" content="String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM之内存">
-<meta property="og:url" content="http://lingyv.cn/2016/08/15/Java虚拟机内存/index.html">
+<meta property="og:title" content="Java字符串">
+<meta property="og:url" content="http://lingyv.cn/2016/10/10/Java字符串/index.html">
 <meta property="og:site_name" content="凌宇">
-<meta property="og:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
-<meta property="og:image" content="http://lingyv.cn/imag/jvm数据区.png">
-<meta property="og:updated_time" content="2016-10-15T15:05:50.000Z">
+<meta property="og:description" content="String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。">
+<meta property="og:updated_time" content="2016-11-20T01:25:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM之内存">
-<meta name="twitter:description" content="《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&amp;lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：">
-<meta name="twitter:image" content="http://lingyv.cn/imag/jvm数据区.png">
+<meta name="twitter:title" content="Java字符串">
+<meta name="twitter:description" content="String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。">
 
 
 
@@ -123,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://lingyv.cn/2016/08/15/Java虚拟机内存/"/>
+  <link rel="canonical" href="http://lingyv.cn/2016/10/10/Java字符串/"/>
 
 
 
 
 
-  <title> JVM之内存 | 凌宇 </title>
+  <title> Java字符串 | 凌宇 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -303,7 +301,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/08/15/Java虚拟机内存/">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/10/10/Java字符串/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="lingyv">
@@ -327,7 +325,7 @@
             
             
               
-                JVM之内存
+                Java字符串
               
             
           </h1>
@@ -340,8 +338,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-15T19:30:38+08:00">
-                2016-08-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-10T18:10:29+08:00">
+                2016-10-10
               </time>
             
 
@@ -359,8 +357,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/道/" itemprop="url" rel="index">
-                    <span itemprop="name">道</span>
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
                   </a>
                 </span>
 
@@ -374,8 +372,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/08/15/Java虚拟机内存/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/15/Java虚拟机内存/" itemprop="commentCount"></span>
+                <a href="/2016/10/10/Java字符串/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/Java字符串/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,63 +399,39 @@
       
 
       
-        <p>《深入理解Java虚拟机：JVM高级特性与最佳实践》读书笔记。<br>Java虚拟机在执行Java程序时，会把它管理的内存划分为不同的数据区域，根据&lt;Java虚拟机规范》的规定，Java虚拟机管理的内存包括一下几个运行时数据区域：</p>
-<a id="more"></a>
-<p><img src="/imag/jvm数据区.png" alt="jvm.png"></p>
-<p>各内存的作用：</p>
-<ol>
-<li>程序计数器<ul>
-<li>程序计数器是一块比较小的内存，可以看作是当前线程所执行字节码的行号指示器。</li>
-<li>由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式实现，在任何一个确定的时刻，一个处理器(多核处理器是一个内核)都只会执行一条线程中的指令。所以，为了线程切换后能恢复到正确的执行位置，每个线程都需要有一个独立的程序计数器。因此，这块内存是线程私有的。</li>
-<li>如果线程正在执行的是Native方法，这个计数器的值则为空。</li>
-</ul>
+        <p>String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。<br><a id="more"></a></p>
+<h1 id="创建String对象"><a href="#创建String对象" class="headerlink" title="创建String对象"></a>创建String对象</h1><ul>
+<li><p>字面量形式创建<br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s = &quot;abc&quot;;</div></pre></td></tr></table></figure>
+<p>JVM为了减少字符串对象的重复创建，维护了一段特殊的内存，这段内存被成为字符串常量池或者字符串字面量池.</p>
+<p>当代码中出现字面量形式创建字符串对象时，JVM首先会对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象被创建，然后将这个引用放入字符串常量池，并返回该引用。</p>
 </li>
-<li>Java虚拟机栈<ul>
-<li>Java虚拟机栈是线程私有的，生命周期与线程相同。<br>虚拟机栈描述的是Java方法执行的内存模型：每个方法执行的同时都会创建一个栈帧用于存放局部变量表、操作数栈、动态链接、方法出口等信息。</li>
-<li>每个方法从调用至执行完成的过程，对应于一个栈桢在虚拟机栈中入栈到出栈的过程。</li>
-<li>其中，局部变量表存放了编译期可知的各种基本数据类型、对象引用(reference类型)和returnAddress类型(指向一条字节码指令的地址)。</li>
-<li>局部变量表所需要的内存在编译期间完成分配,在运行方法期间不改变局部变量表的大小。</li>
-</ul>
+<li><p>使用<code>new</code>关键字<br>当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。</p>
+<p>代码：</p>
+<p><code>&#39;==&#39;的含义- -&gt; 基本数据类型之间应用双等号，比较的是他们的数值。复合数据类型(类)之间应用双等号，比较的是他们在内存中的存放地址。</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">String s1 = &quot;abc&quot;;</div><div class="line">String s2 = &quot;abc&quot;;  //在常量池中查找对象</div><div class="line">System.out.println(s1 == s2);   //true</div><div class="line"></div><div class="line">String s3 = &quot;abc&quot;;</div><div class="line">String s4 = new String(&quot;abc&quot;);  //直接在堆内存(Java Heap)中创建一个新的对象</div><div class="line">System.out.println(s3 == s4);   //false</div><div class="line"></div><div class="line">String s5 = &quot;abc&quot;;</div><div class="line">String s6 = &quot;def&quot;;</div><div class="line">String s7 = s5 + s6;    //对于所有包含new方式新建对象（包括null）的“+”连接表达式，它所产生的新对象都不会被加入字符串池中。</div><div class="line">String s8 = &quot;abcdef&quot;;</div><div class="line">String s9 = &quot;abc&quot; + &quot;def&quot;;  //只有使用引号包含文本的方式创建的String对象之间使用“+”连接产生的新对象才会被加入字符串池中。</div><div class="line">System.out.println(s7 == s8);   //false</div><div class="line">System.out.println(s8 == s9);   //true</div><div class="line"></div><div class="line">String ss = new String(&quot;abc&quot;);</div><div class="line">/*</div><div class="line">这条语句创建了2个对象</div><div class="line">考虑类加载阶段和实际执行时:</div><div class="line">（1）类加载对一个类只会进行一次。&quot;abc&quot;在类加载时就已经创建并驻留了（如果该类被加载之前已经有&quot;abc&quot;字符串被驻留过则不需要重复创建用于驻留的&quot;abc&quot;实例）。驻留的字符串是放在全局共享的字符串常量池中的。</div><div class="line">（2）在这段代码后续被运行的时候，&quot;abc&quot;字面量对应的String实例已经固定了，不会再被重复创建。所以这段代码将常量池中的对象复制一份放到heap中，并且把heap中的这个对象的引用交给ss持有。</div><div class="line"> */</div><div class="line"></div><div class="line">String ss1 = &quot;abc&quot;;</div><div class="line">String ss2 = new String(&quot;abc&quot;);</div><div class="line">String ss3 = ss2.intern();</div><div class="line">System.out.println(ss1 == ss3);     //true</div><div class="line">System.out.println(ss2 == ss3);     //false</div></pre></td></tr></table></figure>
 </li>
-<li>本地方法栈<ul>
-<li>本地方法栈的作用与虚拟机栈非常相似。</li>
-<li>他们的区别是虚拟机栈为虚拟机执行Java方法(字节码)服务，本地方法栈为虚拟机所使用到的Native方法服务。</li>
 </ul>
-</li>
-<li>Java堆<ul>
-<li>Java堆是所有线程共享的一块内存区域，在虚拟机启动时创建。</li>
-<li>Java堆的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存(Java虚拟机规范:所有的对象实例以及数组都要在堆上分配)。</li>
-<li>Java堆是垃圾收集器管理的主要区域，因此也称作”GC堆”(Garbage Collected Heap)。</li>
-<li>Java堆可已处于物理上不连续的内存空间中，只有逻辑上连续即可。可通过(-Xmx和-Xms控制大小)。</li>
-</ul>
-</li>
-<li>方法区<ul>
-<li>方法区是线程共享的内存区域。<br>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。<br>虽然Java虚拟机规范把方法区描述为堆的一个逻辑部分，但他却又一个别名–Non-Heap(非堆),以和Java堆区分开。<br>运行时常量池是方法区的一部分，用于存放各种字面量和符号引用。</li>
-</ul>
-</li>
-</ol>
-<p>异常信息：</p>
+<h1 id="为什么把String设计成不可变的？"><a href="#为什么把String设计成不可变的？" class="headerlink" title="为什么把String设计成不可变的？"></a>为什么把String设计成不可变的？</h1><h2 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h2><p>字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。</p>
+<h2 id="缓存Hashcode"><a href="#缓存Hashcode" class="headerlink" title="缓存Hashcode"></a>缓存Hashcode</h2><p>Java中经常会用到字符串的哈希码（hashcode）。例如，在HashMap中，字符串的不可变能保证其hashcode永远保持一致，这样就可以避免一些不必要的麻烦。这也就意味着每次在使用一个字符串的hashcode的时候不用重新计算一次，这样更加高效。</p>
+<p>在String类中，有以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">private int hash;//this is used to cache hash code.</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>以上代码中hash变量中就保存了一个String对象的hashcode，因为String类不可变，所以一旦对象被创建，该hash值也无法改变。所以，每次想要使用该对象的hashcode的时候，直接返回即可。</p>
+</blockquote>
+<h2 id="使其他类的使用更加便利"><a href="#使其他类的使用更加便利" class="headerlink" title="使其他类的使用更加便利"></a>使其他类的使用更加便利</h2><p>在介绍这个内容之前，先看以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">HashSet&lt;String&gt; set = new HashSet&lt;String&gt;();</div><div class="line">set.add(new String(&quot;a&quot;));</div><div class="line">set.add(new String(&quot;b&quot;));</div><div class="line">set.add(new String(&quot;c&quot;));</div><div class="line"></div><div class="line">for(String a: set)</div><div class="line">    a.value = &quot;a&quot;;</div></pre></td></tr></table></figure></p>
+<p>在上面的例子中，如果字符串可以被改变，那么以上用法将有可能违反Set的设计原则，因为Set要求其中的元素不可以重复。上面的代码只是为了简单说明该问题，其实String类中并没有value这个字段值。</p>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>String被广泛的使用在其他Java类中充当参数。比如网络连接、打开文件等操作。如果字符串可变，那么类似操作可能导致安全问题。因为某个方法在调用连接操作的时候，他认为会连接到某台机器，但是实际上并没有（其他引用同一String对象的值修改会导致该连接中的字符串内容被修改）。可变的字符串也可能导致反射的安全问题，因为他的参数也是字符串。</p>
+<p>代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">boolean connect(string s)&#123;</div><div class="line">    if (!isSecure(s)) &#123;</div><div class="line">throw new SecurityException();</div><div class="line">&#125;</div><div class="line">    //如果s在该操作之前被其他的引用所改变，那么就可能导致问题。   </div><div class="line">    causeProblem(s);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="不可变对象天生就是线程安全的"><a href="#不可变对象天生就是线程安全的" class="headerlink" title="不可变对象天生就是线程安全的"></a>不可变对象天生就是线程安全的</h2><p>因为不可变对象不能被改变，所以他们可以自由地在多个线程之间共享。不需要任何同步处理。</p>
+<p>总之，String被设计成不可变的主要目的是为了安全和高效。所以，使String是一个不可变类是一个很好的设计。</p>
+<h1 id="String对象作为方法参数"><a href="#String对象作为方法参数" class="headerlink" title="String对象作为方法参数"></a>String对象作为方法参数</h1><p>String作为方法参数传递时，实际上传递的是引用的一个拷贝,即“值传递”，方法操作的是参数变量只是原型变量的一个拷贝而已，而非变量本身。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private static void changeString(String s) &#123;</div><div class="line">        s = &quot;def&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">private static void change() &#123;</div><div class="line">    String s = &quot;abc&quot;;</div><div class="line">    changeString(s);</div><div class="line">    System.out.println(s);      //输出abc</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="StringBuilder与StringBuffer"><a href="#StringBuilder与StringBuffer" class="headerlink" title="StringBuilder与StringBuffer"></a>StringBuilder与StringBuffer</h2><p>既然String对象时不可变的，那么如果频繁的改变String对象，就会频繁的创建String对象，导致执行效率低下。此时，可以改用StringBuilder或StringBuffer，它们是可变的字符串对象，区别是：</p>
 <ul>
-<li>程序计数器：此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域</li>
-<li>Java虚拟机栈：<ol>
-<li>如果线程请求的栈深度大于虚拟机所允许的深度，抛出StackOverflowError异常</li>
-<li>如果虚拟机栈扩展时无法申请到足够的内存，抛出OutOfMemoryError异常</li>
-</ol>
-</li>
-<li>本地方法栈：<ol>
-<li>如果线程请求的栈深度大于虚拟机所允许的深度，抛出StackOverflowError异常</li>
-<li>如果虚拟机栈扩展时无法申请到足够的内存，抛出OutOfMemoryError异常</li>
-</ol>
-</li>
-<li>Java堆：<ul>
-<li>如果堆中没有内存完成实例分配，并且堆也无法再扩展时，抛出OutOfMemoryError异常<ul>
-<li>出现Java堆内存溢出时，异常堆栈信息”java.lang.OutOfMemoryError”会跟着进一步提示”Java heap space”。</li>
+<li>StringBuilder：线程非安全的</li>
+<li>StringBuffer：线程安全的</li>
 </ul>
-</li>
-<li>当方法区无法满足内存分配需求时，抛出OutOfMemoryError异常</li>
-</ul>
-</li>
-</ul>
+<p>参考资料：<br><a href="http://www.hollischuang.com/archives/1246" target="_blank" rel="external">Hollis</a></p>
+<p><a href="http://droidyue.com/blog/2014/12/21/string-literal-pool-in-java/" target="_blank" rel="external">技术小黑屋</a></p>
 
       
     </div>
@@ -483,7 +457,7 @@
           
             <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/编程/" rel="tag"># 编程</a>
+            <a href="/tags/基础/" rel="tag"># 基础</a>
           
         </div>
       
@@ -492,8 +466,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/spf13-vim/" rel="next" title="vim懒人福音--spf13-vim">
-                <i class="fa fa-chevron-left"></i> vim懒人福音--spf13-vim
+              <a href="/2016/10/06/简明vim练级攻略/" rel="next" title="简明 Vim 练级攻略">
+                <i class="fa fa-chevron-left"></i> 简明 Vim 练级攻略
               </a>
             
           </div>
@@ -502,8 +476,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/20/HotSpot虚拟机创建对象/" rel="prev" title="HotSpot虚拟机之创建对象">
-                HotSpot虚拟机之创建对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/10/markdown快速入门/" rel="prev" title="Markdown快速入门">
+                Markdown快速入门 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -519,10 +493,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/15/Java虚拟机内存/"
-     data-title="JVM之内存"
+        <div class="ds-share flat" data-thread-key="2016/10/10/Java字符串/"
+     data-title="Java字符串"
      data-content=""
-     data-url="http://lingyv.cn/2016/08/15/Java虚拟机内存/">
+     data-url="http://lingyv.cn/2016/10/10/Java字符串/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -552,8 +526,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/15/Java虚拟机内存/"
-           data-title="JVM之内存" data-url="http://lingyv.cn/2016/08/15/Java虚拟机内存/">
+      <div class="ds-thread" data-thread-key="2016/10/10/Java字符串/"
+           data-title="Java字符串" data-url="http://lingyv.cn/2016/10/10/Java字符串/">
       </div>
     
   </div>
@@ -577,8 +551,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/touxiang.png"
@@ -660,6 +643,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建String对象"><span class="nav-number">1.</span> <span class="nav-text">创建String对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么把String设计成不可变的？"><span class="nav-number">2.</span> <span class="nav-text">为什么把String设计成不可变的？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串常量池"><span class="nav-number">2.1.</span> <span class="nav-text">字符串常量池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存Hashcode"><span class="nav-number">2.2.</span> <span class="nav-text">缓存Hashcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使其他类的使用更加便利"><span class="nav-number">2.3.</span> <span class="nav-text">使其他类的使用更加便利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">2.4.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不可变对象天生就是线程安全的"><span class="nav-number">2.5.</span> <span class="nav-text">不可变对象天生就是线程安全的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String对象作为方法参数"><span class="nav-number">3.</span> <span class="nav-text">String对象作为方法参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuilder与StringBuffer"><span class="nav-number">3.1.</span> <span class="nav-text">StringBuilder与StringBuffer</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
