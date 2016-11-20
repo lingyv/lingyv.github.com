@@ -1,0 +1,1040 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,Validator,SpringMVC,Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="JSR 303 – Bean Validation 是一个数据验证的规范，2009 年 11 月确定最终方案。2009 年 12 月 Java EE 6 发布，Bean Validation 作为一个重要特性被包含其中。本文将对 Bean Validation 的主要功能进行介绍，并通过一些示例来演示如何在 Java 开发过程正确的使用 Bean Validation。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSR 303 - Bean Validation 介绍及最佳实践">
+<meta property="og:url" content="http://lingyv.cn/2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="JSR 303 – Bean Validation 是一个数据验证的规范，2009 年 11 月确定最终方案。2009 年 12 月 Java EE 6 发布，Bean Validation 作为一个重要特性被包含其中。本文将对 Bean Validation 的主要功能进行介绍，并通过一些示例来演示如何在 Java 开发过程正确的使用 Bean Validation。">
+<meta property="og:image" content="http://lingyv.cn/imag/imageValidator.jpg">
+<meta property="og:image" content="http://lingyv.cn/imag/imageValidator1.jpg">
+<meta property="og:image" content="http://lingyv.cn/imag/imageValidator2.jpg">
+<meta property="og:image" content="http://lingyv.cn/imag/imageValidator3.jpg">
+<meta property="og:updated_time" content="2016-11-20T05:39:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSR 303 - Bean Validation 介绍及最佳实践">
+<meta name="twitter:description" content="JSR 303 – Bean Validation 是一个数据验证的规范，2009 年 11 月确定最终方案。2009 年 12 月 Java EE 6 发布，Bean Validation 作为一个重要特性被包含其中。本文将对 Bean Validation 的主要功能进行介绍，并通过一些示例来演示如何在 Java 开发过程正确的使用 Bean Validation。">
+<meta name="twitter:image" content="http://lingyv.cn/imag/imageValidator.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/"/>
+
+
+
+
+
+  <title> JSR 303 - Bean Validation 介绍及最佳实践 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reprint">
+          <a href="/categories/转/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-o"></i> <br />
+            
+            转
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lingyv">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/touxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="凌宇">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="凌宇" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JSR 303 - Bean Validation 介绍及最佳实践
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T09:30:38+08:00">
+                2016-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转/" itemprop="url" rel="index">
+                    <span itemprop="name">转</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JSR 303 – Bean Validation 是一个数据验证的规范，2009 年 11 月确定最终方案。2009 年 12 月 Java EE 6 发布，Bean Validation 作为一个重要特性被包含其中。本文将对 Bean Validation 的主要功能进行介绍，并通过一些示例来演示如何在 Java 开发过程正确的使用 Bean Validation。<br><a id="more"></a></p>
+<h1 id="关于-Bean-Validation"><a href="#关于-Bean-Validation" class="headerlink" title="关于 Bean Validation"></a>关于 Bean Validation</h1><p>在任何时候，当你要处理一个应用程序的业务逻辑，数据校验是你必须要考虑和面对的事情。应用程序必须通过某种手段来确保输入进来的数据从语义上来讲是正确的。在通常的情况下，应用程序是分层的，不同的层由不同的开发人员来完成。很多时候同样的数据验证逻辑会出现在不同的层，这样就会导致代码冗余和一些管理的问题，比如说语义的一致性等。为了避免这样的情况发生，最好是将验证逻辑与相应的域模型进行绑定。</p>
+<p>Bean Validation 为 JavaBean 验证定义了相应的元数据模型和 API。缺省的元数据是 Java Annotations，通过使用 XML 可以对原有的元数据信息进行覆盖和扩展。在应用程序中，通过使用 Bean Validation 或是你自己定义的 constraint，例如 @NotNull, @Max, @ZipCode， 就可以确保数据模型（JavaBean）的正确性。constraint 可以附加到字段，getter 方法，类或者接口上面。对于一些特定的需求，用户可以很容易的开发定制化的 constraint。Bean Validation 是一个运行时的数据验证框架，在验证之后验证的错误信息会被马上返回。</p>
+<p>下载 JSR 303 – Bean Validation 规范 <a href="http://jcp.org/en/jsr/detail?id=303" target="_blank" rel="external">http://jcp.org/en/jsr/detail?id=303</a></p>
+<p>Hibernate Validator 是 Bean Validation 的参考实现 . Hibernate Validator 提供了 JSR 303 规范中所有内置 constraint 的实现，除此之外还有一些附加的 constraint。如果想了解更多有关 Hibernate Validator 的信息，请查看 <a href="http://www.hibernate.org/subprojects/validator.html" target="_blank" rel="external">http://www.hibernate.org/subprojects/validator.html</a></p>
+<h1 id="Bean-Validation-中的-constraint"><a href="#Bean-Validation-中的-constraint" class="headerlink" title="Bean Validation 中的 constraint"></a>Bean Validation 中的 constraint</h1><h2 id="表-1-Bean-Validation-中内置的-constraint"><a href="#表-1-Bean-Validation-中内置的-constraint" class="headerlink" title="表 1. Bean Validation 中内置的 constraint"></a>表 1. Bean Validation 中内置的 constraint</h2><table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th style="text-align:right">详细信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Null</td>
+<td style="text-align:right">被注释的元素必须为 null</td>
+</tr>
+<tr>
+<td>@NotNull</td>
+<td style="text-align:right">被注释的元素必须不为 null</td>
+</tr>
+<tr>
+<td>@AssertTrue</td>
+<td style="text-align:right">被注释的元素必须为 true</td>
+</tr>
+<tr>
+<td>@AssertFalse</td>
+<td style="text-align:right">被注释的元素必须为 false</td>
+</tr>
+<tr>
+<td>@Min(value)</td>
+<td style="text-align:right">被注释的元素必须是一个数字，其值必须大于等于指定的最小值</td>
+</tr>
+<tr>
+<td>@Max(value)</td>
+<td style="text-align:right">被注释的元素必须是一个数字，其值必须小于等于指定的最大值</td>
+</tr>
+<tr>
+<td>@DecimalMin(value)</td>
+<td style="text-align:right">被注释的元素必须是一个数字，其值必须大于等于指定的最小值</td>
+</tr>
+<tr>
+<td>@DecimalMax(value)</td>
+<td style="text-align:right">被注释的元素必须是一个数字，其值必须小于等于指定的最大值</td>
+</tr>
+<tr>
+<td>@Size(max, min)</td>
+<td style="text-align:right">被注释的元素的大小必须在指定的范围内</td>
+</tr>
+<tr>
+<td>@Digits (integer, fraction)</td>
+<td style="text-align:right">被注释的元素必须是一个数字，其值必须在可接受的范围内</td>
+</tr>
+<tr>
+<td>@Past</td>
+<td style="text-align:right">被注释的元素必须是一个过去的日期</td>
+</tr>
+<tr>
+<td>@Future</td>
+<td style="text-align:right">被注释的元素必须是一个将来的日期</td>
+</tr>
+<tr>
+<td>@Pattern(value)</td>
+<td style="text-align:right">被注释的元素必须符合指定的正则表达式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="表-2-Hibernate-Validator-附加的-constraint"><a href="#表-2-Hibernate-Validator-附加的-constraint" class="headerlink" title="表 2. Hibernate Validator 附加的 constraint"></a>表 2. Hibernate Validator 附加的 constraint</h2><table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th style="text-align:right">详细信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Email</td>
+<td style="text-align:right">被注释的元素必须是电子邮箱地址</td>
+</tr>
+<tr>
+<td>@Length</td>
+<td style="text-align:right">被注释的字符串的大小必须在指定的范围内</td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td style="text-align:right">被注释的字符串的必须非空</td>
+</tr>
+<tr>
+<td>@Range</td>
+<td style="text-align:right">被注释的元素必须在合适的范围内</td>
+</tr>
+</tbody>
+</table>
+<p>一个 constraint 通常由 annotation 和相应的 constraint validator 组成，它们是一对多的关系。也就是说可以有多个 constraint validator 对应一个 annotation。在运行时，Bean Validation 框架本身会根据被注释元素的类型来选择合适的 constraint validator 对数据进行验证。</p>
+<p>有些时候，在用户的应用中需要一些更复杂的 constraint。Bean Validation 提供扩展 constraint 的机制。可以通过两种方法去实现，一种是组合现有的 constraint 来生成一个更复杂的 constraint，另外一种是开发一个全新的 constraint。</p>
+<h1 id="创建一个包含验证逻辑的简单应用（基于-JSP）"><a href="#创建一个包含验证逻辑的简单应用（基于-JSP）" class="headerlink" title="创建一个包含验证逻辑的简单应用（基于 JSP）"></a>创建一个包含验证逻辑的简单应用（基于 JSP）</h1><p>在本文中，通过创建一个虚构的订单管理系统（基于 JSP 的 web 应用）来演示如何在 Java 开发过程中应用 Bean Validation。该简化的系统可以让用户创建和检索订单。</p>
+<h2 id="系统设计和运用的技术"><a href="#系统设计和运用的技术" class="headerlink" title="系统设计和运用的技术"></a>系统设计和运用的技术</h2><p>图 1. 系统架构</p>
+<p><img src="/imag/imageValidator.jpg" alt="validator"></p>
+<p>图 1 是报表管理系统的结构图，是典型的 MVC（Model-View-Controller）应用。Controller 负责接收和处理请求，Servlet 扮演 Controller 的角色去处理请求、业务逻辑并转向合适的 JSP 页面。在 Servlet 中对数据进行验证。JSP 扮演 View 的角色以图型化界面的方式呈现 Model 中的数据方便用户交互。Model 就是此系统进行操作的数据模型，我们对这部分加以简化不对数据进行持久化。</p>
+<h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>图 2. 数据模型</p>
+<p><img src="/imag/imageValidator1.jpg" alt="validator"></p>
+<p>图 2 展示的是订单管理系统的数据模型。</p>
+<h3 id="声明了-contraint-的-JavaBean"><a href="#声明了-contraint-的-JavaBean" class="headerlink" title="声明了 contraint 的 JavaBean"></a>声明了 contraint 的 JavaBean</h3><h4 id="清单-1-Order-java"><a href="#清单-1-Order-java" class="headerlink" title="清单 1. Order.java"></a>清单 1. Order.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">public class Order &#123;</div><div class="line"> // 必须不为 null, 大小是 10</div><div class="line"> @NotNull</div><div class="line"> @Size(min = 10, max = 10)</div><div class="line"> private String orderId;</div><div class="line"> // 必须不为空</div><div class="line"> @NotEmpty</div><div class="line"> private String customer;</div><div class="line"> // 必须是一个电子信箱地址</div><div class="line"> @Email</div><div class="line"> private String email;</div><div class="line"> // 必须不为空</div><div class="line"> @NotEmpty</div><div class="line"> private String address;</div><div class="line"> // 必须不为 null, 必须是下面四个字符串&apos;created&apos;, &apos;paid&apos;, &apos;shipped&apos;, &apos;closed&apos;其中之一</div><div class="line"> // @Status 是一个定制化的 contraint</div><div class="line"> @NotNull</div><div class="line"> @Status</div><div class="line"> private String status;</div><div class="line"> // 必须不为 null</div><div class="line"> @NotNull</div><div class="line"> private Date createDate;</div><div class="line"> // 嵌套验证</div><div class="line"> @Valid</div><div class="line"> private Product product;</div><div class="line"></div><div class="line">…</div><div class="line"> getter 和 setter</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h4 id="清单-2-Product-java"><a href="#清单-2-Product-java" class="headerlink" title="清单 2. Product.java"></a>清单 2. Product.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> public class Product &#123;</div><div class="line"> // 必须非空</div><div class="line"> @NotEmpty</div><div class="line"> private String productName;</div><div class="line"> // 必须在 8000 至 10000 的范围内</div><div class="line"> // @Price 是一个定制化的 constraint</div><div class="line"> @Price</div><div class="line"> private float price;</div><div class="line">…</div><div class="line"> Getter 和 setter</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h4 id="清单-3-OrderQuery-java"><a href="#清单-3-OrderQuery-java" class="headerlink" title="清单 3. OrderQuery.java"></a>清单 3. OrderQuery.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> // &apos;to&apos;所表示的日期必须在&apos;from&apos;所表示的日期之后</div><div class="line"> // @QueryConstraint 是一个定制化的 constraint</div><div class="line"> @QueryConstraint</div><div class="line"> public class OrderQuery &#123;</div><div class="line"> private Date from;</div><div class="line"> private Date to;</div><div class="line">… omitted …</div><div class="line"> Getter and setter</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h3 id="定制化的-constraint"><a href="#定制化的-constraint" class="headerlink" title="定制化的 constraint"></a>定制化的 constraint</h3><p> @Price是一个定制化的 constraint，由两个内置的 constraint 组合而成。</p>
+<h4 id="清单-4-Price-的-annotation-部分"><a href="#清单-4-Price-的-annotation-部分" class="headerlink" title="清单 4. @Price 的 annotation 部分"></a>清单 4. @Price 的 annotation 部分</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// @Max 和 @Min 都是内置的 constraint</div><div class="line">@Max(10000)</div><div class="line">@Min(8000)</div><div class="line">@Constraint(validatedBy = &#123;&#125;)</div><div class="line">@Documented</div><div class="line">@Target( &#123; ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD &#125;)</div><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">public @interface Price &#123;</div><div class="line">String message() default &quot;错误的价格&quot;;</div><div class="line">Class&lt;?&gt;[] groups() default &#123;&#125;;</div><div class="line">Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> @Status是一个新开发的 constraint.</p>
+<h4 id="清单-5-Status-的-annotation-部分"><a href="#清单-5-Status-的-annotation-部分" class="headerlink" title="清单 5. @Status 的 annotation 部分"></a>清单 5. @Status 的 annotation 部分</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Constraint(validatedBy = &#123;StatusValidator.class&#125;)</div><div class="line">@Documented</div><div class="line">@Target( &#123; ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD &#125;)</div><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">public @interface Status &#123;</div><div class="line">String message() default &quot;不正确的状态 , 应该是 &apos;created&apos;, &apos;paid&apos;, shipped&apos;, closed&apos;其中之一&quot;;</div><div class="line">Class&lt;?&gt;[] groups() default &#123;&#125;;</div><div class="line">Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="清单-6-Status-的-constraint-validator-部分"><a href="#清单-6-Status-的-constraint-validator-部分" class="headerlink" title="清单 6. @Status 的 constraint validator 部分"></a>清单 6. @Status 的 constraint validator 部分</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class StatusValidator implements ConstraintValidator&lt;Status, String&gt;&#123;</div><div class="line">  private final String[] ALL_STATUS = &#123;&quot;created&quot;, &quot;paid&quot;, &quot;shipped&quot;, &quot;closed&quot;&#125;;</div><div class="line">  public void initialize(Status status) &#123;</div><div class="line">  &#125;</div><div class="line">  public boolean isValid(String value, ConstraintValidatorContext context) &#123;</div><div class="line">    if(Arrays.asList(ALL_STATUS).contains(value))</div><div class="line">     return true;</div><div class="line">  return false;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Bean-Validation-API-使用示例"><a href="#Bean-Validation-API-使用示例" class="headerlink" title="Bean Validation API 使用示例"></a>Bean Validation API 使用示例</h1><h2 id="创建订单"><a href="#创建订单" class="headerlink" title="创建订单"></a>创建订单</h2><p>用户在创建一条订单记录时，需要填写以下信息：订单编号，客户，电子信箱，地址，状态，产品名称，产品价格</p>
+<p>图 3. 创建订单</p>
+<p><img src="/imag/imageValidator2.jpg" alt="validator"></p>
+<p>对这些信息的校验，使用 Bean Validation API</p>
+<h3 id="清单-7-代码片段"><a href="#清单-7-代码片段" class="headerlink" title="清单 7. 代码片段"></a>清单 7. 代码片段</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">protected void doPost(HttpServletRequest req, HttpServletResponse resp)</div><div class="line"> throws ServletException, IOException &#123;</div><div class="line"> HttpSession session = req.getSession();</div><div class="line"> // 从 request 中获取输入信息</div><div class="line"> String orderId = (String) req.getParameter(&quot;orderId&quot;);</div><div class="line"> String customer = (String) req.getParameter(&quot;customer&quot;);</div><div class="line"> String email = (String) req.getParameter(&quot;email&quot;);</div><div class="line"> String address = (String) req.getParameter(&quot;address&quot;);</div><div class="line"> String status = (String) req.getParameter(&quot;status&quot;);</div><div class="line"> String productName = (String) req.getParameter(&quot;productName&quot;);</div><div class="line"> String productPrice = (String) req.getParameter(&quot;productPrice&quot;);</div><div class="line"> // 将 Bean 放入 session 中</div><div class="line"> Order order = new Order();</div><div class="line"> order.setOrderId(orderId);</div><div class="line"> order.setCustomer(customer);</div><div class="line"> order.setEmail(email);</div><div class="line"> order.setAddress(address);</div><div class="line"> order.setStatus(status);</div><div class="line"> order.setCreateDate(new Date());</div><div class="line"> Product product = new Product();</div><div class="line"> product.setName(productName);</div><div class="line"> if(productPrice != null &amp;&amp; productPrice.length() &gt; 0)</div><div class="line"> product.setPrice(Float.valueOf(productPrice));</div><div class="line"> order.setProduct(product);</div><div class="line"> session.setAttribute(&quot;order&quot;, order);</div><div class="line"> ValidatorFactory factory = Validation.buildDefaultValidatorFactory();</div><div class="line"> Validator validator = factory.getValidator();</div><div class="line"> Set&lt;ConstraintViolation&lt;Order&gt;&gt; violations = validator.validate(order);</div><div class="line"> if(violations.size() == 0) &#123;</div><div class="line"> session.setAttribute(&quot;order&quot;, null);</div><div class="line"> session.setAttribute(&quot;errorMsg&quot;, null);</div><div class="line"> resp.sendRedirect(&quot;creatSuccessful.jsp&quot;);</div><div class="line"> &#125; else &#123;</div><div class="line"> StringBuffer buf = new StringBuffer();</div><div class="line"> ResourceBundle bundle = ResourceBundle.getBundle(&quot;messages&quot;);</div><div class="line"> for(ConstraintViolation&lt;Order&gt; violation: violations) &#123;</div><div class="line"> buf.append(&quot;-&quot; + bundle.getString(violation.getPropertyPath().toString()));</div><div class="line"> buf.append(violation.getMessage() + &quot;&lt;BR&gt;\n&quot;);</div><div class="line"> &#125;</div><div class="line"> session.setAttribute(&quot;errorMsg&quot;, buf.toString());</div><div class="line"> resp.sendRedirect(&quot;createOrder.jsp&quot;);</div><div class="line"> &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>如果用户不填写任何信息提交订单，相应的错误信息将会显示在页面上</p>
+<p>图 4. 验证后返回错误信息</p>
+<p><img src="/imag/imageValidator3.jpg" alt="validator"></p>
+<p>其实在整个程序的任何地方都可以调用 JSR 303 API 去对数据进行校验，然后将校验后的结果返回。</p>
+<h3 id="清单-8-调用-JSR-303-API-进行校验"><a href="#清单-8-调用-JSR-303-API-进行校验" class="headerlink" title="清单 8. 调用 JSR 303 API 进行校验"></a>清单 8. 调用 JSR 303 API 进行校验</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> Order order = new Order();</div><div class="line">…</div><div class="line"> ValidatorFactory factory = Validation.buildDefaultValidatorFactory();</div><div class="line"> Validator validator = factory.getValidator();</div><div class="line"> Set&lt;ConstraintViolation&lt;Order&gt;&gt; violations = validator.validate(order);</div><div class="line">…</div></pre></td></tr></table></figure>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>JSR 303 的发布使得在数据自动绑定和验证变得简单，使开发人员在定义数据模型时不必考虑实现框架的限制。当然 Bean Validation 还只是提供了一些最基本的 constraint，在实际的开发过程中，用户可以根据自己的需要组合或开发出更加复杂的 constraint</p>
+<p>转自:<a href="https://www.ibm.com/developerworks/cn/java/j-lo-jsr303/" target="_blank" rel="external">IBM文档库</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Validator/" rel="tag"># Validator</a>
+          
+            <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/20/SpringMVC数据检验/" rel="next" title="SpringMVC中使用Hibernate Validator检验数据">
+                <i class="fa fa-chevron-left"></i> SpringMVC中使用Hibernate Validator检验数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/20/Synchronous Request Response with ActiveMQ and Spring/" rel="prev" title="Synchronous Request Response with ActiveMQ and Spring">
+                Synchronous Request Response with ActiveMQ and Spring <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/"
+     data-title="JSR 303 - Bean Validation 介绍及最佳实践"
+     data-content=""
+     data-url="http://lingyv.cn/2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/"
+           data-title="JSR 303 - Bean Validation 介绍及最佳实践" data-url="http://lingyv.cn/2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于-Bean-Validation"><span class="nav-number">1.</span> <span class="nav-text">关于 Bean Validation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bean-Validation-中的-constraint"><span class="nav-number">2.</span> <span class="nav-text">Bean Validation 中的 constraint</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#表-1-Bean-Validation-中内置的-constraint"><span class="nav-number">2.1.</span> <span class="nav-text">表 1. Bean Validation 中内置的 constraint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表-2-Hibernate-Validator-附加的-constraint"><span class="nav-number">2.2.</span> <span class="nav-text">表 2. Hibernate Validator 附加的 constraint</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建一个包含验证逻辑的简单应用（基于-JSP）"><span class="nav-number">3.</span> <span class="nav-text">创建一个包含验证逻辑的简单应用（基于 JSP）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统设计和运用的技术"><span class="nav-number">3.1.</span> <span class="nav-text">系统设计和运用的技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据模型"><span class="nav-number">3.2.</span> <span class="nav-text">数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明了-contraint-的-JavaBean"><span class="nav-number">3.2.1.</span> <span class="nav-text">声明了 contraint 的 JavaBean</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-1-Order-java"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">清单 1. Order.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-2-Product-java"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">清单 2. Product.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-3-OrderQuery-java"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">清单 3. OrderQuery.java</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制化的-constraint"><span class="nav-number">3.2.2.</span> <span class="nav-text">定制化的 constraint</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-4-Price-的-annotation-部分"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">清单 4. @Price 的 annotation 部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-5-Status-的-annotation-部分"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">清单 5. @Status 的 annotation 部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-6-Status-的-constraint-validator-部分"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">清单 6. @Status 的 constraint validator 部分</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bean-Validation-API-使用示例"><span class="nav-number">4.</span> <span class="nav-text">Bean Validation API 使用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建订单"><span class="nav-number">4.1.</span> <span class="nav-text">创建订单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#清单-7-代码片段"><span class="nav-number">4.1.1.</span> <span class="nav-text">清单 7. 代码片段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清单-8-调用-JSR-303-API-进行校验"><span class="nav-number">4.1.2.</span> <span class="nav-text">清单 8. 调用 JSR 303 API 进行校验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结束语"><span class="nav-number">5.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

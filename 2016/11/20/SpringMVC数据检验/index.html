@@ -1,0 +1,967 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,Validator,SpringMVC,Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="SpringMVC中使用Hibernate Validator检验数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC中使用Hibernate Validator检验数据">
+<meta property="og:url" content="http://lingyv.cn/2016/11/20/SpringMVC数据检验/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="SpringMVC中使用Hibernate Validator检验数据">
+<meta property="og:updated_time" content="2016-11-20T05:17:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC中使用Hibernate Validator检验数据">
+<meta name="twitter:description" content="SpringMVC中使用Hibernate Validator检验数据">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/11/20/SpringMVC数据检验/"/>
+
+
+
+
+
+  <title> SpringMVC中使用Hibernate Validator检验数据 | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reprint">
+          <a href="/categories/转/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-o"></i> <br />
+            
+            转
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/11/20/SpringMVC数据检验/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lingyv">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/touxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="凌宇">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="凌宇" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SpringMVC中使用Hibernate Validator检验数据
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T08:30:38+08:00">
+                2016-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/20/SpringMVC数据检验/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/SpringMVC数据检验/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>SpringMVC中使用Hibernate Validator检验数据<br><a id="more"></a></p>
+<h1 id="JSR-303"><a href="#JSR-303" class="headerlink" title="JSR 303"></a>JSR 303</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>JSR 303 用于对Java Bean中的字段的值进行验证,使得验证逻辑从业务代码中脱离出来</li>
+<li>是一个运行时的数据验证框架，在验证之后验证的错误信息会被马上返回</li>
+<li>一般用于表单提交页面(如用户名必填、只能由数字字母组成等等)<h2 id="注解类"><a href="#注解类" class="headerlink" title="注解类"></a>注解类</h2></li>
+<li>@NotNull            注解元素必须是非空</li>
+<li>@Null                注解元素必须是空</li>
+<li>@Digits            验证数字构成是否合法</li>
+<li>@Future            验证是否在当前系统时间之后</li>
+<li>@Past                验证是否在当前系统时间之前</li>
+<li>@Max                验证值是否小于等于最大指定整数值</li>
+<li>@Min                验证值是否大于等于最小指定整数值</li>
+<li>@Pattern            验证字符串是否匹配指定的正则表达式</li>
+<li>@Size                验证元素大小是否在指定范围内</li>
+<li>@DecimalMax    验证值是否小于等于最大指定小数值</li>
+<li>@DecimalMin    验证值是否大于等于最小指定小数值</li>
+<li>@AssertTrue        被注释的元素必须为true</li>
+<li>@AssertFalse    被注释的元素必须为false</li>
+</ul>
+<h1 id="Hibernate-Validator"><a href="#Hibernate-Validator" class="headerlink" title="Hibernate Validator"></a>Hibernate Validator</h1><p>Hibernate Validator 是 Bean Validation 的参考实现 . Hibernate Validator 提供了 JSR 303 规范中所有内置 constraint 的实现，除此之外还有一些附加的 constraint。</p>
+<h2 id="扩展注解"><a href="#扩展注解" class="headerlink" title="扩展注解"></a>扩展注解</h2><ul>
+<li>@Email            被注释的元素必须是电子邮箱地址</li>
+<li>@Length            被注释的字符串的大小必须在指定的范围内</li>
+<li>@NotEmpty        被注释的字符串的必须非空</li>
+<li>@Range            被注释的元素必须在合适的范围内</li>
+</ul>
+<h1 id="配置SpringMVC"><a href="#配置SpringMVC" class="headerlink" title="配置SpringMVC"></a>配置SpringMVC</h1><h2 id="配置-SpringMVC-校验框架"><a href="#配置-SpringMVC-校验框架" class="headerlink" title="配置 SpringMVC 校验框架"></a>配置 SpringMVC 校验框架</h2><h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">     &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</div><div class="line">     &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;</div><div class="line">     &lt;version&gt;5.1.3.Final&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<h3 id="在SpringMVC配置文件中配置"><a href="#在SpringMVC配置文件中配置" class="headerlink" title="在SpringMVC配置文件中配置"></a>在SpringMVC配置文件中配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;mvc:annotation-driven validator=&quot;validator&quot; /&gt;</div><div class="line"></div><div class="line">&lt;bean id=&quot;validator&quot;</div><div class="line">	class=&quot;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&quot;&gt;</div><div class="line">	&lt;property name=&quot;providerClass&quot; value=&quot;org.hibernate.validator.HibernateValidator&quot; /&gt;</div><div class="line">	&lt;!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties --&gt;</div><div class="line">	&lt;property name=&quot;validationMessageSource&quot; ref=&quot;messageSource&quot; /&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<h3 id="在JavaBean中进行配置"><a href="#在JavaBean中进行配置" class="headerlink" title="在JavaBean中进行配置"></a>在JavaBean中进行配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class User implements Serializable &#123;</div><div class="line"></div><div class="line">	@NotEmpty(message=&quot;&#123;NotEmpty.user.userName&#125;&quot;)</div><div class="line">	private String userName ;</div><div class="line"></div><div class="line">	@Pattern(regexp=&quot;[0-9a-zA-Z]&#123;6,30&#125;&quot;, message=&quot;&#123;Pattern.user.password&#125;&quot;)</div><div class="line">	private String password ;</div><div class="line"></div><div class="line">	@Length(min=2, max=100, message=&quot;&#123;Length.user.realName&#125;&quot;)</div><div class="line">	private String realName ;</div><div class="line"></div><div class="line">	@Email(message=&quot;&#123;Email.user.email&#125;&quot;)</div><div class="line">	private String email ;</div><div class="line"></div><div class="line">	@NotNull(message = &quot;&#123;NotNull.user.age&#125;&quot;)</div><div class="line">	@Between(min = 18, max = 45)</div><div class="line">	private Integer age ;</div><div class="line"></div><div class="line">  ...getter and setter...</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="在Controller中进行配置"><a href="#在Controller中进行配置" class="headerlink" title="在Controller中进行配置"></a>在Controller中进行配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &quot;/doRegister&quot;, method = RequestMethod.POST)</div><div class="line">public String doLogin(@Valid User user, BindingResult result, ModelMap map)&#123;</div><div class="line"></div><div class="line">	// 如果入参有问题，返回注册页面</div><div class="line">	if (result.hasErrors()) &#123;</div><div class="line">		List&lt;FieldError&gt; errorList = result.getFieldErrors();</div><div class="line">          for(FieldError error : errorList)&#123;</div><div class="line">              System.out.println(error.getField() + &quot;*&quot; + error.getDefaultMessage());</div><div class="line">              map.put(&quot;ERR_&quot; + error.getField(), error.getDefaultMessage());</div><div class="line">          &#125;</div><div class="line">		return &quot;/jsp/register.jsp&quot;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 省略注册代码</div><div class="line"></div><div class="line">	return &quot;/jsp/registersuccess.jsp&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取校验结果"><a href="#获取校验结果" class="headerlink" title="获取校验结果"></a>获取校验结果</h2><p>校验结果保存在BindingResult或Errors对象中：</p>
+<ul>
+<li>这两个类都位于org.springframework.validation包中</li>
+<li>需校验的表单对象和其绑定结果对象或错误对象是成对出现的</li>
+<li>Errors接口提供了获取错误信息的方法，如getErrorCount()获取错误的数量， getFieldErrors(String field)得到成员属性的校验错误列表</li>
+<li>BindingResult接口扩展了Errors接口，以便可以使用Spring的org.springframeword.validation.Validator对数据进行校验，同时获取数据绑定结果对象的信息<h2 id="在JSP页面中显示错误"><a href="#在JSP页面中显示错误" class="headerlink" title="在JSP页面中显示错误"></a>在JSP页面中显示错误</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&quot;margin:0 auto; padding-top: 100px;&quot; align=&quot;center&quot;&gt;</div><div class="line">	&lt;form action=&quot;doRegister.html&quot; method=&quot;post&quot;&gt;</div><div class="line">		&lt;p&gt;</div><div class="line">			$&#123;ERR_userName &#125;&lt;br&gt;</div><div class="line">			&lt;span&gt;用户名：&lt;/span&gt;&lt;input type=&quot;text&quot; name=&quot;userName&quot;&gt;</div><div class="line">		&lt;/p&gt;</div><div class="line">		&lt;p&gt;</div><div class="line">			$&#123;ERR_password &#125;&lt;br&gt;</div><div class="line">			&lt;span&gt;密    码：&lt;/span&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;</div><div class="line">		&lt;/p&gt;</div><div class="line">		&lt;p&gt;</div><div class="line">			$&#123;ERR_realName &#125;&lt;br&gt;</div><div class="line">			&lt;span&gt;真实姓名：&lt;/span&gt;&lt;input type=&quot;text&quot; name=&quot;realName&quot;&gt;</div><div class="line">		&lt;/p&gt;</div><div class="line">		&lt;p&gt;</div><div class="line">			$&#123;ERR_email &#125;&lt;br&gt;</div><div class="line">			&lt;span&gt;邮    箱：&lt;/span&gt;&lt;input type=&quot;text&quot; name=&quot;email&quot;&gt;</div><div class="line">		&lt;/p&gt;</div><div class="line">		&lt;p&gt;</div><div class="line">			$&#123;ERR_age &#125;&lt;br&gt;</div><div class="line">			&lt;span&gt;年    龄：&lt;/span&gt;&lt;input type=&quot;text&quot; name=&quot;age&quot;&gt;</div><div class="line">		&lt;/p&gt;			</div><div class="line">		&lt;p&gt;</div><div class="line">			&lt;input type=&quot;submit&quot; value=&quot;注册&quot;&gt;</div><div class="line">		&lt;/p&gt;</div><div class="line">	&lt;/form&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="国际化错误信息"><a href="#国际化错误信息" class="headerlink" title="国际化错误信息"></a>国际化错误信息</h2><ol>
+<li><p>新建资源文件messages.properties和messages_zh_CN.properties文件，内容如下：<br>注意:文件中的键值对，值可通过JDK自带的native2ascii工具，将中文转换成对应的unicode编码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Between.user.age=\u5E94\u8BE5\u5728&#123;min&#125;\u4E0E&#123;max&#125;\u4E4B\u95F4</div><div class="line">Pattern.user.password=\u5BC6\u7801\u662F6-30\u4E2A\u5B57\u7B26\uFF0C\u5FC5\u987B\u662F\u5B57\u6BCD\u6216\u6570\u5B57\u7EC4\u5408</div><div class="line">Length.user.realName=\u975E\u6CD5\u771F\u5B9E\u59D3\u540D</div><div class="line">NotEmpty.user.userName=\u7528\u6237\u540D\u4E0D\u80FD\u4E3A\u7A7A</div><div class="line">Email.user.email=\u8BF7\u8F93\u5165\u6B63\u786E\u7684\u90AE\u4EF6\u5730\u5740</div><div class="line">NotNull.user.age=\u8BF7\u586B\u5199\u60A8\u7684\u5E74\u9F84</div></pre></td></tr></table></figure>
+</li>
+<li><p>在SpringMVC配置文件中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;messageSource&quot;</div><div class="line">class=&quot;org.springframework.context.support.ResourceBundleMessageSource&quot;</div><div class="line">p:basename=&quot;messages&quot; /&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="自定义校验规则"><a href="#自定义校验规则" class="headerlink" title="自定义校验规则"></a>自定义校验规则</h2><ol>
+<li><p>定义注解类，并使用Constraint注解标注，属性validatedBy指定校验实现类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@Target(&#123; METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER &#125;)</div><div class="line">@Retention(RUNTIME)</div><div class="line">@Documented</div><div class="line">@Constraint(validatedBy = &#123;BetweenValidator.class&#125;)</div><div class="line">public @interface Between &#123;</div><div class="line"></div><div class="line">	String message() default &quot;&#123;Between.user.age&#125;&quot;;</div><div class="line"></div><div class="line">	Class&lt;?&gt;[] groups() default &#123; &#125;;</div><div class="line"></div><div class="line">	Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;;</div><div class="line"></div><div class="line">	int min();</div><div class="line"></div><div class="line">	int max();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>定义实现类，需要集成ConstraintValidator接口，isValid方法负责校验</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class BetweenValidator implements ConstraintValidator&lt;Between, Integer&gt;&#123;</div><div class="line"></div><div class="line">	private int min ;</div><div class="line">	private int max ;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public void initialize(Between annotation) &#123;</div><div class="line">		min = annotation.min();</div><div class="line">		max = annotation.max();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public boolean isValid(Integer value, ConstraintValidatorContext context) &#123;</div><div class="line">		if (value == null) &#123;</div><div class="line">			return false;</div><div class="line">		&#125;</div><div class="line">		if (value &gt;= min &amp;&amp; value &lt;= max) &#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Validator/" rel="tag"># Validator</a>
+          
+            <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/19/ActiveMQ官方文档--Spring支持/" rel="next" title="ActiveMQ官方文档 -- Spring支持">
+                <i class="fa fa-chevron-left"></i> ActiveMQ官方文档 -- Spring支持
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/20/JSR 303 - Bean Validation 介绍及最佳实践/" rel="prev" title="JSR 303 - Bean Validation 介绍及最佳实践">
+                JSR 303 - Bean Validation 介绍及最佳实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/20/SpringMVC数据检验/"
+     data-title="SpringMVC中使用Hibernate Validator检验数据"
+     data-content=""
+     data-url="http://lingyv.cn/2016/11/20/SpringMVC数据检验/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/20/SpringMVC数据检验/"
+           data-title="SpringMVC中使用Hibernate Validator检验数据" data-url="http://lingyv.cn/2016/11/20/SpringMVC数据检验/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JSR-303"><span class="nav-number">1.</span> <span class="nav-text">JSR 303</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解类"><span class="nav-number">1.2.</span> <span class="nav-text">注解类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hibernate-Validator"><span class="nav-number">2.</span> <span class="nav-text">Hibernate Validator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展注解"><span class="nav-number">2.1.</span> <span class="nav-text">扩展注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置SpringMVC"><span class="nav-number">3.</span> <span class="nav-text">配置SpringMVC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-SpringMVC-校验框架"><span class="nav-number">3.1.</span> <span class="nav-text">配置 SpringMVC 校验框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入依赖"><span class="nav-number">3.1.1.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在SpringMVC配置文件中配置"><span class="nav-number">3.1.2.</span> <span class="nav-text">在SpringMVC配置文件中配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在JavaBean中进行配置"><span class="nav-number">3.1.3.</span> <span class="nav-text">在JavaBean中进行配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Controller中进行配置"><span class="nav-number">3.1.4.</span> <span class="nav-text">在Controller中进行配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取校验结果"><span class="nav-number">3.2.</span> <span class="nav-text">获取校验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在JSP页面中显示错误"><span class="nav-number">3.3.</span> <span class="nav-text">在JSP页面中显示错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#国际化错误信息"><span class="nav-number">3.4.</span> <span class="nav-text">国际化错误信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义校验规则"><span class="nav-number">3.5.</span> <span class="nav-text">自定义校验规则</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
