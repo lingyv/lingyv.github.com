@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="教程," />
+  <meta name="keywords" content="分布式,Java,官方文档," />
 
 
 
@@ -84,18 +84,16 @@
 
 
 
-<meta name="description" content="是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了spf-13，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做：">
+<meta name="description" content="JMS消息类型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vim懒人福音--spf13-vim">
-<meta property="og:url" content="http://lingyv.cn/2016/08/12/spf13-vim/index.html">
+<meta property="og:title" content="JMS消息类型">
+<meta property="og:url" content="http://lingyv.cn/2016/11/24/JMSMessageTypes/index.html">
 <meta property="og:site_name" content="凌宇">
-<meta property="og:description" content="是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了spf-13，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做：">
-<meta property="og:image" content="http://lingyv.cn/imag/vimspf13.png">
-<meta property="og:updated_time" content="2016-11-10T14:37:19.000Z">
+<meta property="og:description" content="JMS消息类型">
+<meta property="og:updated_time" content="2016-11-22T12:36:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vim懒人福音--spf13-vim">
-<meta name="twitter:description" content="是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了spf-13，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做：">
-<meta name="twitter:image" content="http://lingyv.cn/imag/vimspf13.png">
+<meta name="twitter:title" content="JMS消息类型">
+<meta name="twitter:description" content="JMS消息类型">
 
 
 
@@ -123,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://lingyv.cn/2016/08/12/spf13-vim/"/>
+  <link rel="canonical" href="http://lingyv.cn/2016/11/24/JMSMessageTypes/"/>
 
 
 
 
 
-  <title> vim懒人福音--spf13-vim | 凌宇 </title>
+  <title> JMS消息类型 | 凌宇 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -303,7 +301,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/08/12/spf13-vim/">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/11/24/JMSMessageTypes/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="lingyv">
@@ -327,7 +325,7 @@
             
             
               
-                vim懒人福音--spf13-vim
+                JMS消息类型
               
             
           </h1>
@@ -340,8 +338,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-12T20:43:38+08:00">
-                2016-08-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-24T21:12:29+08:00">
+                2016-11-24
               </time>
             
 
@@ -374,8 +372,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/08/12/spf13-vim/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/12/spf13-vim/" itemprop="commentCount"></span>
+                <a href="/2016/11/24/JMSMessageTypes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/24/JMSMessageTypes/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,27 +399,84 @@
       
 
       
-        <p>是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了<a href="https://github.com/spf13/spf13-vim/" target="_blank" rel="external">spf-13</a>，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做：<br><a id="more"></a></p>
-<ol>
-<li><p>首先，确认<em>Git 1.7+ 和 Vim 7.3+</em><br>Linux, * nix, Mac OSX系统,执行以下命令安装spf13-vim：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装好就可以使用了。不过，一般我们需要做一些个性化的定制。</p>
-<ul>
-<li><p>更换主题：<br>新建一个~/.vimrc.local文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">colorscheme ir_black</div><div class="line">#把ir_black换成你想要换的主题</div><div class="line">#例如ir_black、molokai、peaksea</div></pre></td></tr></table></figure>
-</li>
-<li><p>选择加载的插件：<br>新建~/.vimrc.before.local文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let g:spf13_bundle_groups=[&apos;general&apos;,&apos;writing&apos;,&apos;programming&apos;,&apos;youcompleteme&apos;,&apos;go&apos;,&apos;javascript&apos;,&apos;html&apos;]</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<p>其中“[]”里面的可以去~/.vimrc.bundles文件里面Bundles一栏去找你需要加载的组：<br><img src="/imag/vimspf13.png" alt="vimspf13.png"></p>
-<ul>
-<li>添加自己的组件：<br>新建文件~/.vimrc.bundles.local，新增你需要增加的组件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bundle \&apos;spf13/vim-colors\&apos;</div></pre></td></tr></table></figure>
-</li>
-</ul>
+        <p>JMS消息类型<br><a id="more"></a></p>
+<h1 id="官方"><a href="#官方" class="headerlink" title="官方"></a>官方</h1><h2 id="Message-Bodies"><a href="#Message-Bodies" class="headerlink" title="Message Bodies"></a>Message Bodies</h2><p><a href="https://docs.oracle.com/cd/E19798-01/821-1841/6nmq2cppb/index.html" target="_blank" rel="external">官方</a><br>The JMS API defines five message body formats, also called message types, which allow you to send and to receive data in many different forms and provide compatibility with existing messaging formats. Table 30–2 describes these message types.</p>
+<p>Table 30–2 JMS Message Types</p>
+<table>
+<thead>
+<tr>
+<th>Message Type</th>
+<th style="text-align:right">Body Contains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TextMessage</td>
+<td style="text-align:right">A java.lang.String object (for example, the contents of an XML file).</td>
+</tr>
+<tr>
+<td>MapMessage</td>
+<td style="text-align:right">A set of name-value pairs, with names as String objects and values as primitive types in the Java programming language. The entries can be accessed sequentially by enumerator or randomly by name. The order of the entries is undefined.</td>
+</tr>
+<tr>
+<td>BytesMessage</td>
+<td style="text-align:right">A stream of uninterpreted bytes. This message type is for literally encoding a body to match an existing message format.</td>
+</tr>
+<tr>
+<td>StreamMessage</td>
+<td style="text-align:right">A stream of primitive values in the Java programming language, filled and read sequentially.</td>
+</tr>
+<tr>
+<td>ObjectMessage</td>
+<td style="text-align:right">A Serializable object in the Java programming language.</td>
+</tr>
+<tr>
+<td>Message</td>
+<td style="text-align:right">Nothing. Composed of header fields and properties only. This message type is useful when a message body is not required.</td>
+</tr>
+</tbody>
+</table>
+<p>The JMS API provides methods for creating messages of each type and for filling in their contents. For example, to create and send a TextMessage, you might use the following statements:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TextMessage message = session.createTextMessage();</div><div class="line">message.setText(msg_text);     // msg_text is a String</div><div class="line">producer.send(message);</div></pre></td></tr></table></figure></p>
+<p>At the consuming end, a message arrives as a generic Message object and must be cast to the appropriate message type. You can use one or more getter methods to extract the message contents. The following code fragment uses the getText method:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Message m = consumer.receive();</div><div class="line">if (m instanceof TextMessage) &#123;</div><div class="line">    TextMessage message = (TextMessage) m;</div><div class="line">    System.out.println(&quot;Reading message: &quot; + message.getText());</div><div class="line">&#125; else &#123;</div><div class="line">    // Handle error</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="IBM-Knowledge-Center"><a href="#IBM-Knowledge-Center" class="headerlink" title="IBM Knowledge Center"></a>IBM Knowledge Center</h1><h2 id="JMS-message-types-Version-10-0-0"><a href="#JMS-message-types-Version-10-0-0" class="headerlink" title="JMS message types Version:10.0.0"></a>JMS message types Version:10.0.0</h2><p><a href="https://www.ibm.com/support/knowledgecenter/SSMKHH_10.0.0/com.ibm.etools.mft.doc/ac24862_.htm" target="_blank" rel="external">IBM Knowledge Center</a></p>
+<p>JMS defines six message interface types; a base message type and five subtypes. The message types are defined according to the type of the message payload, where the payload is the body of a message that holds the content.</p>
+<p>JMS specifies only the interface and does not specify the implementation. This approach allows for vendor-specific implementation and transportation of messages while using a common interface.</p>
+<p>The following table describes the six message types:</p>
+<table>
+<thead>
+<tr>
+<th>Message type</th>
+<th style="text-align:right">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Message</td>
+<td style="text-align:right">The base class. This message type is used for event notification, and does not have a payload.</td>
+</tr>
+<tr>
+<td>BytesMessage</td>
+<td style="text-align:right">The payload is stored as an array of bytes. This message type is useful for exchanging data in a format that is native to the application, and when JMS is used as a transport between two systems, where the JMS client does not know the message payload type. Use this message type to transmit XML messages to ensure that the message is transmitted efficiently, and is not subject to unnecessary data conversion.</td>
+</tr>
+<tr>
+<td>TextMessage</td>
+<td style="text-align:right">Data is stored as a string. This message type is useful for exchanging simple text messages.</td>
+</tr>
+<tr>
+<td>StreamMessage</td>
+<td style="text-align:right">A Stream message is a sequence of primitive Java™ types. The message object tracks the order and the types of these primitives within the stream. Formal conversion rules apply; for example, an exception is thrown if a JMS application tries to read a double value as a short value. Refer to the Java Message Service Specification version 1.1 or 2.0 for a full list of the conversion rules.   21ABCDEFGH32.345 is an example of a StreamMessage payload. It consists of the following three fields: <code>An Integer</code>,<code>A String</code>,<code>A Float</code>.  If the data structure is unknown, the generic method readObject() can be used to return the next object in the stream. If the structure of the data is known, the JMS client can be specific about the type of object being accessed.</td>
+</tr>
+<tr>
+<td>MapMessage</td>
+<td style="text-align:right">The payload of a MapMessage is stored as a set of name-value pairs. The name is defined as a string and the value is typed. The MapMessage is useful for delivering keyed data that can change from one message to the next.<code>NumberOfCopies</code>:5 is an example of a MapMessage payload, where NumberOfCopies is the key and 5 is the value.Data can be accessed by using getMapNames(), which returns a Java Enumeration object. It is possible to iterate through the MapMessage by using hasMoreElements() to retrieve the mapped name-value pairs.</td>
+</tr>
+<tr>
+<td>ObjectMessage</td>
+<td style="text-align:right">The Object message carries a serializable Java Object as its payload. It is useful for exchanging Java objects.</td>
+</tr>
+</tbody>
+</table>
+<p>Last updated 2016-08-25 13:25:34</p>
 
       
     </div>
@@ -445,7 +500,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/教程/" rel="tag"># 教程</a>
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/官方文档/" rel="tag"># 官方文档</a>
           
         </div>
       
@@ -454,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/09/二进制/" rel="next" title="2的世界">
-                <i class="fa fa-chevron-left"></i> 2的世界
+              <a href="/2016/11/24/SpringJMS/" rel="next" title="Spring JMS">
+                <i class="fa fa-chevron-left"></i> Spring JMS
               </a>
             
           </div>
@@ -463,10 +522,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/15/Java虚拟机内存/" rel="prev" title="JVM之内存">
-                JVM之内存 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -481,10 +536,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/12/spf13-vim/"
-     data-title="vim懒人福音--spf13-vim"
+        <div class="ds-share flat" data-thread-key="2016/11/24/JMSMessageTypes/"
+     data-title="JMS消息类型"
      data-content=""
-     data-url="http://lingyv.cn/2016/08/12/spf13-vim/">
+     data-url="http://lingyv.cn/2016/11/24/JMSMessageTypes/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -514,8 +569,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/12/spf13-vim/"
-           data-title="vim懒人福音--spf13-vim" data-url="http://lingyv.cn/2016/08/12/spf13-vim/">
+      <div class="ds-thread" data-thread-key="2016/11/24/JMSMessageTypes/"
+           data-title="JMS消息类型" data-url="http://lingyv.cn/2016/11/24/JMSMessageTypes/">
       </div>
     
   </div>
@@ -539,8 +594,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/touxiang.png"
@@ -622,6 +686,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#官方"><span class="nav-number">1.</span> <span class="nav-text">官方</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Message-Bodies"><span class="nav-number">1.1.</span> <span class="nav-text">Message Bodies</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IBM-Knowledge-Center"><span class="nav-number">2.</span> <span class="nav-text">IBM Knowledge Center</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JMS-message-types-Version-10-0-0"><span class="nav-number">2.1.</span> <span class="nav-text">JMS message types Version:10.0.0</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

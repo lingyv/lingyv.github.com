@@ -1,0 +1,1358 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ActiveMQ,分布式,Java,官方文档,翻译,Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Spring中使用JMS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring JMS">
+<meta property="og:url" content="http://lingyv.cn/2016/11/24/SpringJMS/index.html">
+<meta property="og:site_name" content="凌宇">
+<meta property="og:description" content="Spring中使用JMS">
+<meta property="og:updated_time" content="2016-11-22T12:30:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring JMS">
+<meta name="twitter:description" content="Spring中使用JMS">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lingyv.cn/2016/11/24/SpringJMS/"/>
+
+
+
+
+
+  <title> Spring JMS | 凌宇 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d8d2884d34e07cc018d380d28cc6a73c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凌宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">lingyv</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-dao">
+          <a href="/categories/道/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-road"></i> <br />
+            
+            道
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skill">
+          <a href="/categories/术/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reprint">
+          <a href="/categories/转/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-o"></i> <br />
+            
+            转
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://lingyv.cn/2016/11/24/SpringJMS/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lingyv">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/touxiang.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="凌宇">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="凌宇" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spring JMS
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-24T20:12:29+08:00">
+                2016-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/术/" itemprop="url" rel="index">
+                    <span itemprop="name">术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/24/SpringJMS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/24/SpringJMS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Spring中使用JMS<br><a id="more"></a><br><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jms.html" target="_blank" rel="external">Spring JMS</a> Version:5.0.0</p>
+<h1 id="Introduction-简介"><a href="#Introduction-简介" class="headerlink" title="Introduction 简介"></a>Introduction 简介</h1><p>Spring provides a JMS integration framework that simplifies the use of the JMS API much like Spring’s integration does for the JDBC API.</p>
+<p>Spring提供了一个JMS集成框架，简化了JMS API的使用，就像Spring集成JDBC API一样。</p>
+<p>JMS can be roughly divided into two areas of functionality, namely the production and consumption of messages. The JmsTemplate class is used for message production and synchronous message reception. For asynchronous reception similar to Java EE’s message-driven bean style, Spring provides a number of message listener containers that are used to create Message-Driven POJOs (MDPs). Spring also provides a declarative way of creating message listeners.</p>
+<p>JMS可以大致分为两个功能区域，即消息的生产和消费。 JmsTemplate类用于消息生成和同步消息接收。 对于类似于Java EE的消息驱动bean样式的异步接收，Spring提供了许多用于创建消息驱动的POJO(MDP)的消息侦听容器。 Spring还提供了一种创建消息侦听器的声明式方法。</p>
+<p>The package <code>org.springframework.jms.core</code> provides the core functionality for using JMS. It contains JMS template classes that simplify the use of the JMS by handling the creation and release of resources, much like the JdbcTemplate does for JDBC. The design principle common to Spring template classes is to provide helper methods to perform common operations and for more sophisticated usage, delegate the essence of the processing task to user implemented callback interfaces. The JMS template follows the same design. The classes offer various convenience methods for the sending of messages, consuming a message synchronously, and exposing the JMS session and message producer to the user.</p>
+<p>包org.springframework.jms.core提供了使用JMS的核心功能。 它包含JMS模板类，通过处理资源的创建和释放来简化JMS的使用，类似于JdbcTemplate对JDBC的使用。 Spring模板类的通用设计原则是提供帮助方法来执行常见操作，为了更复杂的使用，将处理任务的本质委托给用户实现的回调接口。 JMS模板遵循相同的设计。 这些类提供了用于发送消息，同步消费消息以及向用户公开JMS会话和消息产生器的各种方便的方法。</p>
+<p>The <code>package org.springframework.jms.support</code> provides JMSException translation functionality. The translation converts the checked JMSException hierarchy to a mirrored hierarchy of unchecked exceptions. If there are any provider specific subclasses of the checked javax.jms.JMSException, this exception is wrapped in the unchecked UncategorizedJmsException.</p>
+<p>包org.springframework.jms.support提供JMSException翻译功能。 该转换将检查的JMSException层次结构转换为未检查异常的镜像层次结构。 如果检查的javax.jms.JMSException有任何特定于提供程序的子类，则此异常将包含在未检查的UncategorizedJmsException中。</p>
+<p>The package org.springframework.jms.support.converter provides a MessageConverter abstraction to convert between Java objects and JMS messages.</p>
+<p>包org.springframework.jms.support.converter提供了一个MessageConverter抽象来在Java对象和JMS消息之间进行转换。</p>
+<p>The package org.springframework.jms.support.destination provides various strategies for managing JMS destinations, such as providing a service locator for destinations stored in JNDI.</p>
+<p>包org.springframework.jms.support.destination提供了用于管理JMS目的地的各种策略，例如为存储在JNDI中的目的地提供服务定位符。</p>
+<p>The package org.springframework.jms.annotation provides the necessary infrastructure to support annotation-driven listener endpoints using @JmsListener.</p>
+<p>org.springframework.jms.annotation包提供了使用@JmsListener支持注释驱动的侦听器端点的必要基础结构。</p>
+<p>The package org.springframework.jms.config provides the parser implementation for the jms namespace as well the java config support to configure listener containers and create listener endpoints.</p>
+<p>包org.springframework.jms.config提供了jms命名空间的解析器实现以及配置侦听器容器和创建侦听器端点的java config支持。</p>
+<p>Finally, the package org.springframework.jms.connection provides an implementation of the ConnectionFactory suitable for use in standalone applications. It also contains an implementation of Spring’s PlatformTransactionManager for JMS (the cunningly named JmsTransactionManager). This allows for seamless integration of JMS as a transactional resource into Spring’s transaction management mechanisms.</p>
+<p>最后，包org.springframework.jms.connection提供了适用于独立应用程序的ConnectionFactory的实现。 它还包含Spring的PlatformTransactionManager for JMS(巧妙的名称为JmsTransactionManager)的实现。 这允许将JMS作为事务资源无缝集成到Spring的事务管理机制中。</p>
+<h1 id="Using-Spring-JMS"><a href="#Using-Spring-JMS" class="headerlink" title="Using Spring JMS"></a>Using Spring JMS</h1><h2 id="JmsTemplate"><a href="#JmsTemplate" class="headerlink" title="JmsTemplate"></a>JmsTemplate</h2><p>The JmsTemplate class is the central class in the JMS core package. It simplifies the use of JMS since it handles the creation and release of resources when sending or synchronously receiving messages.</p>
+<p>JmsTemplate类是JMS核心包中的中心类。它简化了JMS的使用，因为它在发送或同步接收消息时处理资源的创建和释放。</p>
+<p>Code that uses the JmsTemplate only needs to implement callback interfaces giving them a clearly defined high level contract. The MessageCreator callback interface creates a message given a Session provided by the calling code in JmsTemplate. In order to allow for more complex usage of the JMS API, the callback SessionCallback provides the user with the JMS session and the callback ProducerCallback exposes a Session and MessageProducer pair.</p>
+<p>使用JmsTemplate的代码只需要实现回调接口，为它们提供一个清晰定义的高级别契约。 MessageCreator回调接口创建一个消息，给出由JmsTemplate中的调用代码提供的会话。为了允许更复杂地使用JMS API，回调SessionCallback向用户提供JMS会话，而回调ProducerCallback公开一个Session和MessageProducer对。</p>
+<p>The JMS API exposes two types of send methods, one that takes delivery mode, priority, and time-to-live as Quality of Service (QOS) parameters and one that takes no QOS parameters which uses default values. Since there are many send methods in JmsTemplate, the setting of the QOS parameters have been exposed as bean properties to avoid duplication in the number of send methods. Similarly, the timeout value for synchronous receive calls is set using the property setReceiveTimeout.</p>
+<p>JMS API公开两种类型的发送方法，一种采用交付模式，优先级和生存时间作为服务质量(QOS)参数，另一种不使用使用默认值的QOS参数。因为JmsTemplate中有很多发送方法，所以QOS参数的设置已经公开为bean属性，以避免发送方法的数量重复。类似地，同步接收调用的超时值使用属性setReceiveTimeout设置。</p>
+<p>Some JMS providers allow the setting of default QOS values administratively through the configuration of the ConnectionFactory. This has the effect that a call to MessageProducer’s send method <code>send(Destination destination, Message message)</code> will use different QOS default values than those specified in the JMS specification. In order to provide consistent management of QOS values, the JmsTemplate must therefore be specifically enabled to use its own QOS values by setting the boolean property isExplicitQosEnabled to true.</p>
+<p>某些JMS提供程序允许通过配置ConnectionFactory来管理性地设置默认QOS值。这具有的效果是，调用MessageProducer的发送方法<code>send(Destination destination，Message message)</code>将使用不同于JMS规范中指定的QOS默认值。为了提供一致的QOS值管理，因此必须通过将布尔属性isExplicitQosEnabled设置为true来专门启用JmsTemplate以使用自己的QOS值。</p>
+<p>For convenience, JmsTemplate also exposes a basic request-reply operation that allows to send a message and wait for a reply on a temporary queue that is created as part of the operation.</p>
+<p>为了方便起见，JmsTemplate还公开了一个基本的请求 - 回复操作，它允许发送消息并等待在作为操作的一部分创建的临时队列上的回复。</p>
+<blockquote>
+<p>Instances of the JmsTemplate class are thread-safe once configured. This is important because it means that you can configure a single instance of a JmsTemplate and then safely inject this shared reference into multiple collaborators. To be clear, the JmsTemplate is stateful, in that it maintains a reference to a ConnectionFactory, but this state is not conversational state.</p>
+<p>JmsTemplate类的实例在配置后是线程安全的。 这很重要，因为这意味着您可以配置JmsTemplate的单个实例，然后将此共享引用安全地注入多个协作者。 要清楚，JmsTemplate是有状态的，因为它维护对ConnectionFactory的引用，但是这个状态不是会话状态。</p>
+</blockquote>
+<p>As of Spring Framework 4.1, JmsMessagingTemplate is built on top of JmsTemplate and provides an integration with the messaging abstraction, i.e. org.springframework.messaging.Message. This allows you to create the message to send in generic manner.</p>
+<p>从Spring Framework 4.1开始，JmsMessagingTemplate构建在JmsTemplate之上，并提供与消息抽象的集成，即org.springframework.messaging.Message。 这允许您以通用方式创建要发送的消息。</p>
+<h2 id="Connections"><a href="#Connections" class="headerlink" title="Connections"></a>Connections</h2><p>The JmsTemplate requires a reference to a ConnectionFactory. The ConnectionFactory is part of the JMS specification and serves as the entry point for working with JMS. It is used by the client application as a factory to create connections with the JMS provider and encapsulates various configuration parameters, many of which are vendor specific such as SSL configuration options.</p>
+<p>JmsTemplate需要对ConnectionFactory的引用。 ConnectionFactory是JMS规范的一部分，用作处理JMS的入口点。 它由客户端应用程序用作工厂来创建与JMS提供程序的连接，并封装各种配置参数，其中许多是供应商特定的，例如SSL配置选项。</p>
+<p>When using JMS inside an EJB, the vendor provides implementations of the JMS interfaces so that they can participate in declarative transaction management and perform pooling of connections and sessions. In order to use this implementation, Java EE containers typically require that you declare a JMS connection factory as a resource-ref inside the EJB or servlet deployment descriptors. To ensure the use of these features with the JmsTemplate inside an EJB, the client application should ensure that it references the managed implementation of the ConnectionFactory.</p>
+<p>当在EJB中使用JMS时，供应商提供JMS接口的实现，以便它们可以参与声明性事务管理并执行连接和会话的池。 为了使用这个实现，Java EE容器通常需要将一个JMS连接工厂声明为EJB或servlet部署描述符中的resource-ref。 要确保在EJB中使用JmsTemplate的这些功能，客户端应用程序应确保它引用ConnectionFactory的托管实现。</p>
+<h3 id="Caching-Messaging-Resources"><a href="#Caching-Messaging-Resources" class="headerlink" title="Caching Messaging Resources"></a>Caching Messaging Resources</h3><p>The standard API involves creating many intermediate objects. To send a message the following ‘API’ walk is performed</p>
+<p>标准API涉及创建许多中间对象。 要发送消息，将执行以下’API’步行</p>
+<p><code>ConnectionFactory</code>-&gt;<code>Connection</code>-&gt;<code>Session</code>-&gt;<code>MessageProducer</code>-&gt;<code>send</code></p>
+<p>Between the ConnectionFactory and the Send operation there are three intermediate objects that are created and destroyed. To optimise the resource usage and increase performance two implementations of ConnectionFactory are provided.</p>
+<p>在ConnectionFactory和发送操作之间，有三个中间对象被创建和销毁。 为了优化资源使用和提高性能，提供了ConnectionFactory的两个实现。</p>
+<h3 id="SingleConnectionFactory"><a href="#SingleConnectionFactory" class="headerlink" title="SingleConnectionFactory"></a>SingleConnectionFactory</h3><p>Spring provides an implementation of the ConnectionFactory interface, SingleConnectionFactory, that will return the same Connection on all createConnection() calls and ignore calls to close(). This is useful for testing and standalone environments so that the same connection can be used for multiple JmsTemplate calls that may span any number of transactions. SingleConnectionFactory takes a reference to a standard ConnectionFactory that would typically come from JNDI.</p>
+<p>Spring提供了ConnectionFactory接口的一个实现，SingleConnectionFactory，将在所有createConnection()调用上返回相同的Connection，并忽略对close()的调用。这对于测试和独立环境非常有用，因此，同一连接可用于可能跨越任何数量事务的多个JmsTemplate调用。 SingleConnectionFactory采用对通常来自JNDI的标准ConnectionFactory的引用。</p>
+<h3 id="CachingConnectionFactory"><a href="#CachingConnectionFactory" class="headerlink" title="CachingConnectionFactory"></a>CachingConnectionFactory</h3><p>The CachingConnectionFactory extends the functionality of SingleConnectionFactory and adds the caching of Sessions, MessageProducers, and MessageConsumers. The initial cache size is set to 1, use the property sessionCacheSize to increase the number of cached sessions. Note that the number of actual cached sessions will be more than that number as sessions are cached based on their acknowledgment mode, so there can be up to 4 cached session instances when sessionCacheSize is set to one, one for each acknowledgment mode. MessageProducers and MessageConsumers are cached within their owning session and also take into account the unique properties of the producers and consumers when caching. MessageProducers are cached based on their destination. MessageConsumers are cached based on a key composed of the destination, selector, noLocal delivery flag, and the durable subscription name (if creating durable consumers).</p>
+<p>CachingConnectionFactory扩展了SingleConnectionFactory的功能，并添加了Sessions，MessageProducers和MessageConsumers的缓存。初始高速缓存大小设置为1，使用属性sessionCacheSize增加高速缓存的会话数。请注意，实际缓存会话的数量将大于该数量，因为根据其确认模式缓存会话，因此当sessionCacheSize设置为1时，可以有多达4个缓存会话实例，每个确认模式一个。 MessageProducers和MessageConsum在其拥有的会话中进行缓存，并在缓存时考虑生产者和消费者的独特属性。 MessageProducer根据其目标进行缓存。 MessageConsum基于由目标，选择器，noLocal传递标志和持久预订名称(如果创建持久消费者)组成的密钥进行缓存。</p>
+<h2 id="Destination-Management"><a href="#Destination-Management" class="headerlink" title="Destination Management"></a>Destination Management</h2><p>Destinations, like ConnectionFactories, are JMS administered objects that can be stored and retrieved in JNDI. When configuring a Spring application context you can use the JNDI factory class JndiObjectFactoryBean / <jee:jndi-lookup> to perform dependency injection on your object’s references to JMS destinations. However, often this strategy is cumbersome if there are a large number of destinations in the application or if there are advanced destination management features unique to the JMS provider. Examples of such advanced destination management would be the creation of dynamic destinations or support for a hierarchical namespace of destinations. The JmsTemplate delegates the resolution of a destination name to a JMS destination object to an implementation of the interface DestinationResolver. DynamicDestinationResolver is the default implementation used by JmsTemplate and accommodates resolving dynamic destinations. A JndiDestinationResolver is also provided that acts as a service locator for destinations contained in JNDI and optionally falls back to the behavior contained in DynamicDestinationResolver.</jee:jndi-lookup></p>
+<p>目标，如ConnectionFactories，是JMS管理的对象，可以在JNDI中存储和检索。在配置Spring应用程序上下文时，可以使用JNDI工厂类JndiObjectFactoryBean / <jee：jndi-lookup>对对象对JMS目标的引用执行依赖注入。但是，如果应用程序中有大量目标，或者如果有对JMS提供程序独有的高级目标管理功能，则此策略通常很麻烦。这种高级目的地管理的示例是创建动态目的地或者支持目的地的分层命名空间。 JmsTemplate将目标名称的解析委派给JMS目标对象到接口DestinationResolver的实现。 DynamicDestinationResolver是JmsTemplate使用的默认实现，适合解析动态目标。还提供JndiDestinationResolver，其作为用于包含在JNDI中的目的地的服务定位器，并且可选地回退到包含在DynamicDestinationResolver中的行为。</jee：jndi-lookup></p>
+<p>Quite often the destinations used in a JMS application are only known at runtime and therefore cannot be administratively created when the application is deployed. This is often because there is shared application logic between interacting system components that create destinations at runtime according to a well-known naming convention. Even though the creation of dynamic destinations is not part of the JMS specification, most vendors have provided this functionality. Dynamic destinations are created with a name defined by the user which differentiates them from temporary destinations and are often not registered in JNDI. The API used to create dynamic destinations varies from provider to provider since the properties associated with the destination are vendor specific. However, a simple implementation choice that is sometimes made by vendors is to disregard the warnings in the JMS specification and to use the TopicSession method createTopic(String topicName) or the QueueSession method createQueue(String queueName) to create a new destination with default destination properties. Depending on the vendor implementation, DynamicDestinationResolver may then also create a physical destination instead of only resolving one.</p>
+<p>通常，JMS应用程序中使用的目标仅在运行时知道，因此在部署应用程序时无法在管理上创建。这通常是因为在根据公知的命名约定在运行时创建目的地的交互系统组件之间存在共享的应用逻辑。即使创建动态目标不是JMS规范的一部分，大多数供应商也提供了这一功能。动态目标是使用用户定义的名称创建的，它将它们与临时目标区分开来，并且通常不会在JNDI中注册。用于创建动态目标的API因供应商而异，因为与目标相关联的属性是供应商特定的。然而，有时供应商做出的一个简单的实现选择是忽略JMS规范中的警告，并使用TopicSession方法createTopic(String topicName)或QueueSession方法createQueue(String queueName)来创建具有默认目标属性的新目标。根据供应商实现，DynamicDestinationResolver可以创建物理目的地，而不是只解析一个。</p>
+<p>The boolean property pubSubDomain is used to configure the JmsTemplate with knowledge of what JMS domain is being used. By default the value of this property is false, indicating that the point-to-point domain, Queues, will be used. This property used by JmsTemplate determines the behavior of dynamic destination resolution via implementations of the DestinationResolver interface.</p>
+<p>布尔属性pubSubDomain用于配置JmsTemplate知道正在使用的JMS域。默认情况下，此属性的值为false，表示将使用点对点域(Queues)。 JmsTemplate使用的此属性通过DestinationResolver接口的实现来确定动态目标解析的行为。</p>
+<p>You can also configure the JmsTemplate with a default destination via the property defaultDestination. The default destination will be used with send and receive operations that do not refer to a specific destination.</p>
+<p>您还可以通过属性defaultDestination为默认目标配置JmsTemplate。默认目标将用于不指向特定目标的发送和接收操作。</p>
+<h2 id="Message-Listener-Containers"><a href="#Message-Listener-Containers" class="headerlink" title="Message Listener Containers"></a>Message Listener Containers</h2><p>One of the most common uses of JMS messages in the EJB world is to drive message-driven beans (MDBs). Spring offers a solution to create message-driven POJOs (MDPs) in a way that does not tie a user to an EJB container. (See Section 30.4.2, “Asynchronous Reception - Message-Driven POJOs” for detailed coverage of Spring’s MDP support.) As from Spring Framework 4.1, endpoint methods can be simply annotated using @JmsListener see Section 30.6, “Annotation-driven listener endpoints” for more details.</p>
+<p>在EJB世界中JMS消息最常见的用途之一是驱动消息驱动的bean(MDB)。 Spring提供了一种解决方案，以不将用户绑定到EJB容器的方式创建消息驱动的POJO(MDP)。 (参见第30.4.2节“异步接收 - 消息驱动的POJO”，了解Spring的MDP支持的详细信息。)从Spring Framework 4.1开始，可以使用@JmsListener简单地注释端点方法，请参见第30.6节“注释驱动的侦听器端点“ 更多细节。</p>
+<p>A message listener container is used to receive messages from a JMS message queue and drive the MessageListener that is injected into it. The listener container is responsible for all threading of message reception and dispatches into the listener for processing. A message listener container is the intermediary between an MDP and a messaging provider, and takes care of registering to receive messages, participating in transactions, resource acquisition and release, exception conversion and suchlike. This allows you as an application developer to write the (possibly complex) business logic associated with receiving a message (and possibly responding to it), and delegates boilerplate JMS infrastructure concerns to the framework.</p>
+<p>消息侦听器容器用于从JMS消息队列接收消息，并驱动注入到其中的MessageListener。侦听器容器负责消息接收和分派到侦听器中的所有线程的处理。消息侦听器容器是MDP和消息传递提供者之间的中介，并且负责注册以接收消息，参与事务，资源获取和释放，异常转换等。这允许您作为应用程序开发人员编写与接收消息(可能响应消息)相关联的(可能是复杂的)业务逻辑，并将模板JMS基础结构问题委托给框架。</p>
+<p>There are two standard JMS message listener containers packaged with Spring, each with its specialised feature set.</p>
+<p>有两个使用Spring打包的标准JMS消息侦听器容器，每个都有其专门的功能集。</p>
+<h3 id="SimpleMessageListenerContainer"><a href="#SimpleMessageListenerContainer" class="headerlink" title="SimpleMessageListenerContainer"></a>SimpleMessageListenerContainer</h3><p>This message listener container is the simpler of the two standard flavors. It creates a fixed number of JMS sessions and consumers at startup, registers the listener using the standard JMS MessageConsumer.setMessageListener() method, and leaves it up the JMS provider to perform listener callbacks. This variant does not allow for dynamic adaption to runtime demands or for participation in externally managed transactions. Compatibility-wise, it stays very close to the spirit of the standalone JMS specification - but is generally not compatible with Java EE’s JMS restrictions.</p>
+<p>这个消息监听器容器是两个标准中较简单的。 它在启动时创建固定数量的JMS会话和消费者，使用标准的JMS MessageConsumer.setMessageListener()方法注册侦听器，并将它留给JMS提供程序执行侦听器回调。 此变体不允许动态适应运行时需求或参与外部管理事务。 兼容性，它保持非常接近独立的JMS规范的精神 - 但是通常不与Java EE的JMS限制兼容。</p>
+<blockquote>
+<p>While SimpleMessageListenerContainer does not allow for the participation in externally managed transactions, it does support native JMS transactions: simply switch the ‘sessionTransacted’ flag to ‘true’ or, in the namespace, set the ‘acknowledge’ attribute to ‘transacted’: Exceptions thrown from your listener will lead to a rollback then, with the message getting redelivered. Alternatively, consider using ‘CLIENT_ACKNOWLEDGE’ mode which provides redelivery in case of an exception as well but does not use transacted Sessions and therefore does not include any other Session operations (such as sending response messages) in the transaction protocol.</p>
+<p>虽然SimpleMessageListenerContainer不允许参与外部管理事务，但它支持本地JMS事务：只需将“sessionTransacted”标志切换为“true”，或者在命名空间中将“acknowledge”属性设置为“transacted”：抛出异常 从您的侦听器将导致回滚，然后，消息重新提交。 或者，考虑使用“CLIENT_ACKNOWLEDGE”模式，该模式在异常情况下也提供重新传递，但不使用事务会话，因此不在事务协议中包括任何其他会话操作(例如发送响应消息)。</p>
+</blockquote>
+<h3 id="DefaultMessageListenerContainer"><a href="#DefaultMessageListenerContainer" class="headerlink" title="DefaultMessageListenerContainer"></a>DefaultMessageListenerContainer</h3><p>This message listener container is the one used in most cases. In contrast to SimpleMessageListenerContainer, this container variant allows for dynamic adaptation to runtime demands and is able to participate in externally managed transactions. Each received message is registered with an XA transaction when configured with a JtaTransactionManager; so processing may take advantage of XA transaction semantics. This listener container strikes a good balance between low requirements on the JMS provider, advanced functionality such as the participation in externally managed transactions, and compatibility with Java EE environments.</p>
+<p>此消息侦听器容器是大多数情况下使用的容器。与SimpleMessageListenerContainer相反，此容器变体允许动态适应运行时需求，并能够参与外部管理事务。当配置有JtaTransactionManager时，每个接收的消息都用XA事务注册;因此处理可以利用XA事务语义。此侦听器容器在JMS提供程序的低要求，高级功能(如参与外部管理事务)和与Java EE环境的兼容性之间达到很好的平衡。</p>
+<p>The cache level of the container can be customized. Note that when no caching is enabled, a new connection and a new session is created for each message reception. Combining this with a non durable subscription with high loads may lead to message lost. Make sure to use a proper cache level in such case.</p>
+<p>可以定制容器的高速缓存级别。注意，当没有启用缓存时，为每个消息接收创建新连接和新会话。将此与具有高负载的非持久订阅相结合可能导致消息丢失。在这种情况下，请确保使用适当的缓存级别。</p>
+<p>This container also has recoverable capabilities when the broker goes down. By default, a simple BackOff implementation retries every 5 seconds. It is possible to specify a custom BackOff implementation for more fine-grained recovery options, see ExponentialBackOff for an example.</p>
+<p>当代理停机时，此容器还具有可恢复功能。默认情况下，简单的BackOff实现每5秒重试一次。可以为更细粒度的恢复选项指定自定义BackOff实现，请参见ExponentialBackOff示例。</p>
+<blockquote>
+<p>Like its sibling SimpleMessageListenerContainer, DefaultMessageListenerContainer supports native JMS transactions and also allows for customizing the acknowledgment mode. This is strongly recommended over externally managed transactions if feasible for your scenario: that is, if you can live with occasional duplicate messages in case of the JVM dying. Custom duplicate message detection steps in your business logic may cover such situations, e.g. in the form of a business entity existence check or a protocol table check. Any such arrangements will be significantly more efficient than the alternative: wrapping your entire processing with an XA transaction (through configuring your DefaultMessageListenerContainer with an JtaTransactionManager), covering the reception of the JMS message as well as the execution of the business logic in your message listener (including database operations etc).</p>
+<p>像它的同级SimpleMessageListenerContainer一样，DefaultMessageListenerContainer支持本地JMS事务，并且还允许定制确认模式。 强烈建议对于外部管理的事务，如果可行的情况下：这是，如果你可以生活偶尔的重复消息的情况下JVM死亡。 您的业务逻辑中的自定义重复邮件检测步骤可能会涉及此类情况，例如 以业务实体存在检查或协议表检查的形式。 任何这样的安排将明显比替代方案更有效率：使用XA事务封装整个处理(通过使用JtaTransactionManager配置DefaultMessageListenerContainer)，覆盖JMS消息的接收以及在消息侦听器中执行业务逻辑 (包括数据库操作等)。</p>
+</blockquote>
+<h2 id="Transaction-management"><a href="#Transaction-management" class="headerlink" title="Transaction management"></a>Transaction management</h2><p>Spring provides a JmsTransactionManager that manages transactions for a single JMS ConnectionFactory. This allows JMS applications to leverage the managed transaction features of Spring as described in Chapter 17, Transaction Management. The JmsTransactionManager performs local resource transactions, binding a JMS Connection/Session pair from the specified ConnectionFactory to the thread. JmsTemplate automatically detects such transactional resources and operates on them accordingly.</p>
+<p>Spring提供了一个JmsTransactionManager，用于管理单个JMS ConnectionFactory的事务。这允许JMS应用程序利用Spring的托管事务功能，如第17章“事务管理”中所述。 JmsTransactionManager执行本地资源事务，将来自指定的ConnectionFactory的JMS连接/会话对绑定到线程。 JmsTemplate会自动检测这种事务资源并相应地对其进行操作。</p>
+<p>In a Java EE environment, the ConnectionFactory will pool Connections and Sessions, so those resources are efficiently reused across transactions. In a standalone environment, using Spring’s SingleConnectionFactory will result in a shared JMS Connection, with each transaction having its own independent Session. Alternatively, consider the use of a provider-specific pooling adapter such as ActiveMQ’s PooledConnectionFactory class.</p>
+<p>在Java EE环境中，ConnectionFactory将缓冲连接和会话，因此这些资源在事务之间有效地重用。在独立环境中，使用Spring的SingleConnectionFactory将导致共享JMS连接，每个事务都有自己的独立会话。或者，考虑使用特定于提供程序的池适配器，例如ActiveMQ的PooledConnectionFactory类。</p>
+<p>JmsTemplate can also be used with the JtaTransactionManager and an XA-capable JMS ConnectionFactory for performing distributed transactions. Note that this requires the use of a JTA transaction manager as well as a properly XA-configured ConnectionFactory! (Check your Java EE server’s / JMS provider’s documentation.)</p>
+<p>JmsTemplate也可以与JtaTransactionManager和一个支持XA的JMS ConnectionFactory一起使用，用于执行分布式事务。注意，这需要使用JTA事务管理器以及正确的XA配置的ConnectionFactory！ (检查Java EE服务器的/ JMS提供程序的文档。)</p>
+<p>Reusing code across a managed and unmanaged transactional environment can be confusing when using the JMS API to create a Session from a Connection. This is because the JMS API has only one factory method to create a Session and it requires values for the transaction and acknowledgment modes. In a managed environment, setting these values is the responsibility of the environment’s transactional infrastructure, so these values are ignored by the vendor’s wrapper to the JMS Connection. When using the JmsTemplate in an unmanaged environment you can specify these values through the use of the properties sessionTransacted and sessionAcknowledgeMode. When using a PlatformTransactionManager with JmsTemplate, the template will always be given a transactional JMS Session.</p>
+<p>在使用JMS API从连接创建会话时，跨托管和非托管事务环境重用代码可能会引起混淆。这是因为JMS API只有一个工厂方法来创建会话，并且它需要事务和确认模式的值。在托管环境中，设置这些值是环境事务基础结构的责任，因此供应商的JMS连接包装器将忽略这些值。在非托管环境中使用JmsTemplate时，可以通过使用属性sessionTransacted和sessionAcknowledgeMode来指定这些值。当使用带有JmsTemplate的PlatformTransactionManager时，模板将始终被赋予事务性JMS会话。</p>
+<h1 id="Sending-a-Message"><a href="#Sending-a-Message" class="headerlink" title="Sending a Message"></a>Sending a Message</h1><p>The JmsTemplate contains many convenience methods to send a message. There are send methods that specify the destination using a javax.jms.Destination object and those that specify the destination using a string for use in a JNDI lookup. The send method that takes no destination argument uses the default destination.</p>
+<p>JmsTemplate包含许多方便的方法来发送消息。 有一些发送方法使用javax.jms.Destination对象指定目标，使用字符串指定目标的方法用于JNDI查找。 不带目标参数的send方法使用默认目标。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">import javax.jms.ConnectionFactory;</div><div class="line">import javax.jms.JMSException;</div><div class="line">import javax.jms.Message;</div><div class="line">import javax.jms.Queue;</div><div class="line">import javax.jms.Session;</div><div class="line"></div><div class="line">import org.springframework.jms.core.MessageCreator;</div><div class="line">import org.springframework.jms.core.JmsTemplate;</div><div class="line"></div><div class="line">public class JmsQueueSender &#123;</div><div class="line"></div><div class="line">    private JmsTemplate jmsTemplate;</div><div class="line">    private Queue queue;</div><div class="line"></div><div class="line">    public void setConnectionFactory(ConnectionFactory cf) &#123;</div><div class="line">        this.jmsTemplate = new JmsTemplate(cf);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setQueue(Queue queue) &#123;</div><div class="line">        this.queue = queue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void simpleSend() &#123;</div><div class="line">        this.jmsTemplate.send(this.queue, new MessageCreator() &#123;</div><div class="line">            public Message createMessage(Session session) throws JMSException &#123;</div><div class="line">                return session.createTextMessage(&quot;hello queue world&quot;);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>This example uses the MessageCreator callback to create a text message from the supplied Session object. The JmsTemplate is constructed by passing a reference to a ConnectionFactory. As an alternative, a zero argument constructor and connectionFactory is provided and can be used for constructing the instance in JavaBean style (using a BeanFactory or plain Java code). Alternatively, consider deriving from Spring’s JmsGatewaySupport convenience base class, which provides pre-built bean properties for JMS configuration.</p>
+<p>此示例使用MessageCreator回调从提供的Session对象创建文本消息。 JmsTemplate是通过传递对ConnectionFactory的引用构造的。 作为替代，提供零参数构造函数和connectionFactory，并且可以用于以JavaBean风格构建实例(使用BeanFactory或纯Java代码)。 或者，考虑从Spring的JmsGatewaySupport方便基类派生，它为JMS配置提供了预构建的bean属性。</p>
+<p>The method send(String destinationName, MessageCreator creator) lets you send a message using the string name of the destination. If these names are registered in JNDI, you should set the destinationResolver property of the template to an instance of JndiDestinationResolver.</p>
+<p>方法send(String destinationName，MessageCreator creator)允许您使用目标的字符串名称发送消息。 如果这些名称在JNDI中注册，则应将模板的destinationResolver属性设置为JndiDestinationResolver的实例。</p>
+<p>If you created the JmsTemplate and specified a default destination, the send(MessageCreator c) sends a message to that destination.</p>
+<p>如果创建了JmsTemplate并指定了默认目标，则send(MessageCreator c)向该目标发送消息。</p>
+<h2 id="Using-Message-Converters"><a href="#Using-Message-Converters" class="headerlink" title="Using Message Converters"></a>Using Message Converters</h2><p>In order to facilitate the sending of domain model objects, the JmsTemplate has various send methods that take a Java object as an argument for a message’s data content. The overloaded methods convertAndSend() and receiveAndConvert() in JmsTemplate delegate the conversion process to an instance of the MessageConverter interface. This interface defines a simple contract to convert between Java objects and JMS messages. The default implementation SimpleMessageConverter supports conversion between String and TextMessage, byte[] and BytesMesssage, and java.util.Map and MapMessage. By using the converter, you and your application code can focus on the business object that is being sent or received via JMS and not be concerned with the details of how it is represented as a JMS message.</p>
+<p>为了方便发送域模型对象，JmsTemplate有各种发送方法，它们将Java对象作为消息数据内容的参数。 JmsTemplate中的重载方法convertAndSend()和receiveAndConvert()将转换过程委派给MessageConverter接口的实例。这个接口定义了一个简单的契约来在Java对象和JMS消息之间进行转换。默认实现SimpleMessageConverter支持在String和TextMessage之间转换，byte []和BytesMesssage，以及java.util.Map和MapMessage。通过使用转换器，您和您的应用程序代码可以专注于通过JMS发送或接收的业务对象，而不关心它如何表示为JMS消息的细节。</p>
+<p>The sandbox currently includes a MapMessageConverter which uses reflection to convert between a JavaBean and a MapMessage. Other popular implementation choices you might implement yourself are Converters that use an existing XML marshalling package, such as JAXB, Castor, XMLBeans, or XStream, to create a TextMessage representing the object.</p>
+<p>沙箱目前包括一个MapMessageConverter，它使用反射在JavaBean和MapMessage之间进行转换。您可能实现的其他流行实现选择是使用现有XML编组包(例如JAXB，Castor，XMLBeans或XStream)的转换器，以创建表示对象的TextMessage。</p>
+<p>To accommodate the setting of a message’s properties, headers, and body that can not be generically encapsulated inside a converter class, the MessagePostProcessor interface gives you access to the message after it has been converted, but before it is sent. The example below demonstrates how to modify a message header and a property after a java.util.Map is converted to a message.</p>
+<p>为了适应不能一般地封装在转换器类中的消息属性，头和主体的设置，MessagePostProcessor接口允许您在转换后但在发送消息之前访问消息。下面的示例演示了如何在将java.util.Map转换为消息后修改消息头和属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public void sendWithConversion() &#123;</div><div class="line">    Map map = new HashMap();</div><div class="line">    map.put(&quot;Name&quot;, &quot;Mark&quot;);</div><div class="line">    map.put(&quot;Age&quot;, new Integer(47));</div><div class="line">    jmsTemplate.convertAndSend(&quot;testQueue&quot;, map, new MessagePostProcessor() &#123;</div><div class="line">        public Message postProcessMessage(Message message) throws JMSException &#123;</div><div class="line">            message.setIntProperty(&quot;AccountID&quot;, 1234);</div><div class="line">            message.setJMSCorrelationID(&quot;123-00001&quot;);</div><div class="line">            return message;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>This results in a message of the form:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">MapMessage=&#123;</div><div class="line">	Header=&#123;</div><div class="line">		... standard headers ...</div><div class="line">		CorrelationID=&#123;123-00001&#125;</div><div class="line">	&#125;</div><div class="line">	Properties=&#123;</div><div class="line">		AccountID=&#123;Integer:1234&#125;</div><div class="line">	&#125;</div><div class="line">	Fields=&#123;</div><div class="line">		Name=&#123;String:Mark&#125;</div><div class="line">		Age=&#123;Integer:47&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="SessionCallback-and-ProducerCallback"><a href="#SessionCallback-and-ProducerCallback" class="headerlink" title="SessionCallback and ProducerCallback"></a>SessionCallback and ProducerCallback</h2><p>While the send operations cover many common usage scenarios, there are cases when you want to perform multiple operations on a JMS Session or MessageProducer. The SessionCallback and ProducerCallback expose the JMS Session and Session / MessageProducer pair respectively. The execute() methods on JmsTemplate execute these callback methods.</p>
+<p>虽然发送操作涵盖了许多常见的使用场景，但有时您希望在JMS会话或MessageProducer上执行多个操作。 SessionCallback和ProducerCallback分别公开了JMS Session和Session / MessageProducer对。 JmsTemplate上的execute()方法执行这些回调方法。</p>
+<h1 id="Receiving-a-message"><a href="#Receiving-a-message" class="headerlink" title="Receiving a message"></a>Receiving a message</h1><h2 id="Synchronous-Reception"><a href="#Synchronous-Reception" class="headerlink" title="Synchronous Reception"></a>Synchronous Reception</h2><p>While JMS is typically associated with asynchronous processing, it is possible to consume messages synchronously. The overloaded receive(..) methods provide this functionality. During a synchronous receive, the calling thread blocks until a message becomes available. This can be a dangerous operation since the calling thread can potentially be blocked indefinitely. The property receiveTimeout specifies how long the receiver should wait before giving up waiting for a message.</p>
+<p>虽然JMS通常与异步处理相关联，但是可以同步地消费消息。 重载的receive(..)方法提供这个功能。 在同步接收期间，调用线程阻塞，直到消息变为可用。 这可能是一个危险的操作，因为调用线程可能会无限期地被阻止。 属性receiveTimeout指定接收器在放弃等待消息之前应该等待多长时间。</p>
+<h2 id="Asynchronous-Reception-Message-Driven-POJOs"><a href="#Asynchronous-Reception-Message-Driven-POJOs" class="headerlink" title="Asynchronous Reception - Message-Driven POJOs"></a>Asynchronous Reception - Message-Driven POJOs</h2><blockquote>
+<p>Spring also supports annotated-listener endpoints through the use of the @JmsListener annotation and provides an open infrastructure to register endpoints programmatically. This is by far the most convenient way to setup an asynchronous receiver, see Section 30.6.1, “Enable listener endpoint annotations” for more details.</p>
+<p>Spring还通过使用@JmsListener注释支持注释监听器端点，并提供了一种开放式基础结构，以编程方式注册端点。 这是迄今为止设置异步接收器的最方便的方法，有关更多详细信息，请参见第30.6.1节“启用侦听器端点注释”。</p>
+</blockquote>
+<p>In a fashion similar to a Message-Driven Bean (MDB) in the EJB world, the Message-Driven POJO (MDP) acts as a receiver for JMS messages. The one restriction (but see also below for the discussion of the MessageListenerAdapter class) on an MDP is that it must implement the javax.jms.MessageListener interface. Please also be aware that in the case where your POJO will be receiving messages on multiple threads, it is important to ensure that your implementation is thread-safe.</p>
+<p>以类似于EJB世界中的消息驱动Bean(MDB)的方式，消息驱动POJO(MDP)充当JMS消息的接收器。 MDP上的一个限制(但是下面讨论MessageListenerAdapter类的)是它必须实现javax.jms.MessageListener接口。 还请注意，在您的POJO将在多个线程上接收消息的情况下，确保您的实现是线程安全的很重要。</p>
+<p>Below is a simple implementation of an MDP:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">import javax.jms.JMSException;</div><div class="line">import javax.jms.Message;</div><div class="line">import javax.jms.MessageListener;</div><div class="line">import javax.jms.TextMessage;</div><div class="line"></div><div class="line">public class ExampleListener implements MessageListener &#123;</div><div class="line"></div><div class="line">    public void onMessage(Message message) &#123;</div><div class="line">        if (message instanceof TextMessage) &#123;</div><div class="line">            try &#123;</div><div class="line">                System.out.println(((TextMessage) message).getText());</div><div class="line">            &#125;</div><div class="line">            catch (JMSException ex) &#123;</div><div class="line">                throw new RuntimeException(ex);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        else &#123;</div><div class="line">            throw new IllegalArgumentException(&quot;Message must be of type TextMessage&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Once you’ve implemented your MessageListener, it’s time to create a message listener container.</p>
+<p>一旦你实现了MessageListener，就是创建一个消息监听器容器的时候了。</p>
+<p>Find below an example of how to define and configure one of the message listener containers that ships with Spring (in this case the DefaultMessageListenerContainer).</p>
+<p>下面是如何定义和配置Spring附带的一个消息监听器容器(在本例中为DefaultMessageListenerContainer)的示例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!-- this is the Message Driven POJO (MDP) --&gt;</div><div class="line">&lt;bean id=&quot;messageListener&quot; class=&quot;jmsexample.ExampleListener&quot; /&gt;</div><div class="line"></div><div class="line">&lt;!-- and this is the message listener container --&gt;</div><div class="line">&lt;bean id=&quot;jmsContainer&quot; class=&quot;org.springframework.jms.listener.DefaultMessageListenerContainer&quot;&gt;</div><div class="line">    &lt;property name=&quot;connectionFactory&quot; ref=&quot;connectionFactory&quot;/&gt;</div><div class="line">    &lt;property name=&quot;destination&quot; ref=&quot;destination&quot;/&gt;</div><div class="line">    &lt;property name=&quot;messageListener&quot; ref=&quot;messageListener&quot; /&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p>Please refer to the Spring javadocs of the various message listener containers for a full description of the features supported by each implementation.</p>
+<p>有关每个实现支持的功能的完整描述，请参阅各种消息侦听器容器的Spring Javadoc。</p>
+<h3 id="the-SessionAwareMessageListener-interface"><a href="#the-SessionAwareMessageListener-interface" class="headerlink" title="the SessionAwareMessageListener interface"></a>the SessionAwareMessageListener interface</h3><p>The SessionAwareMessageListener interface is a Spring-specific interface that provides a similar contract to the JMS MessageListener interface, but also provides the message handling method with access to the JMS Session from which the Message was received.</p>
+<p>SessionAwareMessageListener接口是一个Spring特定的接口，它为JMS MessageListener接口提供了一个类似的契约，但也提供了消息处理方法，以访问接收到消息的JMS会话。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">package org.springframework.jms.listener;</div><div class="line"></div><div class="line">public interface SessionAwareMessageListener &#123;</div><div class="line"></div><div class="line">    void onMessage(Message message, Session session) throws JMSException;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>You can choose to have your MDPs implement this interface (in preference to the standard JMS MessageListener interface) if you want your MDPs to be able to respond to any received messages (using the Session supplied in the onMessage(Message, Session) method). All of the message listener container implementations that ship with Spring have support for MDPs that implement either the MessageListener or SessionAwareMessageListener interface. Classes that implement the SessionAwareMessageListener come with the caveat that they are then tied to Spring through the interface. The choice of whether or not to use it is left entirely up to you as an application developer or architect.</p>
+<p>如果希望MDP能够响应任何接收的消息(使用onMessage(消息，会话)方法提供的会话)，您可以选择让MDP实现此接口(优先于标准JMS MessageListener接口)。 Spring附带的所有消息侦听器容器实现都支持实现MessageListener或SessionAwareMessageListener接口的MDP。 实现SessionAwareMessageListener的类带有警告，它们通过接口绑定到Spring。 是否使用它的选择完全取决于您作为应用程序开发人员或架构师。</p>
+<p>Please note that the <code>onMessage(..)</code> method of the SessionAwareMessageListener interface throws JMSException. In contrast to the standard JMS MessageListener interface, when using the SessionAwareMessageListener interface, it is the responsibility of the client code to handle any exceptions thrown.</p>
+<p>请注意，SessionAwareMessageListener接口的<code>onMessage(..)</code>方法抛出JMSException。 与标准的JMS MessageListener接口相反，当使用SessionAwareMessageListener接口时，客户端代码负责处理抛出的任何异常。</p>
+<h3 id="the-MessageListenerAdapter"><a href="#the-MessageListenerAdapter" class="headerlink" title="the MessageListenerAdapter"></a>the MessageListenerAdapter</h3><p>The MessageListenerAdapter class is the final component in Spring’s asynchronous messaging support: in a nutshell, it allows you to expose almost any class as a MDP (there are of course some constraints).</p>
+<p>MessageListenerAdapter类是Spring的异步消息传递支持的最后一个组件：简而言之，它允许你暴露几乎任何类作为MDP(当然有一些约束)。</p>
+<p>Consider the following interface definition. Notice that although the interface extends neither the MessageListener nor SessionAwareMessageListener interfaces, it can still be used as a MDP via the use of the MessageListenerAdapter class. Notice also how the various message handling methods are strongly typed according to the contents of the various Message types that they can receive and handle.</p>
+<p>请考虑以下接口定义。 请注意，虽然接口既不扩展MessageListener也不扩展SessionAwareMessageListener接口，但仍然可以通过使用MessageListenerAdapter类用作MDP。 还要注意各种消息处理方法如何根据它们可以接收和处理的各种消息类型的内容进行强类型化。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public interface MessageDelegate &#123;</div><div class="line"></div><div class="line">    void handleMessage(String message);</div><div class="line"></div><div class="line">    void handleMessage(Map message);</div><div class="line"></div><div class="line">    void handleMessage(byte[] message);</div><div class="line"></div><div class="line">    void handleMessage(Serializable message);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public class DefaultMessageDelegate implements MessageDelegate &#123;</div><div class="line">    // implementation elided for clarity...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>In particular, note how the above implementation of the MessageDelegate interface (the above DefaultMessageDelegate class) has no JMS dependencies at all. It truly is a POJO that we will make into an MDP via the following configuration.</p>
+<p>特别要注意上面MessageDelegate接口的实现(上面的DefaultMessageDelegate类)是否没有JMS依赖。 它真的是一个POJO，我们将通过以下配置成为MDP。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!-- this is the Message Driven POJO (MDP) --&gt;</div><div class="line">&lt;bean id=&quot;messageListener&quot; class=&quot;org.springframework.jms.listener.adapter.MessageListenerAdapter&quot;&gt;</div><div class="line">    &lt;constructor-arg&gt;</div><div class="line">        &lt;bean class=&quot;jmsexample.DefaultMessageDelegate&quot;/&gt;</div><div class="line">    &lt;/constructor-arg&gt;</div><div class="line">&lt;/bean&gt;</div><div class="line"></div><div class="line">&lt;!-- and this is the message listener container... --&gt;</div><div class="line">&lt;bean id=&quot;jmsContainer&quot; class=&quot;org.springframework.jms.listener.DefaultMessageListenerContainer&quot;&gt;</div><div class="line">    &lt;property name=&quot;connectionFactory&quot; ref=&quot;connectionFactory&quot;/&gt;</div><div class="line">    &lt;property name=&quot;destination&quot; ref=&quot;destination&quot;/&gt;</div><div class="line">    &lt;property name=&quot;messageListener&quot; ref=&quot;messageListener&quot; /&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p>Below is an example of another MDP that can only handle the receiving of JMS TextMessage messages. Notice how the message handling method is actually called ‘receive’ (the name of the message handling method in a MessageListenerAdapter defaults to ‘handleMessage’), but it is configurable (as you will see below). Notice also how the ‘receive(..)’ method is strongly typed to receive and respond only to JMS TextMessage messages.</p>
+<p>下面是另一个只能处理JMS TextMessage消息接收的MDP的示例。 注意消息处理方法实际上叫做“receive”(MessageListenerAdapter中的消息处理方法的名称默认为’handleMessage’)，但它是可配置的(如下所示)。 还要注意’receive(..)’方法是如何强类型地接收和响应JMS TextMessage消息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface TextMessageDelegate &#123;</div><div class="line"></div><div class="line">    void receive(TextMessage message);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public class DefaultTextMessageDelegate implements TextMessageDelegate &#123;</div><div class="line">    // implementation elided for clarity...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The configuration of the attendant MessageListenerAdapter would look like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;messageListener&quot; class=&quot;org.springframework.jms.listener.adapter.MessageListenerAdapter&quot;&gt;</div><div class="line">    &lt;constructor-arg&gt;</div><div class="line">        &lt;bean class=&quot;jmsexample.DefaultTextMessageDelegate&quot;/&gt;</div><div class="line">    &lt;/constructor-arg&gt;</div><div class="line">    &lt;property name=&quot;defaultListenerMethod&quot; value=&quot;receive&quot;/&gt;</div><div class="line">    &lt;!-- we don&apos;t want automatic message context extraction --&gt;</div><div class="line">    &lt;property name=&quot;messageConverter&quot;&gt;</div><div class="line">        &lt;null/&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>Please note that if the above ‘messageListener’ receives a JMS Message of a type other than TextMessage, an IllegalStateException will be thrown (and subsequently swallowed). Another of the capabilities of the MessageListenerAdapter class is the ability to automatically send back a response Message if a handler method returns a non-void value. Consider the interface and class:</p>
+<p>请注意，如果上面的’messageListener’接收到一个类型不是TextMessage的JMS消息，IllegalStateException将被抛出(并随后被吞噬)。 MessageListenerAdapter类的另一个功能是能够在处理程序方法返回非空值时自动发回响应消息。 考虑接口和类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public interface ResponsiveTextMessageDelegate &#123;</div><div class="line"></div><div class="line">    // notice the return type...</div><div class="line">    String receive(TextMessage message);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public class DefaultResponsiveTextMessageDelegate implements ResponsiveTextMessageDelegate &#123;</div><div class="line">    // implementation elided for clarity...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>If the above DefaultResponsiveTextMessageDelegate is used in conjunction with a MessageListenerAdapter then any non-null value that is returned from the execution of the ‘receive(..)’ method will (in the default configuration) be converted into a TextMessage. The resulting TextMessage will then be sent to the Destination (if one exists) defined in the JMS Reply-To property of the original Message, or the default Destination set on the MessageListenerAdapter (if one has been configured); if no Destination is found then an InvalidDestinationException will be thrown (and please note that this exception will not be swallowed and will propagate up the call stack).</p>
+<p>如果上述DefaultResponsiveTextMessageDelegate与MessageListenerAdapter一起使用，则从’receive(..)’方法的执行返回的任何非空值将(在默认配置中)转换为TextMessage。 然后将生成的TextMessage发送到在原始Message的JMS Reply-To属性中定义的Destination(如果存在)或MessageListenerAdapter上的默认目标集(如果已配置); 如果没有找到Destination，那么将抛出一个InvalidDestinationException(请注意，这个异常不会被吞掉，并且会向上传播到调用堆栈)。</p>
+<h3 id="Processing-messages-within-transactions"><a href="#Processing-messages-within-transactions" class="headerlink" title="Processing messages within transactions"></a>Processing messages within transactions</h3><p>Invoking a message listener within a transaction only requires reconfiguration of the listener container.</p>
+<p>在事务内调用消息侦听器只需要重新配置侦听器容器。</p>
+<p>Local resource transactions can simply be activated through the sessionTransacted flag on the listener container definition. Each message listener invocation will then operate within an active JMS transaction, with message reception rolled back in case of listener execution failure. Sending a response message (via SessionAwareMessageListener) will be part of the same local transaction, but any other resource operations (such as database access) will operate independently. This usually requires duplicate message detection in the listener implementation, covering the case where database processing has committed but message processing failed to commit.</p>
+<p>本地资源事务可以简单地通过监听器容器定义上的sessionTransacted标志来激活。 然后，每个消息侦听器调用将在活动的JMS事务中操作，在侦听器执行失败的情况下消息接收回滚。 发送响应消息(通过SessionAwareMessageListener)将是同一本地事务的一部分，但任何其他资源操作(例如数据库访问)将独立操作。 这通常需要在侦听器实现中重复消息检测，涵盖数据库处理已提交但消息处理无法提交的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;jmsContainer&quot; class=&quot;org.springframework.jms.listener.DefaultMessageListenerContainer&quot;&gt;</div><div class="line">    &lt;property name=&quot;connectionFactory&quot; ref=&quot;connectionFactory&quot;/&gt;</div><div class="line">    &lt;property name=&quot;destination&quot; ref=&quot;destination&quot;/&gt;</div><div class="line">    &lt;property name=&quot;messageListener&quot; ref=&quot;messageListener&quot;/&gt;</div><div class="line">    &lt;property name=&quot;sessionTransacted&quot; value=&quot;true&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>For participating in an externally managed transaction, you will need to configure a transaction manager and use a listener container which supports externally managed transactions: typically DefaultMessageListenerContainer.</p>
+<p>要参与外部管理事务，您需要配置事务管理器并使用支持外部管理事务的侦听器容器：通常为DefaultMessageListenerContainer。</p>
+<p>To configure a message listener container for XA transaction participation, you’ll want to configure a JtaTransactionManager (which, by default, delegates to the Java EE server’s transaction subsystem). Note that the underlying JMS ConnectionFactory needs to be XA-capable and properly registered with your JTA transaction coordinator! (Check your Java EE server’s configuration of JNDI resources.) This allows message reception as well as e.g. database access to be part of the same transaction (with unified commit semantics, at the expense of XA transaction log overhead).</p>
+<p>要配置用于XA事务参与的消息侦听器容器，您需要配置一个JtaTransactionManager(默认情况下，委派给Java EE服务器的事务子系统)。 请注意，底层JMS ConnectionFactory需要具有XA能力，并且正确地注册到您的JTA事务协调器！ (检查Java EE服务器的JNDI资源的配置。)这允许消息接收，例如。 数据库访问是同一事务的一部分(具有统一的提交语义，以牺牲XA事务日志开销为代价)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.transaction.jta.JtaTransactionManager&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<p>Then you just need to add it to our earlier container configuration. The container will take care of the rest.</p>
+<p>然后你只需要将它添加到我们早期的容器配置。 容器将照顾其余的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;jmsContainer&quot; class=&quot;org.springframework.jms.listener.DefaultMessageListenerContainer&quot;&gt;</div><div class="line">    &lt;property name=&quot;connectionFactory&quot; ref=&quot;connectionFactory&quot;/&gt;</div><div class="line">    &lt;property name=&quot;destination&quot; ref=&quot;destination&quot;/&gt;</div><div class="line">    &lt;property name=&quot;messageListener&quot; ref=&quot;messageListener&quot;/&gt;</div><div class="line">    &lt;property name=&quot;transactionManager&quot; ref=&quot;transactionManager&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="Support-for-JCA-Message-Endpoints"><a href="#Support-for-JCA-Message-Endpoints" class="headerlink" title="Support for JCA Message Endpoints"></a>Support for JCA Message Endpoints</h1><p>Beginning with version 2.5, Spring also provides support for a JCA-based MessageListener container. The JmsMessageEndpointManager will attempt to automatically determine the ActivationSpec class name from the provider’s ResourceAdapter class name. Therefore, it is typically possible to just provide Spring’s generic JmsActivationSpecConfig as shown in the following example.</p>
+<p>从版本2.5开始，Spring还提供对基于JCA的MessageListener容器的支持。 JmsMessageEndpointManager将尝试从提供程序的ResourceAdapter类名自动确定ActivationSpec类名。 因此，通常可以只提供Spring的通用JmsActivationSpecConfig，如下面的示例所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;bean class=&quot;org.springframework.jms.listener.endpoint.JmsMessageEndpointManager&quot;&gt;</div><div class="line">    &lt;property name=&quot;resourceAdapter&quot; ref=&quot;resourceAdapter&quot;/&gt;</div><div class="line">    &lt;property name=&quot;activationSpecConfig&quot;&gt;</div><div class="line">        &lt;bean class=&quot;org.springframework.jms.listener.endpoint.JmsActivationSpecConfig&quot;&gt;</div><div class="line">            &lt;property name=&quot;destinationName&quot; value=&quot;myQueue&quot;/&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property name=&quot;messageListener&quot; ref=&quot;myMessageListener&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p>Alternatively, you may set up a JmsMessageEndpointManager with a given ActivationSpec object. The ActivationSpec object may also come from a JNDI lookup (using <jee:jndi-lookup>).</jee:jndi-lookup></p>
+<p>或者，您可以使用给定的ActivationSpec对象设置JmsMessageEndpointManager。 ActivationSpec对象也可能来自JNDI查找(使用<jee：jndi-lookup>)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;bean class=&quot;org.springframework.jms.listener.endpoint.JmsMessageEndpointManager&quot;&gt;</div><div class="line">    &lt;property name=&quot;resourceAdapter&quot; ref=&quot;resourceAdapter&quot;/&gt;</div><div class="line">    &lt;property name=&quot;activationSpec&quot;&gt;</div><div class="line">        &lt;bean class=&quot;org.apache.activemq.ra.ActiveMQActivationSpec&quot;&gt;</div><div class="line">            &lt;property name=&quot;destination&quot; value=&quot;myQueue&quot;/&gt;</div><div class="line">            &lt;property name=&quot;destinationType&quot; value=&quot;javax.jms.Queue&quot;/&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property name=&quot;messageListener&quot; ref=&quot;myMessageListener&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></jee：jndi-lookup></p>
+<p>Using Spring’s ResourceAdapterFactoryBean, the target ResourceAdapter may be configured locally as depicted in the following example.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;resourceAdapter&quot; class=&quot;org.springframework.jca.support.ResourceAdapterFactoryBean&quot;&gt;</div><div class="line">    &lt;property name=&quot;resourceAdapter&quot;&gt;</div><div class="line">        &lt;bean class=&quot;org.apache.activemq.ra.ActiveMQResourceAdapter&quot;&gt;</div><div class="line">            &lt;property name=&quot;serverUrl&quot; value=&quot;tcp://localhost:61616&quot;/&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">    &lt;property name=&quot;workManager&quot;&gt;</div><div class="line">        &lt;bean class=&quot;org.springframework.jca.work.SimpleTaskWorkManager&quot;/&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p>The specified WorkManager may also point to an environment-specific thread pool - typically through SimpleTaskWorkManager’s “asyncTaskExecutor” property. Consider defining a shared thread pool for all your ResourceAdapter instances if you happen to use multiple adapters.</p>
+<p>指定的WorkManager还可以指向特定于环境的线程池 - 通常通过SimpleTaskWorkManager的“asyncTaskExecutor”属性。考虑为您的所有ResourceAdapter实例定义共享线程池(如果您正好使用多个适配器)。</p>
+<p>In some environments (e.g. WebLogic 9 or above), the entire ResourceAdapter object may be obtained from JNDI instead (using <jee:jndi-lookup>). The Spring-based message listeners can then interact with the server-hosted ResourceAdapter, also using the server’s built-in WorkManager.</jee:jndi-lookup></p>
+<p>在一些环境(例如WebLogic 9或更高版本)中，可以从JNDI(使用<jee：jndi-lookup>)获取整个ResourceAdapter对象。然后基于Spring的消息侦听器可以与服务器托管的ResourceAdapter交互，也使用服务器的内置WorkManager。</jee：jndi-lookup></p>
+<p>Please consult the JavaDoc for JmsMessageEndpointManager, JmsActivationSpecConfig, and ResourceAdapterFactoryBean for more details.</p>
+<p>有关更多详细信息，请参阅JavaDoc的JmsMessageEndpointManager，JmsActivationSpecConfig和ResourceAdapterFactoryBean。</p>
+<p>Spring also provides a generic JCA message endpoint manager which is not tied to JMS: org.springframework.jca.endpoint.GenericMessageEndpointManager. This component allows for using any message listener type (e.g. a CCI MessageListener) and any provider-specific ActivationSpec object. Check out your JCA provider’s documentation to find out about the actual capabilities of your connector, and consult <code>GenericMessageEndpointManager’s JavaDoc</code> for the Spring-specific configuration details.</p>
+<p>Spring还提供了一个通用的JCA消息端点管理器，它不绑定到JMS：org.springframework.jca.endpoint.GenericMessageEndpointManager。此组件允许使用任何消息侦听器类型(例如，CCI MessageListener)和任何特定于提供程序的ActivationSpec对象。请查看您的JCA提供程序的文档以了解您的连接器的实际功能，并查阅“GenericMessageEndpointManager的JavaDoc”了解Spring特定的配置详细信息。</p>
+<blockquote>
+<p>JCA-based message endpoint management is very analogous to EJB 2.1 Message-Driven Beans; it uses the same underlying resource provider contract. Like with EJB 2.1 MDBs, any message listener interface supported by your JCA provider can be used in the Spring context as well. Spring nevertheless provides explicit ‘convenience’ support for JMS, simply because JMS is the most common endpoint API used with the JCA endpoint management contract.</p>
+<p>基于JCA的消息端点管理非常类似于EJB 2.1消息驱动Bean; 它使用相同的底层资源提供程序合同。 与EJB 2.1 MDB一样，您的JCA提供程序支持的任何消息侦听器接口也可以在Spring上下文中使用。 Spring仍然为JMS提供了显式的“方便”支持，只是因为JMS是与JCA终端管理合同一起使用的最常用的端点API。</p>
+</blockquote>
+<h1 id="Annotation-driven-listener-endpoints"><a href="#Annotation-driven-listener-endpoints" class="headerlink" title="Annotation-driven listener endpoints"></a>Annotation-driven listener endpoints</h1><p>The easiest way to receive a message asynchronously is to use the annotated listener endpoint infrastructure. In a nutshell, it allows you to expose a method of a managed bean as a JMS listener endpoint.</p>
+<p>以异步方式接收消息的最简单方法是使用带注释的侦听器端点基础结构。 简而言之，它允许您将受管Bean的方法公开为JMS侦听器端点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class MyService &#123;</div><div class="line"></div><div class="line">    @JmsListener(destination = &quot;myDestination&quot;)</div><div class="line">    public void processOrder(String data) &#123; ... &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>The idea of the example above is that whenever a message is available on the javax.jms.Destination “myDestination”, the processOrder method is invoked accordingly (in this case, with the content of the JMS message similarly to what the MessageListenerAdapter provides).</p>
+<p>上面的例子的想法是，当javax.jms.Destination“myDestination”上有消息可用时，相应地调用processOrder方法(在这种情况下，JMS消息的内容类似于MessageListenerAdapter提供的内容)。</p>
+<p>The annotated endpoint infrastructure creates a message listener container behind the scenes for each annotated method, using a JmsListenerContainerFactory. Such a container is not registered against the application context but can be easily located for management purposes using the JmsListenerEndpointRegistry bean.</p>
+<p>注释的端点基础结构使用JmsListenerContainerFactory为每个注释的方法在幕后创建一个消息侦听器容器。 这样的容器不是针对应用程序上下文注册的，但可以使用JmsListenerEndpointRegistry bean轻松地进行管理。</p>
+<blockquote>
+<p>@JmsListener is a repeatable annotation on Java 8, so it is possible to associate several JMS destinations to the same method by adding additional @JmsListener declarations to it. On Java 6 and 7, you can use the @JmsListeners annotation.</p>
+<p>@JmsListener是Java 8上的可重复注释，因此可以通过向其中添加额外的@JmsListener声明将多个JMS目标关联到同一个方法。 在Java 6和7上，可以使用@JmsListeners注释。</p>
+</blockquote>
+<h2 id="Enable-listener-endpoint-annotations"><a href="#Enable-listener-endpoint-annotations" class="headerlink" title="Enable listener endpoint annotations"></a>Enable listener endpoint annotations</h2><p>To enable support for @JmsListener annotations add @EnableJms to one of your @Configuration classes.</p>
+<p>要启用对@JmsListener注释的支持，请将@EnableJms添加到您的一个@Configuration类。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">@EnableJms</div><div class="line">public class AppConfig &#123;</div><div class="line"></div><div class="line">    @Bean</div><div class="line">    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() &#123;</div><div class="line">        DefaultJmsListenerContainerFactory factory =</div><div class="line">                new DefaultJmsListenerContainerFactory();</div><div class="line">        factory.setConnectionFactory(connectionFactory());</div><div class="line">        factory.setDestinationResolver(destinationResolver());</div><div class="line">        factory.setConcurrency(&quot;3-10&quot;);</div><div class="line">        return factory;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>By default, the infrastructure looks for a bean named jmsListenerContainerFactory as the source for the factory to use to create message listener containers. In this case, and ignoring the JMS infrastructure setup, the processOrder method can be invoked with a core poll size of 3 threads and a maximum pool size of 10 threads.</p>
+<p>默认情况下，基础结构会查找名为jmsListenerContainerFactory的bean作为工厂用于创建消息侦听器容器的源。 在这种情况下，忽略JMS基础结构设置，可以使用3个线程的核心轮询大小和10个线程的最大池大小调用processOrder方法。</p>
+<p>It is possible to customize the listener container factory to use per annotation or an explicit default can be configured by implementing the JmsListenerConfigurer interface. The default is only required if at least one endpoint is registered without a specific container factory. See the javadoc for full details and examples.</p>
+<p>可以自定义侦听器容器工厂以便每个注释使用，或者可以通过实现JmsListenerConfigurer接口来配置显式默认值。 仅当至少一个端点注册时没有特定的容器工厂时，才需要默认值。 有关完整的详细信息和示例，请参阅javadoc。</p>
+<p>If you prefer XML configuration use the <jms:annotation-driven> element.</jms:annotation-driven></p>
+<p>如果您喜欢XML配置，请使用<jms：annotation-driven>元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;jms:annotation-driven/&gt;</div><div class="line"></div><div class="line">&lt;bean id=&quot;jmsListenerContainerFactory&quot;</div><div class="line">        class=&quot;org.springframework.jms.config.DefaultJmsListenerContainerFactory&quot;&gt;</div><div class="line">    &lt;property name=&quot;connectionFactory&quot; ref=&quot;connectionFactory&quot;/&gt;</div><div class="line">    &lt;property name=&quot;destinationResolver&quot; ref=&quot;destinationResolver&quot;/&gt;</div><div class="line">    &lt;property name=&quot;concurrency&quot; value=&quot;3-10&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></jms：annotation-driven></p>
+<h2 id="Programmatic-endpoints-registration"><a href="#Programmatic-endpoints-registration" class="headerlink" title="Programmatic endpoints registration"></a>Programmatic endpoints registration</h2><p>JmsListenerEndpoint provides a model of an JMS endpoint and is responsible for configuring the container for that model. The infrastructure allows you to configure endpoints programmatically in addition to the ones that are detected by the JmsListener annotation.</p>
+<p>JmsListenerEndpoint提供了一个JMS端点的模型，并负责配置该模型的容器。 除了JmsListener注释检测到的端口之外，基础架构还允许您以编程方式配置端点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">@EnableJms</div><div class="line">public class AppConfig implements JmsListenerConfigurer &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void configureJmsListeners(JmsListenerEndpointRegistrar registrar) &#123;</div><div class="line">        SimpleJmsListenerEndpoint endpoint = new SimpleJmsListenerEndpoint();</div><div class="line">        endpoint.setId(&quot;myJmsEndpoint&quot;);</div><div class="line">        endpoint.setDestination(&quot;anotherQueue&quot;);</div><div class="line">        endpoint.setMessageListener(message -&gt; &#123;</div><div class="line">            // processing</div><div class="line">        &#125;);</div><div class="line">        registrar.registerEndpoint(endpoint);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>In the example above, we used SimpleJmsListenerEndpoint which provides the actual MessageListener to invoke but you could just as well build your own endpoint variant describing a custom invocation mechanism.</p>
+<p>在上面的例子中，我们使用SimpleJmsListenerEndpoint，它提供了实际的MessageListener来调用，但是你也可以创建自己的描述自定义调用机制的端点变量。</p>
+<p>It should be noted that you could just as well skip the use of @JmsListener altogether and only register your endpoints programmatically through JmsListenerConfigurer.</p>
+<p>应该注意，你也可以跳过使用@JmsListener，并且只通过JmsListenerConfigurer以编程方式注册您的端点。</p>
+<h2 id="Annotated-endpoint-method-signature"><a href="#Annotated-endpoint-method-signature" class="headerlink" title="Annotated endpoint method signature"></a>Annotated endpoint method signature</h2><p>So far, we have been injecting a simple String in our endpoint but it can actually have a very flexible method signature. Let’s rewrite it to inject the Order with a custom header:</p>
+<p>到目前为止，我们已经在我们的端点中注入了一个简单的String，但是它实际上可以有一个非常灵活的方法签名。 让我们重写它以注入订单与自定义标题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class MyService &#123;</div><div class="line"></div><div class="line">    @JmsListener(destination = &quot;myDestination&quot;)</div><div class="line">    public void processOrder(Order order, @Header(&quot;order_type&quot;) String orderType) &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>These are the main elements you can inject in JMS listener endpoints:</p>
+<p>这些是您可以在JMS侦听器端点中注入的主要元素：</p>
+<ul>
+<li>The raw javax.jms.Message or any of its subclasses (provided of course that it matches the incoming message type).</li>
+<li>The javax.jms.Session for optional access to the native JMS API e.g. for sending a custom reply.</li>
+<li>The org.springframework.messaging.Message representing the incoming JMS message. Note that this message holds both the custom and the standard headers (as defined by JmsHeaders).</li>
+<li>@Header-annotated method arguments to extract a specific header value, including standard JMS headers.</li>
+<li>@Headers-annotated argument that must also be assignable to java.util.Map for getting access to all headers.</li>
+<li><p>A non-annotated element that is not one of the supported types (i.e. Message and Session) is considered to be the payload. You can make that explicit by annotating the parameter with @Payload. You can also turn on validation by adding an extra @Valid.</p>
+</li>
+<li><p>原始javax.jms.Message或其任何子类(当然它提供了匹配传入消息类型)。</p>
+</li>
+<li>javax.jms.Session用于可选访问本机JMS API，例如 发送自定义回复。</li>
+<li>org.springframework.messaging.Message表示传入的JMS消息。 请注意，此消息包含自定义标头和标准头(由JmsHeaders定义)。</li>
+<li>@Header-annotated方法参数，用于提取特定标头值，包括标准JMS头。</li>
+<li>@Header-annotated参数，必须也可以分配给java.util.Map以获取对所有头的访问。</li>
+<li>不是受支持类型(即消息和会话)之一的非注释元素被认为是有效载荷。 您可以通过使用@Payload注释参数来使其显式。 您还可以通过添加一个额外的@Valid来启用验证。</li>
+</ul>
+<p>The ability to inject Spring’s Message abstraction is particularly useful to benefit from all the information stored in the transport-specific message without relying on transport-specific API.</p>
+<p>注入Spring消息抽象的能力特别有利于从传输特定消息中存储的所有信息中受益，而不依赖于传输特定的API。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@JmsListener(destination = &quot;myDestination&quot;)</div><div class="line">public void processOrder(Message&lt;Order&gt; order) &#123; ... &#125;</div></pre></td></tr></table></figure></p>
+<p>Handling of method arguments is provided by DefaultMessageHandlerMethodFactory which can be further customized to support additional method arguments. The conversion and validation support can be customized there as well.</p>
+<p>方法参数的处理由DefaultMessageHandlerMethodFactory提供，可以进一步自定义以支持其他方法参数。 转换和验证支持也可以在那里定制。</p>
+<p>For instance, if we want to make sure our Order is valid before processing it, we can annotate the payload with @Valid and configure the necessary validator as follows:</p>
+<p>例如，如果我们要在处理之前确保我们的Order是有效的，我们可以用@Valid注释有效负载，并配置必要的验证器如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">@EnableJms</div><div class="line">public class AppConfig implements JmsListenerConfigurer &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void configureJmsListeners(JmsListenerEndpointRegistrar registrar) &#123;</div><div class="line">        registrar.setMessageHandlerMethodFactory(myJmsHandlerMethodFactory());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean</div><div class="line">    public DefaultMessageHandlerMethodFactory myHandlerMethodFactory() &#123;</div><div class="line">        DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();</div><div class="line">        factory.setValidator(myValidator());</div><div class="line">        return factory;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Response-management"><a href="#Response-management" class="headerlink" title="Response management"></a>Response management</h2><p>The existing support in MessageListenerAdapter already allows your method to have a non-void return type. When that’s the case, the result of the invocation is encapsulated in a javax.jms.Message sent either in the destination specified in the JMSReplyTo header of the original message or in the default destination configured on the listener. That default destination can now be set using the @SendTo annotation of the messaging abstraction.</p>
+<p>MessageListenerAdapter中的现有支持已允许您的方法具有非void返回类型。 在这种情况下，调用的结果将封装在javax.jms.Message中，该消息在原始消息的JMSReplyTo标头中指定的目标中或在侦听器上配置的默认目标中发送。 现在可以使用消息抽象的@SendTo注释来设置默认目标。</p>
+<p>Assuming our processOrder method should now return an OrderStatus, it is possible to write it as follow to automatically send a response:</p>
+<p>假设我们的processOrder方法现在应该返回一个OrderStatus，它可以写如下，自动发送一个响应：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@JmsListener(destination = &quot;myDestination&quot;)</div><div class="line">@SendTo(&quot;status&quot;)</div><div class="line">public OrderStatus processOrder(Order order) &#123;</div><div class="line">    // order processing</div><div class="line">    return status;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>If you have several @JmsListener-annotated methods, you can also place the @SendTo annotation at the class level to share a default reply destination.</p>
+<p>如果您有多个@ JmsListener注释的方法，您还可以将@SendTo注释放在类级别以共享默认回复目标。</p>
+</blockquote>
+<p>If you need to set additional headers in a transport-independent manner, you could return a Message instead, something like:</p>
+<p>如果您需要以独立于传输方式设置附加标题，则可以返回一条消息，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@JmsListener(destination = &quot;myDestination&quot;)</div><div class="line">@SendTo(&quot;status&quot;)</div><div class="line">public Message&lt;OrderStatus&gt; processOrder(Order order) &#123;</div><div class="line">    // order processing</div><div class="line">    return MessageBuilder</div><div class="line">            .withPayload(status)</div><div class="line">            .setHeader(&quot;code&quot;, 1234)</div><div class="line">            .build();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>If you need to compute the response destination at runtime, you can encapsulate your response in a JmsResponse instance that also provides the destination to use at runtime. The previous example can be rewritten as follows:</p>
+<p>如果需要在运行时计算响应目标，则可以将响应封装在JmsResponse实例中，该实例还提供在运行时使用的目标。 前面的例子可以改写如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@JmsListener(destination = &quot;myDestination&quot;)</div><div class="line">public JmsResponse&lt;Message&lt;OrderStatus&gt;&gt; processOrder(Order order) &#123;</div><div class="line">    // order processing</div><div class="line">    Message&lt;OrderStatus&gt; response = MessageBuilder</div><div class="line">            .withPayload(status)</div><div class="line">            .setHeader(&quot;code&quot;, 1234)</div><div class="line">            .build();</div><div class="line">    return JmsResponse.forQueue(response, &quot;status&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="JMS-namespace-support"><a href="#JMS-namespace-support" class="headerlink" title="JMS namespace support"></a>JMS namespace support</h1><p>Spring provides an XML namespace for simplifying JMS configuration. To use the JMS namespace elements you will need to reference the JMS schema:</p>
+<p>Spring提供了一个XML命名空间来简化JMS配置。 要使用JMS命名空间元素，您需要引用JMS模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">        xmlns:jms=&quot;http://www.springframework.org/schema/jms&quot;</div><div class="line">        xsi:schemaLocation=&quot;</div><div class="line">            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">            http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd&quot;&gt;</div><div class="line"></div><div class="line">    &lt;!-- bean definitions here --&gt;</div><div class="line"></div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure></p>
+<p>The namespace consists of three top-level elements: <annotation-driven>, <listener-container> and <jca-listener-container>. <annotation-driven enables="" the="" use="" of="" annotation-driven="" listener="" endpoints.="" <listener-container=""> and <jca-listener-container> defines shared listener container configuration and may contain <listener> child elements. Here is an example of a basic configuration for two listeners.</listener></jca-listener-container></annotation-driven></jca-listener-container></listener-container></annotation-driven></p>
+<p>命名空间由三个顶级元素组成：<annotation-driven>，<listener-container>和<jca-listener-container>。 <annotation-driven允许使用注释驱动的侦听器端点。 <listener-container="">和<jca-listener-container>定义共享监听器容器配置，并且可以包含<listener>子元素。 下面是两个侦听器的基本配置示例。</listener></jca-listener-container></annotation-driven允许使用注释驱动的侦听器端点。></jca-listener-container></listener-container></annotation-driven></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;jms:listener-container&gt;</div><div class="line"></div><div class="line">    &lt;jms:listener destination=&quot;queue.orders&quot; ref=&quot;orderService&quot; method=&quot;placeOrder&quot;/&gt;</div><div class="line"></div><div class="line">    &lt;jms:listener destination=&quot;queue.confirmations&quot; ref=&quot;confirmationLogger&quot; method=&quot;log&quot;/&gt;</div><div class="line"></div><div class="line">&lt;/jms:listener-container&gt;</div></pre></td></tr></table></figure>
+<p>The example above is equivalent to creating two distinct listener container bean definitions and two distinct MessageListenerAdapter bean definitions as demonstrated in Section 30.4.4, “the MessageListenerAdapter”. In addition to the attributes shown above, the listener element may contain several optional ones. The following table describes all available attributes:</p>
+<p>上面的示例等效于创建两个不同的侦听器容器bean定义和两个不同的MessageListenerAdapter bean定义，如第30.4.4节“MessageListenerAdapter”中所示。 除了上面显示的属性，监听器元素可能包含几个可选的属性。 下表描述了所有可用的属性：</p>
+<p><strong>Table 30.1. Attributes of the JMS <listener> element</listener></strong></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th style="text-align:right">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td style="text-align:right">A bean name for the hosting listener container. If not specified, a bean name will be automatically generated.</td>
+</tr>
+<tr>
+<td>destination (required)</td>
+<td style="text-align:right">The destination name for this listener, resolved through the DestinationResolver strategy.</td>
+</tr>
+<tr>
+<td>ref (required)</td>
+<td style="text-align:right">The bean name of the handler object.</td>
+</tr>
+<tr>
+<td>method</td>
+<td style="text-align:right">The name of the handler method to invoke. If the ref points to a MessageListener or Spring SessionAwareMessageListener, this attribute may be omitted.</td>
+</tr>
+<tr>
+<td>response-destination</td>
+<td style="text-align:right">The name of the default response destination to send response messages to. This will be applied in case of a request message that does not carry a “JMSReplyTo” field. The type of this destination will be determined by the listener-container’s “response-destination-type” attribute. Note: This only applies to a listener method with a return value, for which each result object will be converted into a response message.</td>
+</tr>
+<tr>
+<td>subscription</td>
+<td style="text-align:right">The name of the durable subscription, if any.</td>
+</tr>
+<tr>
+<td>selector</td>
+<td style="text-align:right">An optional message selector for this listener.</td>
+</tr>
+<tr>
+<td>concurrency</td>
+<td style="text-align:right">The number of concurrent sessions/consumers to start for this listener. Can either be a simple number indicating the maximum number (e.g. “5”) or a range indicating the lower as well as the upper limit (e.g. “3-5”). Note that a specified minimum is just a hint and might be ignored at runtime. Default is the value provided by the container</td>
+</tr>
+</tbody>
+</table>
+<p>The <listener-container> element also accepts several optional attributes. This allows for customization of the various strategies (for example, taskExecutor and destinationResolver) as well as basic JMS settings and resource references. Using these attributes, it is possible to define highly-customized listener containers while still benefiting from the convenience of the namespace.</listener-container></p>
+<p><listener-container>元素也接受几个可选属性。 这允许定制各种策略(例如，taskExecutor和destinationResolver)以及基本的JMS设置和资源引用。 使用这些属性，可以定义高度定制的侦听器容器，同时仍然从命名空间的方便性中受益。</listener-container></p>
+<p>Such settings can be automatically exposed as a JmsListenerContainerFactory by specifying the id of the bean to expose through the factory-id attribute.</p>
+<p>通过指定要通过factory-id属性公开的bean的id，此类设置可以自动显示为JmsListenerContainerFactory。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;jms:listener-container connection-factory=&quot;myConnectionFactory&quot;</div><div class="line">        task-executor=&quot;myTaskExecutor&quot;</div><div class="line">        destination-resolver=&quot;myDestinationResolver&quot;</div><div class="line">        transaction-manager=&quot;myTransactionManager&quot;</div><div class="line">        concurrency=&quot;10&quot;&gt;</div><div class="line"></div><div class="line">    &lt;jms:listener destination=&quot;queue.orders&quot; ref=&quot;orderService&quot; method=&quot;placeOrder&quot;/&gt;</div><div class="line"></div><div class="line">    &lt;jms:listener destination=&quot;queue.confirmations&quot; ref=&quot;confirmationLogger&quot; method=&quot;log&quot;/&gt;</div><div class="line"></div><div class="line">&lt;/jms:listener-container&gt;</div></pre></td></tr></table></figure></p>
+<p>The following table describes all available attributes. Consult the class-level javadocs of the AbstractMessageListenerContainer and its concrete subclasses for more details on the individual properties. The javadocs also provide a discussion of transaction choices and message redelivery scenarios.</p>
+<p>下表描述了所有可用的属性。 有关各个属性的更多详细信息，请参阅AbstractMessageListenerContainer的类级别Javadoc及其具体子类。 javadoc还提供了事务选择和消息重新传递场景的讨论。</p>
+<p><strong>Table 30.2. Attributes of the JMS <listener-container> element</listener-container></strong></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th style="text-align:right">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>container-type</td>
+<td style="text-align:right">The type of this listener container. Available options are: default, simple, default102, or simple102 (the default value is ‘default’).</td>
+</tr>
+<tr>
+<td>container-class</td>
+<td style="text-align:right">A custom listener container implementation class as fully qualified class name. Default is Spring’s standard DefaultMessageListenerContainer or SimpleMessageListenerContainer, according to the “container-type” attribute.</td>
+</tr>
+<tr>
+<td>factory-id</td>
+<td style="text-align:right">Exposes the settings defined by this element as a JmsListenerContainerFactory with the specified id so that they can be reused with other endpoints.</td>
+</tr>
+<tr>
+<td>connection-factory</td>
+<td style="text-align:right">A reference to the JMS ConnectionFactory bean (the default bean name is ‘connectionFactory’).</td>
+</tr>
+<tr>
+<td>task-executor</td>
+<td style="text-align:right">A reference to the Spring TaskExecutor for the JMS listener invokers.</td>
+</tr>
+<tr>
+<td>destination-resolver</td>
+<td style="text-align:right">A reference to the DestinationResolver strategy for resolving JMS Destinations.</td>
+</tr>
+<tr>
+<td>message-converter</td>
+<td style="text-align:right">A reference to the MessageConverter strategy for converting JMS Messages to listener method arguments. Default is a SimpleMessageConverter.</td>
+</tr>
+<tr>
+<td>error-handler</td>
+<td style="text-align:right">A reference to an ErrorHandler strategy for handling any uncaught Exceptions that may occur during the execution of the MessageListener.</td>
+</tr>
+<tr>
+<td>destination-type</td>
+<td style="text-align:right">The JMS destination type for this listener: queue, topic, durableTopic, sharedTopic or sharedDurableTopic. This enables potentially the pubSubDomain, subscriptionDurable and subscriptionShared properties of the container. The default is queue (i.e. disabling those 3 properties).</td>
+</tr>
+<tr>
+<td>response-destination-type</td>
+<td style="text-align:right">The JMS destination type for responses: “queue”, “topic”. Default is the value of the “destination-type” attribute.</td>
+</tr>
+<tr>
+<td>client-id</td>
+<td style="text-align:right">The JMS client id for this listener container. Needs to be specified when using durable subscriptions.</td>
+</tr>
+<tr>
+<td>cache</td>
+<td style="text-align:right">The cache level for JMS resources: none, connection, session, consumer or auto. By default ( auto), the cache level will effectively be “consumer”, unless an external transaction manager has been specified - in which case the effective default will be none (assuming Java EE-style transaction management where the given ConnectionFactory is an XA-aware pool).</td>
+</tr>
+<tr>
+<td>acknowledge</td>
+<td style="text-align:right">The native JMS acknowledge mode: auto, client, dups-ok or transacted. A value of transacted activates a locally transacted Session. As an alternative, specify the transaction-manager attribute described below. Default is auto.</td>
+</tr>
+<tr>
+<td>transaction-manager</td>
+<td style="text-align:right">A reference to an external PlatformTransactionManager (typically an XA-based transaction coordinator, e.g. Spring’s JtaTransactionManager). If not specified, native acknowledging will be used (see “acknowledge” attribute).</td>
+</tr>
+<tr>
+<td>concurrency</td>
+<td style="text-align:right">The number of concurrent sessions/consumers to start for each listener. Can either be a simple number indicating the maximum number (e.g. “5”) or a range indicating the lower as well as the upper limit (e.g. “3-5”). Note that a specified minimum is just a hint and might be ignored at runtime. Default is 1; keep concurrency limited to 1 in case of a topic listener or if queue ordering is important; consider raising it for general queues.</td>
+</tr>
+<tr>
+<td>prefetch</td>
+<td style="text-align:right">The maximum number of messages to load into a single session. Note that raising this number might lead to starvation of concurrent consumers!</td>
+</tr>
+<tr>
+<td>receive-timeout</td>
+<td style="text-align:right">The timeout to use for receive calls (in milliseconds). The default is 1000 ms (1 sec); -1 indicates no timeout at all.</td>
+</tr>
+<tr>
+<td>back-off</td>
+<td style="text-align:right">Specify the BackOff instance to use to compute the interval between recovery attempts. If the BackOffExecution implementation returns BackOffExecution#STOP, the listener container will not further attempt to recover. The recovery-interval value is ignored when this property is set. The default is a FixedBackOff with an interval of 5000 ms, that is 5 seconds.</td>
+</tr>
+<tr>
+<td>recovery-interval</td>
+<td style="text-align:right">Specify the interval between recovery attempts, in milliseconds. Convenience way to create a FixedBackOff with the specified interval. For more recovery options, consider specifying a BackOff instance instead. The default is 5000 ms, that is 5 seconds.</td>
+</tr>
+<tr>
+<td>phase</td>
+<td style="text-align:right">The lifecycle phase within which this container should start and stop. The lower the value the earlier this container will start and the later it will stop. The default is Integer.MAX_VALUE meaning the container will start as late as possible and stop as soon as possible.</td>
+</tr>
+</tbody>
+</table>
+<p>Configuring a JCA-based listener container with the “jms” schema support is very similar.</p>
+<p>使用“jms”模式支持配置基于JCA的侦听器容器非常相似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;jms:jca-listener-container resource-adapter=&quot;myResourceAdapter&quot;</div><div class="line">        destination-resolver=&quot;myDestinationResolver&quot;</div><div class="line">        transaction-manager=&quot;myTransactionManager&quot;</div><div class="line">        concurrency=&quot;10&quot;&gt;</div><div class="line"></div><div class="line">    &lt;jms:listener destination=&quot;queue.orders&quot; ref=&quot;myMessageListener&quot;/&gt;</div><div class="line"></div><div class="line">&lt;/jms:jca-listener-container&gt;</div></pre></td></tr></table></figure></p>
+<p>The available configuration options for the JCA variant are described in the following table:</p>
+<p>下表描述了JCA变量的可用配置选项：</p>
+<p><strong>Table 30.3. Attributes of the JMS <jca-listener-container> element</jca-listener-container></strong></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th style="text-align:right">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>factory-id</td>
+<td style="text-align:right">Exposes the settings defined by this element as a JmsListenerContainerFactory with the specified id so that they can be reused with other endpoints.</td>
+</tr>
+<tr>
+<td>resource-adapter</td>
+<td style="text-align:right">A reference to the JCA ResourceAdapter bean (the default bean name is ‘resourceAdapter’).</td>
+</tr>
+<tr>
+<td>activation-spec-factory</td>
+<td style="text-align:right">A reference to the JmsActivationSpecFactory. The default is to autodetect the JMS provider and its ActivationSpec class (see DefaultJmsActivationSpecFactory)</td>
+</tr>
+<tr>
+<td>destination-resolver</td>
+<td style="text-align:right">A reference to the DestinationResolver strategy for resolving JMS Destinations.</td>
+</tr>
+<tr>
+<td>message-converter</td>
+<td style="text-align:right">A reference to the MessageConverter strategy for converting JMS Messages to listener method arguments. Default is a SimpleMessageConverter.</td>
+</tr>
+<tr>
+<td>destination-type</td>
+<td style="text-align:right">The JMS destination type for this listener: queue, topic, durableTopic, sharedTopic or sharedDurableTopic. This enables potentially the pubSubDomain, subscriptionDurable and subscriptionShared properties of the container. The default is queue (i.e. disabling those 3 properties).</td>
+</tr>
+<tr>
+<td>response-destination-type</td>
+<td style="text-align:right">The JMS destination type for responses: “queue”, “topic”. Default is the value of the “destination-type” attribute.</td>
+</tr>
+<tr>
+<td>client-id</td>
+<td style="text-align:right">The JMS client id for this listener container. Needs to be specified when using durable subscriptions.</td>
+</tr>
+<tr>
+<td>acknowledge</td>
+<td style="text-align:right">The native JMS acknowledge mode: auto, client, dups-ok or transacted. A value of transacted activates a locally transacted Session. As an alternative, specify the transaction-manager attribute described below. Default is auto.</td>
+</tr>
+<tr>
+<td>transaction-manager</td>
+<td style="text-align:right">A reference to a Spring JtaTransactionManager or a javax.transaction.TransactionManager for kicking off an XA transaction for each incoming message. If not specified, native acknowledging will be used (see the “acknowledge” attribute).</td>
+</tr>
+<tr>
+<td>concurrency</td>
+<td style="text-align:right">The number of concurrent sessions/consumers to start for each listener. Can either be a simple number indicating the maximum number (e.g. “5”) or a range indicating the lower as well as the upper limit (e.g. “3-5”). Note that a specified minimum is just a hint and will typically be ignored at runtime when using a JCA listener container. Default is 1.</td>
+</tr>
+<tr>
+<td>prefetch</td>
+<td style="text-align:right">The maximum number of messages to load into a single session. Note that raising this number might lead to starvation of concurrent consumers!</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/官方文档/" rel="tag"># 官方文档</a>
+          
+            <a href="/tags/翻译/" rel="tag"># 翻译</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/23/调整Spring中的JMS消息消费/" rel="next" title="调整Spring中的JMS消息消费">
+                <i class="fa fa-chevron-left"></i> 调整Spring中的JMS消息消费
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/24/JMSMessageTypes/" rel="prev" title="JMS消息类型">
+                JMS消息类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/24/SpringJMS/"
+     data-title="Spring JMS"
+     data-content=""
+     data-url="http://lingyv.cn/2016/11/24/SpringJMS/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/24/SpringJMS/"
+           data-title="Spring JMS" data-url="http://lingyv.cn/2016/11/24/SpringJMS/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="lingyv" />
+          <p class="site-author-name" itemprop="name">lingyv</p>
+          <p class="site-description motion-element" itemprop="description">Opean Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingyv" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lingyv" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-binoculars"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/999835d02088/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-edit"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-简介"><span class="nav-number">1.</span> <span class="nav-text">Introduction 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-Spring-JMS"><span class="nav-number">2.</span> <span class="nav-text">Using Spring JMS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JmsTemplate"><span class="nav-number">2.1.</span> <span class="nav-text">JmsTemplate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connections"><span class="nav-number">2.2.</span> <span class="nav-text">Connections</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Caching-Messaging-Resources"><span class="nav-number">2.2.1.</span> <span class="nav-text">Caching Messaging Resources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SingleConnectionFactory"><span class="nav-number">2.2.2.</span> <span class="nav-text">SingleConnectionFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CachingConnectionFactory"><span class="nav-number">2.2.3.</span> <span class="nav-text">CachingConnectionFactory</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Destination-Management"><span class="nav-number">2.3.</span> <span class="nav-text">Destination Management</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Message-Listener-Containers"><span class="nav-number">2.4.</span> <span class="nav-text">Message Listener Containers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SimpleMessageListenerContainer"><span class="nav-number">2.4.1.</span> <span class="nav-text">SimpleMessageListenerContainer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DefaultMessageListenerContainer"><span class="nav-number">2.4.2.</span> <span class="nav-text">DefaultMessageListenerContainer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transaction-management"><span class="nav-number">2.5.</span> <span class="nav-text">Transaction management</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sending-a-Message"><span class="nav-number">3.</span> <span class="nav-text">Sending a Message</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Message-Converters"><span class="nav-number">3.1.</span> <span class="nav-text">Using Message Converters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SessionCallback-and-ProducerCallback"><span class="nav-number">3.2.</span> <span class="nav-text">SessionCallback and ProducerCallback</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Receiving-a-message"><span class="nav-number">4.</span> <span class="nav-text">Receiving a message</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Synchronous-Reception"><span class="nav-number">4.1.</span> <span class="nav-text">Synchronous Reception</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Asynchronous-Reception-Message-Driven-POJOs"><span class="nav-number">4.2.</span> <span class="nav-text">Asynchronous Reception - Message-Driven POJOs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#the-SessionAwareMessageListener-interface"><span class="nav-number">4.2.1.</span> <span class="nav-text">the SessionAwareMessageListener interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-MessageListenerAdapter"><span class="nav-number">4.2.2.</span> <span class="nav-text">the MessageListenerAdapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Processing-messages-within-transactions"><span class="nav-number">4.2.3.</span> <span class="nav-text">Processing messages within transactions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Support-for-JCA-Message-Endpoints"><span class="nav-number">5.</span> <span class="nav-text">Support for JCA Message Endpoints</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Annotation-driven-listener-endpoints"><span class="nav-number">6.</span> <span class="nav-text">Annotation-driven listener endpoints</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Enable-listener-endpoint-annotations"><span class="nav-number">6.1.</span> <span class="nav-text">Enable listener endpoint annotations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Programmatic-endpoints-registration"><span class="nav-number">6.2.</span> <span class="nav-text">Programmatic endpoints registration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Annotated-endpoint-method-signature"><span class="nav-number">6.3.</span> <span class="nav-text">Annotated endpoint method signature</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Response-management"><span class="nav-number">6.4.</span> <span class="nav-text">Response management</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JMS-namespace-support"><span class="nav-number">7.</span> <span class="nav-text">JMS namespace support</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lingyv</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lingyv"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
