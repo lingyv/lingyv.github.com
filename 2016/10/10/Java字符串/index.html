@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://lingyv.cn/2016/10/10/Java字符串/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。">
-<meta property="og:updated_time" content="2016-11-20T01:59:30.000Z">
+<meta property="og:updated_time" content="2016-11-22T13:26:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java字符串">
 <meta name="twitter:description" content="String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。">
@@ -425,10 +425,28 @@
 <h2 id="不可变对象天生就是线程安全的"><a href="#不可变对象天生就是线程安全的" class="headerlink" title="不可变对象天生就是线程安全的"></a>不可变对象天生就是线程安全的</h2><p>因为不可变对象不能被改变，所以他们可以自由地在多个线程之间共享。不需要任何同步处理。</p>
 <p>总之，String被设计成不可变的主要目的是为了安全和高效。所以，使String是一个不可变类是一个很好的设计。</p>
 <h1 id="String对象作为方法参数"><a href="#String对象作为方法参数" class="headerlink" title="String对象作为方法参数"></a>String对象作为方法参数</h1><p>String作为方法参数传递时，实际上传递的是引用的一个拷贝,即“值传递”，方法操作的是参数变量只是原型变量的一个拷贝而已，而非变量本身。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private static void changeString(String s) &#123;</div><div class="line">        s = &quot;def&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">private static void change() &#123;</div><div class="line">    String s = &quot;abc&quot;;</div><div class="line">    changeString(s);</div><div class="line">    System.out.println(s);      //输出abc</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="StringBuilder与StringBuffer"><a href="#StringBuilder与StringBuffer" class="headerlink" title="StringBuilder与StringBuffer"></a>StringBuilder与StringBuffer</h2><p>既然String对象时不可变的，那么如果频繁的改变String对象，就会频繁的创建String对象，导致执行效率低下。此时，可以改用StringBuilder或StringBuffer，它们是可变的字符串对象，区别是：</p>
+<h1 id="StringBuilder与StringBuffer"><a href="#StringBuilder与StringBuffer" class="headerlink" title="StringBuilder与StringBuffer"></a>StringBuilder与StringBuffer</h1><p>既然String对象时不可变的，那么如果频繁的改变String对象，就会频繁的创建String对象，导致执行效率低下。此时，可以改用StringBuilder或StringBuffer，它们是可变的字符串对象，区别是：</p>
 <ul>
 <li>StringBuilder：线程非安全的</li>
 <li>StringBuffer：线程安全的</li>
+</ul>
+<p>#问题</p>
+<ul>
+<li><p>引用 or 对象<br>字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。</p>
+</li>
+<li><p>优缺点<br>字符串常量池的好处就是减少相同内容字符串的创建，节省内存空间。</p>
+<p>如果硬要说弊端的话，就是牺牲了CPU计算时间来换空间。CPU计算时间主要用于在字符串常量池中查找是否有内容相同对象的引用。不过其内部实现为HashTable，所以计算成本较低。</p>
+</li>
+<li><p>GC回收？<br>因为字符串常量池中持有了共享的字符串对象的引用，这就是说是不是会导致这些对象无法回收？</p>
+<p>首先问题中共享的对象一般情况下都比较小。据我查证了解，在早期的版本中确实存在这样的问题，但是随着<a href="http://droidyue.com/blog/2014/10/12/understanding-weakreference-in-java/" target="_blank" rel="external">弱引用</a>的引入，目前这个问题应该没有了。</p>
+<p>关于这个问题，可以具体了解这片文章interned Strings : <a href="http://mindprod.com/jgloss/interned.html#GC" target="_blank" rel="external">Java Glossary</a></p>
+</li>
+<li><p>总有例外？<br>你知道下面的代码，会创建几个字符串对象，在字符串常量池中保存几个引用么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String test = &quot;a&quot; + &quot;b&quot; + &quot;c&quot;;</div></pre></td></tr></table></figure>
+<p>答案是只创建了一个对象，在常量池中也只保存一个引用。我们使用javap反编译看一下即可得知。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">17:02 $ javap -c TestInternedPoolGC</div><div class="line">Compiled from &quot;TestInternedPoolGC.java&quot;</div><div class="line">public class TestInternedPoolGC extends java.lang.Object&#123;</div><div class="line">public TestInternedPoolGC();</div><div class="line">  Code:</div><div class="line">   0:  aload_0</div><div class="line">   1:  invokespecial    #1; //Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</div><div class="line">   4:  return</div><div class="line"></div><div class="line">public static void main(java.lang.String[])   throws java.lang.Exception;</div><div class="line">  Code:</div><div class="line">   0:  ldc  #2; //String abc</div><div class="line">   2:  astore_1</div><div class="line">   3:  return</div></pre></td></tr></table></figure>
+<p> 看到了么，实际上在编译期间，已经将这三个字面量合成了一个。这样做实际上是一种优化，避免了创建多余的字符串对象，也没有发生字符串拼接问题。关于字符串拼接，可以查看<a href="Java细节：字符串的拼接">Java细节：字符串的拼接</a>。</p>
+</li>
 </ul>
 <p>参考资料：<br><a href="http://www.hollischuang.com/archives/1246" target="_blank" rel="external">Hollis</a><br><a href="http://droidyue.com/blog/2014/12/21/string-literal-pool-in-java/" target="_blank" rel="external">技术小黑屋</a></p>
 
@@ -571,7 +589,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -588,7 +606,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -652,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建String对象"><span class="nav-number">1.</span> <span class="nav-text">创建String对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么把String设计成不可变的？"><span class="nav-number">2.</span> <span class="nav-text">为什么把String设计成不可变的？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串常量池"><span class="nav-number">2.1.</span> <span class="nav-text">字符串常量池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存Hashcode"><span class="nav-number">2.2.</span> <span class="nav-text">缓存Hashcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使其他类的使用更加便利"><span class="nav-number">2.3.</span> <span class="nav-text">使其他类的使用更加便利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">2.4.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不可变对象天生就是线程安全的"><span class="nav-number">2.5.</span> <span class="nav-text">不可变对象天生就是线程安全的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String对象作为方法参数"><span class="nav-number">3.</span> <span class="nav-text">String对象作为方法参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuilder与StringBuffer"><span class="nav-number">3.1.</span> <span class="nav-text">StringBuilder与StringBuffer</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建String对象"><span class="nav-number">1.</span> <span class="nav-text">创建String对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么把String设计成不可变的？"><span class="nav-number">2.</span> <span class="nav-text">为什么把String设计成不可变的？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串常量池"><span class="nav-number">2.1.</span> <span class="nav-text">字符串常量池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存Hashcode"><span class="nav-number">2.2.</span> <span class="nav-text">缓存Hashcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使其他类的使用更加便利"><span class="nav-number">2.3.</span> <span class="nav-text">使其他类的使用更加便利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">2.4.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不可变对象天生就是线程安全的"><span class="nav-number">2.5.</span> <span class="nav-text">不可变对象天生就是线程安全的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String对象作为方法参数"><span class="nav-number">3.</span> <span class="nav-text">String对象作为方法参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StringBuilder与StringBuffer"><span class="nav-number">4.</span> <span class="nav-text">StringBuilder与StringBuffer</span></a></li></ol></div>
             
 
           </div>
@@ -673,7 +691,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
