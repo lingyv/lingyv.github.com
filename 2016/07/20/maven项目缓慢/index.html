@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,编程,maven," />
+  <meta name="keywords" content="编程,Java,maven," />
 
 
 
@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="解决国内网络环境下，根据archetype创建Maven项目异常缓慢的问题。">
+<meta name="keywords" content="编程,Java,maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven项目创建缓慢解决方法">
 <meta property="og:url" content="http://lingyv.cn/2016/07/20/maven项目缓慢/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="解决国内网络环境下，根据archetype创建Maven项目异常缓慢的问题。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://lingyv.cn/imag/mavenset.png">
 <meta property="og:image" content="http://lingyv.cn/imag/mavenideaset.png">
 <meta property="og:image" content="http://lingyv.cn/imag/ideamavenset.png">
@@ -408,11 +410,11 @@
 <ul>
 <li>internal –&gt;  maven-archetype-plugin内置</li>
 <li>local –&gt; 本地，位于~/.m2/archetype-catalog.xml</li>
-<li>remote –&gt; 指向Maven中央仓库的Catalog: <a href="http://repo1.maven.org/maven2/archetype-catalog.xml" target="_blank" rel="external">http://repo1.maven.org/maven2/archetype-catalog.xml</a></li>
+<li>remote –&gt; 指向Maven中央仓库的Catalog: <a href="http://repo1.maven.org/maven2/archetype-catalog.xml" target="_blank" rel="noopener">http://repo1.maven.org/maven2/archetype-catalog.xml</a></li>
 <li>file://</li>
 <li>http://<br>由于该参数默认为remote，从中央仓库下载archetype-catalog.xml文件。而国内访问中央仓库速度非常慢，所以导致创建过程异常缓慢。</li>
 </ul>
-<h2 id="命令行中解决方案"><a href="#命令行中解决方案" class="headerlink" title="命令行中解决方案"></a>命令行中解决方案</h2><p>创建时命令行中指定<code>-DarchetypeCatalog=internal</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn archetype:generate -DarchetypeCatalog=internal</div></pre></td></tr></table></figure></p>
+<h2 id="命令行中解决方案"><a href="#命令行中解决方案" class="headerlink" title="命令行中解决方案"></a>命令行中解决方案</h2><p>创建时命令行中指定<code>-DarchetypeCatalog=internal</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DarchetypeCatalog=internal</span><br></pre></td></tr></table></figure></p>
 <h2 id="IDEA解决方案"><a href="#IDEA解决方案" class="headerlink" title="IDEA解决方案"></a>IDEA解决方案</h2><h3 id="临时"><a href="#临时" class="headerlink" title="临时"></a>临时</h3><p>创建Maven项目时指定该参数<br><img src="/imag/mavenset.png" alt="maven指定"></p>
 <h3 id="一劳永逸"><a href="#一劳永逸" class="headerlink" title="一劳永逸"></a>一劳永逸</h3><ol>
 <li>点击项目默认设置<br><img src="/imag/mavenideaset.png" alt="idea设置"></li>
@@ -441,9 +443,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
             <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
             <a href="/tags/maven/" rel="tag"># maven</a>
           
@@ -481,34 +483,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/07/20/maven项目缓慢/"
-     data-title="Maven项目创建缓慢解决方法"
-     data-content=""
-     data-url="http://lingyv.cn/2016/07/20/maven项目缓慢/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -560,7 +540,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -662,7 +642,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

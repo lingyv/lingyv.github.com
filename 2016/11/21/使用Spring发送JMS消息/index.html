@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ActiveMQ,分布式,Java,翻译," />
+  <meta name="keywords" content="Java,分布式,ActiveMQ,翻译," />
 
 
 
@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="ActiveMQ官方推荐博客:原文">
+<meta name="keywords" content="Java,分布式,ActiveMQ,翻译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Spring发送JMS消息">
 <meta property="og:url" content="http://lingyv.cn/2016/11/21/使用Spring发送JMS消息/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="ActiveMQ官方推荐博客:原文">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-18T15:08:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Spring发送JMS消息">
@@ -399,23 +401,23 @@
       
 
       
-        <p>ActiveMQ官方推荐博客:<a href="https://bsnyderblog.blogspot.jp/2010/02/using-spring-jmstemplate-to-send-jms.html" target="_blank" rel="external">原文</a><br><a id="more"></a><br>Recently I stumbled upon a number of places in the some docs and mailing lists where claims are made that the Spring <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/core/JmsTemplate.html" target="_blank" rel="external">JmsTemplate</a> is full of anti-patterns, is horribly inefficient and shouldn’t be used. Well I’m here to debunk these erroneous claims by pointing out a class in the Spring Framework that was overlooked entirely.</p>
+        <p>ActiveMQ官方推荐博客:<a href="https://bsnyderblog.blogspot.jp/2010/02/using-spring-jmstemplate-to-send-jms.html" target="_blank" rel="noopener">原文</a><br><a id="more"></a><br>Recently I stumbled upon a number of places in the some docs and mailing lists where claims are made that the Spring <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/core/JmsTemplate.html" target="_blank" rel="noopener">JmsTemplate</a> is full of anti-patterns, is horribly inefficient and shouldn’t be used. Well I’m here to debunk these erroneous claims by pointing out a class in the Spring Framework that was overlooked entirely.</p>
 <p>最近我偶然发现一些文档和邮件列表中一些地方声称<code>Spring JmsTemplate</code>充满了反模式，是非常低效的，不应该使用。 我在这里通过指出一个在Spring框架中被完全忽略的类来破解这些错误的观点。</p>
 <p>The Spring <code>JmsTemplate</code> is a convenience class for sending and receiving JMS messages in a synchronous manner. The <code>JmsTemplate</code> was originally designed to be used with a J2EE container where the container provides the necessary pooling of the JMS resources (i.e., connections, consumers and producers). Such requirements came from the EJB spec. But when developers began using the JmsTemplate outside of J2EE containers, and because some JMS providers do not offer caching/pooling of JMS resources, a different solution was necessary. Enter the <code>Spring CachingConnectionFactory</code>.</p>
 <p>Spring <code>JmsTemplate</code>是一个方便的类，用于以同步方式发送和接收JMS消息。 <code>JmsTemplate</code>最初设计为与J2EE容器一起使用，其中容器为JMS资源(即，连接(connections)，消费者(consumers)和生产者(producers))提供必要的池。 这些要求来自EJB规范。 但是当开发人员开始在J2EE容器之外使用JmsTemplate时，因为一些JMS提供者不提供JMS资源的缓存/池化，所以需要一个不同的解决方案。 这就是<code>Spring CachingConnectionFactory</code>。</p>
-<p>The <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/connection/CachingConnectionFactory.html" target="_blank" rel="external">CachingConnectionFactory</a> is meant to wrap a JMS provider’s connection to provide caching of <code>sessions</code>, <code>connections</code> and <code>producers</code> as well as automatic connection recovery. By default, it uses a single <code>session</code> to create many <code>connections</code> and this model works very well with most MOMs. But if you need to scale further, you can also specify the number of sessions to cache using the <code>sessionCacheSize</code> property.</p>
+<p>The <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/connection/CachingConnectionFactory.html" target="_blank" rel="noopener">CachingConnectionFactory</a> is meant to wrap a JMS provider’s connection to provide caching of <code>sessions</code>, <code>connections</code> and <code>producers</code> as well as automatic connection recovery. By default, it uses a single <code>session</code> to create many <code>connections</code> and this model works very well with most MOMs. But if you need to scale further, you can also specify the number of sessions to cache using the <code>sessionCacheSize</code> property.</p>
 <p><code>CachingConnectionFactory</code>意在包装JMS提供者的连接用于提供会话(sessions)，连接(connections)和生产者(producers)的缓存以及自动连接恢复。 默认情况下，它使用单个会话(session)创建许多连接(connections)，并且此模型与大多数MOM非常相配。 但是，如果您需要进一步扩展，您还可以使用<code>sessionCacheSize</code>属性指定要缓存的会话数。</p>
 <p>Below is a snippet from a Spring app context that demonstrates the configuration for the <code>CachingConnectionFactory</code></p>
-<p>下面是一个来自Spring应用程序上下文的代码片段，演示了<code>CachingConnectionFactory</code>的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!-- A connection to ActiveMQ --&gt;</div><div class="line">&lt;bean id=&quot;amqConnectionFactory&quot;</div><div class="line">    class=&quot;org.apache.activemq.ActiveMQConnectionFactory&quot;</div><div class="line">    p:brokerURL=&apos;tcp://localhost:61616&quot; /&gt;</div><div class="line"></div><div class="line">&lt;!-- A cached connection to wrap the ActiveMQ connection --&gt;</div><div class="line">&lt;bean id=&quot;cachedConnectionFactory&quot;</div><div class="line">    class=&quot;org.springframework.jms.connection.CachingConnectionFactory&quot;</div><div class="line">    p:targetConnectionFactory-ref=&quot;amqConnectionFactory&quot;</div><div class="line">    p:sessionCacheSize=&quot;10&quot; /&gt;</div><div class="line"></div><div class="line">&lt;!-- A destination in ActiveMQ --&gt;</div><div class="line">&lt;bean id=&quot;destination&quot;</div><div class="line">    class=&quot;org.apache.activemq.command.ActiveMQQueue&quot;&gt;</div><div class="line">&lt;constructor-arg value=&quot;FOO.TEST&quot; /&gt;</div><div class="line">&lt;/bean&gt;</div><div class="line"></div><div class="line">&lt;!-- A JmsTemplate instance that uses the cached connection and destination --&gt;</div><div class="line">&lt;bean id=&quot;producerTemplate&quot;</div><div class="line">    class=&quot;org.springframework.jms.core.JmsTemplate&quot;</div><div class="line">    p:connectionFactory-ref=&quot;cachedConnectionFactory&quot;</div><div class="line">    p:defaultDestination-ref=&quot;destination&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>下面是一个来自Spring应用程序上下文的代码片段，演示了<code>CachingConnectionFactory</code>的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- A connection to ActiveMQ --&gt;</span><br><span class="line">&lt;bean id=&quot;amqConnectionFactory&quot;</span><br><span class="line">    class=&quot;org.apache.activemq.ActiveMQConnectionFactory&quot;</span><br><span class="line">    p:brokerURL=&apos;tcp://localhost:61616&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- A cached connection to wrap the ActiveMQ connection --&gt;</span><br><span class="line">&lt;bean id=&quot;cachedConnectionFactory&quot;</span><br><span class="line">    class=&quot;org.springframework.jms.connection.CachingConnectionFactory&quot;</span><br><span class="line">    p:targetConnectionFactory-ref=&quot;amqConnectionFactory&quot;</span><br><span class="line">    p:sessionCacheSize=&quot;10&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- A destination in ActiveMQ --&gt;</span><br><span class="line">&lt;bean id=&quot;destination&quot;</span><br><span class="line">    class=&quot;org.apache.activemq.command.ActiveMQQueue&quot;&gt;</span><br><span class="line">&lt;constructor-arg value=&quot;FOO.TEST&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- A JmsTemplate instance that uses the cached connection and destination --&gt;</span><br><span class="line">&lt;bean id=&quot;producerTemplate&quot;</span><br><span class="line">    class=&quot;org.springframework.jms.core.JmsTemplate&quot;</span><br><span class="line">    p:connectionFactory-ref=&quot;cachedConnectionFactory&quot;</span><br><span class="line">    p:defaultDestination-ref=&quot;destination&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
 <p>As you can see, the configuration for the <code>CachingConnectionFactory</code> along with the <code>JmsTemplate</code> is quite simple. Furthermore, these two classes are also both in the <code>org.springframework.jms</code> package path so they’re both included in the <code>spring-jms.jar</code> file making their use even easier.</p>
 <p>如您所见，<code>CachingConnectionFactory</code>和<code>JmsTemplate</code>的配置非常简单。 此外，这两个类也都在<code>org.springframework.jms</code>包路径中，因此它们都包含在<code>spring-jms.jar</code>文件中，使它们的使用更加容易。</p>
 <p>The only thing left to do is utilize the jmsTemplate bean in your Java code to actually send a message. This is shown below:</p>
-<p>剩下唯一要做的就是在Java代码中使用jmsTemplate bean来实际发送消息。 如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class SimpleMessageProducer &#123;</div><div class="line"></div><div class="line"> static final Logger LOG = Logger.getLogger(SimpleMessageProducer.class);</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    protected JmsTemplate jmsTemplate;</div><div class="line"></div><div class="line">    protected int numberOfMessages = 100;</div><div class="line"></div><div class="line">    public void sendMessages() throws JMSException &#123;</div><div class="line">        StringBuilder payload = null;</div><div class="line">        for (int i = 0; i &lt; numberOfMessages; ++i) &#123;</div><div class="line">            payload = new StringBuilder();</div><div class="line">            payload.append(&quot;Message [&quot;).append(i).append(&quot;] sent at: &quot;).append(new Date());</div><div class="line">            jmsTemplate.send(new MessageCreator() &#123;</div><div class="line">                public Message createMessage(Session session) throws JMSException &#123;</div><div class="line">                    TextMessage message = session.createTextMessage(payload.toString());</div><div class="line">                    message.setIntProperty(&quot;messageCount&quot;, i);</div><div class="line">                    LOG.info(&quot;Sending message number [&quot; + i + &quot;]&quot;);</div><div class="line">                    return message;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>The <code>SimpleMessageProducer</code> class above demonstrates the use of Spring <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/beans.html#beans-factory-autowire" target="_blank" rel="external">autowiring</a> to resolve the relationship between the <code>jmsTemplate</code> property and the <code>producerTemplate</code> in the app context further above. Then an anonymous <code>MessageCreator</code> instance is used to actually create a message for the <code>jmsTemplate</code> to send.</p>
+<p>剩下唯一要做的就是在Java代码中使用jmsTemplate bean来实际发送消息。 如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class SimpleMessageProducer &#123;</span><br><span class="line"></span><br><span class="line"> static final Logger LOG = Logger.getLogger(SimpleMessageProducer.class);</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    protected JmsTemplate jmsTemplate;</span><br><span class="line"></span><br><span class="line">    protected int numberOfMessages = 100;</span><br><span class="line"></span><br><span class="line">    public void sendMessages() throws JMSException &#123;</span><br><span class="line">        StringBuilder payload = null;</span><br><span class="line">        for (int i = 0; i &lt; numberOfMessages; ++i) &#123;</span><br><span class="line">            payload = new StringBuilder();</span><br><span class="line">            payload.append(&quot;Message [&quot;).append(i).append(&quot;] sent at: &quot;).append(new Date());</span><br><span class="line">            jmsTemplate.send(new MessageCreator() &#123;</span><br><span class="line">                public Message createMessage(Session session) throws JMSException &#123;</span><br><span class="line">                    TextMessage message = session.createTextMessage(payload.toString());</span><br><span class="line">                    message.setIntProperty(&quot;messageCount&quot;, i);</span><br><span class="line">                    LOG.info(&quot;Sending message number [&quot; + i + &quot;]&quot;);</span><br><span class="line">                    return message;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>The <code>SimpleMessageProducer</code> class above demonstrates the use of Spring <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/beans.html#beans-factory-autowire" target="_blank" rel="noopener">autowiring</a> to resolve the relationship between the <code>jmsTemplate</code> property and the <code>producerTemplate</code> in the app context further above. Then an anonymous <code>MessageCreator</code> instance is used to actually create a message for the <code>jmsTemplate</code> to send.</p>
 <p>上面的<code>SimpleMessageProducer</code>类演示了使用Spring自动装配来解决上述应用程序上下文中<code>jmsTemplate</code>属性和<code>producerTemplate</code>之间的关系。 然后使用一个匿名的<code>MessageCreator</code>实例来实际创建一个消息，供<code>jmsTemplate</code>发送。</p>
-<p>The <code>JmsTemplate</code> and the <code>CachingConnectionFactory</code> are both very widely used in businesses of all sizes throughout the world. Coupled with one of the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/package-summary.html" target="_blank" rel="external">Spring message listener containers</a>, they provide an ideal solution.</p>
+<p>The <code>JmsTemplate</code> and the <code>CachingConnectionFactory</code> are both very widely used in businesses of all sizes throughout the world. Coupled with one of the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/package-summary.html" target="_blank" rel="noopener">Spring message listener containers</a>, they provide an ideal solution.</p>
 <p><code>JmsTemplate</code>和<code>CachingConnectionFactory</code>都广泛应用于世界各地的各种规模的企业。 加上一个<code>Spring消息侦听器容器</code>，它们提供了一个理想的解决方案。</p>
-<p>I’ll elaborate on message consumption using the Spring <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html" target="_blank" rel="external">DefaultMessageListenerContainer</a> and the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/SimpleMessageListenerContainer.html" target="_blank" rel="external">SimpleMessageListenerContainer</a> in a future blog post.</p>
+<p>I’ll elaborate on message consumption using the Spring <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html" target="_blank" rel="noopener">DefaultMessageListenerContainer</a> and the <a href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/jms/listener/SimpleMessageListenerContainer.html" target="_blank" rel="noopener">SimpleMessageListenerContainer</a> in a future blog post.</p>
 <p>我将在未来的博客文章中使用Spring <code>DefaultMessageListenerContainer</code>和<code>SimpleMessageListenerContainer</code>详细说明消息消费。</p>
 
       
@@ -440,11 +442,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
             <a href="/tags/分布式/" rel="tag"># 分布式</a>
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
           
             <a href="/tags/翻译/" rel="tag"># 翻译</a>
           
@@ -482,34 +484,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/11/21/使用Spring发送JMS消息/"
-     data-title="使用Spring发送JMS消息"
-     data-content=""
-     data-url="http://lingyv.cn/2016/11/21/使用Spring发送JMS消息/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -552,7 +532,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -638,7 +618,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

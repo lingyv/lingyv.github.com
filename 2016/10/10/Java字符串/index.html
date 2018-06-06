@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。">
+<meta name="keywords" content="Java,基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java字符串">
 <meta property="og:url" content="http://lingyv.cn/2016/10/10/Java字符串/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-22T13:26:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java字符串">
@@ -402,29 +404,29 @@
         <p>String在Java中是一种特殊的类型，它是不可变的。也就是说，只要一个string对象在Java Heap中被创建，就无法再修改它。如果修改它，实际上会创建一个新的String对象，而最初的String对象丝毫未变。<br><a id="more"></a></p>
 <h1 id="创建String对象"><a href="#创建String对象" class="headerlink" title="创建String对象"></a>创建String对象</h1><ul>
 <li><p>字面量形式创建<br>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s = &quot;abc&quot;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = &quot;abc&quot;;</span><br></pre></td></tr></table></figure>
 <p>JVM为了减少字符串对象的重复创建，维护了一段特殊的内存，这段内存被成为字符串常量池或者字符串字面量池.</p>
 <p>当代码中出现字面量形式创建字符串对象时，JVM首先会对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象被创建，然后将这个引用放入字符串常量池，并返回该引用。</p>
 </li>
 <li><p>使用<code>new</code>关键字<br>当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。</p>
 <p>代码：</p>
 <p><code>&#39;==&#39;的含义- -&gt; 基本数据类型之间应用双等号，比较的是他们的数值。复合数据类型(类)之间应用双等号，比较的是他们在内存中的存放地址。</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">String s1 = &quot;abc&quot;;</div><div class="line">String s2 = &quot;abc&quot;;  //在常量池中查找对象</div><div class="line">System.out.println(s1 == s2);   //true</div><div class="line"></div><div class="line">String s3 = &quot;abc&quot;;</div><div class="line">String s4 = new String(&quot;abc&quot;);  //直接在堆内存(Java Heap)中创建一个新的对象</div><div class="line">System.out.println(s3 == s4);   //false</div><div class="line"></div><div class="line">String s5 = &quot;abc&quot;;</div><div class="line">String s6 = &quot;def&quot;;</div><div class="line">String s7 = s5 + s6;    //对于所有包含new方式新建对象（包括null）的“+”连接表达式，它所产生的新对象都不会被加入字符串池中。</div><div class="line">String s8 = &quot;abcdef&quot;;</div><div class="line">String s9 = &quot;abc&quot; + &quot;def&quot;;  //只有使用引号包含文本的方式创建的String对象之间使用“+”连接产生的新对象才会被加入字符串池中。</div><div class="line">System.out.println(s7 == s8);   //false</div><div class="line">System.out.println(s8 == s9);   //true</div><div class="line"></div><div class="line">String ss = new String(&quot;abc&quot;);</div><div class="line">/*</div><div class="line">这条语句创建了2个对象</div><div class="line">考虑类加载阶段和实际执行时:</div><div class="line">（1）类加载对一个类只会进行一次。&quot;abc&quot;在类加载时就已经创建并驻留了（如果该类被加载之前已经有&quot;abc&quot;字符串被驻留过则不需要重复创建用于驻留的&quot;abc&quot;实例）。驻留的字符串是放在全局共享的字符串常量池中的。</div><div class="line">（2）在这段代码后续被运行的时候，&quot;abc&quot;字面量对应的String实例已经固定了，不会再被重复创建。所以这段代码将常量池中的对象复制一份放到heap中，并且把heap中的这个对象的引用交给ss持有。</div><div class="line"> */</div><div class="line"></div><div class="line">String ss1 = &quot;abc&quot;;</div><div class="line">String ss2 = new String(&quot;abc&quot;);</div><div class="line">String ss3 = ss2.intern();</div><div class="line">System.out.println(ss1 == ss3);     //true</div><div class="line">System.out.println(ss2 == ss3);     //false</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">String s1 = &quot;abc&quot;;</span><br><span class="line">String s2 = &quot;abc&quot;;  //在常量池中查找对象</span><br><span class="line">System.out.println(s1 == s2);   //true</span><br><span class="line"></span><br><span class="line">String s3 = &quot;abc&quot;;</span><br><span class="line">String s4 = new String(&quot;abc&quot;);  //直接在堆内存(Java Heap)中创建一个新的对象</span><br><span class="line">System.out.println(s3 == s4);   //false</span><br><span class="line"></span><br><span class="line">String s5 = &quot;abc&quot;;</span><br><span class="line">String s6 = &quot;def&quot;;</span><br><span class="line">String s7 = s5 + s6;    //对于所有包含new方式新建对象（包括null）的“+”连接表达式，它所产生的新对象都不会被加入字符串池中。</span><br><span class="line">String s8 = &quot;abcdef&quot;;</span><br><span class="line">String s9 = &quot;abc&quot; + &quot;def&quot;;  //只有使用引号包含文本的方式创建的String对象之间使用“+”连接产生的新对象才会被加入字符串池中。</span><br><span class="line">System.out.println(s7 == s8);   //false</span><br><span class="line">System.out.println(s8 == s9);   //true</span><br><span class="line"></span><br><span class="line">String ss = new String(&quot;abc&quot;);</span><br><span class="line">/*</span><br><span class="line">这条语句创建了2个对象</span><br><span class="line">考虑类加载阶段和实际执行时:</span><br><span class="line">（1）类加载对一个类只会进行一次。&quot;abc&quot;在类加载时就已经创建并驻留了（如果该类被加载之前已经有&quot;abc&quot;字符串被驻留过则不需要重复创建用于驻留的&quot;abc&quot;实例）。驻留的字符串是放在全局共享的字符串常量池中的。</span><br><span class="line">（2）在这段代码后续被运行的时候，&quot;abc&quot;字面量对应的String实例已经固定了，不会再被重复创建。所以这段代码将常量池中的对象复制一份放到heap中，并且把heap中的这个对象的引用交给ss持有。</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">String ss1 = &quot;abc&quot;;</span><br><span class="line">String ss2 = new String(&quot;abc&quot;);</span><br><span class="line">String ss3 = ss2.intern();</span><br><span class="line">System.out.println(ss1 == ss3);     //true</span><br><span class="line">System.out.println(ss2 == ss3);     //false</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1 id="为什么把String设计成不可变的？"><a href="#为什么把String设计成不可变的？" class="headerlink" title="为什么把String设计成不可变的？"></a>为什么把String设计成不可变的？</h1><h2 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h2><p>字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。</p>
 <h2 id="缓存Hashcode"><a href="#缓存Hashcode" class="headerlink" title="缓存Hashcode"></a>缓存Hashcode</h2><p>Java中经常会用到字符串的哈希码（hashcode）。例如，在HashMap中，字符串的不可变能保证其hashcode永远保持一致，这样就可以避免一些不必要的麻烦。这也就意味着每次在使用一个字符串的hashcode的时候不用重新计算一次，这样更加高效。</p>
-<p>在String类中，有以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">private int hash;//this is used to cache hash code.</div></pre></td></tr></table></figure></p>
+<p>在String类中，有以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private int hash;//this is used to cache hash code.</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>以上代码中hash变量中就保存了一个String对象的hashcode，因为String类不可变，所以一旦对象被创建，该hash值也无法改变。所以，每次想要使用该对象的hashcode的时候，直接返回即可。</p>
 </blockquote>
-<h2 id="使其他类的使用更加便利"><a href="#使其他类的使用更加便利" class="headerlink" title="使其他类的使用更加便利"></a>使其他类的使用更加便利</h2><p>在介绍这个内容之前，先看以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">HashSet&lt;String&gt; set = new HashSet&lt;String&gt;();</div><div class="line">set.add(new String(&quot;a&quot;));</div><div class="line">set.add(new String(&quot;b&quot;));</div><div class="line">set.add(new String(&quot;c&quot;));</div><div class="line"></div><div class="line">for(String a: set)</div><div class="line">    a.value = &quot;a&quot;;</div></pre></td></tr></table></figure></p>
+<h2 id="使其他类的使用更加便利"><a href="#使其他类的使用更加便利" class="headerlink" title="使其他类的使用更加便利"></a>使其他类的使用更加便利</h2><p>在介绍这个内容之前，先看以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; set = new HashSet&lt;String&gt;();</span><br><span class="line">set.add(new String(&quot;a&quot;));</span><br><span class="line">set.add(new String(&quot;b&quot;));</span><br><span class="line">set.add(new String(&quot;c&quot;));</span><br><span class="line"></span><br><span class="line">for(String a: set)</span><br><span class="line">    a.value = &quot;a&quot;;</span><br></pre></td></tr></table></figure></p>
 <p>在上面的例子中，如果字符串可以被改变，那么以上用法将有可能违反Set的设计原则，因为Set要求其中的元素不可以重复。上面的代码只是为了简单说明该问题，其实String类中并没有value这个字段值。</p>
 <h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>String被广泛的使用在其他Java类中充当参数。比如网络连接、打开文件等操作。如果字符串可变，那么类似操作可能导致安全问题。因为某个方法在调用连接操作的时候，他认为会连接到某台机器，但是实际上并没有（其他引用同一String对象的值修改会导致该连接中的字符串内容被修改）。可变的字符串也可能导致反射的安全问题，因为他的参数也是字符串。</p>
-<p>代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">boolean connect(string s)&#123;</div><div class="line">    if (!isSecure(s)) &#123;</div><div class="line">throw new SecurityException();</div><div class="line">&#125;</div><div class="line">    //如果s在该操作之前被其他的引用所改变，那么就可能导致问题。   </div><div class="line">    causeProblem(s);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">boolean connect(string s)&#123;</span><br><span class="line">    if (!isSecure(s)) &#123;</span><br><span class="line">throw new SecurityException();</span><br><span class="line">&#125;</span><br><span class="line">    //如果s在该操作之前被其他的引用所改变，那么就可能导致问题。   </span><br><span class="line">    causeProblem(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="不可变对象天生就是线程安全的"><a href="#不可变对象天生就是线程安全的" class="headerlink" title="不可变对象天生就是线程安全的"></a>不可变对象天生就是线程安全的</h2><p>因为不可变对象不能被改变，所以他们可以自由地在多个线程之间共享。不需要任何同步处理。</p>
 <p>总之，String被设计成不可变的主要目的是为了安全和高效。所以，使String是一个不可变类是一个很好的设计。</p>
-<h1 id="String对象作为方法参数"><a href="#String对象作为方法参数" class="headerlink" title="String对象作为方法参数"></a>String对象作为方法参数</h1><p>String作为方法参数传递时，实际上传递的是引用的一个拷贝,即“值传递”，方法操作的是参数变量只是原型变量的一个拷贝而已，而非变量本身。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private static void changeString(String s) &#123;</div><div class="line">        s = &quot;def&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">private static void change() &#123;</div><div class="line">    String s = &quot;abc&quot;;</div><div class="line">    changeString(s);</div><div class="line">    System.out.println(s);      //输出abc</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="String对象作为方法参数"><a href="#String对象作为方法参数" class="headerlink" title="String对象作为方法参数"></a>String对象作为方法参数</h1><p>String作为方法参数传递时，实际上传递的是引用的一个拷贝,即“值传递”，方法操作的是参数变量只是原型变量的一个拷贝而已，而非变量本身。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private static void changeString(String s) &#123;</span><br><span class="line">        s = &quot;def&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">private static void change() &#123;</span><br><span class="line">    String s = &quot;abc&quot;;</span><br><span class="line">    changeString(s);</span><br><span class="line">    System.out.println(s);      //输出abc</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="StringBuilder与StringBuffer"><a href="#StringBuilder与StringBuffer" class="headerlink" title="StringBuilder与StringBuffer"></a>StringBuilder与StringBuffer</h1><p>既然String对象时不可变的，那么如果频繁的改变String对象，就会频繁的创建String对象，导致执行效率低下。此时，可以改用StringBuilder或StringBuffer，它们是可变的字符串对象，区别是：</p>
 <ul>
 <li>StringBuilder：线程非安全的</li>
@@ -438,17 +440,17 @@
 <p>如果硬要说弊端的话，就是牺牲了CPU计算时间来换空间。CPU计算时间主要用于在字符串常量池中查找是否有内容相同对象的引用。不过其内部实现为HashTable，所以计算成本较低。</p>
 </li>
 <li><p>GC回收？<br>因为字符串常量池中持有了共享的字符串对象的引用，这就是说是不是会导致这些对象无法回收？</p>
-<p>首先问题中共享的对象一般情况下都比较小。据我查证了解，在早期的版本中确实存在这样的问题，但是随着<a href="http://droidyue.com/blog/2014/10/12/understanding-weakreference-in-java/" target="_blank" rel="external">弱引用</a>的引入，目前这个问题应该没有了。</p>
-<p>关于这个问题，可以具体了解这片文章interned Strings : <a href="http://mindprod.com/jgloss/interned.html#GC" target="_blank" rel="external">Java Glossary</a></p>
+<p>首先问题中共享的对象一般情况下都比较小。据我查证了解，在早期的版本中确实存在这样的问题，但是随着<a href="http://droidyue.com/blog/2014/10/12/understanding-weakreference-in-java/" target="_blank" rel="noopener">弱引用</a>的引入，目前这个问题应该没有了。</p>
+<p>关于这个问题，可以具体了解这片文章interned Strings : <a href="http://mindprod.com/jgloss/interned.html#GC" target="_blank" rel="noopener">Java Glossary</a></p>
 </li>
 <li><p>总有例外？<br>你知道下面的代码，会创建几个字符串对象，在字符串常量池中保存几个引用么？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String test = &quot;a&quot; + &quot;b&quot; + &quot;c&quot;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String test = &quot;a&quot; + &quot;b&quot; + &quot;c&quot;;</span><br></pre></td></tr></table></figure>
 <p>答案是只创建了一个对象，在常量池中也只保存一个引用。我们使用javap反编译看一下即可得知。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">17:02 $ javap -c TestInternedPoolGC</div><div class="line">Compiled from &quot;TestInternedPoolGC.java&quot;</div><div class="line">public class TestInternedPoolGC extends java.lang.Object&#123;</div><div class="line">public TestInternedPoolGC();</div><div class="line">  Code:</div><div class="line">   0:  aload_0</div><div class="line">   1:  invokespecial    #1; //Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</div><div class="line">   4:  return</div><div class="line"></div><div class="line">public static void main(java.lang.String[])   throws java.lang.Exception;</div><div class="line">  Code:</div><div class="line">   0:  ldc  #2; //String abc</div><div class="line">   2:  astore_1</div><div class="line">   3:  return</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">17:02 $ javap -c TestInternedPoolGC</span><br><span class="line">Compiled from &quot;TestInternedPoolGC.java&quot;</span><br><span class="line">public class TestInternedPoolGC extends java.lang.Object&#123;</span><br><span class="line">public TestInternedPoolGC();</span><br><span class="line">  Code:</span><br><span class="line">   0:  aload_0</span><br><span class="line">   1:  invokespecial    #1; //Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span><br><span class="line">   4:  return</span><br><span class="line"></span><br><span class="line">public static void main(java.lang.String[])   throws java.lang.Exception;</span><br><span class="line">  Code:</span><br><span class="line">   0:  ldc  #2; //String abc</span><br><span class="line">   2:  astore_1</span><br><span class="line">   3:  return</span><br></pre></td></tr></table></figure>
 <p> 看到了么，实际上在编译期间，已经将这三个字面量合成了一个。这样做实际上是一种优化，避免了创建多余的字符串对象，也没有发生字符串拼接问题。关于字符串拼接，可以查看<a href="Java细节：字符串的拼接">Java细节：字符串的拼接</a>。</p>
 </li>
 </ul>
-<p>参考资料：<br><a href="http://www.hollischuang.com/archives/1246" target="_blank" rel="external">Hollis</a><br><a href="http://droidyue.com/blog/2014/12/21/string-literal-pool-in-java/" target="_blank" rel="external">技术小黑屋</a></p>
+<p>参考资料：<br><a href="http://www.hollischuang.com/archives/1246" target="_blank" rel="noopener">Hollis</a><br><a href="http://droidyue.com/blog/2014/12/21/string-literal-pool-in-java/" target="_blank" rel="noopener">技术小黑屋</a></p>
 
       
     </div>
@@ -510,34 +512,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/10/10/Java字符串/"
-     data-title="Java字符串"
-     data-content=""
-     data-url="http://lingyv.cn/2016/10/10/Java字符串/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -589,7 +569,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -691,7 +671,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ActiveMQ,分布式,Java,官方文档,翻译," />
+  <meta name="keywords" content="Java,分布式,官方文档,ActiveMQ,翻译," />
 
 
 
@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="ActiveMQ官方文档 – 入门">
+<meta name="keywords" content="Java,分布式,官方文档,ActiveMQ,翻译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ActiveMQ官方文档 -- 入门">
 <meta property="og:url" content="http://lingyv.cn/2016/11/17/ActiveMQ入门/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="ActiveMQ官方文档 – 入门">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-18T15:06:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ActiveMQ官方文档 -- 入门">
@@ -418,12 +420,12 @@
 <h2 id="Windows-Binary-Installation-Windows二进制安装"><a href="#Windows-Binary-Installation-Windows二进制安装" class="headerlink" title="Windows Binary Installation Windows二进制安装"></a>Windows Binary Installation Windows二进制安装</h2><p>This procedure explains how to download and install the binary distribution on a Windows system.</p>
 <p>此过程说明如何在Windows系统上下载和安装二进制发行版。</p>
 <ol>
-<li>Download the latest release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="external">Download</a> -&gt; “The latest stable release” -&gt; “apache-activemq-x.x.x-bin.zip”)</li>
+<li>Download the latest release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="noopener">Download</a> -&gt; “The latest stable release” -&gt; “apache-activemq-x.x.x-bin.zip”)</li>
 <li>Extract the files from the ZIP file into a directory of your choice.</li>
 <li>Proceed to the #Starting ActiveMQ section of this document.</li>
 <li><p>Following start-up, go to the #Testing the Installation section of this document.</p>
 </li>
-<li><p>下载最新版本<br>（请参阅<a href="http://activemq.apache.org/download.html" target="_blank" rel="external">下载</a> - &gt;“最新稳定版本” - &gt;“apache-activemq-x.x.x-bin.zip”）</p>
+<li><p>下载最新版本<br>（请参阅<a href="http://activemq.apache.org/download.html" target="_blank" rel="noopener">下载</a> - &gt;“最新稳定版本” - &gt;“apache-activemq-x.x.x-bin.zip”）</p>
 </li>
 <li>将ZIP文件中的文件解压缩到您选择的目录中。</li>
 <li>继续本文档的#Starting ActiveMQ部分。</li>
@@ -431,53 +433,53 @@
 </ol>
 <h2 id="Windows-Source-Installation-Windows源码安装"><a href="#Windows-Source-Installation-Windows源码安装" class="headerlink" title="Windows Source Installation Windows源码安装"></a>Windows Source Installation Windows源码安装</h2><p>This procedure explains how to download and install the source distribution on a Windows system.</p>
 <ol>
-<li>Download the latest release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="external">Download</a> -&gt; “The latest stable release” -&gt; “apache-activemq-x.x.x-source-release.zip”)</li>
+<li>Download the latest release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="noopener">Download</a> -&gt; “The latest stable release” -&gt; “apache-activemq-x.x.x-source-release.zip”)</li>
 <li>Extract ActiveMQ from the ZIP file into a directory of your choice.</li>
-<li>The recommended method of building ActiveMQ is the following:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">REM add &quot;-Dmaven.test.skip=true&quot; if tests are failing on your system (should not happen)</div><div class="line">mvn clean install</div></pre></td></tr></table></figure>
+<li>The recommended method of building ActiveMQ is the following:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REM add &quot;-Dmaven.test.skip=true&quot; if tests are failing on your system (should not happen)</span><br><span class="line">mvn clean install</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>where [activemq_install_dir] is the directory in which ActiveMQ was installed.</p>
-<ol>
-<li>If you prefer to use an IDE, then you can auto-generate the IDE’s project file using maven plugins:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn eclipse:eclipse</div></pre></td></tr></table></figure>
+<ol start="4">
+<li>If you prefer to use an IDE, then you can auto-generate the IDE’s project file using maven plugins:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn eclipse:eclipse</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn idea:idea</div></pre></td></tr></table></figure></p>
-<p>Feel free to use any other applicable IDE. Please refer to the <a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="external">plugin reference</a> for more details.</p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn idea:idea</span><br></pre></td></tr></table></figure></p>
+<p>Feel free to use any other applicable IDE. Please refer to the <a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="noopener">plugin reference</a> for more details.</p>
 <p>此过程说明如何在Windows系统上下载和安装源码发行版。</p>
 <ol>
-<li>下载最新版本<br>（请参阅<a href="http://activemq.apache.org/download.html" target="_blank" rel="external">下载</a> - &gt;“最新稳定版本” - &gt;“apache-activemq-x.x.x-source-release.zip”）</li>
+<li>下载最新版本<br>（请参阅<a href="http://activemq.apache.org/download.html" target="_blank" rel="noopener">下载</a> - &gt;“最新稳定版本” - &gt;“apache-activemq-x.x.x-source-release.zip”）</li>
 <li>将ActiveMQ从ZIP文件解压缩到您选择的目录中。</li>
-<li>建议使用ActiveMQ的推荐方法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果测试在您的系统上失败（不应该发生）,REM添加“-Dmaven.test.skip = true”</div><div class="line">mvn clean install</div></pre></td></tr></table></figure>
+<li>建议使用ActiveMQ的推荐方法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果测试在您的系统上失败（不应该发生）,REM添加“-Dmaven.test.skip = true”</span><br><span class="line">mvn clean install</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>其中[activemq_install_dir]是安装ActiveMQ的目录。</p>
-<ol>
-<li>如果你喜欢使用IDE，那么你可以使用maven插件自动生成IDE的项目文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn eclipse:eclipse</div></pre></td></tr></table></figure>
+<ol start="4">
+<li>如果你喜欢使用IDE，那么你可以使用maven插件自动生成IDE的项目文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn eclipse:eclipse</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn idea:idea</div></pre></td></tr></table></figure></p>
-<p>可随意使用其他任何适用的IDE。 有关更多详细信息，请<a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="external">参阅插件参考</a>。</p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn idea:idea</span><br></pre></td></tr></table></figure></p>
+<p>可随意使用其他任何适用的IDE。 有关更多详细信息，请<a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="noopener">参阅插件参考</a>。</p>
 <ol>
-<li>Start ActiveMQ from the target directory, for example:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]\assembly\target</div><div class="line">unzip activemq-x.x-SNAPSHOT.zip</div><div class="line">cd activemq-x.x-SNAPSHOT</div><div class="line">bin\activemq</div></pre></td></tr></table></figure>
+<li>Start ActiveMQ from the target directory, for example:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd [activemq_install_dir]\assembly\target</span><br><span class="line">unzip activemq-x.x-SNAPSHOT.zip</span><br><span class="line">cd activemq-x.x-SNAPSHOT</span><br><span class="line">bin\activemq</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p><code>NOTE:</code> Working directories get created relative to the current directory. To create the working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
-<ol>
+<ol start="2">
 <li><p>Proceed to the #Testing the Installation section.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Warning:</div><div class="line">If you are building ActiveMQ 4.x under Windows using Cygwin there is a path name length limitation. If the path name length is exceeded, you may see build errors. To correct this, move the ActiveMQ source directory higher in the file system tree, e.g., /cygdrive/c/d/sm.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Warning:</span><br><span class="line">If you are building ActiveMQ 4.x under Windows using Cygwin there is a path name length limitation. If the path name length is exceeded, you may see build errors. To correct this, move the ActiveMQ source directory higher in the file system tree, e.g., /cygdrive/c/d/sm.</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>从目标目录启动ActiveMQ，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]\assembly\target</div><div class="line">unzip activemq-x.x-SNAPSHOT.zip</div><div class="line">cd activemq-x.x-SNAPSHOT</div><div class="line">bin\activemq</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd [activemq_install_dir]\assembly\target</span><br><span class="line">unzip activemq-x.x-SNAPSHOT.zip</span><br><span class="line">cd activemq-x.x-SNAPSHOT</span><br><span class="line">bin\activemq</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p><code>注意：</code>相对于当前目录创建工作目录。 要在正确的位置创建工作目录，ActiveMQ必须从其home/安装目录启动。</p>
-<ol>
-<li>转到#Testing安装部分。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">警告</div><div class="line">如果您在Windows下使用Cygwin构建ActiveMQ 4.x，则存在路径名称长度限制。 如果超过路径名称长度，您可能会看到构建错误。 要纠正这一点，请将ActiveMQ源目录在文件系统树中更高的位置，例如/ cygdrive / c / d / sm。</div></pre></td></tr></table></figure>
+<ol start="2">
+<li>转到#Testing安装部分。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">警告</span><br><span class="line">如果您在Windows下使用Cygwin构建ActiveMQ 4.x，则存在路径名称长度限制。 如果超过路径名称长度，您可能会看到构建错误。 要纠正这一点，请将ActiveMQ源目录在文件系统树中更高的位置，例如/ cygdrive / c / d / sm。</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="Windows-Developer’s-Release-Windows开发人员版本"><a href="#Windows-Developer’s-Release-Windows开发人员版本" class="headerlink" title="Windows Developer’s Release Windows开发人员版本"></a>Windows Developer’s Release Windows开发人员版本</h2><p>This procedure explains how to download and install the latest developer’s snapshot.</p>
 <ol>
-<li>Open the release archive: <a href="https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/" target="_blank" rel="external">https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/</a><br>(open one of the SNAPSHOT directories)</li>
+<li>Open the release archive: <a href="https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/" target="_blank" rel="noopener">https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/</a><br>(open one of the SNAPSHOT directories)</li>
 <li>Select the version of ActiveMQ to download (if necessary, scroll down to see the ActiveMQ snapshots).</li>
 <li>Extract the files from the ZIP file into a directory of your choice.</li>
 <li>If a binary snapshot was downloaded, proceed to the #Starting ActiveMQ section of this document.<br>If a source snapshot was downloaded, perform step 6 and step 7 of the #Windows Source Installation procedure.</li>
@@ -488,11 +490,11 @@
 <p>此过程说明如何在Unix系统上下载和安装二进制发行版。</p>
 <p><code>注意：</code>有几种可选的方法来执行此类型的安装。</p>
 <ol>
-<li><p>Download the activemq zipped tarball file to the Unix machine, using either a browser or a tool, i.e., wget, scp, ftp, etc. for example:<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="external">Download</a> -&gt; “The latest stable release”)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://activemq.apache.org/path/tofile/apache-activemq-x.x.x-bin.tar.gz</div></pre></td></tr></table></figure>
+<li><p>Download the activemq zipped tarball file to the Unix machine, using either a browser or a tool, i.e., wget, scp, ftp, etc. for example:<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="noopener">Download</a> -&gt; “The latest stable release”)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://activemq.apache.org/path/tofile/apache-activemq-x.x.x-bin.tar.gz</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Extract the files from the zipped tarball into a directory of your choice. For example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]</div><div class="line">tar zxvf activemq-x.x.x-bin.tar.gz</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd [activemq_install_dir]</span><br><span class="line">tar zxvf activemq-x.x.x-bin.tar.gz</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Proceed to the #Starting ActiveMQ section of this document.</p>
 </li>
@@ -500,41 +502,41 @@
 </ol>
 <h2 id="Using-Homebrew-installer-on-OSX"><a href="#Using-Homebrew-installer-on-OSX" class="headerlink" title="Using Homebrew installer on OSX"></a>Using Homebrew installer on OSX</h2><p>If you use OSX as your platform, you can use Homebrew package manager to easily install Apache ActiveMQ.</p>
 <ol>
-<li>After installing Homebrew package manager successfully, just run<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install apache-activemq</div></pre></td></tr></table></figure>
+<li>After installing Homebrew package manager successfully, just run<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install apache-activemq</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>You can expect the following output:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">==&gt; Downloading http://www.gossipcheck.com/mirrors/apache/activemq/apache-activemq/x.x.x/apache-activemq-x.x.x-bin.tar.gz</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Caveats</div><div class="line">Software was installed to:</div><div class="line">  /usr/local/Cellar/apache-activemq/x.x.x/libexec</div><div class="line">==&gt; Summary</div><div class="line">/usr/local/Cellar/apache-activemq/x.x.x: 406 files, 35M, built in 2 seconds</div></pre></td></tr></table></figure></p>
+<p>You can expect the following output:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">==&gt; Downloading http://www.gossipcheck.com/mirrors/apache/activemq/apache-activemq/x.x.x/apache-activemq-x.x.x-bin.tar.gz</span><br><span class="line">######################################################################## 100.0%</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Software was installed to:</span><br><span class="line">  /usr/local/Cellar/apache-activemq/x.x.x/libexec</span><br><span class="line">==&gt; Summary</span><br><span class="line">/usr/local/Cellar/apache-activemq/x.x.x: 406 files, 35M, built in 2 seconds</span><br></pre></td></tr></table></figure></p>
 <p>ActiveMQ will be installed in /usr/local/Cellar/apache-activemq/x.x.x/ directory (where x.x.x denotes the actual version being installed).</p>
 <p>Now you can proceed to #Starting ActiveMQ and #Testing the Installation sections.</p>
 <h2 id="Unix-Source-Installation"><a href="#Unix-Source-Installation" class="headerlink" title="Unix Source Installation"></a>Unix Source Installation</h2><p>This procedure explains how to download and install the source distribution on a Unix system. This procedure assumes the Unix machine has a browser. Please see the previous #Unix Binary Installation section for details on how to install ActiveMQ without a browser.</p>
 <ol>
-<li>Download the latest source release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="external">Download</a> -&gt; “The latest stable release” -&gt; “activemq-parent-x.x.x-source-release.zip”)</li>
+<li>Download the latest source release<br>(see <a href="http://activemq.apache.org/download.html" target="_blank" rel="noopener">Download</a> -&gt; “The latest stable release” -&gt; “activemq-parent-x.x.x-source-release.zip”)</li>
 <li><p>Extract the files from the ZIP file into a directory of your choice. For example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf activemq.x.x-src.tar.gz</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf activemq.x.x-src.tar.gz</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Build ActiveMQ using Maven:<br>The preferred method of building ActiveMQ is the following:cd [activemq_install_dir]</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn clean install # add &quot;-Dmaven.test.skip=true&quot; if tests are failing on your system (should not happen)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install # add &quot;-Dmaven.test.skip=true&quot; if tests are failing on your system (should not happen)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>If Maven crashes with a java.lang.OutOfMemoryError, you you need to do this first (assuming a Bourne-like shell):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export MAVEN_OPTS=&quot;-Xmx512M&quot;</div></pre></td></tr></table></figure></p>
-<p>If you prefer to use an IDE then you can auto-generate the IDE’s project file using maven plugins:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn eclipse:eclipse</div></pre></td></tr></table></figure></p>
-<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn idea:idea</div></pre></td></tr></table></figure></p>
-<p>Feel free to use any other applicable IDE. Please refer to the <a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="external">plugin reference</a> for more details.<br><code>NOTE:</code> Working directories get created relative to the current directory. To create working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
-<ol>
+<p>If Maven crashes with a java.lang.OutOfMemoryError, you you need to do this first (assuming a Bourne-like shell):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export MAVEN_OPTS=&quot;-Xmx512M&quot;</span><br></pre></td></tr></table></figure></p>
+<p>If you prefer to use an IDE then you can auto-generate the IDE’s project file using maven plugins:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn eclipse:eclipse</span><br></pre></td></tr></table></figure></p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn idea:idea</span><br></pre></td></tr></table></figure></p>
+<p>Feel free to use any other applicable IDE. Please refer to the <a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank" rel="noopener">plugin reference</a> for more details.<br><code>NOTE:</code> Working directories get created relative to the current directory. To create working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
+<ol start="4">
 <li>Proceed to the #Starting ActiveMQ section of this document.</li>
 <li>Proceed to #Testing the Installation section.</li>
 </ol>
 <p>##　Unix Developer’s Release<br>This procedure explains how to download and install the latest developer’s snapshot.</p>
 <ol>
-<li>Open the release archive: <a href="https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/" target="_blank" rel="external">https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/</a><br>(open one of the SNAPSHOT directories)</li>
+<li>Open the release archive: <a href="https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/" target="_blank" rel="noopener">https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/</a><br>(open one of the SNAPSHOT directories)</li>
 <li>Select the version of ActiveMQ to download (you may have to scroll down to see the ActiveMQ snapshots).<br>The filename will be similar to: <code>activemq-x.x.x-tar.gz</code>.</li>
-<li>Extract the files from the gzip file into a directory of your choice. For example:<br>For a binary developer’s snapshot:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf activemq-x.x.x.tar.gz</div></pre></td></tr></table></figure>
+<li>Extract the files from the gzip file into a directory of your choice. For example:<br>For a binary developer’s snapshot:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf activemq-x.x.x.tar.gz</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>For a source developer’s snapshot:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf activemq-x.x.x-src.tar.gz</div></pre></td></tr></table></figure></p>
-<ol>
+<p>For a source developer’s snapshot:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf activemq-x.x.x-src.tar.gz</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
 <li><p>If a binary snapshot was downloaded, to make it executable, the ActiveMQ script may need its permissions changed:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]/bin</div><div class="line">chmod 755 activemq</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd [activemq_install_dir]/bin</span><br><span class="line">chmod 755 activemq</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>For a binary snapshot, proceed to the #Starting ActiveMQ section of this document.</p>
 </li>
@@ -543,18 +545,18 @@
 </ol>
 <h1 id="Starting-ActiveMQ-运行ActiveMQ"><a href="#Starting-ActiveMQ-运行ActiveMQ" class="headerlink" title="Starting ActiveMQ 运行ActiveMQ"></a>Starting ActiveMQ 运行ActiveMQ</h1><p>There now follows instructions on how to run the ActiveMQ Message Broker.<br>现在有关于如何运行ActiveMQ消息代理的说明。</p>
 <h2 id="On-Windows"><a href="#On-Windows" class="headerlink" title="On Windows:"></a>On Windows:</h2><p>From a console window, change to the installation directory and run ActiveMQ:</p>
-<p>在控制台窗口中，切换到安装目录并运行ActiveMQ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]</div></pre></td></tr></table></figure></p>
+<p>在控制台窗口中，切换到安装目录并运行ActiveMQ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [activemq_install_dir]</span><br></pre></td></tr></table></figure></p>
 <p>where activemq_install_dir is the directory in which ActiveMQ was installed, e.g., c:\Program Files\ActiveMQ-5.x.<br>Then type:</p>
-<p>其中<code>activemq_install_dir</code>是安装ActiveMQ的目录，例如<code>c:\Program Files\ActiveMQ-5.x</code>。<br>然后键入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin\activemq start</div></pre></td></tr></table></figure></p>
+<p>其中<code>activemq_install_dir</code>是安装ActiveMQ的目录，例如<code>c:\Program Files\ActiveMQ-5.x</code>。<br>然后键入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin\activemq start</span><br></pre></td></tr></table></figure></p>
 <p><code>NOTE:</code> Working directories get created relative to the current directory. To create working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
 <p><code>注意：</code>相对于当前目录创建工作目录。 要在正确的位置创建工作目录，ActiveMQ必须从其home/installation目录启动。</p>
-<h2 id="On-Unix"><a href="#On-Unix" class="headerlink" title="On Unix:"></a>On Unix:</h2><p>From a command shell, change to the installation directory and run ActiveMQ as a foregroud process:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]/bin</div><div class="line">./activemq console</div></pre></td></tr></table></figure></p>
-<p>From a command shell, change to the installation directory and run ActiveMQ as a daemon process:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]/bin</div><div class="line">./activemq start</div></pre></td></tr></table></figure></p>
-<p>##　More help<br>For other ways of running the broker see <a href="http://activemq.apache.org/run-broker.html" target="_blank" rel="external">Here</a>. For example you can run an embedded broker inside your JMS Connection to avoid starting a separate process.</p>
-<p>有关运行代理的其他方法，请参阅<a href="http://activemq.apache.org/run-broker.html" target="_blank" rel="external">这里</a>。 例如，您可以在JMS连接中运行嵌入式代理，以避免启动单独的进程。</p>
+<h2 id="On-Unix"><a href="#On-Unix" class="headerlink" title="On Unix:"></a>On Unix:</h2><p>From a command shell, change to the installation directory and run ActiveMQ as a foregroud process:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd [activemq_install_dir]/bin</span><br><span class="line">./activemq console</span><br></pre></td></tr></table></figure></p>
+<p>From a command shell, change to the installation directory and run ActiveMQ as a daemon process:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd [activemq_install_dir]/bin</span><br><span class="line">./activemq start</span><br></pre></td></tr></table></figure></p>
+<p>##　More help<br>For other ways of running the broker see <a href="http://activemq.apache.org/run-broker.html" target="_blank" rel="noopener">Here</a>. For example you can run an embedded broker inside your JMS Connection to avoid starting a separate process.</p>
+<p>有关运行代理的其他方法，请参阅<a href="http://activemq.apache.org/run-broker.html" target="_blank" rel="noopener">这里</a>。 例如，您可以在JMS连接中运行嵌入式代理，以避免启动单独的进程。</p>
 <h1 id="Testing-the-Installation-测试安装是否成功"><a href="#Testing-the-Installation-测试安装是否成功" class="headerlink" title="Testing the Installation 测试安装是否成功"></a>Testing the Installation 测试安装是否成功</h1><h2 id="Using-the-administrative-interface-使用管理接口"><a href="#Using-the-administrative-interface-使用管理接口" class="headerlink" title="Using the administrative interface 使用管理接口"></a>Using the administrative interface 使用管理接口</h2><ul>
 <li>Open the administrative interface</li>
-<li>URL: <a href="http://127.0.0.1:8161/admin/" target="_blank" rel="external">http://127.0.0.1:8161/admin/</a><ul>
+<li>URL: <a href="http://127.0.0.1:8161/admin/" target="_blank" rel="noopener">http://127.0.0.1:8161/admin/</a><ul>
 <li>Login: admin</li>
 <li>Passwort: admin</li>
 </ul>
@@ -565,7 +567,7 @@
 </li>
 <li><p>打开管理界面</p>
 </li>
-<li>网址：<a href="http://127.0.0.1:8161/admin/" target="_blank" rel="external">http://127.0.0.1:8161/admin/</a><ul>
+<li>网址：<a href="http://127.0.0.1:8161/admin/" target="_blank" rel="noopener">http://127.0.0.1:8161/admin/</a><ul>
 <li>登录：admin</li>
 <li>密码：admin</li>
 </ul>
@@ -577,14 +579,14 @@
 <h2 id="Logfile-and-console-output-日志文件和控制台输出"><a href="#Logfile-and-console-output-日志文件和控制台输出" class="headerlink" title="Logfile and console output 日志文件和控制台输出"></a>Logfile and console output 日志文件和控制台输出</h2><p>If ActiveMQ is up and running without problems, the Window’s console window or the Unix command shell will display information similar to the following log line:</p>
 <p>(see stdout output or “[activemq_install_dir]/data/activemq.log”)</p>
 <p>如果ActiveMQ启动并运行没有问题，窗口的控制台窗口或Unix命令shell将显示类似以下日志行的信息：</p>
-<p>（请参见stdout输出或“[activemq_install_dir] /data/activemq.log”）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Apache ActiveMQ 5.11.1 (localhost, ID:ntbk11111-50816-1428933306116-0:1) started | org.apache.activemq.broker.BrokerService | main</div></pre></td></tr></table></figure></p>
+<p>（请参见stdout输出或“[activemq_install_dir] /data/activemq.log”）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache ActiveMQ 5.11.1 (localhost, ID:ntbk11111-50816-1428933306116-0:1) started | org.apache.activemq.broker.BrokerService | main</span><br></pre></td></tr></table></figure></p>
 <h2 id="Listen-port-监听端口"><a href="#Listen-port-监听端口" class="headerlink" title="Listen port 监听端口"></a>Listen port 监听端口</h2><p>ActiveMQ’s default port is <code>61616</code>. From another window run netstat and search for port 61616.</p>
 <p>ActiveMQ的默认端口是<code>61616</code>.从另一个窗口运行netstat并搜索端口61616。</p>
 <p>From a Windows console, type:</p>
-<p>在Windows控制台中，键入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -an|find &quot;61616&quot;</div></pre></td></tr></table></figure></p>
-<p>OR<br>From a Unix command shell, type:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -nl|grep 61616</div></pre></td></tr></table></figure></p>
-<h1 id="Monitoring-ActiveMQ-监视ActiveMQ"><a href="#Monitoring-ActiveMQ-监视ActiveMQ" class="headerlink" title="Monitoring ActiveMQ 监视ActiveMQ"></a>Monitoring ActiveMQ 监视ActiveMQ</h1><p>You can monitor ActiveMQ using the Web Console by pointing your browser at<br><a href="http://localhost:8161/admin" target="_blank" rel="external">http://localhost:8161/admin</a></p>
-<p>您可以通过指向浏览器使用Web控制台监视ActiveMQ<br><a href="http://localhost:8161/admin" target="_blank" rel="external">http://localhost:8161/admin</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">From ActiveMQ 5.8 onwards the web apps is secured out of the box.</div><div class="line">The default username and password is admin/admin. You can configure this in the conf/jetty-real.properties file.</div><div class="line"></div><div class="line">从ActiveMQ 5.8起，网络应用程序是开箱即用的。</div><div class="line">默认用户名和密码为admin/admin。 您可以在conf/jetty-real.properties文件中进行配置。</div></pre></td></tr></table></figure></p>
+<p>在Windows控制台中，键入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -an|find &quot;61616&quot;</span><br></pre></td></tr></table></figure></p>
+<p>OR<br>From a Unix command shell, type:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nl|grep 61616</span><br></pre></td></tr></table></figure></p>
+<h1 id="Monitoring-ActiveMQ-监视ActiveMQ"><a href="#Monitoring-ActiveMQ-监视ActiveMQ" class="headerlink" title="Monitoring ActiveMQ 监视ActiveMQ"></a>Monitoring ActiveMQ 监视ActiveMQ</h1><p>You can monitor ActiveMQ using the Web Console by pointing your browser at<br><a href="http://localhost:8161/admin" target="_blank" rel="noopener">http://localhost:8161/admin</a></p>
+<p>您可以通过指向浏览器使用Web控制台监视ActiveMQ<br><a href="http://localhost:8161/admin" target="_blank" rel="noopener">http://localhost:8161/admin</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">From ActiveMQ 5.8 onwards the web apps is secured out of the box.</span><br><span class="line">The default username and password is admin/admin. You can configure this in the conf/jetty-real.properties file.</span><br><span class="line"></span><br><span class="line">从ActiveMQ 5.8起，网络应用程序是开箱即用的。</span><br><span class="line">默认用户名和密码为admin/admin。 您可以在conf/jetty-real.properties文件中进行配置。</span><br></pre></td></tr></table></figure></p>
 <p>Or you can use the JMX support to view the running state of ActiveMQ.</p>
 <p>或者可以使用JMX支持来查看ActiveMQ的运行状态。</p>
 <p>For more information see the file docs/WebConsole-README.txt in the distribution.</p>
@@ -592,21 +594,21 @@
 <h1 id="Stopping-ActiveMQ-停止ActiveMQ"><a href="#Stopping-ActiveMQ-停止ActiveMQ" class="headerlink" title="Stopping ActiveMQ 停止ActiveMQ"></a>Stopping ActiveMQ 停止ActiveMQ</h1><p>For both Windows and Unix installations, terminate ActiveMQ by typing “CTRL-C” in the console or command shell in which it is running.</p>
 <p>对于Windows和Unix安装，通过在其运行的控制台或命令shell中键入“CTRL-C”来终止ActiveMQ。</p>
 <p>If ActiveMQ was started in the background on Unix, the process can be killed, with the following:</p>
-<p>如果ActiveMQ是在后台在Unix上启动的，进程可以被以下命令杀死：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [activemq_install_dir]/bin</div><div class="line">./activemq stop</div></pre></td></tr></table></figure></p>
+<p>如果ActiveMQ是在后台在Unix上启动的，进程可以被以下命令杀死：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd [activemq_install_dir]/bin</span><br><span class="line">./activemq stop</span><br></pre></td></tr></table></figure></p>
 <h1 id="Configuring-ActiveMQ"><a href="#Configuring-ActiveMQ" class="headerlink" title="Configuring ActiveMQ"></a>Configuring ActiveMQ</h1><p>The ActiveMQ broker should now run. You can configure the broker by specifying an Xml Configuration file as a parameter to the activemq command. An alternative is to use the Broker Configuration URI to configure things on the command line in a concise format (though the configuration options are not as extensive as if you use Java or XML code).</p>
 <p>ActiveMQ代理现在应该运行。 您可以通过将Xml配置文件指定为activemq命令的参数来配置代理。 另一种方法是使用Broker配置URI以简洁的格式配置命令行中的内容（虽然配置选项不像使用Java或XML代码那样广泛）。</p>
-<p>You can also see <a href="http://activemq.apache.org/configuring-transports.html" target="_blank" rel="external">Configuring Transports</a> to see how you can configure the various connection, transport and broker options using the connection URL in the <code>ActiveMQConnectionFactory</code>.</p>
-<p>您还可以查看<a href="http://activemq.apache.org/configuring-transports.html" target="_blank" rel="external">配置传输</a>，了解如何使用<code>ActiveMQConnectionFactory</code>中的连接URL配置各种连接，传输和代理选项。</p>
-<p>See the <a href="http://activemq.apache.org/initial-configuration.html" target="_blank" rel="external">Initial Configuration</a> for details of which jars you need to add to your classpath to start using ActiveMQ in your Java code</p>
-<p>有关哪些jar需要添加到类路径以开始在Java代码中使用ActiveMQ的详细信息，请<a href="http://activemq.apache.org/initial-configuration.html" target="_blank" rel="external">参阅初始配置</a></p>
-<p>If you want to use JNDI to connect to your JMS provider then please view the <a href="http://activemq.apache.org/jndi-support.html" target="_blank" rel="external">JNDI Support</a>. If you are a Spring user you should read about Spring Support</p>
-<p>如果要使用<code>JNDI</code>连接到JMS提供程序，请查看<a href="http://activemq.apache.org/jndi-support.html" target="_blank" rel="external">JNDI支持</a>。 如果你是一个<code>Spring</code>用户，你应该阅读关于<a href="http://activemq.apache.org/spring-support.html" target="_blank" rel="external">Spring支持</a></p>
-<p>After the installation, ActiveMQ is running with a basic configuration. For details on configuring options, please see refer to the <a href="http://activemq.apache.org/configuration.html" target="_blank" rel="external">Configuration section</a>.</p>
-<p>安装后，ActiveMQ正在使用基本配置运行。 有关配置选项的详细信息，请参阅<a href="http://activemq.apache.org/configuration.html" target="_blank" rel="external">配置部分</a>。</p>
-<h1 id="Additional-Resources-其他资源"><a href="#Additional-Resources-其他资源" class="headerlink" title="Additional Resources  其他资源"></a>Additional Resources  其他资源</h1><p>If you are new to using ActiveMQ, running the <a href="http://activemq.apache.org/web-samples.html" target="_blank" rel="external">Web Samples</a> or the <a href="http://activemq.apache.org/examples.html" target="_blank" rel="external">Examples</a> is a good next step to learn more about ActiveMQ.</p>
-<p>如果您刚刚使用ActiveMQ，运行<a href="http://activemq.apache.org/web-samples.html" target="_blank" rel="external">Web示例</a>或<a href="http://activemq.apache.org/examples.html" target="_blank" rel="external">示例</a>可以了解ActiveMQ的更多信息。</p>
-<p>The Commercial Providers listed on the <a href="http://activemq.apache.org/support.html" target="_blank" rel="external">Support</a> page may also have additional documentation, examples, tutorials, etc… that can help you get started.</p>
-<p><a href="http://activemq.apache.org/support.html" target="_blank" rel="external">支持页面</a>上列出的商业提供商可能还有其他文档，示例，教程等，可以帮助您开始。</p>
+<p>You can also see <a href="http://activemq.apache.org/configuring-transports.html" target="_blank" rel="noopener">Configuring Transports</a> to see how you can configure the various connection, transport and broker options using the connection URL in the <code>ActiveMQConnectionFactory</code>.</p>
+<p>您还可以查看<a href="http://activemq.apache.org/configuring-transports.html" target="_blank" rel="noopener">配置传输</a>，了解如何使用<code>ActiveMQConnectionFactory</code>中的连接URL配置各种连接，传输和代理选项。</p>
+<p>See the <a href="http://activemq.apache.org/initial-configuration.html" target="_blank" rel="noopener">Initial Configuration</a> for details of which jars you need to add to your classpath to start using ActiveMQ in your Java code</p>
+<p>有关哪些jar需要添加到类路径以开始在Java代码中使用ActiveMQ的详细信息，请<a href="http://activemq.apache.org/initial-configuration.html" target="_blank" rel="noopener">参阅初始配置</a></p>
+<p>If you want to use JNDI to connect to your JMS provider then please view the <a href="http://activemq.apache.org/jndi-support.html" target="_blank" rel="noopener">JNDI Support</a>. If you are a Spring user you should read about Spring Support</p>
+<p>如果要使用<code>JNDI</code>连接到JMS提供程序，请查看<a href="http://activemq.apache.org/jndi-support.html" target="_blank" rel="noopener">JNDI支持</a>。 如果你是一个<code>Spring</code>用户，你应该阅读关于<a href="http://activemq.apache.org/spring-support.html" target="_blank" rel="noopener">Spring支持</a></p>
+<p>After the installation, ActiveMQ is running with a basic configuration. For details on configuring options, please see refer to the <a href="http://activemq.apache.org/configuration.html" target="_blank" rel="noopener">Configuration section</a>.</p>
+<p>安装后，ActiveMQ正在使用基本配置运行。 有关配置选项的详细信息，请参阅<a href="http://activemq.apache.org/configuration.html" target="_blank" rel="noopener">配置部分</a>。</p>
+<h1 id="Additional-Resources-其他资源"><a href="#Additional-Resources-其他资源" class="headerlink" title="Additional Resources  其他资源"></a>Additional Resources  其他资源</h1><p>If you are new to using ActiveMQ, running the <a href="http://activemq.apache.org/web-samples.html" target="_blank" rel="noopener">Web Samples</a> or the <a href="http://activemq.apache.org/examples.html" target="_blank" rel="noopener">Examples</a> is a good next step to learn more about ActiveMQ.</p>
+<p>如果您刚刚使用ActiveMQ，运行<a href="http://activemq.apache.org/web-samples.html" target="_blank" rel="noopener">Web示例</a>或<a href="http://activemq.apache.org/examples.html" target="_blank" rel="noopener">示例</a>可以了解ActiveMQ的更多信息。</p>
+<p>The Commercial Providers listed on the <a href="http://activemq.apache.org/support.html" target="_blank" rel="noopener">Support</a> page may also have additional documentation, examples, tutorials, etc… that can help you get started.</p>
+<p><a href="http://activemq.apache.org/support.html" target="_blank" rel="noopener">支持页面</a>上列出的商业提供商可能还有其他文档，示例，教程等，可以帮助您开始。</p>
 
       
     </div>
@@ -630,13 +632,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
             <a href="/tags/分布式/" rel="tag"># 分布式</a>
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
             <a href="/tags/官方文档/" rel="tag"># 官方文档</a>
+          
+            <a href="/tags/ActiveMQ/" rel="tag"># ActiveMQ</a>
           
             <a href="/tags/翻译/" rel="tag"># 翻译</a>
           
@@ -674,34 +676,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/11/17/ActiveMQ入门/"
-     data-title="ActiveMQ官方文档 -- 入门"
-     data-content=""
-     data-url="http://lingyv.cn/2016/11/17/ActiveMQ入门/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -753,7 +733,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -855,7 +835,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

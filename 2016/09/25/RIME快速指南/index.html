@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="RIME快速指南">
+<meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RIME快速指南">
 <meta property="og:url" content="http://lingyv.cn/2016/09/25/RIME快速指南/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="RIME快速指南">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-18T13:45:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RIME快速指南">
@@ -439,17 +441,17 @@
 <li>※〔用戶對預設輸入方案的定製信息〕 &lt;方案標識&gt;.custom.yaml</li>
 <li>※〔用戶自製輸入方案〕及配套的詞典源文件<br>註：以上標有 ※ 號的文件，包含用戶資料，您在清理文件時要注意備份！</li>
 </ul>
-<h2 id="修改配置文件的方式"><a href="#修改配置文件的方式" class="headerlink" title="修改配置文件的方式"></a>修改配置文件的方式</h2><p>創建一個文件名的主體部份（「.」之前）與要定製的文件相同、次級擴展名（「.yaml」之前）爲 .custom 的定製文檔：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">patch:</div><div class="line">  &quot;一級設定項/二級設定項/三級設定項&quot;: 新的設定值</div><div class="line">  &quot;另一個設定項&quot;: 新的設定值</div><div class="line">  &quot;再一個設定項&quot;: 新的設定值</div><div class="line">  &quot;含列表的設定項/@n&quot;: 列表第n個元素新的設定值,从零开始计数</div><div class="line">  &quot;含列表的設定項/@last&quot;: 列表最後一個元素新的設定值</div><div class="line">  &quot;含列表的設定項/@before 0&quot;: 在列表第一個元素之前插入新的設定值（不建議在補靪中使用）</div><div class="line">  &quot;含列表的設定項/@after last&quot;: 在列表最後一個元素之後插入新的設定值（不建議在補靪中使用）</div><div class="line">  &quot;含列表的設定項/@next&quot;: 在列表最後一個元素之後插入新的設定值（不建議在補靪中使用）</div></pre></td></tr></table></figure></p>
+<h2 id="修改配置文件的方式"><a href="#修改配置文件的方式" class="headerlink" title="修改配置文件的方式"></a>修改配置文件的方式</h2><p>創建一個文件名的主體部份（「.」之前）與要定製的文件相同、次級擴展名（「.yaml」之前）爲 .custom 的定製文檔：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">patch:</span><br><span class="line">  &quot;一級設定項/二級設定項/三級設定項&quot;: 新的設定值</span><br><span class="line">  &quot;另一個設定項&quot;: 新的設定值</span><br><span class="line">  &quot;再一個設定項&quot;: 新的設定值</span><br><span class="line">  &quot;含列表的設定項/@n&quot;: 列表第n個元素新的設定值,从零开始计数</span><br><span class="line">  &quot;含列表的設定項/@last&quot;: 列表最後一個元素新的設定值</span><br><span class="line">  &quot;含列表的設定項/@before 0&quot;: 在列表第一個元素之前插入新的設定值（不建議在補靪中使用）</span><br><span class="line">  &quot;含列表的設定項/@after last&quot;: 在列表最後一個元素之後插入新的設定值（不建議在補靪中使用）</span><br><span class="line">  &quot;含列表的設定項/@next&quot;: 在列表最後一個元素之後插入新的設定值（不建議在補靪中使用）</span><br></pre></td></tr></table></figure></p>
 <p>就是這樣：patch 定義了一組「補靪」，以源文件中的設定爲基礎，寫入新的設定項、或以新的設定值取代現有設定項的值。</p>
 <h2 id="定制default-yaml文件"><a href="#定制default-yaml文件" class="headerlink" title="定制default.yaml文件"></a>定制default.yaml文件</h2><p>新建default.custom.yaml文件</p>
-<h3 id="定制每页候选数"><a href="#定制每页候选数" class="headerlink" title="定制每页候选数"></a>定制每页候选数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">patch:</div><div class="line">  &quot;menu/page_size&quot;: 9  #候选数</div></pre></td></tr></table></figure>
-<h3 id="定制方案选单"><a href="#定制方案选单" class="headerlink" title="定制方案选单"></a>定制方案选单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">patch:</div><div class="line">  schema_list:  # 對於列表類型，現在無有辦法指定如何添加、消除或單一修改某項，於是要在定製檔中將整個列表替換！</div><div class="line">      - schema: luna_pinyin</div><div class="line">      - schema: cangjie5</div><div class="line">      - schema: luna_pinyin_fluency</div><div class="line">      - schema: luna_pinyin_simp</div><div class="line">      - schema: my_coolest_ever_schema  # 這樣就啓用了未曾有過的高級輸入方案！其實這麼好的方案應該排在最前面哈。</div></pre></td></tr></table></figure>
-<h3 id="左Shift键输入字符直接切换为英文上屏，输入状态变为英文"><a href="#左Shift键输入字符直接切换为英文上屏，输入状态变为英文" class="headerlink" title="左Shift键输入字符直接切换为英文上屏，输入状态变为英文"></a>左Shift键输入字符直接切换为英文上屏，输入状态变为英文</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">patch:</div><div class="line">  ascii_composer/good_old_caps_lock: true</div><div class="line">  ascii_composer/switch_key:</div><div class="line">    Caps_Lock: noop</div><div class="line">    Shift_L: commit_code	#其中L指Left，左的意思。commit-提交。code－代码。当我们输入一段文字未上屏之前，按此键后字符将被将直接上屏，RIME切换为英文输入状态。再次按此键RIME切换回中文输入状态。</div><div class="line">    Shift_R: inline_ascii	#其中R指Right，右的意思。inline－直接插入。ascii－字符，美国信息交换标准码。这个设置就是RIME的默认设置，在我们输入一段文字未上屏之前，按此键后，不上屏，字符转变为英文输入，按Enter键英文字符上屏，之后默认还是中文输入。</div><div class="line">    Control_L: clear		#其中clear为清除的意思。在你输入一段字符后按此键，字符被清除，同时RIME输入状态切换为英文输入。在按此键，RIME输入切换回中文输入。（与clear类似但不转换输入状态的快捷键是Esc键）</div><div class="line">    Control_R: commit_text		#其中text为文本的意思。在你输入一段拼音字符后，按此键，文字上屏，同时RIME切换为英文输入。在按此键，切换回来。</div></pre></td></tr></table></figure>
+<h3 id="定制每页候选数"><a href="#定制每页候选数" class="headerlink" title="定制每页候选数"></a>定制每页候选数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">patch:</span><br><span class="line">  &quot;menu/page_size&quot;: 9  #候选数</span><br></pre></td></tr></table></figure>
+<h3 id="定制方案选单"><a href="#定制方案选单" class="headerlink" title="定制方案选单"></a>定制方案选单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">patch:</span><br><span class="line">  schema_list:  # 對於列表類型，現在無有辦法指定如何添加、消除或單一修改某項，於是要在定製檔中將整個列表替換！</span><br><span class="line">      - schema: luna_pinyin</span><br><span class="line">      - schema: cangjie5</span><br><span class="line">      - schema: luna_pinyin_fluency</span><br><span class="line">      - schema: luna_pinyin_simp</span><br><span class="line">      - schema: my_coolest_ever_schema  # 這樣就啓用了未曾有過的高級輸入方案！其實這麼好的方案應該排在最前面哈。</span><br></pre></td></tr></table></figure>
+<h3 id="左Shift键输入字符直接切换为英文上屏，输入状态变为英文"><a href="#左Shift键输入字符直接切换为英文上屏，输入状态变为英文" class="headerlink" title="左Shift键输入字符直接切换为英文上屏，输入状态变为英文"></a>左Shift键输入字符直接切换为英文上屏，输入状态变为英文</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">patch:</span><br><span class="line">  ascii_composer/good_old_caps_lock: true</span><br><span class="line">  ascii_composer/switch_key:</span><br><span class="line">    Caps_Lock: noop</span><br><span class="line">    Shift_L: commit_code	#其中L指Left，左的意思。commit-提交。code－代码。当我们输入一段文字未上屏之前，按此键后字符将被将直接上屏，RIME切换为英文输入状态。再次按此键RIME切换回中文输入状态。</span><br><span class="line">    Shift_R: inline_ascii	#其中R指Right，右的意思。inline－直接插入。ascii－字符，美国信息交换标准码。这个设置就是RIME的默认设置，在我们输入一段文字未上屏之前，按此键后，不上屏，字符转变为英文输入，按Enter键英文字符上屏，之后默认还是中文输入。</span><br><span class="line">    Control_L: clear		#其中clear为清除的意思。在你输入一段字符后按此键，字符被清除，同时RIME输入状态切换为英文输入。在按此键，RIME输入切换回中文输入。（与clear类似但不转换输入状态的快捷键是Esc键）</span><br><span class="line">    Control_R: commit_text		#其中text为文本的意思。在你输入一段拼音字符后，按此键，文字上屏，同时RIME切换为英文输入。在按此键，切换回来。</span><br></pre></td></tr></table></figure>
 <h2 id="定制weasel-yaml文件"><a href="#定制weasel-yaml文件" class="headerlink" title="定制weasel.yaml文件"></a>定制weasel.yaml文件</h2><p>创建weasel.custom.yaml文件</p>
-<h3 id="定制字体字号"><a href="#定制字体字号" class="headerlink" title="定制字体字号"></a>定制字体字号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">patch:</div><div class="line">  &quot;style/font_face&quot;: &quot;明兰&quot;  # 字體名稱，從記事本等處的系統字體對話框裏能看到</div><div class="line">  &quot;style/font_point&quot;: 14     # 字號，只認數字的，不認「五號」、「小五」這樣的</div></pre></td></tr></table></figure>
-<h3 id="定制配色方案"><a href="#定制配色方案" class="headerlink" title="定制配色方案"></a>定制配色方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">patch:</div><div class="line">  &quot;style/color_scheme&quot;: starcraft    # 這項用於選中下面定義的新方案</div><div class="line">  &quot;preset_color_schemes/starcraft&quot;:  # 在配色方案列表裏加入標識爲 starcraft 的新方案</div><div class="line">	name: 星際我爭霸／StarCraft</div><div class="line">	author: Contralisk &lt;contralisk@gmail.com&gt;, original artwork by Blizzard Entertainment</div><div class="line">	text_color: 0xccaa88             # 編碼行文字顏色，24位色值，用十六進制書寫方便些，順序是藍綠紅0xBBGGRR</div><div class="line">	candidate_text_color: 0x30bb55   # 候選項文字顏色，當與文字顏色不同時指定</div><div class="line">	back_color: 0x000000             # 底色</div><div class="line">	border_color: 0x1010a0           # 邊框顏色，與底色相同則爲無邊框的效果</div><div class="line">	hilited_text_color: 0xfecb96     # 高亮文字，即與當前高亮候選對應的那部份輸入碼</div><div class="line">	hilited_back_color: 0x000000     # 設定高亮文字的底色，可起到凸顯高亮部份的作用</div><div class="line">	hilited_candidate_text_color: 0x60ffa8  # 高亮候選項的文字顏色，要醒目！</div><div class="line">	hilited_candidate_back_color: 0x000000  # 高亮候選項的底色，若與背景色不同就會顯出光棒</div></pre></td></tr></table></figure>
-<h3 id="外观设置"><a href="#外观设置" class="headerlink" title="外观设置"></a>外观设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">patch:</div><div class="line">  style/horizontal: true      # 候選橫排</div><div class="line">  style/inline_preedit: true  # 內嵌編碼（僅支持TSF）</div><div class="line">  style/display_tray_icon: true  # 顯示托盤圖標</div></pre></td></tr></table></figure>
-<h2 id="个人词库配置同步"><a href="#个人词库配置同步" class="headerlink" title="个人词库配置同步"></a>个人词库配置同步</h2><p>打开用户文件夹中的installation.yaml文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">installation_id: &apos;MacBook&apos;</div><div class="line">sync_dir: &apos;D:\Dropbox\RimeSync&apos;</div></pre></td></tr></table></figure></p>
+<h3 id="定制字体字号"><a href="#定制字体字号" class="headerlink" title="定制字体字号"></a>定制字体字号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">patch:</span><br><span class="line">  &quot;style/font_face&quot;: &quot;明兰&quot;  # 字體名稱，從記事本等處的系統字體對話框裏能看到</span><br><span class="line">  &quot;style/font_point&quot;: 14     # 字號，只認數字的，不認「五號」、「小五」這樣的</span><br></pre></td></tr></table></figure>
+<h3 id="定制配色方案"><a href="#定制配色方案" class="headerlink" title="定制配色方案"></a>定制配色方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">patch:</span><br><span class="line">  &quot;style/color_scheme&quot;: starcraft    # 這項用於選中下面定義的新方案</span><br><span class="line">  &quot;preset_color_schemes/starcraft&quot;:  # 在配色方案列表裏加入標識爲 starcraft 的新方案</span><br><span class="line">	name: 星際我爭霸／StarCraft</span><br><span class="line">	author: Contralisk &lt;contralisk@gmail.com&gt;, original artwork by Blizzard Entertainment</span><br><span class="line">	text_color: 0xccaa88             # 編碼行文字顏色，24位色值，用十六進制書寫方便些，順序是藍綠紅0xBBGGRR</span><br><span class="line">	candidate_text_color: 0x30bb55   # 候選項文字顏色，當與文字顏色不同時指定</span><br><span class="line">	back_color: 0x000000             # 底色</span><br><span class="line">	border_color: 0x1010a0           # 邊框顏色，與底色相同則爲無邊框的效果</span><br><span class="line">	hilited_text_color: 0xfecb96     # 高亮文字，即與當前高亮候選對應的那部份輸入碼</span><br><span class="line">	hilited_back_color: 0x000000     # 設定高亮文字的底色，可起到凸顯高亮部份的作用</span><br><span class="line">	hilited_candidate_text_color: 0x60ffa8  # 高亮候選項的文字顏色，要醒目！</span><br><span class="line">	hilited_candidate_back_color: 0x000000  # 高亮候選項的底色，若與背景色不同就會顯出光棒</span><br></pre></td></tr></table></figure>
+<h3 id="外观设置"><a href="#外观设置" class="headerlink" title="外观设置"></a>外观设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">patch:</span><br><span class="line">  style/horizontal: true      # 候選橫排</span><br><span class="line">  style/inline_preedit: true  # 內嵌編碼（僅支持TSF）</span><br><span class="line">  style/display_tray_icon: true  # 顯示托盤圖標</span><br></pre></td></tr></table></figure>
+<h2 id="个人词库配置同步"><a href="#个人词库配置同步" class="headerlink" title="个人词库配置同步"></a>个人词库配置同步</h2><p>打开用户文件夹中的installation.yaml文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">installation_id: &apos;MacBook&apos;</span><br><span class="line">sync_dir: &apos;D:\Dropbox\RimeSync&apos;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -509,34 +511,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/09/25/RIME快速指南/"
-     data-title="RIME快速指南"
-     data-content=""
-     data-url="http://lingyv.cn/2016/09/25/RIME快速指南/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -588,7 +568,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -690,7 +670,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="linux系统安装JDK">
+<meta name="keywords" content="教程,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux安装JDK">
 <meta property="og:url" content="http://lingyv.cn/2016/09/01/linux安装JDK/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="linux系统安装JDK">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-10-19T13:24:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux安装JDK">
@@ -400,22 +402,22 @@
 
       
         <p>linux系统安装JDK<br><a id="more"></a></p>
-<h3 id="卸载JDK"><a href="#卸载JDK" class="headerlink" title="卸载JDK"></a>卸载JDK</h3><p>  先查看系统是否已安装JDK，一般情况下linux都默认使用了开源的openJDK。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></p>
-<p>  查找名字包含java，jdk的已安装程序<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep java  </div><div class="line">rpm -qa | grep jdk</div></pre></td></tr></table></figure></p>
-<p>  单个卸载程序，使用rpm -e xxx命令<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm <span class="_">-e</span> xxx</div></pre></td></tr></table></figure></p>
-<p>  批量卸载所有名字包含xxx的已安装程序<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep xxx | xargs rpm <span class="_">-e</span> --nodeps</div></pre></td></tr></table></figure></p>
-<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><h4 id="rpm后缀格式JDK安装包"><a href="#rpm后缀格式JDK安装包" class="headerlink" title=".rpm后缀格式JDK安装包"></a>.rpm后缀格式JDK安装包</h4><p>  安装包添加权限<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 755 jdk-xxx.rpm</div></pre></td></tr></table></figure></p>
-<p>  使用rpm -ivh xxx命令安装JDK<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh jdk-xxx.rpm</div></pre></td></tr></table></figure></p>
+<h3 id="卸载JDK"><a href="#卸载JDK" class="headerlink" title="卸载JDK"></a>卸载JDK</h3><p>  先查看系统是否已安装JDK，一般情况下linux都默认使用了开源的openJDK。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure></p>
+<p>  查找名字包含java，jdk的已安装程序<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep java  </span><br><span class="line">rpm -qa | grep jdk</span><br></pre></td></tr></table></figure></p>
+<p>  单个卸载程序，使用rpm -e xxx命令<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e xxx</span><br></pre></td></tr></table></figure></p>
+<p>  批量卸载所有名字包含xxx的已安装程序<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep xxx | xargs rpm -e --nodeps</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><h4 id="rpm后缀格式JDK安装包"><a href="#rpm后缀格式JDK安装包" class="headerlink" title=".rpm后缀格式JDK安装包"></a>.rpm后缀格式JDK安装包</h4><p>  安装包添加权限<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 jdk-xxx.rpm</span><br></pre></td></tr></table></figure></p>
+<p>  使用rpm -ivh xxx命令安装JDK<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh jdk-xxx.rpm</span><br></pre></td></tr></table></figure></p>
 <p>  安装.rpm格式后缀的JDK，会自动配置java环境变量，会在/usr/bin生成java、javac等JDK的快捷方式图标,这些图标会链接指向到/usr/java/jdkxxx中</p>
 <h4 id="tar-gz后缀格式JDK安装包"><a href="#tar-gz后缀格式JDK安装包" class="headerlink" title=".tar.gz后缀格式JDK安装包"></a>.tar.gz后缀格式JDK安装包</h4><ol>
 <li><p>在/usr目录下新建java文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir /usr/java</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/java</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>压缩包解压</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf jdk-xxx.gz</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-xxx.gz</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>设置jdk环境变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">vi /etc/profile</div><div class="line"></div><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdkxxx</div><div class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin</div><div class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JAVA_HOME</span>/jre/lib</div><div class="line"></div><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdkxxx</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JAVA_HOME</span>/jre/lib</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -479,34 +481,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/09/01/linux安装JDK/"
-     data-title="linux安装JDK"
-     data-content=""
-     data-url="http://lingyv.cn/2016/09/01/linux安装JDK/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -558,7 +538,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -660,7 +640,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

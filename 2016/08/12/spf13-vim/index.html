@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了spf-13，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做：">
+<meta name="keywords" content="教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim懒人福音--spf13-vim">
 <meta property="og:url" content="http://lingyv.cn/2016/08/12/spf13-vim/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了spf-13，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做：">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://lingyv.cn/imag/vimspf13.png">
 <meta property="og:updated_time" content="2016-11-10T14:37:19.000Z">
 <meta name="twitter:card" content="summary">
@@ -401,25 +403,25 @@
       
 
       
-        <p>是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了<a href="https://github.com/spf13/spf13-vim/" target="_blank" rel="external">spf-13</a>，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做：<br><a id="more"></a></p>
+        <p>是不是羡慕编辑器之神–vim，却又讨厌各种繁琐的配置文件？现在好了，有了<a href="https://github.com/spf13/spf13-vim/" target="_blank" rel="noopener">spf-13</a>，我们不用配置各种繁琐的配置文件了。废话少说，下面来说具体怎么做：<br><a id="more"></a></p>
 <ol>
 <li><p>首先，确认<em>Git 1.7+ 和 Vim 7.3+</em><br>Linux, * nix, Mac OSX系统,执行以下命令安装spf13-vim：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装好就可以使用了。不过，一般我们需要做一些个性化的定制。</p>
 <ul>
 <li><p>更换主题：<br>新建一个~/.vimrc.local文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">colorscheme ir_black</div><div class="line">#把ir_black换成你想要换的主题</div><div class="line">#例如ir_black、molokai、peaksea</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">colorscheme ir_black</span><br><span class="line">#把ir_black换成你想要换的主题</span><br><span class="line">#例如ir_black、molokai、peaksea</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>选择加载的插件：<br>新建~/.vimrc.before.local文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let g:spf13_bundle_groups=[&apos;general&apos;,&apos;writing&apos;,&apos;programming&apos;,&apos;youcompleteme&apos;,&apos;go&apos;,&apos;javascript&apos;,&apos;html&apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let g:spf13_bundle_groups=[&apos;general&apos;,&apos;writing&apos;,&apos;programming&apos;,&apos;youcompleteme&apos;,&apos;go&apos;,&apos;javascript&apos;,&apos;html&apos;]</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
 <p>其中“[]”里面的可以去~/.vimrc.bundles文件里面Bundles一栏去找你需要加载的组：<br><img src="/imag/vimspf13.png" alt="vimspf13.png"></p>
 <ul>
-<li>添加自己的组件：<br>新建文件~/.vimrc.bundles.local，新增你需要增加的组件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bundle \&apos;spf13/vim-colors\&apos;</div></pre></td></tr></table></figure>
+<li>添加自己的组件：<br>新建文件~/.vimrc.bundles.local，新增你需要增加的组件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bundle \&apos;spf13/vim-colors\&apos;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -481,34 +483,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/12/spf13-vim/"
-     data-title="vim懒人福音--spf13-vim"
-     data-content=""
-     data-url="http://lingyv.cn/2016/08/12/spf13-vim/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -551,7 +531,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -637,7 +617,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

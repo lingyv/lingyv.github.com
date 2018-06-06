@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="自由世界的大门–DIR-505路由器刷OpenWrt">
+<meta name="keywords" content="Linux,自由">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自由世界的大门--OpenWrt上手">
 <meta property="og:url" content="http://lingyv.cn/2017/04/17/OpenWrt上手/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="自由世界的大门–DIR-505路由器刷OpenWrt">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://lingyv.cn/imag/openwrt_zg.jpg">
 <meta property="og:image" content="http://lingyv.cn/imag/openwrt_gj.jpg">
 <meta property="og:image" content="http://lingyv.cn/imag/openwrt_ss1.png">
@@ -405,33 +407,33 @@
 
       
         <p>自由世界的大门–DIR-505路由器刷OpenWrt<br><a id="more"></a><br>有次闲逛论坛时，发现有个叫’OpenWrt’的Linux嵌入式发行版本，可以刷入路由器做’智能’路由器。这让我喜出望外，刷了它就可以’掌控’自己的路由器了嘛！作为一个行动派，废话少说，赶紧动起来。我的路由器是D-Link的DIR-505，8MB Flash，64MB RAM。</p>
-<h1 id="刷DIR-505国际版固件"><a href="#刷DIR-505国际版固件" class="headerlink" title="刷DIR-505国际版固件"></a>刷DIR-505国际版固件</h1><p>因为DIR-505是锁区的，而 OpenWRT.org 编译的 ROM 不是为中国版准备的，所以首先，要先给DIR-505刷国际版固件。去<a href="http://support.dlink.com.au/download/download.aspx?product=DIR-505" target="_blank" rel="external"> D-Link 官方国际站</a>可以下载<a href="ftp://files.dlink.com.au/products/DIR-505/REV_A/Firmware/v1.09b02/DIR505A1_FW109B02.bin" target="_blank" rel="external">原厂固件</a>，用16进制编辑器把DEF改成CN，升级固件，然后再刷OpenWrt固件。<br>中国版:</p>
+<h1 id="刷DIR-505国际版固件"><a href="#刷DIR-505国际版固件" class="headerlink" title="刷DIR-505国际版固件"></a>刷DIR-505国际版固件</h1><p>因为DIR-505是锁区的，而 OpenWRT.org 编译的 ROM 不是为中国版准备的，所以首先，要先给DIR-505刷国际版固件。去<a href="http://support.dlink.com.au/download/download.aspx?product=DIR-505" target="_blank" rel="noopener"> D-Link 官方国际站</a>可以下载<a href="ftp://files.dlink.com.au/products/DIR-505/REV_A/Firmware/v1.09b02/DIR505A1_FW109B02.bin" target="_blank" rel="noopener">原厂固件</a>，用16进制编辑器把DEF改成CN，升级固件，然后再刷OpenWrt固件。<br>中国版:</p>
 <p><img src="/imag/openwrt_zg.jpg" alt="openwrt_zg"></p>
 <p>国际版：</p>
 <p><img src="/imag/openwrt_gj.jpg" alt="openwrt_gj"></p>
 <p>改好后，去路由器管理页面，维护 –&gt; 固件,上传固件。</p>
-<h1 id="刷OpenWrt固件"><a href="#刷OpenWrt固件" class="headerlink" title="刷OpenWrt固件"></a>刷OpenWrt固件</h1><p>去<a href="https://downloads.openwrt.org/snapshots/trunk/ar71xx/generic/" target="_blank" rel="external">OpenWrt官方网站</a>下载 dir-505 的固件，要选择’factory.bin’结尾的固件。<br>下载后，去路由器管理页面，维护 –&gt; 固件,上传固件。</p>
-<h1 id="OpenWrt基本设置"><a href="#OpenWrt基本设置" class="headerlink" title="OpenWrt基本设置"></a>OpenWrt基本设置</h1><h2 id="修改root用户密码"><a href="#修改root用户密码" class="headerlink" title="修改root用户密码"></a>修改root用户密码</h2><p>刚刚刷好 OpenWRT 的 DIR-505，默认没有开启 WiFi，所以只能用网线连接，连起来后，将电脑的网卡配置为 192.168.1.X，然后用ssh连接OpenWrt,首先修改root用户的密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">passwd root</div></pre></td></tr></table></figure></p>
-<h2 id="开启-WiFi"><a href="#开启-WiFi" class="headerlink" title="开启 WiFi"></a>开启 WiFi</h2><p>开启wifi：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">uci set wireless.@wifi-device[0].disabled=0;</div><div class="line">uci set wireless.@wifi-iface[0].ssid=&apos;FreeWorld&apos;;</div><div class="line">uci set wireless.@wifi-iface[0].encryption=&apos;psk2+ccmp&apos;;</div><div class="line">uci set wireless.@wifi-iface[0].key=&apos;password&apos;;</div><div class="line">uci commit wireless;</div><div class="line">wifi</div></pre></td></tr></table></figure></p>
-<h2 id="改时区"><a href="#改时区" class="headerlink" title="改时区"></a>改时区</h2><p>系统默认是第零时区的时间，所以要先修改成第八时区：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">uci set system.@system[0].zonename=&apos;Asia/Shanghai&apos;;</div><div class="line">uci set system.@system[0].timezone=&apos;CST-8&apos;;</div><div class="line">uci commit system;</div><div class="line">echo CST-8 &gt; /etc/TZ;</div></pre></td></tr></table></figure></p>
-<h2 id="有线中继"><a href="#有线中继" class="headerlink" title="有线中继"></a>有线中继</h2><p>我有两个路由器，这个刷了<code>OpenWrt</code>的路由器打算做二级路由，主路由的ip网段是192.168.1.XXX，OpenWrt路由器的ip网段为192.168.0.XXX：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">uci delete network.lan.ifname</div><div class="line">uci delete network.lan.type</div><div class="line">uci add network interface</div><div class="line">uci rename network.@interface[-1]=&apos;wan&apos;</div><div class="line">uci set network.@interface[-1].ifname=&apos;eth1&apos;</div><div class="line">uci set network.wan.proto=static</div><div class="line">uci set network.wan.ipaddr=192.168.1.123</div><div class="line">uci set network.wan.netmask=255.255.255.0</div><div class="line">uci set network.wan.gateway=192.168.1.1</div><div class="line">uci set network.wan.dns=&apos;114.114.114.114 114.114.115.115&apos;</div><div class="line">uci set network.lan.ipaddr=192.168.0.1</div><div class="line">uci set network.lan.dns=&apos;114.114.114.114 114.114.115.115&apos;</div><div class="line">uci commit network</div></pre></td></tr></table></figure></p>
-<p>设置好以后，重启network服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/network restart</div></pre></td></tr></table></figure></p>
-<h1 id="WEB管理界面LUCI安装"><a href="#WEB管理界面LUCI安装" class="headerlink" title="WEB管理界面LUCI安装"></a>WEB管理界面LUCI安装</h1><h2 id="安装LUCI"><a href="#安装LUCI" class="headerlink" title="安装LUCI"></a>安装LUCI</h2><p>可以访问互联网以后，接下来安装WEB管理界面LUCI，方便管理路由器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">opkg update</div><div class="line">opkg install luci</div><div class="line">/etc/init.d/uhttpd enable</div><div class="line">/etc/init.d/uhttpd start</div></pre></td></tr></table></figure></p>
-<h2 id="配置中文"><a href="#配置中文" class="headerlink" title="配置中文"></a>配置中文</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">opkg install luci-i18n-base-zh-cn</div></pre></td></tr></table></figure>
+<h1 id="刷OpenWrt固件"><a href="#刷OpenWrt固件" class="headerlink" title="刷OpenWrt固件"></a>刷OpenWrt固件</h1><p>去<a href="https://downloads.openwrt.org/snapshots/trunk/ar71xx/generic/" target="_blank" rel="noopener">OpenWrt官方网站</a>下载 dir-505 的固件，要选择’factory.bin’结尾的固件。<br>下载后，去路由器管理页面，维护 –&gt; 固件,上传固件。</p>
+<h1 id="OpenWrt基本设置"><a href="#OpenWrt基本设置" class="headerlink" title="OpenWrt基本设置"></a>OpenWrt基本设置</h1><h2 id="修改root用户密码"><a href="#修改root用户密码" class="headerlink" title="修改root用户密码"></a>修改root用户密码</h2><p>刚刚刷好 OpenWRT 的 DIR-505，默认没有开启 WiFi，所以只能用网线连接，连起来后，将电脑的网卡配置为 192.168.1.X，然后用ssh连接OpenWrt,首先修改root用户的密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd root</span><br></pre></td></tr></table></figure></p>
+<h2 id="开启-WiFi"><a href="#开启-WiFi" class="headerlink" title="开启 WiFi"></a>开启 WiFi</h2><p>开启wifi：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uci set wireless.@wifi-device[0].disabled=0;</span><br><span class="line">uci set wireless.@wifi-iface[0].ssid=&apos;FreeWorld&apos;;</span><br><span class="line">uci set wireless.@wifi-iface[0].encryption=&apos;psk2+ccmp&apos;;</span><br><span class="line">uci set wireless.@wifi-iface[0].key=&apos;password&apos;;</span><br><span class="line">uci commit wireless;</span><br><span class="line">wifi</span><br></pre></td></tr></table></figure></p>
+<h2 id="改时区"><a href="#改时区" class="headerlink" title="改时区"></a>改时区</h2><p>系统默认是第零时区的时间，所以要先修改成第八时区：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uci set system.@system[0].zonename=&apos;Asia/Shanghai&apos;;</span><br><span class="line">uci set system.@system[0].timezone=&apos;CST-8&apos;;</span><br><span class="line">uci commit system;</span><br><span class="line">echo CST-8 &gt; /etc/TZ;</span><br></pre></td></tr></table></figure></p>
+<h2 id="有线中继"><a href="#有线中继" class="headerlink" title="有线中继"></a>有线中继</h2><p>我有两个路由器，这个刷了<code>OpenWrt</code>的路由器打算做二级路由，主路由的ip网段是192.168.1.XXX，OpenWrt路由器的ip网段为192.168.0.XXX：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">uci delete network.lan.ifname</span><br><span class="line">uci delete network.lan.type</span><br><span class="line">uci add network interface</span><br><span class="line">uci rename network.@interface[-1]=&apos;wan&apos;</span><br><span class="line">uci set network.@interface[-1].ifname=&apos;eth1&apos;</span><br><span class="line">uci set network.wan.proto=static</span><br><span class="line">uci set network.wan.ipaddr=192.168.1.123</span><br><span class="line">uci set network.wan.netmask=255.255.255.0</span><br><span class="line">uci set network.wan.gateway=192.168.1.1</span><br><span class="line">uci set network.wan.dns=&apos;114.114.114.114 114.114.115.115&apos;</span><br><span class="line">uci set network.lan.ipaddr=192.168.0.1</span><br><span class="line">uci set network.lan.dns=&apos;114.114.114.114 114.114.115.115&apos;</span><br><span class="line">uci commit network</span><br></pre></td></tr></table></figure></p>
+<p>设置好以后，重启network服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/network restart</span><br></pre></td></tr></table></figure></p>
+<h1 id="WEB管理界面LUCI安装"><a href="#WEB管理界面LUCI安装" class="headerlink" title="WEB管理界面LUCI安装"></a>WEB管理界面LUCI安装</h1><h2 id="安装LUCI"><a href="#安装LUCI" class="headerlink" title="安装LUCI"></a>安装LUCI</h2><p>可以访问互联网以后，接下来安装WEB管理界面LUCI，方便管理路由器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install luci</span><br><span class="line">/etc/init.d/uhttpd enable</span><br><span class="line">/etc/init.d/uhttpd start</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置中文"><a href="#配置中文" class="headerlink" title="配置中文"></a>配置中文</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install luci-i18n-base-zh-cn</span><br></pre></td></tr></table></figure>
 <h1 id="安装shadowsocks"><a href="#安装shadowsocks" class="headerlink" title="安装shadowsocks"></a>安装shadowsocks</h1><p>由于经常要访问<code>墙</code>外的网站，所以，顺手装个shadowsocks方便在网络世界里傲游。<br>访问<code>192.168.0.1</code>web管理界面，进入<code>系统 --&gt; 软件包</code>界面，根据<code>shadowsocks</code>关键字搜索软件包，需要安装3个软件包：<code>shadowsocks-libev</code>，<code>luci-app-shadowsocks-libev</code>，<code>luci-i18n-shadowsocks-libev-zh-cn</code>。</p>
 <p>安装好后，设置shadowsocks:</p>
 <ol>
-<li><p>根据<a href="https://github.com/felixonmars/dnsmasq-china-list" target="_blank" rel="external">dnsmasq-china-list</a>项目获取国内域名加速列表和污染地址屏蔽列表：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">opkg update</div><div class="line">opkg install wget</div><div class="line"></div><div class="line">wget -4 --no-check-certificate -O /etc/dnsmasq.d/accelerated-domains.china.conf https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf</div><div class="line"></div><div class="line">wget -4 --no-check-certificate -O /etc/dnsmasq.d/bogus-nxdomain.china.conf https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/bogus-nxdomain.china.conf</div><div class="line"></div><div class="line">echo &quot;server=/#/127.0.0.1#1314&quot; &gt; gfwlist.conf</div></pre></td></tr></table></figure>
+<li><p>根据<a href="https://github.com/felixonmars/dnsmasq-china-list" target="_blank" rel="noopener">dnsmasq-china-list</a>项目获取国内域名加速列表和污染地址屏蔽列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install wget</span><br><span class="line"></span><br><span class="line">wget -4 --no-check-certificate -O /etc/dnsmasq.d/accelerated-domains.china.conf https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf</span><br><span class="line"></span><br><span class="line">wget -4 --no-check-certificate -O /etc/dnsmasq.d/bogus-nxdomain.china.conf https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/bogus-nxdomain.china.conf</span><br><span class="line"></span><br><span class="line">echo &quot;server=/#/127.0.0.1#1314&quot; &gt; gfwlist.conf</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>设置shadowsocks帐号<br><img src="/imag/openwrt_ss1.png" alt="openwrt_ss1"><br><img src="/imag/openwrt_ss2.png" alt="openwrt_ss2"></p>
 </li>
 </ol>
-<p>重启dnsmasq服务:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/dnsmasq restart</div></pre></td></tr></table></figure></p>
-<h1 id="自动更新DNS转发列表"><a href="#自动更新DNS转发列表" class="headerlink" title="自动更新DNS转发列表"></a>自动更新DNS转发列表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">cd /usr/bin</div><div class="line">touch updatednsmasq</div><div class="line">chmod +x updatednsmasq</div><div class="line">vi updatednsmasq</div><div class="line"></div><div class="line">cnlist() &#123;</div><div class="line">wget -4 --no-check-certificate -O /etc/dnsmasq.d/accelerated-domains.china.conf https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf</div><div class="line">wget -4 --no-check-certificate -O /etc/dnsmasq.d/bogus-nxdomain.china.conf https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/bogus-nxdomain.china.conf</div><div class="line">&#125;</div><div class="line">cnlist</div></pre></td></tr></table></figure>
-<p>然后新建一个计划任务，让它每天凌晨1点跑一次。在路由器管理web页面，找到“系统”→“计划任务”，输入如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* 1 * * * /usr/bin/updatednsmasq</div></pre></td></tr></table></figure></p>
-<h1 id="检测shadowsocks状态，挂了自动重启"><a href="#检测shadowsocks状态，挂了自动重启" class="headerlink" title="检测shadowsocks状态，挂了自动重启"></a>检测shadowsocks状态，挂了自动重启</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">cd /usr/bin</div><div class="line">touch checkss.sh</div><div class="line">vi checkss.sh</div><div class="line"></div><div class="line">#!/bin/sh</div><div class="line">LOGTIME=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)</div><div class="line">wget -4 --spider --quiet --tries=1 --timeout=3 www.google.com</div><div class="line">if [ &quot;$?&quot; == &quot;0&quot; ]; then</div><div class="line">	echo &apos;[&apos;$LOGTIME&apos;] No Problem.&apos;</div><div class="line">	exit 0</div><div class="line">else</div><div class="line">	wget -4 --spider --quiet --tries=1 --timeout=3 www.baidu.com</div><div class="line">	if [ &quot;$?&quot; == &quot;0&quot; ]; then</div><div class="line">		echo &apos;[&apos;$LOGTIME&apos;] Problem decteted, restarting shadowsocks.&apos;</div><div class="line">		/etc/init.d/shadowsocks restart</div><div class="line">	else</div><div class="line">		echo &apos;[&apos;$LOGTIME&apos;] Network Problem. Do nothing.&apos;</div><div class="line">	fi</div><div class="line">fi</div></pre></td></tr></table></figure>
-<p>然后加入计划任务，每三十分钟检测一次shadowsocks并且每天凌晨2点清空日志文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*/30 * * * * /usr/bin/checkss.sh &gt;&gt; /var/log/check_shadowsocks.log 2&gt;&amp;1</div><div class="line">0 2 * * * echo &quot;&quot; &gt; /var/log/check_shadowsocks.log</div></pre></td></tr></table></figure></p>
+<p>重启dnsmasq服务:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/dnsmasq restart</span><br></pre></td></tr></table></figure></p>
+<h1 id="自动更新DNS转发列表"><a href="#自动更新DNS转发列表" class="headerlink" title="自动更新DNS转发列表"></a>自动更新DNS转发列表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/bin</span><br><span class="line">touch updatednsmasq</span><br><span class="line">chmod +x updatednsmasq</span><br><span class="line">vi updatednsmasq</span><br><span class="line"></span><br><span class="line">cnlist() &#123;</span><br><span class="line">wget -4 --no-check-certificate -O /etc/dnsmasq.d/accelerated-domains.china.conf https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf</span><br><span class="line">wget -4 --no-check-certificate -O /etc/dnsmasq.d/bogus-nxdomain.china.conf https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/bogus-nxdomain.china.conf</span><br><span class="line">&#125;</span><br><span class="line">cnlist</span><br></pre></td></tr></table></figure>
+<p>然后新建一个计划任务，让它每天凌晨1点跑一次。在路由器管理web页面，找到“系统”→“计划任务”，输入如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 1 * * * /usr/bin/updatednsmasq</span><br></pre></td></tr></table></figure></p>
+<h1 id="检测shadowsocks状态，挂了自动重启"><a href="#检测shadowsocks状态，挂了自动重启" class="headerlink" title="检测shadowsocks状态，挂了自动重启"></a>检测shadowsocks状态，挂了自动重启</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/bin</span><br><span class="line">touch checkss.sh</span><br><span class="line">vi checkss.sh</span><br><span class="line"></span><br><span class="line">#!/bin/sh</span><br><span class="line">LOGTIME=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">wget -4 --spider --quiet --tries=1 --timeout=3 www.google.com</span><br><span class="line">if [ &quot;$?&quot; == &quot;0&quot; ]; then</span><br><span class="line">	echo &apos;[&apos;$LOGTIME&apos;] No Problem.&apos;</span><br><span class="line">	exit 0</span><br><span class="line">else</span><br><span class="line">	wget -4 --spider --quiet --tries=1 --timeout=3 www.baidu.com</span><br><span class="line">	if [ &quot;$?&quot; == &quot;0&quot; ]; then</span><br><span class="line">		echo &apos;[&apos;$LOGTIME&apos;] Problem decteted, restarting shadowsocks.&apos;</span><br><span class="line">		/etc/init.d/shadowsocks restart</span><br><span class="line">	else</span><br><span class="line">		echo &apos;[&apos;$LOGTIME&apos;] Network Problem. Do nothing.&apos;</span><br><span class="line">	fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>然后加入计划任务，每三十分钟检测一次shadowsocks并且每天凌晨2点清空日志文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*/30 * * * * /usr/bin/checkss.sh &gt;&gt; /var/log/check_shadowsocks.log 2&gt;&amp;1</span><br><span class="line">0 2 * * * echo &quot;&quot; &gt; /var/log/check_shadowsocks.log</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -476,6 +478,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/08/20/聊聊微服务/" rel="prev" title="聊聊微服务">
+                聊聊微服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -489,34 +495,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/04/17/OpenWrt上手/"
-     data-title="自由世界的大门--OpenWrt上手"
-     data-content=""
-     data-url="http://lingyv.cn/2017/04/17/OpenWrt上手/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -568,7 +552,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -670,7 +654,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

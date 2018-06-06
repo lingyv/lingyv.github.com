@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="注：在网上看到一篇文章–《Servlet工作原理》,整理并做了一些笔记">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Servlet原理 二：Web应用与创建Servlet实例">
 <meta property="og:url" content="http://lingyv.cn/2016/05/08/Servlet工作原理2/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="注：在网上看到一篇文章–《Servlet工作原理》,整理并做了一些笔记">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://lingyv.cn/imag/创建Servlet.png">
 <meta property="og:image" content="http://lingyv.cn/imag/创建Servlet对象.jpg">
 <meta property="og:updated_time" content="2016-10-15T15:06:33.000Z">
@@ -402,7 +404,7 @@
       
 
       
-        <p>注：在网上看到一篇文章–<a href="http://www.ibm.com/developerworks/cn/java/j-lo-servlet/" target="_blank" rel="external">《Servlet工作原理》</a>,整理并做了一些笔记<br><a id="more"></a></p>
+        <p>注：在网上看到一篇文章–<a href="http://www.ibm.com/developerworks/cn/java/j-lo-servlet/" target="_blank" rel="noopener">《Servlet工作原理》</a>,整理并做了一些笔记<br><a id="more"></a></p>
 <h2 id="1-Web-应用的初始化工作"><a href="#1-Web-应用的初始化工作" class="headerlink" title="1. Web 应用的初始化工作"></a>1. Web 应用的初始化工作</h2><p>Web 应用的初始化工作是在 ContextConfig 的 configureStart 方法中实现的，应用的初始化主要是要解析 web.xml 文件，这个文件描述了一个 Web 应用的关键信息，也是一个 Web 应用的入口。<br>Tomcat 首先会找 globalWebXml ，这个文件的搜索路径是在 engine 的工作目录下寻找以下两个文件中的任一个 org/apache/catalin/startup/NO_DEFAULT_XML 或 conf/web.xml。然后会找 hostWebXml ，这个文件可能会在 System.getProperty(“catalina.base”)/conf/${EngineName}/${HostName}/web.xml.default，接着寻找应用的配置文件 examples/WEB-INF/web.xml。web.xml 文件中的各个配置项将会被解析成相应的属性保存在 WebXml 对象中。<br>接下去将会将 WebXml 对象中的属性设置到 Context 容器中，这里包括创建 Servlet 对象、filter、listener 等等。这段代码在 WebXml 的 configureContext 方法中。<br>解析 Servlet 时会将 Servlet 包装成 Context 容器中的 StandardWrapper，为什么要将 Servlet 包装成 StandardWrapper 而不直接是 Servlet 对象？这是因为StandardWrapper 是 Tomcat 容器中的一部分，它具有容器的特征，而 Servlet 为了一个独立的 web 开发标准，不应该强耦合在 Tomcat 中。<br>除了将 Servlet 包装成 StandardWrapper 并作为子容器添加到 Context 中，其它的所有 web.xml 属性都被解析到 Context 中，所以说 Context 容器才是真正运行 Servlet 的 Servlet 容器。一个 Web 应用对应一个 Context 容器，容器的配置属性由应用的 web.xml 指定，这样我们就能理解 web.xml 到底起到什么作用了。</p>
 <h2 id="2-创建-Servlet-实例"><a href="#2-创建-Servlet-实例" class="headerlink" title="2. 创建 Servlet 实例"></a>2. 创建 Servlet 实例</h2><p><img src="/imag/创建Servlet.png" alt="创建Servlet.png"><br>前面已经完成了 Servlet 的解析工作，并且被包装成 StandardWrapper 添加在 Context 容器中，但是它仍然不能为我们工作，它还没有被实例化。下面我们将介绍 Servlet 对象是如何创建的，以及如何被初始化的。</p>
 <ol>
@@ -479,34 +481,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/08/Servlet工作原理2/"
-     data-title="Servlet原理 二：Web应用与创建Servlet实例"
-     data-content=""
-     data-url="http://lingyv.cn/2016/05/08/Servlet工作原理2/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -558,7 +538,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -660,7 +640,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

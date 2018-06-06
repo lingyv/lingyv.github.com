@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="开发过程中，经常需要获取刚刚插入的记录的自增键值。对于PostgreSQL,使用Mybatis三种方法：">
+<meta name="keywords" content="编程,java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mybatis获取PostgreSQL数据库插入记录的自增序列值">
 <meta property="og:url" content="http://lingyv.cn/2016/12/01/Mybatis获取PostgreSQL数据库插入记录的自增序列值/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="开发过程中，经常需要获取刚刚插入的记录的自增键值。对于PostgreSQL,使用Mybatis三种方法：">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-03-02T13:34:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mybatis获取PostgreSQL数据库插入记录的自增序列值">
@@ -400,11 +402,11 @@
 
       
         <p>开发过程中，经常需要获取刚刚插入的记录的自增键值。对于PostgreSQL,使用Mybatis三种方法：<br><a id="more"></a></p>
-<h1 id="useGeneratedKeys"><a href="#useGeneratedKeys" class="headerlink" title="useGeneratedKeys"></a>useGeneratedKeys</h1><p>参考<a href="http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html" target="_blank" rel="external">Mybatis官方文档</a><br>useGeneratedKeys（仅对 insert 和 update 有用）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系数据库管理系统的自动递增字段）.</p>
+<h1 id="useGeneratedKeys"><a href="#useGeneratedKeys" class="headerlink" title="useGeneratedKeys"></a>useGeneratedKeys</h1><p>参考<a href="http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html" target="_blank" rel="noopener">Mybatis官方文档</a><br>useGeneratedKeys（仅对 insert 和 update 有用）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系数据库管理系统的自动递增字段）.</p>
 <p>如果自增键的名字不叫id,还需要设置一个属性keyProperty使Mybaits将获取回的结果设置到那个字段上。一般情况最好明确设置keyProperty属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;insert id=&quot;insertAuthor&quot; useGeneratedKeys=&quot;true&quot;</div><div class="line">    keyProperty=&quot;id&quot;&gt;</div><div class="line">  insert into Author (username,password,email,bio)</div><div class="line">  values (#&#123;username&#125;,#&#123;password&#125;,#&#123;email&#125;,#&#123;bio&#125;)</div><div class="line">&lt;/insert&gt;</div></pre></td></tr></table></figure>
-<h1 id="selectKey"><a href="#selectKey" class="headerlink" title="selectKey"></a>selectKey</h1><p>参考<a href="http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html" target="_blank" rel="external">Mybatis官方文档</a><br>selectKey定义一个子查询，将查询的自增键的结果赋予insert参数的相应字段。</p>
-<h1 id="RETURNING子句"><a href="#RETURNING子句" class="headerlink" title="RETURNING子句"></a>RETURNING子句</h1><p>参考<a href="https://www.postgresql.org/docs/8.3/static/sql-insert.html" target="_blank" rel="external">PostgreSQL官方文档</a><br>If the INSERT command contains a RETURNING clause, the result will be similar to that of a SELECT statement containing the columns and values defined in the RETURNING list, computed over the row(s) inserted by the command.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;insertAuthor&quot; useGeneratedKeys=&quot;true&quot;</span><br><span class="line">    keyProperty=&quot;id&quot;&gt;</span><br><span class="line">  insert into Author (username,password,email,bio)</span><br><span class="line">  values (#&#123;username&#125;,#&#123;password&#125;,#&#123;email&#125;,#&#123;bio&#125;)</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="selectKey"><a href="#selectKey" class="headerlink" title="selectKey"></a>selectKey</h1><p>参考<a href="http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html" target="_blank" rel="noopener">Mybatis官方文档</a><br>selectKey定义一个子查询，将查询的自增键的结果赋予insert参数的相应字段。</p>
+<h1 id="RETURNING子句"><a href="#RETURNING子句" class="headerlink" title="RETURNING子句"></a>RETURNING子句</h1><p>参考<a href="https://www.postgresql.org/docs/8.3/static/sql-insert.html" target="_blank" rel="noopener">PostgreSQL官方文档</a><br>If the INSERT command contains a RETURNING clause, the result will be similar to that of a SELECT statement containing the columns and values defined in the RETURNING list, computed over the row(s) inserted by the command.</p>
 
       
     </div>
@@ -466,34 +468,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/12/01/Mybatis获取PostgreSQL数据库插入记录的自增序列值/"
-     data-title="Mybatis获取PostgreSQL数据库插入记录的自增序列值"
-     data-content=""
-     data-url="http://lingyv.cn/2016/12/01/Mybatis获取PostgreSQL数据库插入记录的自增序列值/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -545,7 +525,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -647,7 +627,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

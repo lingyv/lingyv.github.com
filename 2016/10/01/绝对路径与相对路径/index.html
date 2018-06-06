@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,编程," />
+  <meta name="keywords" content="编程,Java," />
 
 
 
@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="Java开发中的绝对路径与相对路径">
+<meta name="keywords" content="编程,Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java--相对路径">
 <meta property="og:url" content="http://lingyv.cn/2016/10/01/绝对路径与相对路径/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="Java开发中的绝对路径与相对路径">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-10-29T13:15:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java--相对路径">
@@ -400,10 +402,10 @@
 
       
         <p>Java开发中的绝对路径与相对路径<br><a id="more"></a></p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><p>文件或目录在硬盘上真正的路径。例如D:\abc\test.txt 代表了test.txt文件的绝对路径。<a href="http://blog.lingyv.org/index.htm也代表了一个URL绝对路径。" target="_blank" rel="external">http://blog.lingyv.org/index.htm也代表了一个URL绝对路径。</a></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><p>文件或目录在硬盘上真正的路径。例如D:\abc\test.txt 代表了test.txt文件的绝对路径。<a href="http://blog.lingyv.org/index.htm也代表了一个URL绝对路径。" target="_blank" rel="noopener">http://blog.lingyv.org/index.htm也代表了一个URL绝对路径。</a></p>
 <h3 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h3><p>相对与某个基准文件或目录的路径。例如：”./“ 代表当前目录, “../“代表上级目录。</p>
-<h2 id="JSP-Servlet中的相对路径"><a href="#JSP-Servlet中的相对路径" class="headerlink" title="JSP/Servlet中的相对路径"></a>JSP/Servlet中的相对路径</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><p>服务器中解析相对地址是相对于web应用的地址，例如web应用为test，那么”/user/login”在浏览器中的地址就是”<a href="http://localhost:8080/test/user/login" target="_blank" rel="external">http://localhost:8080/test/user/login</a>“</p>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>浏览器解析html时，相对地址是相对于服务器根目录的，例如”/user/login”地址是”<a href="http://localhost:8080/user/login" target="_blank" rel="external">http://localhost:8080/user/login</a>“</p>
+<h2 id="JSP-Servlet中的相对路径"><a href="#JSP-Servlet中的相对路径" class="headerlink" title="JSP/Servlet中的相对路径"></a>JSP/Servlet中的相对路径</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><p>服务器中解析相对地址是相对于web应用的地址，例如web应用为test，那么”/user/login”在浏览器中的地址就是”<a href="http://localhost:8080/test/user/login&quot;" target="_blank" rel="noopener">http://localhost:8080/test/user/login&quot;</a></p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>浏览器解析html时，相对地址是相对于服务器根目录的，例如”/user/login”地址是”<a href="http://localhost:8080/user/login&quot;" target="_blank" rel="noopener">http://localhost:8080/user/login&quot;</a></p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于浏览器解析html时，相对地址是相对于服务器根目录的，所以如果我们在html文件中使用相对路径(./，../)定位js，css等，当我们通过转发forward访问该文件时，js，css等静态的url就会出错，导致定位不到这些资源。</p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>既然我们想要自定义站点，那肯定不能把绝对路径写死，但又不能用相对路径，因为转发时又会出问题。那怎么办呢？写一个可以变化的绝对路径吧，jsp中使用${pageContext.request.contextPath}来获取站点信息，然后写到绝对路径里。</p>
 
@@ -429,9 +431,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
             <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -467,34 +469,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/10/01/绝对路径与相对路径/"
-     data-title="Java--相对路径"
-     data-content=""
-     data-url="http://lingyv.cn/2016/10/01/绝对路径与相对路径/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -546,7 +526,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -648,7 +628,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,官方文档,翻译,Spring," />
+  <meta name="keywords" content="Java,官方文档,Spring,翻译," />
 
 
 
@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="Spring日志 version:5.0.0">
+<meta name="keywords" content="Java,官方文档,Spring,翻译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Logging">
 <meta property="og:url" content="http://lingyv.cn/2016/11/20/Spring Logging/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="Spring日志 version:5.0.0">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-20T11:01:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Logging">
@@ -419,7 +421,7 @@
 <li>依赖特殊的 commons-logging 依赖，用空的jar（更多的细节可以在SLF4J FAQ中找到）替换掉库。</li>
 </ol>
 <p>To exclude commons-logging, add the following to your dependencyManagement section:</p>
-<p>排除 commons-logging，添加以下的内容到 dependencyManagement 部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-core&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;5.0.0.BUILD-SNAPSHOT&lt;/version&gt;</div><div class="line">		&lt;exclusions&gt;</div><div class="line">			&lt;exclusion&gt;</div><div class="line">				&lt;groupId&gt;commons-logging&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;commons-logging&lt;/artifactId&gt;</div><div class="line">			&lt;/exclusion&gt;</div><div class="line">		&lt;/exclusions&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure></p>
+<p>排除 commons-logging，添加以下的内容到 dependencyManagement 部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-core&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;5.0.0.BUILD-SNAPSHOT&lt;/version&gt;</span><br><span class="line">		&lt;exclusions&gt;</span><br><span class="line">			&lt;exclusion&gt;</span><br><span class="line">				&lt;groupId&gt;commons-logging&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;commons-logging&lt;/artifactId&gt;</span><br><span class="line">			&lt;/exclusion&gt;</span><br><span class="line">		&lt;/exclusions&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
 <p>Now this application is probably broken because there is no implementation of the JCL API on the classpath, so to fix it a new one has to be provided. In the next section we show you how to provide an alternative implementation of JCL using SLF4J as an example.</p>
 <p>现在，这个应用程序可以打破，因为在类路径上没有实现 JCL API，因此要修复它就必须提供有一个新的。在下一节我们将向你展示如何提供另一种实现 JCL，使用 SLF4J 作为例子的另一种实现。</p>
 <h1 id="Using-SLF4J"><a href="#Using-SLF4J" class="headerlink" title="Using SLF4J"></a>Using SLF4J</h1><p>SLF4J is a cleaner dependency and more efficient at runtime than commons-logging because it uses compile-time bindings instead of runtime discovery of the other logging frameworks it integrates. This also means that you have to be more explicit about what you want to happen at runtime, and declare it or configure it accordingly. SLF4J provides bindings to many common logging frameworks, so you can usually choose one that you already use, and bind to that for configuration and management.</p>
@@ -427,7 +429,7 @@
 <p>SLF4J provides bindings to many common logging frameworks, including JCL, and it also does the reverse: bridges between other logging frameworks and itself. So to use SLF4J with Spring you need to replace the commons-logging dependency with the SLF4J-JCL bridge. Once you have done that then logging calls from within Spring will be translated into logging calls to the SLF4J API, so if other libraries in your application use that API, then you have a single place to configure and manage logging.</p>
 <p>SLF4J 提供了绑定很多的常见日志框架，包括 JCL，它也做了反向工作:是其他日志框架和它自己之间的桥梁。因此在 Spring 中使用 SLF4J 时，你需要使用 SLF4J-JCL 桥接替换掉 commons-logging 的依赖。一旦你这么做了，Spring 调用日志就会调用 SLF4J API，因此如果在你的应用程序中的其他库使用这个API，那么你就需要有个地方配置和管理日志。</p>
 <p>A common choice might be to bridge Spring to SLF4J, and then provide explicit binding from SLF4J to Log4J. You need to supply 4 dependencies (and exclude the existing commons-logging): the bridge, the SLF4J API, the binding to Log4J, and the Log4J implementation itself. In Maven you would do that like this</p>
-<p>一个常见的选择就是桥接 Spring 和 SLF4J，提供显示的绑定 SLF4J 到Log4J 上。你需要支持 4 个的依赖（排除现有的 commons-logging）：桥接，SLF4J API，绑定 Log4J 和 Log4J 实现自身。在 Maven 中你可以这样做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-core&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;5.0.0.BUILD-SNAPSHOT&lt;/version&gt;</div><div class="line">		&lt;exclusions&gt;</div><div class="line">			&lt;exclusion&gt;</div><div class="line">				&lt;groupId&gt;commons-logging&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;commons-logging&lt;/artifactId&gt;</div><div class="line">			&lt;/exclusion&gt;</div><div class="line">		&lt;/exclusions&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.5.8&lt;/version&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.5.8&lt;/version&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.5.8&lt;/version&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;log4j&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;log4j&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.2.14&lt;/version&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure></p>
+<p>一个常见的选择就是桥接 Spring 和 SLF4J，提供显示的绑定 SLF4J 到Log4J 上。你需要支持 4 个的依赖（排除现有的 commons-logging）：桥接，SLF4J API，绑定 Log4J 和 Log4J 实现自身。在 Maven 中你可以这样做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-core&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;5.0.0.BUILD-SNAPSHOT&lt;/version&gt;</span><br><span class="line">		&lt;exclusions&gt;</span><br><span class="line">			&lt;exclusion&gt;</span><br><span class="line">				&lt;groupId&gt;commons-logging&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;commons-logging&lt;/artifactId&gt;</span><br><span class="line">			&lt;/exclusion&gt;</span><br><span class="line">		&lt;/exclusions&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.5.8&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.5.8&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.5.8&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;log4j&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;log4j&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.2.14&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
 <p>That might seem like a lot of dependencies just to get some logging. Well it is, but it is optional, and it should behave better than the vanilla commons-logging with respect to classloader issues, notably if you are in a strict container like an OSGi platform. Allegedly there is also a performance benefit because the bindings are at compile-time not runtime.</p>
 <p>这似乎是一个很大的依赖性，其仅仅是为了得到一些日志文件。那就这样吧，但是它是可选的，它在关于类加载器的问题上应该比 commons-logging 表现的更加的好，值得注意的是，如果你在一个严格的容器中像OSGi 平台。据说也有一个性能优势应为绑定是在编译时而不是在运行时。</p>
 <p>A more common choice amongst SLF4J users, which uses fewer steps and generates fewer dependencies, is to bind directly to Logback. This removes the extra binding step because Logback implements SLF4J directly, so you only need to depend on two libraries not four ( jcl-over-slf4j and logback). If you do that you might also need to exclude the slf4j-api dependency from other external dependencies (not Spring), because you only want one version of that API on the classpath.</p>
@@ -435,9 +437,9 @@
 <h1 id="Using-Log4J"><a href="#Using-Log4J" class="headerlink" title="Using Log4J"></a>Using Log4J</h1><p>Many people use Log4j as a logging framework for configuration and management purposes. It’s efficient and well-established, and in fact it’s what we use at runtime when we build and test Spring. Spring also provides some utilities for configuring and initializing Log4j, so it has an optional compile-time dependency on Log4j in some modules.</p>
 <p>许多人使用 Log4j 作为日志框架，用于配置和管理的目的。它是有效的和完善的，事实上这也是我们在运行时使用的，当我们构架和测试 Spring 时。Spring 也提供一些配置和初始化 Log4j 的工具，因此在某些模块上它有一个可选的编译时依赖在 Log4j。</p>
 <p>To make Log4j work with the default JCL dependency ( <code>commons-logging</code>) all you need to do is put Log4j on the classpath, and provide it with a configuration file ( <code>log4j.properties</code> or <code>log4j.xml</code> in the root of the classpath). So for Maven users this is your dependency declaration:</p>
-<p>为了使 Log4j 工作在默认的 JCL 依赖下（commons-logging），所有你需要做的事就是把 Log4j 放到类路径下，为它提供配置文件(log4j.properties 或者 log4j.xml 在类路径的根目录下)。因此对于Maven 用户这就是你的依赖声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-core&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;5.0.0.BUILD-SNAPSHOT&lt;/version&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;log4j&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;log4j&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.2.14&lt;/version&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure></p>
+<p>为了使 Log4j 工作在默认的 JCL 依赖下（commons-logging），所有你需要做的事就是把 Log4j 放到类路径下，为它提供配置文件(log4j.properties 或者 log4j.xml 在类路径的根目录下)。因此对于Maven 用户这就是你的依赖声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-core&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;5.0.0.BUILD-SNAPSHOT&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;log4j&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;log4j&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.2.14&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
 <p>And here’s a sample log4j.properties for logging to the console:</p>
-<p>下面是一个 log4j.properties 的实例，用于将日志打印到控制台：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">log4j.rootCategory=INFO, stdout</div><div class="line"></div><div class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</div><div class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</div><div class="line">log4j.appender.stdout.layout.ConversionPattern=%d&#123;ABSOLUTE&#125; %5p %t %c&#123;2&#125;:%L - %m%n</div><div class="line"></div><div class="line">log4j.category.org.springframework.beans.factory=DEBUG</div></pre></td></tr></table></figure></p>
+<p>下面是一个 log4j.properties 的实例，用于将日志打印到控制台：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">log4j.rootCategory=INFO, stdout</span><br><span class="line"></span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.stdout.layout.ConversionPattern=%d&#123;ABSOLUTE&#125; %5p %t %c&#123;2&#125;:%L - %m%n</span><br><span class="line"></span><br><span class="line">log4j.category.org.springframework.beans.factory=DEBUG</span><br></pre></td></tr></table></figure></p>
 <h1 id="Runtime-Containers-with-Native-JCL"><a href="#Runtime-Containers-with-Native-JCL" class="headerlink" title="Runtime Containers with Native JCL"></a>Runtime Containers with Native JCL</h1><p>Many people run their Spring applications in a container that itself provides an implementation of JCL. IBM Websphere Application Server (WAS) is the archetype. This often causes problems, and unfortunately there is no silver bullet solution; simply excluding commons-logging from your application is not enough in most situations.</p>
 <p>很多的人在提供 JCL 实现的容器下运行他们的 Spring 应用程序。IBM Websphere Application Server (WAS)为例。这样往往会导致问题，遗憾的是没有一个一劳永逸的解决方案；简单的包含 commons-logging 在大多数情况下是不够的。</p>
 <p>To be clear about this: the problems reported are usually not with JCL per se, or even with commons-logging: rather they are to do with binding commons-logging to another framework (often Log4J). This can fail because commons-logging changed the way they do the runtime discovery in between the older versions (1.0) found in some containers and the modern versions that most people use now (1.1). Spring does not use any unusual parts of the JCL API, so nothing breaks there, but as soon as Spring or your application tries to do any logging you can find that the bindings to Log4J are not working.</p>
@@ -471,9 +473,9 @@
           
             <a href="/tags/官方文档/" rel="tag"># 官方文档</a>
           
-            <a href="/tags/翻译/" rel="tag"># 翻译</a>
-          
             <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/翻译/" rel="tag"># 翻译</a>
           
         </div>
       
@@ -509,34 +511,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/11/20/Spring Logging/"
-     data-title="Spring Logging"
-     data-content=""
-     data-url="http://lingyv.cn/2016/11/20/Spring Logging/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -588,7 +568,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -690,7 +670,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

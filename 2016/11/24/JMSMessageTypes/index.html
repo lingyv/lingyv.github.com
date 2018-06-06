@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="分布式,Java,官方文档," />
+  <meta name="keywords" content="Java,分布式,官方文档," />
 
 
 
@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="JMS消息类型">
+<meta name="keywords" content="Java,分布式,官方文档">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JMS消息类型">
 <meta property="og:url" content="http://lingyv.cn/2016/11/24/JMSMessageTypes/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="JMS消息类型">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-22T12:36:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JMS消息类型">
@@ -400,7 +402,7 @@
 
       
         <p>JMS消息类型<br><a id="more"></a></p>
-<h1 id="官方"><a href="#官方" class="headerlink" title="官方"></a>官方</h1><h2 id="Message-Bodies"><a href="#Message-Bodies" class="headerlink" title="Message Bodies"></a>Message Bodies</h2><p><a href="https://docs.oracle.com/cd/E19798-01/821-1841/6nmq2cppb/index.html" target="_blank" rel="external">官方</a><br>The JMS API defines five message body formats, also called message types, which allow you to send and to receive data in many different forms and provide compatibility with existing messaging formats. Table 30–2 describes these message types.</p>
+<h1 id="官方"><a href="#官方" class="headerlink" title="官方"></a>官方</h1><h2 id="Message-Bodies"><a href="#Message-Bodies" class="headerlink" title="Message Bodies"></a>Message Bodies</h2><p><a href="https://docs.oracle.com/cd/E19798-01/821-1841/6nmq2cppb/index.html" target="_blank" rel="noopener">官方</a><br>The JMS API defines five message body formats, also called message types, which allow you to send and to receive data in many different forms and provide compatibility with existing messaging formats. Table 30–2 describes these message types.</p>
 <p>Table 30–2 JMS Message Types</p>
 <table>
 <thead>
@@ -436,9 +438,9 @@
 </tr>
 </tbody>
 </table>
-<p>The JMS API provides methods for creating messages of each type and for filling in their contents. For example, to create and send a TextMessage, you might use the following statements:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TextMessage message = session.createTextMessage();</div><div class="line">message.setText(msg_text);     // msg_text is a String</div><div class="line">producer.send(message);</div></pre></td></tr></table></figure></p>
-<p>At the consuming end, a message arrives as a generic Message object and must be cast to the appropriate message type. You can use one or more getter methods to extract the message contents. The following code fragment uses the getText method:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Message m = consumer.receive();</div><div class="line">if (m instanceof TextMessage) &#123;</div><div class="line">    TextMessage message = (TextMessage) m;</div><div class="line">    System.out.println(&quot;Reading message: &quot; + message.getText());</div><div class="line">&#125; else &#123;</div><div class="line">    // Handle error</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="IBM-Knowledge-Center"><a href="#IBM-Knowledge-Center" class="headerlink" title="IBM Knowledge Center"></a>IBM Knowledge Center</h1><h2 id="JMS-message-types-Version-10-0-0"><a href="#JMS-message-types-Version-10-0-0" class="headerlink" title="JMS message types Version:10.0.0"></a>JMS message types Version:10.0.0</h2><p><a href="https://www.ibm.com/support/knowledgecenter/SSMKHH_10.0.0/com.ibm.etools.mft.doc/ac24862_.htm" target="_blank" rel="external">IBM Knowledge Center</a></p>
+<p>The JMS API provides methods for creating messages of each type and for filling in their contents. For example, to create and send a TextMessage, you might use the following statements:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TextMessage message = session.createTextMessage();</span><br><span class="line">message.setText(msg_text);     // msg_text is a String</span><br><span class="line">producer.send(message);</span><br></pre></td></tr></table></figure></p>
+<p>At the consuming end, a message arrives as a generic Message object and must be cast to the appropriate message type. You can use one or more getter methods to extract the message contents. The following code fragment uses the getText method:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Message m = consumer.receive();</span><br><span class="line">if (m instanceof TextMessage) &#123;</span><br><span class="line">    TextMessage message = (TextMessage) m;</span><br><span class="line">    System.out.println(&quot;Reading message: &quot; + message.getText());</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // Handle error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="IBM-Knowledge-Center"><a href="#IBM-Knowledge-Center" class="headerlink" title="IBM Knowledge Center"></a>IBM Knowledge Center</h1><h2 id="JMS-message-types-Version-10-0-0"><a href="#JMS-message-types-Version-10-0-0" class="headerlink" title="JMS message types Version:10.0.0"></a>JMS message types Version:10.0.0</h2><p><a href="https://www.ibm.com/support/knowledgecenter/SSMKHH_10.0.0/com.ibm.etools.mft.doc/ac24862_.htm" target="_blank" rel="noopener">IBM Knowledge Center</a></p>
 <p>JMS defines six message interface types; a base message type and five subtypes. The message types are defined according to the type of the message payload, where the payload is the body of a message that holds the content.</p>
 <p>JMS specifies only the interface and does not specify the implementation. This approach allows for vendor-specific implementation and transportation of messages while using a common interface.</p>
 <p>The following table describes the six message types:</p>
@@ -500,9 +502,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/分布式/" rel="tag"># 分布式</a>
-          
             <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
           
             <a href="/tags/官方文档/" rel="tag"># 官方文档</a>
           
@@ -540,34 +542,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/11/24/JMSMessageTypes/"
-     data-title="JMS消息类型"
-     data-content=""
-     data-url="http://lingyv.cn/2016/11/24/JMSMessageTypes/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -619,7 +599,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -721,7 +701,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

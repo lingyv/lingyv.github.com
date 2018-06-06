@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="Fork自Github">
+<meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown语法">
 <meta property="og:url" content="http://lingyv.cn/2016/10/13/Markdown语法/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="Fork自Github">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-10-29T14:37:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown语法">
@@ -399,7 +401,7 @@
       
 
       
-        <p>Fork自<a href="https://github.com/riku/Markdown-Syntax-CN" target="_blank" rel="external">Github</a><br><a id="more"></a></p>
+        <p>Fork自<a href="https://github.com/riku/Markdown-Syntax-CN" target="_blank" rel="noopener">Github</a><br><a id="more"></a></p>
 <ul>
 <li><a href="#overview">概述</a><ul>
 <li><a href="#philosophy">宗旨</a></li>
@@ -437,7 +439,7 @@
 <h3 id="philosophy">宗旨</h3>
 
 <p>Markdown 的目标是实现「易读易写」。</p>
-<p>可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 <a href="http://docutils.sourceforge.net/mirror/setext.html" target="_blank" rel="external">Setext</a>、<a href="http://www.aaronsw.com/2002/atx/" target="_blank" rel="external">atx</a>、<a href="http://textism.com/tools/textile/" target="_blank" rel="external">Textile</a>、<a href="http://docutils.sourceforge.net/rst.html" target="_blank" rel="external">reStructuredText</a>、<a href="http://www.triptico.com/software/grutatxt.html" target="_blank" rel="external">Grutatext</a> 和 <a href="http://ettext.taint.org/doc/" target="_blank" rel="external">EtText</a>，而最大灵感来源其实是纯文本电子邮件的格式。</p>
+<p>可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 <a href="http://docutils.sourceforge.net/mirror/setext.html" target="_blank" rel="noopener">Setext</a>、<a href="http://www.aaronsw.com/2002/atx/" target="_blank" rel="noopener">atx</a>、<a href="http://textism.com/tools/textile/" target="_blank" rel="noopener">Textile</a>、<a href="http://docutils.sourceforge.net/rst.html" target="_blank" rel="noopener">reStructuredText</a>、<a href="http://www.triptico.com/software/grutatxt.html" target="_blank" rel="noopener">Grutatext</a> 和 <a href="http://ettext.taint.org/doc/" target="_blank" rel="noopener">EtText</a>，而最大灵感来源其实是纯文本电子邮件的格式。</p>
 <p>总之， Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像*强调*。Markdown 的列表看起来，嗯，就是列表。Markdown 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。</p>
 <h3 id="html">兼容 HTML</h3>
 
@@ -490,7 +492,7 @@
 <p>的确，需要多费点事（多加空格）来产生 <code>&lt;br /&gt;</code> ，但是简单地「每个换行都转换为 <code>&lt;br /&gt;</code>」的方法在 Markdown 中并不适合， Markdown 中 email 式的 <a href="#blockquote">区块引用</a> 和多段落的 <a href="#list">列表</a> 在使用换行来排版的时候，不但更好用，还更方便阅读。</p>
 <h3 id="header">标题</h3>
 
-<p>Markdown 支持两种标题的语法，类 <a href="http://docutils.sourceforge.net/mirror/setext.html" target="_blank" rel="external">Setext</a> 和类 <a href="http://www.aaronsw.com/2002/atx/" target="_blank" rel="external">atx</a> 形式。</p>
+<p>Markdown 支持两种标题的语法，类 <a href="http://docutils.sourceforge.net/mirror/setext.html" target="_blank" rel="noopener">Setext</a> 和类 <a href="http://www.aaronsw.com/2002/atx/" target="_blank" rel="noopener">atx</a> 形式。</p>
 <p>类 Setext 形式是用底线的形式，利用 <code>=</code> （最高阶标题）和 <code>-</code> （第二阶标题），例如：</p>
 <pre><code>This is an H1
 =============
@@ -793,7 +795,7 @@ __double underscores__
 <pre><code>\*this text is surrounded by literal asterisks\*
 </code></pre><h3 id="code">代码</h3>
 
-<p>如果要标记一小段行内代码，你可以用反引号把它包起来（<code>` </code>），例如：</p>
+<p>如果要标记一小段行内代码，你可以用反引号把它包起来（<code>`</code>），例如：</p>
 <pre><code>Use the `printf()` function.
 </code></pre><p>会产生：</p>
 <pre><code>&lt;p&gt;Use the &lt;code&gt;printf()&lt;/code&gt; function.&lt;/p&gt;
@@ -853,7 +855,7 @@ equivalent of &lt;code&gt;&amp;amp;mdash;&lt;/code&gt;.&lt;/p&gt;
 &amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;
 &amp;#109;&quot;&gt;&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;
 &amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;
-</code></pre><p>在浏览器里面，这段字串（其实是 <code>&lt;a href=&quot;mailto:address@example.com&quot;&gt;address@example.com&lt;/a&gt;</code>）会变成一个可以点击的「address@example.com」链接。</p>
+</code></pre><p>在浏览器里面，这段字串（其实是 <code>&lt;a href=&quot;mailto:address@example.com&quot;&gt;address@example.com&lt;/a&gt;</code>）会变成一个可以点击的「<a href="mailto:address@example.com" target="_blank" rel="noopener">address@example.com</a>」链接。</p>
 <p>（这种作法虽然可以糊弄不少的机器人，但并不能全部挡下来，不过总比什么都不做好些。不管怎样，公开你的信箱终究会引来广告信件的。）</p>
 <h3 id="backslash">反斜杠</h3>
 
@@ -874,38 +876,38 @@ _   底线
 !   惊叹号
 </code></pre><h2 id="acknowledgement">感谢</h2>
 
-<p>感谢 <a href="https://twitter.com/#!/leafy7382" target="_blank" rel="external">leafy7382</a> 协助翻译，<a href="http://iamhlb.com/" target="_blank" rel="external">hlb</a>、<a href="http://twitter.com/randylien" target="_blank" rel="external">Randylien</a> 帮忙润稿，<a href="https://twitter.com/#!/ethantw" target="_blank" rel="external">ethantw</a> 的<a href="http://ethantw.net/projects/han/" target="_blank" rel="external">汉字标准格式・CSS Reset</a>， <a href="http://kidwm.net/" target="_blank" rel="external">WM</a> 回报文字错误。</p>
-<p>感谢 <a href="https://github.com/fenprace" target="_blank" rel="external">fenprace</a>，<a href="https://github.com/addv" target="_blank" rel="external">addv</a>。</p>
+<p>感谢 <a href="https://twitter.com/#!/leafy7382" target="_blank" rel="noopener">leafy7382</a> 协助翻译，<a href="http://iamhlb.com/" target="_blank" rel="noopener">hlb</a>、<a href="http://twitter.com/randylien" target="_blank" rel="noopener">Randylien</a> 帮忙润稿，<a href="https://twitter.com/#!/ethantw" target="_blank" rel="noopener">ethantw</a> 的<a href="http://ethantw.net/projects/han/" target="_blank" rel="noopener">汉字标准格式・CSS Reset</a>， <a href="http://kidwm.net/" target="_blank" rel="noopener">WM</a> 回报文字错误。</p>
+<p>感谢 <a href="https://github.com/fenprace" target="_blank" rel="noopener">fenprace</a>，<a href="https://github.com/addv" target="_blank" rel="noopener">addv</a>。</p>
 <hr>
 <h2 id="editor">Markdown 免费编辑器</h2>
 
 <p>Windows 平台</p>
 <ul>
-<li><a href="http://markdownpad.com/" target="_blank" rel="external">MarkdownPad</a></li>
-<li><a href="http://code52.org/DownmarkerWPF/" target="_blank" rel="external">MarkPad</a></li>
+<li><a href="http://markdownpad.com/" target="_blank" rel="noopener">MarkdownPad</a></li>
+<li><a href="http://code52.org/DownmarkerWPF/" target="_blank" rel="noopener">MarkPad</a></li>
 </ul>
 <p>Linux 平台</p>
 <ul>
-<li><a href="http://sourceforge.net/p/retext/home/ReText/" target="_blank" rel="external">ReText</a></li>
+<li><a href="http://sourceforge.net/p/retext/home/ReText/" target="_blank" rel="noopener">ReText</a></li>
 </ul>
 <p>Mac 平台</p>
 <ul>
-<li><a href="http://mouapp.com/" target="_blank" rel="external">Mou</a></li>
+<li><a href="http://mouapp.com/" target="_blank" rel="noopener">Mou</a></li>
 </ul>
 <p>在线编辑器</p>
 <ul>
-<li><a href="http://markable.in/" target="_blank" rel="external">Markable.in</a></li>
-<li><a href="http://dillinger.io/" target="_blank" rel="external">Dillinger.io</a></li>
+<li><a href="http://markable.in/" target="_blank" rel="noopener">Markable.in</a></li>
+<li><a href="http://dillinger.io/" target="_blank" rel="noopener">Dillinger.io</a></li>
 </ul>
 <p>浏览器插件</p>
 <ul>
-<li><a href="https://chrome.google.com/webstore/detail/oknndfeeopgpibecfjljjfanledpbkog" target="_blank" rel="external">MaDe</a> (Chrome)</li>
+<li><a href="https://chrome.google.com/webstore/detail/oknndfeeopgpibecfjljjfanledpbkog" target="_blank" rel="noopener">MaDe</a> (Chrome)</li>
 </ul>
 <p>高级应用</p>
 <ul>
-<li><a href="http://www.sublimetext.com/2" target="_blank" rel="external">Sublime Text 2</a> + <a href="http://ttscoff.github.com/MarkdownEditing/" target="_blank" rel="external">MarkdownEditing</a> / <a href="http://lucifr.com/2012/07/12/markdownediting-for-sublime-text-2/" target="_blank" rel="external">教程</a></li>
+<li><a href="http://www.sublimetext.com/2" target="_blank" rel="noopener">Sublime Text 2</a> + <a href="http://ttscoff.github.com/MarkdownEditing/" target="_blank" rel="noopener">MarkdownEditing</a> / <a href="http://lucifr.com/2012/07/12/markdownediting-for-sublime-text-2/" target="_blank" rel="noopener">教程</a></li>
 </ul>
-<p>*** 如有更好的 Markdown 免费编辑器推荐，请到<a href="https://gitcafe.com/riku/Markdown-Syntax-CN/tickets/1" target="_blank" rel="external">这里反馈</a>，谢谢！</p>
+<p>*** 如有更好的 Markdown 免费编辑器推荐，请到<a href="https://gitcafe.com/riku/Markdown-Syntax-CN/tickets/1" target="_blank" rel="noopener">这里反馈</a>，谢谢！</p>
 
       
     </div>
@@ -965,34 +967,12 @@ _   底线
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/10/13/Markdown语法/"
-     data-title="Markdown语法"
-     data-content=""
-     data-url="http://lingyv.cn/2016/10/13/Markdown语法/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -1044,7 +1024,7 @@ _   底线
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1146,7 +1126,7 @@ _   底线
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

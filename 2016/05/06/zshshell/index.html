@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="有些同学可能对Shell不太熟悉。借用池建强的一个解释:简单的说，Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。">
+<meta name="keywords" content="教程,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shell的唯一选择--zsh">
 <meta property="og:url" content="http://lingyv.cn/2016/05/06/zshshell/index.html">
 <meta property="og:site_name" content="凌宇">
 <meta property="og:description" content="有些同学可能对Shell不太熟悉。借用池建强的一个解释:简单的说，Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://lingyv.cn/imag/shell.png">
 <meta property="og:image" content="http://lingyv.cn/imag/git.png">
 <meta property="og:image" content="http://lingyv.cn/imag/autoj.png">
@@ -406,18 +408,18 @@
       
 
       
-        <p>有些同学可能对Shell不太熟悉。借用池建强的一个解释:简单的说，Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。<br><a id="more"></a><br>Linux/Unix提供了很多种Shell，输入以下的命令查看有哪些Shell:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/shells</div></pre></td></tr></table></figure></p>
-<p><img src="/imag/shell.png" alt="shell.png"><br>Linux的默认 Shell 都是 bash，既然如此，那我今天为什么要说zsh呢？因为zsh搭配上”oh my zsh”真的好用到爆啊！”oh my zsh”的Github网址<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">点我点我！</a>。<br>那么如何安装、配置和使用 zsh(我用的是Ubuntu)</p>
-<h4 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install zsh</div></pre></td></tr></table></figure>
-<h4 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh my zsh"></a>安装oh my zsh</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</div></pre></td></tr></table></figure>
+        <p>有些同学可能对Shell不太熟悉。借用池建强的一个解释:简单的说，Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。<br><a id="more"></a><br>Linux/Unix提供了很多种Shell，输入以下的命令查看有哪些Shell:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shells</span><br></pre></td></tr></table></figure></p>
+<p><img src="/imag/shell.png" alt="shell.png"><br>Linux的默认 Shell 都是 bash，既然如此，那我今天为什么要说zsh呢？因为zsh搭配上”oh my zsh”真的好用到爆啊！”oh my zsh”的Github网址<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="noopener">点我点我！</a>。<br>那么如何安装、配置和使用 zsh(我用的是Ubuntu)</p>
+<h4 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install zsh</span><br></pre></td></tr></table></figure>
+<h4 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh my zsh"></a>安装oh my zsh</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</span><br></pre></td></tr></table></figure>
 <h4 id="配置zsh"><a href="#配置zsh" class="headerlink" title="配置zsh"></a>配置zsh</h4><p>zsh的配置在当前用户目录的.zshrc里。oh my zsh 在安装时已经自动读取当前的环境变量并进行了设置，你可以继续追加其他环境变量。</p>
 <ul>
-<li>换主题<br>打开～/.zshrc。oh my zsh提供了数十种主题，相关文件在~/.oh-my-zsh/themes下，你可以随意选择，我采用的是ys主题。<br>在～/.zshrc文件中找到<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ZSH_THEME=<span class="string">"ys"</span></div></pre></td></tr></table></figure>
+<li>换主题<br>打开～/.zshrc。oh my zsh提供了数十种主题，相关文件在~/.oh-my-zsh/themes下，你可以随意选择，我采用的是ys主题。<br>在～/.zshrc文件中找到<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"ys"</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>更改成你想要的主题就好了。</p>
 <ul>
-<li>插件<br>oh my zsh里提供了非常多的插件，相关文件在~/.oh-my-zsh/plugins文件夹下，默认有100多种，我们可以根据自己的实际需要加载特定的插件。插件也是在～/.zshrc里配置，找到plugins关键字，你就可以加载自己的插件了，系统默认加载 git ，你可以在后面追加内容。<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plugins=(git autojump mvn last-working-dir)</div></pre></td></tr></table></figure>
+<li>插件<br>oh my zsh里提供了非常多的插件，相关文件在~/.oh-my-zsh/plugins文件夹下，默认有100多种，我们可以根据自己的实际需要加载特定的插件。插件也是在～/.zshrc里配置，找到plugins关键字，你就可以加载自己的插件了，系统默认加载 git ，你可以在后面追加内容。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(git autojump mvn last-working-dir)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>下面简单介绍一下我用的这几个插件:</p>
@@ -425,13 +427,13 @@
 <li>git:当你处于git的目录下时，Shell 会明确显示 git和 branch，如图所示，另外对 git 很多命令进行了简化，例如 gco=’git checkout’、gd=’git diff’、gst=’git status’、g=’git’等等，熟练使用可以大大减少 git 的命令长度，命令内容可以参考~/.oh-my-zsh/plugins/git/git.plugin.zsh<br><img src="/imag/git.png" alt="git.png"></li>
 <li>autojump<br>autojump可以说是zsh必备插件，有点双剑合璧的意思。安装了autojump之后，zsh会自动记录你访问过的目录，通过j+目录就可以直接进行目录跳转，而且目录名支持模糊匹配和自动补全，例如你访问过～/workspace目录，输入j wor即可正确跳转，如图。j –stat 可以看你的历史路径库。<br><img src="/imag/autoj.png" alt="autoj.png"></li>
 <li>last-working-dir<br>last-working-dir 插件，可以记录上一次退出Shell时的所在路径，并且在下一次启动Shell时自动恢复到退出时所在的路径。这一切不需要进行任何操作，全部都是自动完成的。<ul>
-<li>命令纠错<br>如图，输入<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudp apt-get install</div></pre></td></tr></table></figure>
+<li>命令纠错<br>如图，输入<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudp apt-get install</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
-<p>nyae会提示zsh: correct ‘sudp’ to ‘sudo’ [nyae]?接下来直接按y/n就行了。真是太贴心了有木有<br><img src="/imag/nyae.png" alt="nyae.png"><br>那如何开启nyae提示呢？<br>打开～/.zshrc，找到配置项更改为“true”即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Uncomment the following line to enable command auto-correction.</span></div><div class="line"> ENABLE_CORRECTION=<span class="string">"true"</span></div></pre></td></tr></table></figure></p>
-<h4 id="指定zsh为默认Shell"><a href="#指定zsh为默认Shell" class="headerlink" title="指定zsh为默认Shell"></a>指定zsh为默认Shell</h4><p>输入命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chsh <span class="_">-s</span> /bin/zsh</div></pre></td></tr></table></figure></p>
+<p>nyae会提示zsh: correct ‘sudp’ to ‘sudo’ [nyae]?接下来直接按y/n就行了。真是太贴心了有木有<br><img src="/imag/nyae.png" alt="nyae.png"><br>那如何开启nyae提示呢？<br>打开～/.zshrc，找到配置项更改为“true”即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Uncomment the following line to enable command auto-correction.</span></span><br><span class="line"> ENABLE_CORRECTION=<span class="string">"true"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="指定zsh为默认Shell"><a href="#指定zsh为默认Shell" class="headerlink" title="指定zsh为默认Shell"></a>指定zsh为默认Shell</h4><p>输入命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure></p>
 <h4 id="zsh操作"><a href="#zsh操作" class="headerlink" title="zsh操作"></a>zsh操作</h4><ul>
 <li>输入 grep 然后用上下箭头可以翻阅你执行过的所有 grep 命令</li>
 <li>tab补全:路径补全、命令补全，命令参数补全，插件内容补全等等。触发补全只需要按一下或两下 tab 键，补全项可以使用 ctrl+n/p/f/b上下左右切换。</li>
@@ -499,34 +501,12 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/06/zshshell/"
-     data-title="Shell的唯一选择--zsh"
-     data-content=""
-     data-url="http://lingyv.cn/2016/05/06/zshshell/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
           
@@ -578,7 +558,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -680,7 +660,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
